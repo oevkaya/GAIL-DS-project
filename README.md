@@ -38,9 +38,55 @@ Comprehensive Data Preprocessing
 
 ----------------------------------------------------
 
+2.[DA-Code: Agent Data Science Code Generation Benchmark for Large Language Models](https://arxiv.org/pdf/2410.07331)
+
+
+We present an overview of DA-Code’s data statistics, showcasing its structure and variety of tasks. DA-Code contains 500 tasks in total, categorized into Data Wrangling (DW), Machine Learning (ML), and Exploratory Data Analysis (EDA).
+The ML tasks are comprised of sub-tasks such as Classification, Regression, and Clustering. EDA includes Visualization, Statistical Analysis, Data Insights, and Data Manipulation, while DW encompasses tasks such as Data Loading, Cleaning, and Transformation.
+
+To achieve this goal, we introduce DA-Code, a
+benchmark for evaluating LLM data analysis ability, with carefully defined task scenarios. DA-Code
+contains 500 complex task examples, originating
+from real, challenging data analysis tasks, encompassing three main categories: data wrangling
+(DW), machine learning (ML) and exploratory
+data analysis (EDA). It covers the entire data analysis pipeline. Data wrangling includes a variety
+of tasks such as data loading, data cleaning, and
+data merging, specifically targeting raw data in
+files and databases. EDA aims to gain insights and
+analysis using the given information and resources.
+It includes a wide variety of data analysis tasks
+using programming languages such as SQL and
+Python to get insights from data.
+
+----------------------------------------------------
+
+
 ## Our Experimental setting 
 
+Main goal is to examine the performance of DA plugin with certain GPT 4 version such as 4o or 4o mini version regarding its price 
+
+
 ## Our Task types and related questions at different levels 
+
+- Data Undertanding and Wrangling
+- Data Cleaning and Pre-processing
+- Data Summary Statistics and Interpretations
+- Data Transformations
+
+- Data Visualization - EDA 
+
+- Statistical Models under supervised , unsupervised learning type of models
+  - Supervised Learning 
+    - Linear Regression modeling
+    -  Variations of regression (Lasso or Ridge)
+    - Classification models such as Logistic Regression model
+    - Tree based model
+    - Model comparison type questions
+  - Unsupervised Learning
+    - Clustering methods
+    - Dimensionality Reductions (PCA)
+
+- Statistical Hypothesis testing related questions 
 
 ## Our metrics to evaluate the specific task outcome 
 
