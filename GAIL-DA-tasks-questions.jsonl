@@ -1,4 +1,49 @@
-{"id": 0, "question": "How many tourist attractions are there in the data set?", "concepts": ["Data understanding"], "constraints": "Calculate the specific value using R functions only using R's built-in base module or appropriate package functionalities.", "format": "@count_visitor[count_visitor_value] where \"count_visitor_value\" is given in integer format.", "file_name": "UK-visitor-numbers.csv", "level": "easy"}
-{"id": 1, "question": "Which attraction had the most number of visitors in 2022?", "concepts": ["Data understanding"], "constraints": "Obtain the specific place name using R functions only using R's tidyverse functionalities", "format": "@place_name[place_name] where \"place_name\" is given in string format.", "file_name": "UK-visitor-numbers.csv", "level": "easy"}
+{"id": 0, "question": "How many tourist attractions are there in the data set?", "concepts": ["Data understanding"], 
+"constraints": "Calculate the specific value using R functions only using R's built-in base module or appropriate package functionalities.", 
+"format": "@count_visitor[count_visitor_value] where \"count_visitor_value\" is given in integer format.", "file_name": "UK-visitor-numbers.csv", "level": "easy"}
+
+{"id": 1, "question": "Which attraction had the most number of visitors in 2022?", "concepts": ["Data understanding"], 
+"constraints": "Obtain the specific place name using R functions only using R's tidyverse functionalities", 
+"format": "@place_name[place_name] where \"place_name\" is given in string format.", "file_name": "UK-visitor-numbers.csv", "level": "easy"}
+
+{"id": 2, "question": "What is the admission charge for the "National Museum of Scotland"?", "concepts": ["Data understanding"], 
+"constraints": "Obtain the specific place name using R functions only using R's tidyverse functionalities such as filter", 
+"format": "@admission_charge[admission_charge_value] where \"admission_charge_value\" is given in string format.", "file_name": "UK-visitor-numbers.csv", "level": "easy"}
+
+{"id": 3, "question": "How many attraction had more than 1 million visitors in 2022?", "concepts": ["Data understanding"], 
+"constraints": "Obtain the specific place name using R functions only using R's tidyverse functionalities such as filter", 
+"format": "@count_attraction_2022[count_attraction_2022] where \"count_attraction_2022\" is given in integer format.", "file_name": "UK-visitor-numbers.csv", "level": "easy"}
+
+{"id": 4, "question": "How many "O"utside attractions are there in the "Yorkshire and the Humber" region that gives "Members" free admission, which had more than 100,000 visitors in 2022?", 
+"concepts": ["Data understanding"], "constraints": "Obtain the specific place name using R functions only using R's tidyverse functionalities such as filter", 
+"format": "@count_specific_attraction[count_specific_attraction] where \"count_specific_attraction\" is given in integer format.", "file_name": "UK-visitor-numbers.csv", "level": "medium"}
+
+{"id": 5, "question": "What are the mean and median visitor numbers in 2022 across all attractions?", 
+"concepts": ["Data summary"], "constraints": "Obtain the specific place name using R functions such as mean or median", 
+"format": "@visitor_summary[visitor_summary] where \"visitor_summary\" is given as a numeric vector or tibble formated values.", "file_name": "UK-visitor-numbers.csv", "level": "medium"}
+
+{"id": 6, "question": "What is the interquartile range (the width of the middle 50% of data set between the lower and upper quartiles) the for each of the four nations of the UK?", 
+"concepts": ["Data summary"], "constraints": "Obtain the specific place name using R functions such as IQR", 
+"format": "@IQR_value[IQR_value] where \"IQR_value\" is given as a numeric vector or tibble formated values for each nation.", "file_name": "UK-visitor-numbers.csv", "level": "medium"}
+
+{"id": 7, "question": "How many tourist attractions are there in each of the 4 nations? From this, discuss in your group how reliable you think the inter-quartile estimates are.", 
+"concepts": ["Data exploration"], "constraints": "Obtain the specific place name using R functions and interpretations", 
+"format": "@attraction_comment[attraction_comment] where \"attraction_comment\" is given in string format.", "file_name": "UK-visitor-numbers.csv", "level": "medium"}
+
+{"id": 8, "question": "Within each of the 4 nations, what is the proportion of tourist attractions that have free admission for all visitors?", 
+"concepts": ["Data exploration"], "constraints": "Obtain the specific place name using R functions only using multiple R's tidyverse functionalities", 
+"format": "@proportion_nation_value[proportion_nation_value] where \"proportion_nation_value\" is given in a numeric vector or tibble formated values.", 
+"file_name": "UK-visitor-numbers.csv", "level": "difficult"}
+
+{"id": 9, "question": "Calculate the percentage change in visitor admissions from 2021 to 2022. Of the tourist attractions in Scotland, sort into increasing numerical order the types of admission charges based on the mean percentage change in visitor numbers.", 
+"concepts": ["Data exploration"], "constraints": "Obtain the specific place name using R functions only using multiple R's tidyverse functionalities", 
+"format": "@percentage_change_2021_2022[percentage_change_2021_2022] where \"percentage_change_2021_2022\" is given in a numeric vector or tibble formated values.", 
+"file_name": "UK-visitor-numbers.csv", "level": "difficult"}
+
+
 ...
-{"id": 760, "question": "6. For each station, are there any missing values in the observation values (obs_value)? If yes, which station has the most missing values and how many missing values does it have?", "concepts": ["Comprehensive Data Preprocessing"], "constraints": "In your analysis:\n- Assume that missing values are represented as \"NaN\".\n- Calculate the number of missing values for each station.", "format": "@most_missing_station_name[\"station_name\"]\n@most_missing_station_count[num_missing_obs]\n\nwhere \"station_name\" is a string representing the name of the station with the most missing observation value.\nwhere \"num_missing_obs\" is a number greater than or equal to 0, representing the number of missing observation values for the station with the most missing values.", "file_name": "weather_data_1864.csv", "level": "medium"}
+
+{"id": 100, "question": " ", 
+"concepts": ["..."], "constraints": "...", 
+"format": "...", 
+"file_name": "...", "level": "..."}
