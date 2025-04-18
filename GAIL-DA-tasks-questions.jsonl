@@ -40,6 +40,20 @@
 "format": "@percentage_change_2021_2022[percentage_change_2021_2022] where \"percentage_change_2021_2022\" is given in a numeric vector or tibble formated values.", 
 "file_name": "UK-visitor-numbers.csv", "level": "difficult"}
 
+{"id": 10, "question": "Create a frequency table of coastal countries/territories by region.", "concepts": ["Data summary"], 
+"constraints": "Calculate the specific value using R functions only using R's built-in base module or appropriate package functionalities.", 
+"format": "@freq_table[freq_table] where \"freq_table\" is given in a numeric vector or tibble formated values..", "file_name": "joined_plastic_data_all.csv", "level": "easy"}
+
+{"id": 11, "question": "Which region has the most number of coastal countries/territories?", "concepts": ["Data exploration"], 
+"constraints": "Calculate the specific value using R functions only using R's built-in base module or appropriate package functionalities.", 
+"format": "@region_name[region_name] where \"region_name\" is given in string format.", "file_name": "joined_plastic_data_all.csv", "level": "easy"}
+
+{"id": 12, "question": "The mismanaged plastic waste is measured in kg per capita. Add a new variable to plastic_data_all called total_mismanage_plastic by multiplying mismanaged_plastic by population. What is the mean total of mismanaged plastic waste per region?", 
+"concepts": ["Data transformation-summary"], 
+"constraints": "Calculate the specific value using R functions only using R's built-in base module or appropriate package functionalities.", 
+"format": "@mean_region_calculated[mean_region_calculated] where \"mean_region_calculated\" is given in a numeric vector or tibble formated values.", 
+"file_name": "joined_plastic_data_all.csv", "level": "medium"}
+
 
 ...
 
