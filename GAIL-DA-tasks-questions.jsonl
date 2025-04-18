@@ -6,7 +6,7 @@
 "constraints": "Obtain the specific place name using R functions only using R's tidyverse functionalities", 
 "format": "@place_name[place_name] where \"place_name\" is given in string format.", "file_name": "UK-visitor-numbers.csv", "level": "easy"}
 
-{"id": 2, "question": "What is the admission charge for the "National Museum of Scotland"?", "concepts": ["Data understanding"], 
+{"id": 2, "question": "What is the admission charge for the National Museum of Scotland?", "concepts": ["Data understanding"], 
 "constraints": "Obtain the specific place name using R functions only using R's tidyverse functionalities such as filter", 
 "format": "@admission_charge[admission_charge_value] where \"admission_charge_value\" is given in string format.", "file_name": "UK-visitor-numbers.csv", "level": "easy"}
 
@@ -14,7 +14,7 @@
 "constraints": "Obtain the specific place name using R functions only using R's tidyverse functionalities such as filter", 
 "format": "@count_attraction_2022[count_attraction_2022] where \"count_attraction_2022\" is given in integer format.", "file_name": "UK-visitor-numbers.csv", "level": "easy"}
 
-{"id": 4, "question": "How many "O"utside attractions are there in the "Yorkshire and the Humber" region that gives "Members" free admission, which had more than 100,000 visitors in 2022?", 
+{"id": 4, "question": "How many Outside attractions are there in the Yorkshire and the Humber region that gives Members free admission, which had more than 100,000 visitors in 2022?", 
 "concepts": ["Data understanding"], "constraints": "Obtain the specific place name using R functions only using R's tidyverse functionalities such as filter", 
 "format": "@count_specific_attraction[count_specific_attraction] where \"count_specific_attraction\" is given in integer format.", "file_name": "UK-visitor-numbers.csv", "level": "medium"}
 
