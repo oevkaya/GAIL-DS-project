@@ -54,6 +54,32 @@
 "format": "@mean_region_calculated[mean_region_calculated] where \"mean_region_calculated\" is given in a numeric vector or tibble formated values.", 
 "file_name": "joined_plastic_data_all.csv", "level": "medium"}
 
+{"id": 13, "question": "Add a new variable called pct_mismanaged_plastic_ocean to plastic_data_all that represents the amount of ocean emitted mismanaged plastic waste as a percentage of all mismanaged plastic waste. Calculate the median pct_mismanaged_plastic_ocean for each region.", 
+"concepts": ["Data transformation-summary"], 
+"constraints": "Calculate the specific value using R functions only using R's built-in base module or appropriate package functionalities.", 
+"format": "@median_pct_mismanaged_plastic_ocean[median_pct_mismanaged_plastic_ocean] where \"median_pct_mismanaged_plastic_ocean\" is given in a numeric vector or tibble formated values.", 
+"file_name": "joined_plastic_data_all.csv", "level": "medium"}
+
+{"id": 14, "question": "Create a plotting instructional staff employment trends as a dot plot.", 
+"concepts": ["Data visualization"], 
+"constraints": "Create the specific plot using R functions only using R's built-in base module or appropriate package functionalities.", 
+"format": "@instructional_staff_employment_trends_plot[instructional_staff_employment_trends_plot] where \"instructional_staff_employment_trends_plot\" is a dot plot object created by ggplot package or other.", 
+"file_name": "instructional-staff.csv", "level": "easy"}
+
+{"id": 14.1, "question": "Create a plotting instructional staff employment trends in a different style plot", 
+"concepts": ["Data visualization"], 
+"constraints": "Create the specific plot using R functions only using R's built-in base module or appropriate package functionalities.", 
+"format": "@staff_employment_trends_line_plot[staff_employment_trends_line_plot] where \"staff_employment_trends_line_plot\" is a line plot object created by ggplot package or other.", 
+"file_name": "instructional-staff.csv", "level": "medium"}
+
+{"id": 14.2, "question": "Improve the plot from the previous exercise by fixing up its labels (title, axis labels, and legend label) as well as any other components you think could benefit from improvement.", 
+"concepts": ["Data visualization-customization"], 
+"constraints": "Create the specific plot using R functions only using R's built-in base module or appropriate package functionalities.", 
+"format": "@staff_employment_trends_line_plot_custom[staff_employment_trends_line_plot_custom] where \"staff_employment_trends_line_plot_custom\" is a customized line plot object created by ggplot package or other.", 
+"file_name": "instructional-staff.csv", "level": "medium-hard"}
+
+
+
 
 ...
 
