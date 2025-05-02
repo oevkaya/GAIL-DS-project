@@ -78,6 +78,58 @@
 "format": "@staff_employment_trends_line_plot_custom[staff_employment_trends_line_plot_custom] where \"staff_employment_trends_line_plot_custom\" is a customized line plot object created by ggplot package or other.", 
 "file_name": "instructional-staff.csv", "level": "medium-hard"}
 
+{"id": 15, "question": "Perform a preliminary exploratory data analysis (EDA) of the diamonds data set. Create some frequency tables, summary statistics and/or data visualisations to explore the relationship between the variables.", 
+"concepts": ["General EDA"], 
+"constraints": "Create the specific EDA results using R functions only using R's built-in base module or appropriate package functionalities.", 
+"format": "@eda_diamond[eda_diamond] where \"eda_diamond\" is a summary of various results including numerical and graphical outcomes.", 
+"file_name": "ggplot::diamonds", "level": "hard"}
+
+{"id": 15.1, "question": "Make appropriate decisions to clean the data by removing rows containing problematic observations", 
+"concepts": ["Data cleaning"], 
+"constraints": "Do specific cleaning steps using R functions only using R's built-in base module or appropriate package functionalities.", 
+"format": "@data_cleaning_diamond[data_cleaning_diamond] where \"data_cleaning_diamond\" is a summary of certain steps on data cleaning.", 
+"file_name": "ggplot::diamonds", "level": "medium"}
+
+{"id": 16, "question": "The table_pct variable is a percentage between the width of the table and the diamond’s overall width. First, calculate the table width in millimetres, as table_mm. Then, calculate the arithmetic mean of the table length variable table_mm across all diamonds in the data set.", 
+"concepts": ["Data transformation-summary"], 
+"constraints": "Create the specific variables using R functions only using R's built-in base module or appropriate package functionalities.", 
+"format": "@table_mm_diamond_summary[table_mm_diamond_summary] where \"table_mm_diamond_summary\" is a numerical arithmetic mean value in a vector format.", 
+"file_name": "ggplot::diamonds", "level": "medium"}
+
+{"id": 16.1, "question": "Calculate the arithmetic mean across all the numeric variables in the dataset. Specify informative names for each of these summary statistics, for example my adding avg_ in front of each variable name", 
+"concepts": ["Data summary"], 
+"constraints": "Create the specific variables using R functions only using R's built-in base module or appropriate package functionalities.", 
+"format": "@table_mm_diamond_summary[table_mm_diamond_summary] where \"table_mm_diamond_summary\" is a numerical arithmetic mean value in a vector format with certain names.", 
+"file_name": "ggplot::diamonds", "level": "medium"}
+
+{"id": 17, "question": "Create a function called gmean that computes the geometric mean statistic. The function must do the following: (i) Take a single input called x representing the data vector., 
+(ii) Computes the geometric mean using the equivalent formula (based on logarithms) provided above and (iii) Returns a single value representing the geometric mean of the input data.", 
+"concepts": ["Creating a specific function"], 
+"constraints": "Create the specific function using R functions only using R's built-in base module or appropriate package functionalities.", 
+"format": "@gmean_function[gmean_function] where \"gmean_function\" is a created function that can be tested for reproducibility.", 
+"file_name": "ggplot::diamonds", "level": "hard"}
+
+{"id": 18, "question": "With the diamonds data set, summarise the table_mm variable by computing the (arithmetic) mean, median and geometric mean for each clarity category. 
+Comment on the relationship between table_mm and clarity using the summarised values.", 
+"concepts": ["Data summary-interpretation"], 
+"constraints": "Create the summary and interpret relationship with R functions only using R's built-in base module or appropriate package functionalities.", 
+"format": "@summarise_table_mm[summarise_table_mm] where \"summarise_table_mm\" is a summary and interpretations.", 
+"file_name": "ggplot::diamonds", "level": "medium"}
+
+{"id": 19, "question": "Use exponent and logarithm rules to prove that the geometric mean is equal to the exponential of the arithmetic mean of the natural logarithm transformed data.", 
+"concepts": ["Summary Stats derivation"], 
+"constraints": "Specific Derivation based illustration for summary statistics", 
+"format": "@list_of_steps[list_of_steps] where \"list_of_steps\" is list of steps that creates the derivation.", 
+"file_name": "ggplot::diamonds", "level": "hard"}
+
+{"id": 20, "question": "An alternative measurement of central tendency is the Harmonic Mean, which is calculated by the reciprocal of the arithmetic mean of the reciprocals. 
+Create a new function called hmean() that takes a single numerical vector x as input that computes and returns the harmonic mean statistic.", 
+"concepts": ["Creating a specific function"], 
+"constraints": "Create the specific function using R functions only using R's built-in base module or appropriate package functionalities.", 
+"format": "@hmean_function[hmean_function] where \"hmean_function\" is a created function that can be tested for reproducibility.", 
+"file_name": "ggplot::diamonds", "level": "hard"}
+
+
 
 
 
