@@ -1,3 +1,5 @@
+## From the IDS Lab material questions + possibly HW and Quiz exercises
+
 {"id": 0, "question": "How many tourist attractions are there in the data set?", "concepts": ["Data understanding"], 
 "constraints": "Calculate the specific value using R functions only using R's built-in base module or appropriate package functionalities.", 
 "format": "@count_visitor[count_visitor_value] where \"count_visitor_value\" is given in integer format.", "file_name": "UK-visitor-numbers.csv", "level": "easy"}
@@ -128,6 +130,111 @@ Create a new function called hmean() that takes a single numerical vector x as i
 "constraints": "Create the specific function using R functions only using R's built-in base module or appropriate package functionalities.", 
 "format": "@hmean_function[hmean_function] where \"hmean_function\" is a created function that can be tested for reproducibility.", 
 "file_name": "ggplot::diamonds", "level": "hard"}
+
+{"id": 21, "question": "Visualize the distribution of score in the dataframe evals. Is the distribution skewed? What does that tell you about how students rate courses? 
+Is this what you expected to see? Why, or why not?", 
+"concepts": ["Data Viz and EDA"], 
+"constraints": "Obtain the specific data viz result using R's tidyverse functionalities", 
+"format": "@dist_score_evals_viz[dist_score_evals_viz] where \"dist_score_evals_viz\" is a created data visualization with additional interepretations.", 
+"file_name": "evals.csv", "level": "medium"}
+
+{"id": 22, "question": "Visualize and describe the relationship between score and bty_avg using geom_point() to represent the data. 
+Then, visualise again using geom_jitter() for the points", 
+"concepts": ["Data Viz and EDA"], 
+"constraints": "Obtain the specific data viz result using R's tidyverse functionalities", 
+"format": "@dist_score_bty_avg_viz[dist_score_bty_avg_viz] where \"dist_score_bty_avg_viz\" is a created multiple data visualization with different geoms.", 
+"file_name": "evals.csv", "level": "medium"}
+
+{"id": 23, "question": "Fit a linear model called score_bty_fit to predict average professor evaluation score from average beauty rating (bty_avg). 
+Print the regression output using tidy(). Based on the regression output, write down the linear model.", 
+"concepts": ["Regression Modeling"], 
+"constraints": "Obtain the specific model fit result using R's tidyverse functionalities", 
+"format": "@linear_model_score_bty_fit[linear_model_score_bty_fit] where \"linear_model_score_bty_fit\" is a fitted linear regression with model equations.", 
+"file_name": "evals.csv", "level": "hard"}
+
+{"id": 23.1, "question": "Interpret the slope and intercept of the linear model in context of the data. 
+Determine the R^2 of the model and interpret it in the context of the data.", 
+"concepts": ["Regression Modeling Interpretation"], 
+"constraints": "Obtain the interpretation of the specific model fit result using R's tidyverse functionalities", 
+"format": "@linear_model_slope_intercept_R2[linear_model_slope_intercept_R2] where \"linear_model_slope_intercept_R2\" is the text includes the model fit interpretations.", 
+"file_name": "evals.csv", "level": "medium"}
+
+{"id": 23.2, "question": "Make a plot of residuals vs. predicted values for the model above. Use geom_jitter() instead of geom_point(), and overlay a dashed horizontal line at y = 0. 
+Then, comment on whether the linear model is appropriate for modeling the relationship between evaluation scores and beauty scores.", 
+"concepts": ["Model Diagnostic Visualization"], 
+"constraints": "Obtain the data viz for the specific model fit result using R's tidyverse functionalities", 
+"format": "@linear_model_res_pred_plot[linear_model_res_pred_plot] where \"linear_model_res_pred_plot\" is the created model diagnostic plot with interpretations.", 
+"file_name": "evals.csv", "level": "medium"}
+
+{"id": 24, "question": "Look at the variable rank, and determine the frequency of each category level.", 
+"concepts": ["Data description"], 
+"constraints": "Obtain the frequency table of the variable using R's tidyverse functionalities", 
+"format": "@freq_var_rank_pred[freq_var_rank_pred] where \"freq_var_rank_pred\" is the created frequency table for the specific variable", 
+"file_name": "evals.csv", "level": "medium"}
+
+{"id": 25, "question": "Fit a new linear model called score_rank_fit to predict average professor evaluation score based on rank of 
+the professor and print out the regression output using tidy(). Based on the regression output, interpret the slope and intercept in context of the data.", 
+"concepts": ["Regression Modeling"], 
+"constraints": "Obtain the specific model fit result using R's tidyverse functionalities", 
+"format": "@linear_model_score_rank_fit[linear_model_score_rank_fit] where \"linear_model_score_rank_fit\" is a fitted linear regression with categorical variable.", 
+"file_name": "evals.csv", "level": "medium"}
+
+{"id": 26, "question": "Fit a multiple linear regression model, predicting average professor evaluation score based on average beauty rating (bty_avg) and gender. 
+Name the model score_bty_gender_fit. Interpret the intercept and the slopes of bty_avg and gender. 
+Make a scatterplot (using jitter) of score by bty_avg and color the points by gender.", 
+"concepts": ["Regression Modeling"], 
+"constraints": "Obtain the specific model fit result using R's tidyverse functionalities", 
+"format": "@multiple_linear_model[multiple_linear_model] where \"multiple_linear_model\" is a fitted multiple linear regression with specific data visualization", 
+"file_name": "evals.csv", "level": "hard"}
+
+{"id": 26.1, "question": "What percent of the variability in score is explained by the model score_bty_gender_fit. 
+What is the equation of the line corresponding to just male professors? How does the relationship between beauty and evaluation score vary between male and female professors?", 
+"concepts": ["Regression Modeling interpretations"], 
+"constraints": "Obtain the interpretations of the specific model fit result using R's tidyverse functionalities", 
+"format": "@multiple_linear_model_explain[multiple_linear_model_explain] where \"multiple_linear_model_explain\" is a list of explanations based on the fitted multiple linear regression", 
+"file_name": "evals.csv", "level": "hard"}
+
+{"id": 27, "question": "Transform any character variables that need to be transformed into categorical. Are there any missing values in our variable of interest RainTomorrow? 
+If so, we filter them out and save the new dataset as weather_noNA", 
+"concepts": ["Data Transformation and Exploration"], 
+"constraints": "Obtain the described new data set after making changes using R's tidyverse functionalities", 
+"format": "@weather_noNA_new_data[weather_noNA_new_data] where \"weather_noNA_new_data\" is a new data set after applying the requested steps", 
+"file_name": "weatherAUS.csv", "level": "easy"}
+
+{"id": 28, "question": "Try to predict RainTomorrow by fitting a linear regression for Portland city using the variable RainToday and print the output using tidy().
+For each point in our dataset, what are the fitted probabilities that tomorrow it’s going to rain?", 
+"concepts": ["Logistic Regression Model"], 
+"constraints": "Obtain the logistic regression model for a subset of data using R's tidyverse functionalities", 
+"format": "@RainTomorrow_logistic_model[RainTomorrow_logistic_model] where \"RainTomorrow_logistic_model\" is a fitted logistic model and related calculated probabilities", 
+"file_name": "weatherAUS.csv", "level": "medium"}
+
+{"id": 29, "question": "Split the data into a training set (80% of your Portland data) and a testing set. 
+Refit the simple logistic regression using RainToday as predictor on this training data, using tidymodels recipes and workflows.
+Start by the recipe. First initialize the recipe, then remove observations with missing values using step_naomit() and finally use step_dummy to convert categorical to dummy variables.", 
+"concepts": ["Logistic Regression Model"], 
+"constraints": "Obtain the logistic regression model after data split using R's tidyverse functionalities", 
+"format": "@RainTomorrow_logistic_model_train_test_split[RainTomorrow_logistic_model_train_test_split] where \"RainTomorrow_logistic_model_train_test_split\" is a fitted logistic model after data split", 
+"file_name": "weatherAUS.csv", "level": "hard"}
+
+{"id": 30, "question": "Fit a multiple logistic regression, i.e. using multiple explanatory variables, to predict RainTomorrow. 
+We will use as predictors the variables MinTemp, MaxTemp, RainToday and Rainfall", 
+"concepts": ["Logistic Regression Model"], 
+"constraints": "Obtain the logistic regression model with multiple predictors using R's tidyverse functionalities", 
+"format": "@RainTomorrow_logistic_model_mult_pred[RainTomorrow_logistic_model_mult_pred] where \"RainTomorrow_logistic_model_mult_pred\" is a fitted logistic model with multiple predictors", 
+"file_name": "weatherAUS.csv", "level": "medium"}
+
+{"id": 30.1, "question": "Create the ROC curve and get the AUC (area under the curve) value for your multiple logistic regression model.
+How is the model performance ", 
+"concepts": ["Logistic Regression Model Performance"], 
+"constraints": "Obtain the logistic regression model performance with multiple predictors using R's tidyverse functionalities", 
+"format": "@RainTomorrow_logistic_mult_performance[RainTomorrow_logistic_mult_performance] where \"RainTomorrow_logistic_mult_performance\" is the data viz for the logistic model performance", 
+"file_name": "weatherAUS.csv", "level": "hard"}
+
+{"id": 30.2, "question": "For your multiple logistic regression model, consider several thresholds for predicting RainTomorrow and look at the number of false positives and false negatives.", 
+"concepts": ["Confusion Matrix details"], 
+"constraints": "Obtain the logistic regression model confison matrix information using R's tidyverse functionalities", 
+"format": "@RainTomorrow_logistic_mult_confusion_matrix[RainTomorrow_logistic_mult_confusion_matrix] where \"RainTomorrow_logistic_mult_confusion_matrix\" is the calculate FP and FN across various thresholds", 
+"file_name": "weatherAUS.csv", "level": "hard"}
 
 
 
