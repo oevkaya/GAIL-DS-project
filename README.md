@@ -58,12 +58,17 @@ It includes a wide variety of data analysis tasks
 using programming languages such as SQL and
 Python to get insights from data.
 
+we have more papers on that to write down the Related Research section of our report / paper
+
 ----------------------------------------------------
 
 
 ## Our Experimental setting 
 
 Main goal is to examine the performance of DA plugin with certain GPT 4 version such as 4o or 4o mini version regarding its price 
+
+So far, we are doing experiments on the model = "gpt-4o" but there could be some alternative models on specific tasks to make a comparison such as gpt-4o-mini, o4-mini or evengpt-3.5-turbo
+This will depend on the pricing, the selected list of tasks to compare, not the whole set of questions
 
 
 ## Our Task types and related questions at different levels 
@@ -86,8 +91,34 @@ Main goal is to examine the performance of DA plugin with certain GPT 4 version 
     - Clustering methods
     - Dimensionality Reductions (PCA)
 
-- Statistical Hypothesis testing related questions 
+- Statistical Hypothesis testing related questions
+
+### Source of Questions/Prompts
+
+- HDSR paper related implementations; laptop and house price data sets and model related questions that we tried already + certain data viz exercises based on the reviewer's suggestions
+- IDS course weekly lab exercises, Homework assigments varying on different data sets in .csv file format and data sets from the certain R package directly
+- IDS quiz examples including interpretational type of questions without any specific data file (Not in a higher priority)
+- Some Statistical related questions from our Statistics Year 2 from weekly labs / quiz exercises from previous years (subject to ST's confirmation)
+- Other open source data sets used in other papers and also shared via Github already (open to public), adaptations of some of them can be useful for the enrichment of the our data set  
 
 ## Our metrics to evaluate the specific task outcome 
+
+This part is subject to change based on the task we are exploring. The goal is to extract certain components of the response to parse further and do additional analysis at that moment
+
+One simple example can be considered in this format;
+
+{
+  "reasoning": "I will perform linear regression on GDP per capita vs. life expectancy to quantify their relationship using R-squared.",
+  "code": "```python\nimport pandas as pd\nfrom sklearn.linear_model import LinearRegression\n\ndf = pd.read_csv('Happiness_rank.csv')\nX = df[['Economy (GDP per Capita)']].values.reshape(-1,1)\ny = df['Health (Life Expectancy)'].values\nmodel = LinearRegression().fit(X, y)\nr2 = model.score(X, y)\nprint(r2)\n```",
+  "outcome": {
+    "summary": "The regression yields an R-squared of approximately 0.67, indicating a poor fit.",
+    "@coefficient_determination": 0.67,
+    "@model_fit": "poor fit"
+  }
+}
+
+
+
+
 
 
