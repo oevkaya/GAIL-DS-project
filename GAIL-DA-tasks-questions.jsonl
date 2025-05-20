@@ -236,9 +236,101 @@ How is the model performance ",
 "format": "@RainTomorrow_logistic_mult_confusion_matrix[RainTomorrow_logistic_mult_confusion_matrix] where \"RainTomorrow_logistic_mult_confusion_matrix\" is the calculate FP and FN across various thresholds", 
 "file_name": "weatherAUS.csv", "level": "hard"}
 
+{"id": 31, "question": "Find the number of Airbnb properties located in Old Town having the one night stay price larger than 100 GBP", 
+"concepts": ["Data Understanding"], 
+"constraints": "Calculate the numbers using R's tidyverse functionalities", 
+"format": "@Airbnb_properties_Old_Town[Airbnb_properties_Old_Town] where \"Airbnb_properties_Old_Town\" is the numerical response based on data filtering", 
+"file_name": "edibnb.csv", "level": "easy"}
 
+{"id": 32, "question": "Create a frequency table for the number of bathrooms in the data set for the properties located in Newington ", 
+"concepts": ["Data Understanding"], 
+"constraints": "Create the frequency table using R's tidyverse functionalities", 
+"format": "@freq_table_bathrooms_Newington[freq_table_bathrooms_Newington] where \"freq_table_bathrooms_Newington\" is the frequency table as a list of numerical values", 
+"file_name": "edibnb.csv", "level": "easy"}
 
+{"id": 33, "question": "Join the edibnb to the council data frames with a suitable function. For the merged new data set, 
+Create the frequency table of the neighbourhood variable for the properties that have been assessed by the council. 
+What does the frequency table suggest? Is the council targeting all neighborhoods within Edinburgh equally?", 
+"concepts": ["Data Interpretation"], 
+"constraints": "Create the frequency table after joining two data sets using R's tidyverse functionalities", 
+"format": "@freq_table_neighborhoods[freq_table_neighborhoods] where \"freq_table_neighborhoods\" is the frequency table as a list of numerical values, including interpretations", 
+"file_name": "edibnb.csv, council_assessments.csv", "level": "hard"}
 
+{"id": 34, "question": "Create the histogram for the runners of the "10 Mile" event. Describe the overall shape of the histogram. 
+What does this suggest about the structure of the age distribution of the runners? 
+Calculate some simple summary statistics to support your comments.", 
+"concepts": ["Data Visualization-Summary"], 
+"constraints": "Calculate the summary statistics and histogram using R's tidyverse functionalities", 
+"format": "@histogram_10mile_summary_stats[histogram_10mile_summary_stats] where \"histogram_10mile_summary_stats\" is the created histogram and additional summary statistics", 
+"file_name": "cherryblossom::run17", "level": "medium"}
+
+{"id": 34.1, "question": "Create a similar data visualisation for the "5K" race event. 
+Describe the shape of this histogram and discuss the similarities/differences of the age distribution between the "5K" and "10 Mile"races.", 
+"concepts": ["Data Visualization-Interpretation"], 
+"constraints": "Create the histogram and related comparison using R's tidyverse functionalities", 
+"format": "@histogram_10mile_5mile_comparison[histogram_10mile_5mile_comparison] where \"histogram_10mile_5mile_comparison\" is the created histogram and additional comparison comments", 
+"file_name": "cherryblossom::run17", "level": "hard"}
+
+{"id": 35, "question": "Create a data visualisation based on the following description.
+Make a sequence of boxplots for the time (in minutes) that it took the runners to complete the Cherryblossom race (after accounting for the staggered start). 
+The boxplots should be orientated vertically (i.e. side-by-side) based on the runner’s identified gender. 
+Furthermore, the data visualisation should consist of two panels for the two different race distances, with independent axes. 
+Finally, add appropriate text to the image in order to assist the reader in understanding the data visualisation.
+Provide a brief comment about the relationships seen in the data visualisation created by the above description.", 
+"concepts": ["Data Visualization"], 
+"constraints": "Create the data visualization using R's tidyverse functionalities", 
+"format": "@instructed_data_viz[instructed_data_viz] where \"instructed_data_viz\" is the created data viz based on given instructions", 
+"file_name": "cherryblossom::run17", "level": "hard"}
+
+{"id": 36, "question": "Using the run17 data set, create two visualisations: One that you think provides a good representation of the data, and
+One that you think provides a bad representation of the data. For each case, give two reasons why you consider the data visualisation you have found are good/bad.", 
+"concepts": ["Data Visualization"], 
+"constraints": "Create the data visualization using R's tidyverse functionalities", 
+"format": "@run17_data_viz_good_bad[run17_data_viz_good_bad] where \"run17_data_viz_good_bad\" is the created good and bad data viz examples with two main reasons", 
+"file_name": "cherryblossom::run17", "level": "hard"}
+
+{"id": 36, "question": "Create a new data frame called gss16_advfront that includes the variables advfront, emailhr (Number of hours spent on email weekly), 
+educ (education level), polviews (political views) and wrkstat (working status). Remove any row that contains any NAs. 
+Relevel the advfront variable based on "Agree" - combining the options "Strongly agree" and "Agree" and "Not agree" - combining the options "Dont know", "Disagree" and "Strongly disagree".
+Besides, relevel the polviews to simplify the range of options to 3 categories - "Conservative" , "Moderate", and "Liberal".
+Creating a new fulltime variable that is equal to TRUE if wrkstat is equal to “Working fulltime” and FALSE otherwise.
+Save the name data set as a new data frame called 'gss16_advfront'", 
+"concepts": ["Data Cleaning-Preparation"], 
+"constraints": "Cleaning the data set using R's tidyverse functionalities", 
+"format": "@gss16_data_set_cleaning[gss16_data_set_cleaning] where \"gss16_data_set_cleaning\" is the cleaned data set based on given data and instructions", 
+"file_name": "gss16.csv", "level": "hard"}
+
+{"id": 37, "question": "Consider the numerical values educ and emailhr, and the newly created fulltime from your new data set gss16_advfront.
+Fit a linear regression model to predicting emailhr based on educ and fulltime. From your output, state the formula for the line-of-best fit; give an interpretation of the fulltimeTRUE estimate. ", 
+"concepts": ["Regression Modeling"], 
+"constraints": "Fitting the regression model to the data set using R's tidyverse functionalities", 
+"format": "@gss16_advfront_data_regression[gss16_advfront_data_regression] where \"gss16_advfront_data_regression\" is the fitted regression model", 
+"file_name": "gss16_advfront.csv", "level": "medium"}
+
+{"id": 37.1, "question": "Using appropriate model fit statistics, comment on the overall model performance. 
+Create a suitable data visualization to evaluate if the linear model assumptions are satistied, and comment on the suitability of the model.", 
+"concepts": ["Regression Modeling"], 
+"constraints": "Fitting the regression model and related model diagnostics to the data set using R's tidyverse functionalities", 
+"format": "@gss16_advfront_regression_model_performance[gss16_advfront_regression_model_performance] where \"gss16_advfront_regression_model_performance\" is the model fit diagnostics including data viz", 
+"file_name": "gss16_advfront.csv", "level": "hard"}
+
+{"id": 38, "question": "In this part, we’re going to build a model to predict whether someone agrees or doesn’t agree with the following statement:
+'Even if it brings no immediate benefits, scientific research that advances the frontiers of knowledge is necessary and should be supported by the federal government.'
+Split the dataset into a training dataset (gss16_train) and a testing dataset (gss16_test). 
+Build a workflow for the training data that consists of a recipe (gss16_rec_1) and a model (gss16_mod_1). Name this workflow gss16_wflow_1.
+Apply the workflow you defined earlier to the training dataset and named the model as gss16_fit_1. Display the resulting tibble containing the fitted model parameters.", 
+"concepts": ["Logistic Regression Modeling"], 
+"constraints": "Fitting the logistic regression model via the instructed model workflow using R's tidyverse functionalities", 
+"format": "@gss16_advfront_logistic_model[gss16_advfront_logistic_model] where \"gss16_advfront_logistic_model\" is the logistic regression model fit.", 
+"file_name": "gss16_advfront.csv", "level": "hard"}
+
+{"id": 38.1, "question": "Use the fitted models to predict the test data, plot the ROC curve for the predictions. 
+Calculate the specificity and the sensitivity of the model on the test data, when using a cutoff of 0.85 for the predictions.", 
+"concepts": ["Model Performance-Visualization"], 
+"constraints": "Fitting the predictions and related performance metrics using R's tidyverse functionalities", 
+"format": "@gss16_advfront_logistic_model_ROC_performance[gss16_advfront_logistic_model_ROC_performance] where \"gss16_advfront_logistic_model_ROC_performance\" is the 
+logistic regression model fit predictions and related performance metrics", 
+"file_name": "gss16_advfront.csv", "level": "hard"}
 
 ...
 
