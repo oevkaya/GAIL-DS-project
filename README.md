@@ -102,7 +102,20 @@ This will depend on the pricing, the selected list of tasks to compare, not the 
 - IDS course weekly lab exercises, Homework assigments varying on different data sets in .csv file format and data sets from the certain R package directly
 - IDS quiz examples including interpretational type of questions without any specific data file (Not in a higher priority)
 - Some Statistical related questions from our Statistics Year 2 from weekly labs / quiz exercises from previous years (subject to ST's confirmation)
-- Other open source data sets used in other papers and also shared via Github already (open to public), adaptations of some of them can be useful for the enrichment of the our data set  
+- Other open source data sets used in other papers and also shared via Github already (open to public), adaptations of some of them can be useful for the enrichment of the our data set
+
+### Possible format of the prompts
+
+Question List: ???
+
+**id**: Unique identifier for each question.
+**question**: The description of the data analysis question.
+**concepts**: The concepts involved in the question.
+**format**: The format requirements for the output.
+**file_name**: The file name of the corresponding csv file.
+**level**: The difficulty level for each question.
+
+Additional details like constraints: The constraints on the type of programming (using R instead of Python) or similar ones can be considered!
 
 ## Our metrics to evaluate the specific task outcome 
 
@@ -120,8 +133,18 @@ One simple example can be considered in this format;
   }
 }
 
-### Possible metric related quantities
+### Possible metrics to think about
 
-
+- Verbosity: General length for the number of tokens or words to count the verbosity of the generated response in general except the coding component. This will focus on only the text related part!
+- Completion Value (CV): This can be three different values in general (i) 0: if the executed thread is failed/not completed, (ii) 1: if the executed thread completed with a reasonable outcome but not matching with the ground truth, 
+(iii) 2: if the executed thread completed succesfully with a correct match with the ground truth. This can be measured for each prompt out of 100 trials based on the stored list of responses
+- Data Preparation Score:
+- Data Viz Completeness: If the requested data visualization is generated or not, it can take 1 (if they exists) or 0 (if not) otherwise  
+- Numerical Accuracy: Whether the reported numerical result is matching with the ground truth or not, it can take either 0 or 1 again. 
+- Code Executability: Whether the generated code is directly executable in a different environment or not, either taking 1 (it is directly executable) or 0 (not executable)
+- Code Reproducibility: Will it work on any similar CSV (i.e. no hard-coded paths or column names mismatches)? Either taking 0 or 1 again
+- Semantic Quality: Does the natural-language summary correctly reflect the numeric value and its interpretation, can be 1 or 0 again.
+- Text Similarity: Similarity measures such as Jaccard Index and other can be considered for the text part of the generated response to compare with each other or ground truth explanations for some tasks. Source: https://www.newscatcherapi.com/blog/ultimate-guide-to-text-similarity-with-python
+- 
 
 
