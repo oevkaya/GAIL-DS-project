@@ -27,14 +27,17 @@ from expert interviews.
 
 ## Tasks types
 
-From Table 12: 
-Concepts Summary Statistics 41 17 32 90
-Feature Engineering 3 14 33 50
-Correlation Analysis 10 32 30 72
-Machine Learning 0 0 19 19
-Distribution Analysis 21 23 20 64
-Outlier Detection 5 20 10 35
-Comprehensive Data Preprocessing
+### Comprehensive Data Preprocessing
+
+| Topic                          | Col 1 | Col 2 | Col 3 | Total |
+| ------------------------------ |-----:|-----:|-----:|-----:|
+| Concepts Summary Statistics    |   41 |   17 |   32 |   90 |
+| Feature Engineering            |    3 |   14 |   33 |   50 |
+| Correlation Analysis           |   10 |   32 |   30 |   72 |
+| Machine Learning               |    0 |    0 |   19 |   19 |
+| Distribution Analysis          |   21 |   23 |   20 |   64 |
+| Outlier Detection              |    5 |   20 |   10 |   35 |
+
 
 ----------------------------------------------------
 
