@@ -61,7 +61,7 @@ It includes a wide variety of data analysis tasks
 using programming languages such as SQL and
 Python to get insights from data.
 
-we have more papers on that to write down the Related Research section of our report / paper
+**We have more papers on that to write down the Related Research section of our report / paper. Sort of literature review is ready to expand and refine**
 
 ----------------------------------------------------
 
@@ -120,7 +120,7 @@ One simple example can be considered in this format;
   }
 }
 
-
+### Possible metric related quantities
 
 
 
