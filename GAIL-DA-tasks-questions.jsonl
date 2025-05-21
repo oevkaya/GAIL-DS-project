@@ -433,6 +433,27 @@ for laptops into different price ranges (e.g., budget, mid-range, premium)",
 "format": "@laptop_price_logistic_regression[laptop_price_logistic_regression] where \"laptop_price_logistic_regression\" is the fitted logistic model on the new response variable", 
 "file_name": "laptop_data_cleaned.csv", "level": "medium"}
 
+{"id": 51, "question": "Suppose that we have independent observations x1, ..., x25 from a N(µ, σ2) distribution where both µ and σ^2 are unknown. 
+The data values are: 10, 12, 9, 6, 7, 11, 6, 9, 15, 10, 11, 13, 13, 9, 8, 10, 11, 7, 5, 8, 10, 13, 14, 14, 10
+Calculate a 95% confidence interval for the mean µ.", 
+"concepts": ["Confidence Interval"], 
+"constraints": "Calculate the confidence interval for the given data set using R functions only", 
+"format": "@normal_data_conf_interval[normal_data_conf_interval] where \"normal_data_conf_interval\" is the calculated confidence interval for the given sample data", 
+"file_name": "", "level": "easy"}
+
+{"id": 52, "question": "Plot a histogram of the data in the column headed level. Draw a scatter plot of the data of index against level", 
+"concepts": ["Data Visualization"], 
+"constraints": "Create the multiple plot outputs using R functions only", 
+"format": "@mouse_data_viz[mouse_data_viz] where \"mouse_data_viz\" is the created multiple different data visualizations", 
+"file_name": "mouse.txt", "level": "medium"}
+
+{"id": 53, "question": "Calculate the sample mean and standard deviation of level for the different index values 1 and 2.", 
+"concepts": ["Data Understanding"], 
+"constraints": "Calculate the requested values using R functions only", 
+"format": "@mouse_summary_stats[mouse_summary_stats] where \"mouse_summary_stats\" is the list or vector including meand and standard deviation value", 
+"file_name": "mouse.txt", "level": "easy"}
+
+
 
 ...
 
