@@ -73,6 +73,13 @@ Main goal is to examine the performance of DA plugin with certain GPT 4 version 
 So far, we are doing experiments on the model = "gpt-4o" but there could be some alternative models on specific tasks to make a comparison such as gpt-4o-mini, o4-mini or evengpt-3.5-turbo
 This will depend on the pricing, the selected list of tasks to compare, not the whole set of questions
 
+### Change on the settings
+
+- Fixing the prompt and the other details, use (i) model = "gpt-4o", (ii) model = "gpt-4o-mini", (iii) model = "4o-mini", also one option for vanilla LLM like without code interpreter can be tried (cheapest option for testing)
+- Fixing the prompt and the model, use different temperature values by tweaking the "temperature = default" value, it can be like (0.2, 0.5, 1.0, 1.5) based on its original range
+- Fixing the prompt and all other settings, use the prompt with programming language constraint or not such as "constraint: "Using the built-in functions and suitable R packages"' in the prompt or system instruction
+
+Impact of zero shot vs one shot learning can be explored for some tasks only 
 
 ## Our Task types and related questions at different levels 
 
