@@ -388,8 +388,50 @@ Apply the joining procedure results in a new data frame with missing value.",
 "format": "@df1_df2_merged[df1_df2_merged] where \"df1_df2_merged\" is the merged data frame based on given condition", 
 "file_name": "", "level": "easy"}
 
+{"id": 45, "question": "Give me the statistical summary for the given data set", 
+"concepts": ["Descriptive Statistics"], 
+"constraints": "Create the summary statistics using R functions only", 
+"format": "@laptop_summary_stats[laptop_summary_stats] where \"laptop_summary_stats\" is the summary statistics of the given data set.", 
+"file_name": "laptop_data_cleaned.csv", "level": "easy"}
 
+{"id": 46, "question": "Create the suitable data visualization to summarize the price distribution and its relationship with other features ", 
+"concepts": ["Data Visualization"], 
+"constraints": "Create the visuals for price distribution using R functions only", 
+"format": "@laptop_price_dist_plot[laptop_price_dist_plot] where \"laptop_price_dist_plot\" is the set of suitable data visualization summary for price distribution.", 
+"file_name": "laptop_data_cleaned.csv", "level": "medium"}
 
+{"id": 47, "question": "Implement the linear regression for the price variable for the given data set", 
+"concepts": ["Regression Modeling"], 
+"constraints": "Apply the regression workflow for price distribution using R functions only", 
+"format": "@laptop_price_regression[laptop_price_regression] where \"laptop_price_regression\" is the fitted regression model based on a certain modeling workflow", 
+"file_name": "laptop_data_cleaned.csv", "level": "hard"}
+
+{"id": 47.1, "question": "Test and Interpret the performance of the fitted regression model based on the model diagnostic plots", 
+"concepts": ["Regression Modeling Interpretation"], 
+"constraints": "Create the model diagnostic plots for the regression fit of the price distribution using R functions only", 
+"format": "@laptop_price_regression_diagnostics[laptop_price_regression_diagnostics] where \"laptop_price_regression_diagnostics\" is the model diagnostic of fitted model and interpretations", 
+"file_name": "laptop_data_cleaned.csv", "level": "hard"}
+
+{"id": 48, "question": "Implement different regression models as the alternative of fitted linear regression model for the price variable for the given data set. 
+Compare the performance of the fitted models", 
+"concepts": ["Modeling Comparison"], 
+"constraints": "Create the list of different model fits of the price distribution using R functions only", 
+"format": "@laptop_price_regression_comparison[laptop_price_regression_comparison] where \"laptop_price_regression_comparison\" is the list of performance metrics over different fitted regression models", 
+"file_name": "laptop_data_cleaned.csv", "level": "hard"}
+
+{"id": 49, "question": "Fit a regression tree model for the price variable for the given data set and test its performance. 
+Tune the model hyperparameters by using the cross-validation approach", 
+"concepts": ["Model Improvement"], 
+"constraints": "Fit and improve the regression tree model for the price distribution using R functions only", 
+"format": "@laptop_price_tree_regression[laptop_price_tree_regression] where \"laptop_price_tree_regression\" is the tuned regression tree model fit and its performance", 
+"file_name": "laptop_data_cleaned.csv", "level": "hard"}
+
+{"id": 50, "question": "Consider the classification problem and use models like logistic regression, decision trees, or neural networks 
+for laptops into different price ranges (e.g., budget, mid-range, premium)", 
+"concepts": ["Classification Model"], 
+"constraints": "Fit the logistic regression model for the new category based price values using R functions only", 
+"format": "@laptop_price_logistic_regression[laptop_price_logistic_regression] where \"laptop_price_logistic_regression\" is the fitted logistic model on the new response variable", 
+"file_name": "laptop_data_cleaned.csv", "level": "medium"}
 
 
 ...
