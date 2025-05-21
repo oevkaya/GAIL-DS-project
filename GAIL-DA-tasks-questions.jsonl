@@ -453,6 +453,44 @@ Calculate a 95% confidence interval for the mean µ.",
 "format": "@mouse_summary_stats[mouse_summary_stats] where \"mouse_summary_stats\" is the list or vector including meand and standard deviation value", 
 "file_name": "mouse.txt", "level": "easy"}
 
+{"id": 54, "question": "Read the following time series data in to a vector: 10, 12, 16, 14, 19, 17, 13, 21, 18, 15, 19, 25, 27, 20, 14, 12, 17
+Plot this data using a line graph, such that the limits of the y-axis are [0, 30]. Give the graph a title. ", 
+"concepts": ["Data Visualization"], 
+"constraints": "Create the data visualization using R functions only", 
+"format": "@data_line_graph[data_line_graph] where \"data_line_graph\" is the created line plot with certain aesthetics", 
+"file_name": "", "level": "easy"}
+
+{"id": 55, "question": "For now consider only the data stored in the vector first. We assume that the data are independent
+observations from N(µ, σ2) and wish to conduct the following hypothesis test: H0 : µ equals 10 vs H1 : µ not equal 10
+Define a suitable test statistic and state its distribution, assuming that the null hypothesis is true.
+Calculate the associated observed test statistic
+Conduct the hypothesis test and clearly state your conclusions.", 
+"concepts": ["Hypothesis Testing"], 
+"constraints": "Apply the testing for the given data using R functions only", 
+"format": "@aeroplane_one_sample_test[aeroplane_one_sample_test] where \"aeroplane_one_sample_test\" is the one sample test implementation", 
+"file_name": "aeroplane.txt", "level": "medium"}
+
+{"id": 56, "question": "Now consider jointly the distances of both the throws and wish to assess whether there is a difference in
+the underlying means. For example, we may wish to investigate whether the first landing affected its flying behaviour (e.g. bent nose); or whether individuals 
+may have a better idea of how to throw the plane following their first throw.
+State the relevant hypothesis test should be conducted - being careful to ensure that any notation used
+is clearly defined. Conduct the hypothesis test and state your conclusions. Repeat your analysis using the function t.test.", 
+"concepts": ["Hypothesis Testing"], 
+"constraints": "Apply two sample testing for the given data using R functions only", 
+"format": "@aeroplane_two_sample_test[aeroplane_two_sample_test] where \"aeroplane_two_sample_test\" is the two sample test implementation", 
+"file_name": "aeroplane.txt", "level": "medium"}
+
+{"id": 57, "question": "The statement is made by an observer (who does not actually see the tabulated data - but simply watched the
+experiment) that the distances appear to be less variable for the second throws of the aeroplanes compared to the first throws. 
+However, as a statistics student you want to assess whether there is any difference in the variability of the distances of the first throws compared to the second throws.
+State the name of the hypothesis test that you wish to conduct and specify the associated hypotheses clearly defining any notation that you use. 
+Conduct the hypothesis test and clearly state any conclusions that you make. Is there any evidence to support the claim of the observer?", 
+"concepts": ["Hypothesis Testing"], 
+"constraints": "Apply testing variability between the groups for the given data using R functions only", 
+"format": "@aeroplane_testing_variability[aeroplane_testing_variability] where \"aeroplane_testing_variability\" is the testing variability between the groups", 
+"file_name": "aeroplane.txt", "level": "hard"}
+
+
 
 
 ...
