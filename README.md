@@ -106,13 +106,18 @@ This will depend on the pricing, the selected list of tasks to compare, not the 
 
 ### Possible format of the prompts
 
-Question List: ???
+Question List: GAIL-DA-tasks-questions.jsonl file but will be expanded
 
 **id**: Unique identifier for each question.
+
 **question**: The description of the data analysis question.
+
 **concepts**: The concepts involved in the question.
+
 **format**: The format requirements for the output.
+
 **file_name**: The file name of the corresponding csv file.
+
 **level**: The difficulty level for each question.
 
 Additional details like constraints: The constraints on the type of programming (using R instead of Python) or similar ones can be considered!
@@ -125,10 +130,15 @@ One simple example can be considered in this format;
 
 {
   "reasoning": "I will perform linear regression on GDP per capita vs. life expectancy to quantify their relationship using R-squared.",
+  
   "code": "```python\nimport pandas as pd\nfrom sklearn.linear_model import LinearRegression\n\ndf = pd.read_csv('Happiness_rank.csv')\nX = df[['Economy (GDP per Capita)']].values.reshape(-1,1)\ny = df['Health (Life Expectancy)'].values\nmodel = LinearRegression().fit(X, y)\nr2 = model.score(X, y)\nprint(r2)\n```",
+  
   "outcome": {
+  
     "summary": "The regression yields an R-squared of approximately 0.67, indicating a poor fit.",
+    
     "@coefficient_determination": 0.67,
+    
     "@model_fit": "poor fit"
   }
 }
