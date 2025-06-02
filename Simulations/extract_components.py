@@ -1,14 +1,33 @@
+""" 
+This file extracts components from the main text file 
+and constructs the components into one json file,
+
+Target format:
+Each question has one id and the collection of 
+multi-round outcomes, like
+
+{"id":1, "results":{{"round":1, "outcomes":"", ...}...} }
+
+or 
+
+{"id":1, "round":1}
+{"id":1, "round":2}
+{"id":1, "round":3}
+
+"""
+
 # Required input
 Q = 1
 
-concepts = ""
 code_style = "Python"
-
 model_choice = "gpt-4o"
-text_file = f"Simulations/Q{Q}/Q{Q}_output.txt"
-code_file = f"Simulations/Q{Q}/Q{Q}.py"
-reasoning_file = f"Simulations/Q{Q}/Q{Q}_reasoning.txt"
-outcome_file = f"Simulations/Q{Q}/Q{Q}_outcome.txt"
+
+text_file = f"Simulations/output/Q{Q}_output_add.txt"
+response = f"Simulations/responses/Q{Q}.jsonl"
+
+codefile = f"Simulations/Q{Q}/Q{Q}.py"
+reasonfile = f"Simulations/Q{Q}/Q{Q}_reasoning.txt"
+outcomefile = f"Simulations/Q{Q}/Q{Q}_outcome.txt"
 image_folder = f"Q{Q}_image"
 
 
@@ -83,7 +102,7 @@ def extract_outcome(text):
 
 
 
-def extract_assistant_response(section, code_output_file, k, thread_id):
+def extract_assistant_response(Q, section,version, jsonfile=None,codefile=None,reasonfile=None,outcomefile=None):
 
     code = extract_code_blocks(section)
     code_part = code[0] if code else None
@@ -103,13 +122,6 @@ def extract_assistant_response(section, code_output_file, k, thread_id):
       if block.startswith("Role: user"):
         continue
 
-      # else:
-        #Try to extract numerical brief answer (e.g., "348 unique tourist attractions")
-      # number_match = re.search(r"contains*?(\d+.*?)\.", block)
-      # outcome = extract_outcome(block)
-      # if number_match and not outcome:
-      #  outcome = number_match.group(1).strip()
-    #   block_clean = clean_block(block)
       if block.startswith("Role: assistant"):
         #   block_clean = clean_block(block)
           content_token += count_tokens(block)
@@ -118,27 +130,53 @@ def extract_assistant_response(section, code_output_file, k, thread_id):
           reasoning.append(extract_reasoning(block))
 
     #--------------Save each component--------------
-    # Save code block
-    if code_part:
-      with open(code_output_file, "a", encoding="utf-8") as f:
-        f.write("#"*50)
-        f.write(f"\n#Round {k} with threat_id: {thread_id}\n")
-        f.write(code_part)
+    if version == "json":
+      
+      json_block = {
+         "id":Q, 
+         "round":elements['round'],
+         "thread_id":elements['thread_id'],
+         "status":elements['status'],
+         "runtime":elements['runtime'],
+         "words":content_word,
+         "tokens":content_token,
+         "code":code_part,
+         "reasoning": reasoning,
+         "outcome": outcome
+    }   
+    
+      with open(jsonfile, "a", encoding="utf-8") as f:
+       json.dump(json_block, f, ensure_ascii=False)
+       f.write("\n")
+      
+    if version == "origin":
+       
+       # Save code block
+       if code_part:
+          with open(codefile, "a", encoding="utf-8") as f:
+            f.write("#"*50)
+            f.write(f"\n#Round {elements['round']} with threat_id: {thread_id}\n")
+            f.write(code_part)
 
-    # # Save reasoning block
-    # if reasoning:
-    with open(reasoning_file, "a", encoding="utf-8") as f:
-      f.write("\n"+"-"*50)
-      f.write(f"\nRound {elements['round']} with thread_id: {elements['thread_id']}")
-      f.write(f"\nStatus: {elements['status']}, Runtime: {elements['runtime']}")
-      f.write(f"\nTokens: {content_token}, Word: {content_word}\n")
-      f.write("\n".join(reasoning))
+       # Save reasoning block
+       # if reasoning:
+       with open(reasonfile, "a", encoding="utf-8") as f:
+        f.write("\n"+"-"*50)
+        f.write(f"\nRound {elements['round']} with thread_id: {elements['thread_id']}")
+        f.write(f"\nStatus: {elements['status']}, Runtime: {elements['runtime']}")
+        f.write(f"\nTokens: {content_token}, Word: {content_word}\n")
+        f.write("\n".join(reasoning))
 
-    # # Save outcome block
-    if outcome:
-      with open(outcome_file, "a", encoding="utf-8") as f:
-        f.write("-"*50)
-        f.write(f"\nRound {k} with outcome: {outcome} \n")
+       # Save outcome block
+       if outcome:
+        with open(outcomefile, "a", encoding="utf-8") as f:
+          f.write("-"*50)
+          f.write(f"\nRound {elements['round']} with outcome: {outcome} \n")
+
+    #--------------Metrics collection--------------
+    # Directly output the metrics for evaluation
+
+    # return json_block, elements
 
 
 with open(text_file, "r", encoding="utf-8") as f:
@@ -153,4 +191,32 @@ with open(text_file, "r", encoding="utf-8") as f:
         round_num = int(id_match.group(1))
         thread_id = id_match.group(2)
 
-    extract_assistant_response(section, code_file, round_num, thread_id)
+    # Choose the version of json/jsonl, or separate code/reasoning/outcomes files. 
+    extract_assistant_response(Q, section,"json", jsonfile=response)
+    # extract_assistant_response(Q, section,"origin", codefile, reasonfile,outcomefile)
+
+#--------------Used for Evaluations--------------
+   
+# def evaluation(dict_elements):
+#   pass 
+
+# from collections import defaultdict
+# dict_elements = defaultdict(list)
+
+
+# with open(text_file, "r", encoding="utf-8") as f:
+#   content = f.read()
+
+#   # Find the section for each thread_id, separated by 100-dash separator
+#   sections = [section.strip() for section in content.split("-" * 100) if section.strip()]
+
+#   for section in sections:
+#     id_match = re.search(r"Round (\d+)\s+with thread_id:\s+(\w+)", section)
+#     if id_match:
+#         round_num = int(id_match.group(1))
+#         thread_id = id_match.group(2)
+
+#     elements = extract_assistant_response(section, code_file)
+
+#     for e, y in elements.items():
+#        dict_elements[e].append(y)
