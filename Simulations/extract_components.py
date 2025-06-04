@@ -25,15 +25,17 @@ model_choice = "gpt-4o"
 text_file = f"Simulations/output/Q{Q}_output_add.txt"
 response = f"Simulations/responses/Q{Q}.jsonl"
 
-codefile = f"Simulations/Q{Q}/Q{Q}.py"
-reasonfile = f"Simulations/Q{Q}/Q{Q}_reasoning.txt"
-outcomefile = f"Simulations/Q{Q}/Q{Q}_outcome.txt"
-image_folder = f"Q{Q}_image"
+# codefile = f"Simulations/Q{Q}/Q{Q}.py"
+# reasonfile = f"Simulations/Q{Q}/Q{Q}_reasoning.txt"
+# outcomefile = f"Simulations/Q{Q}/Q{Q}_outcome.txt"
+# image_folder = f"Q{Q}_image"
 
 
 #---------------Functions---------------
 import re
 import tiktoken
+import json
+
 def extract_code_blocks(text):
     pattern = r"```(?:python)?\n(.*?)```"
     # pattern = r"```(\w+)?\n(.*?)```"
@@ -176,7 +178,13 @@ def extract_assistant_response(Q, section,version, jsonfile=None,codefile=None,r
     #--------------Metrics collection--------------
     # Directly output the metrics for evaluation
 
-    # return json_block, elements
+    # return elements
+
+
+# from collections import defaultdict
+# dict_elements = defaultdict(list)
+
+# dict_elements = []
 
 
 with open(text_file, "r", encoding="utf-8") as f:
@@ -195,28 +203,7 @@ with open(text_file, "r", encoding="utf-8") as f:
     extract_assistant_response(Q, section,"json", jsonfile=response)
     # extract_assistant_response(Q, section,"origin", codefile, reasonfile,outcomefile)
 
-#--------------Used for Evaluations--------------
-   
-# def evaluation(dict_elements):
-#   pass 
+    # for e, y in elements.items():
+    #    dict_elements[e].append(y)
 
-# from collections import defaultdict
-# dict_elements = defaultdict(list)
-
-
-# with open(text_file, "r", encoding="utf-8") as f:
-#   content = f.read()
-
-#   # Find the section for each thread_id, separated by 100-dash separator
-#   sections = [section.strip() for section in content.split("-" * 100) if section.strip()]
-
-#   for section in sections:
-#     id_match = re.search(r"Round (\d+)\s+with thread_id:\s+(\w+)", section)
-#     if id_match:
-#         round_num = int(id_match.group(1))
-#         thread_id = id_match.group(2)
-
-#     elements = extract_assistant_response(section, code_file)
-
-#     for e, y in elements.items():
-#        dict_elements[e].append(y)
+    # dict_elements.append(elements)
