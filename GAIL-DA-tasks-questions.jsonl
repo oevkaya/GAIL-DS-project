@@ -597,10 +597,72 @@ that affect classification",
 "format": "@gene_data_LDA[gene_data_LDA] where \"gene_data_LDA\" is the fitted LDA results and its interpretations", 
 "file_name": "Gene_Data.RData / Gene_Data.xlsx", "level": "hard"}
 
+{"id": 71, "question": "Fit a multiple linear regression using the numerical variables: weight, clarity and carat.
+In words, explain how to interpret the coefficient estimate for the weight variable", 
+"concepts": ["Linear Regression"], 
+"constraints": "Create the requested regression model using R functions only", 
+"format": "@diamonds_data_mult_reg[diamonds_data_mult_reg] where \"diamonds_data_mult_reg\" is the fitted multiple regression and its interpretations", 
+"file_name": "Stats_diamonds.xlsx", "level": "easy"}
 
+{"id": 71.1, "question": "What is the residual standard error and degree of freedom for the fitted model?", 
+"concepts": ["Regression Model Diagnostics"], 
+"constraints": "Create the requested regression model details using R functions only", 
+"format": "@diamonds_data_reg_error[diamonds_data_reg_error] where \"diamonds_data_reg_error\" is the fitted multiple regression diagnostics", 
+"file_name": "Stats_diamonds.xlsx", "level": "easy"}
+
+{"id": 71.2, "question": "Consider the null hypothesis β3 = 0 against the two-sided alternative. From the summary output,
+make an appropriate concluding statement at the 5% significance level", 
+"concepts": ["Regression Coefficient Testing"], 
+"constraints": "Create the requested regression model testing using R functions only", 
+"format": "@diamonds_data_reg_testing[diamonds_data_reg_testing] where \"diamonds_data_reg_testing\" is the fitted multiple regression model coefficient testing", 
+"file_name": "Stats_diamonds.xlsx", "level": "medium"}
+
+{"id": 71.3, "question": "Create the model diagnostic plots for the fitted regression and evaluate the model performance based on the model assumptions", 
+"concepts": ["Regression Model diagnostics"], 
+"constraints": "Create the requested regression model diagnostics using R functions only", 
+"format": "@diamonds_data_reg_model_diag[diamonds_data_reg_model_diag] where \"diamonds_data_reg_model_diag\" is the model diagnostics of the regression model and interpretations", 
+"file_name": "Stats_diamonds.xlsx", "level": "hard"}
+
+{"id": 72, "question": "Fit a Bayesian Linear regression model in INLA (with Gaussian likelihood) using rainfall as the response. 
+Use all covariates, including the year, in a linear model. Scale all of the non-categorical covariates that you use in your model.
+For the regression coefficients and intercept, use zero mean Normal priors with standard deviation 100. 
+For the Gaussian variance, use an inverse Gamma prior with parameters 1 and 0.01.
+Print out the model summary and interpret the posterior means of the regression coefficients. Plot the marginal posterior densities for the regression coefficients.", 
+"concepts": ["Bayesian Regression Model"], 
+"constraints": "Create the requested bayesian regression model and related outputs using R functions only", 
+"format": "@edi_rainfall_bayesian_reg[edi_rainfall_bayesian_reg] where \"edi_rainfall_bayesian_reg\" is the bayesian model regression and related results", 
+"file_name": "Edinburgh_rainfall.csv", "level": "hard"}
+
+{"id": 72.1, "question": "Perform the necessary model checks for the linear regression model using the Studentized residuals. Interpret your results", 
+"concepts": ["Bayesian Regression Model Checks"], 
+"constraints": "Create the requested bayesian regression model checks using R functions only", 
+"format": "@edi_rainfall_bayesian_model_checks[edi_rainfall_bayesian_model_checks] where \"edi_rainfall_bayesian_model_checks\" is the bayesian model regression model checks", 
+"file_name": "Edinburgh_rainfall.csv", "level": "hard"}
+
+{"id": 72.2, "question": "Using the same linear predictor specification as in Q72, find a robust regression model that
+provides an improved fit to the data. You should quantify the goodness-of-fits using the WAIC and NSLCPO.", 
+"concepts": ["Bayesian Regression Model"], 
+"constraints": "Create the requested robust regression model using R functions only", 
+"format": "@edi_rainfall_robust_model[edi_rainfall_robust_model] where \"edi_rainfall_robust_model\" is the robust regression model fit", 
+"file_name": "Edinburgh_rainfall.csv", "level": "hard"}
+
+{"id": 72.3, "question": "Using your robust regression model, perform posterior predictive checks. Interpret the output of your checks. 
+[Hint: when generating from the posterior predictive distribution, be careful of your choice of family]", 
+"concepts": ["Bayesian Regression Model"], 
+"constraints": "Create the requested robust regression posterior checks using R functions only", 
+"format": "@edi_rainfall_robust_post_checks[edi_rainfall_robust_post_checks] where \"edi_rainfall_robust_post_checks\" is the robust regression model posterior checkings", 
+"file_name": "Edinburgh_rainfall.csv", "level": "hard"}
+
+{"id": 72.3, "question": "Calculate the posterior predictive probability that the total rainfall in 2022 will exceed the
+previously recorded maximum of the annual total rainfall throughout the observation period. Ignore leap years in your calculations", 
+"concepts": ["Bayesian Regression Model"], 
+"constraints": "Create the requested robust regression posterior probability using R functions only", 
+"format": "@edi_rainfall_robust_post_prob[edi_rainfall_robust_post_prob] where \"edi_rainfall_robust_post_prob\" is the robust regression model posterior probability value", 
+"file_name": "Edinburgh_rainfall.csv", "level": "medium"}
 
 ...
-
+All counted to be 100 ?
+...
 {"id": 100, "question": " ", 
 "concepts": ["..."], "constraints": "...", 
 "format": "...", 
