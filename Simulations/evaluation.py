@@ -1,13 +1,13 @@
 #--------------Used for Evaluations--------------
 import json
 
-Q = 1
-responses = f"Simulations/responses/Q{Q}.jsonl"
-contents = []
-with open(responses, "r") as f:
-  for line in f:
-     content = json.loads(line)
-     contents.append(content)
+# Q = 1
+# responses = f"Simulations/responses/Q{Q}.jsonl"
+# contents = []
+# with open(responses, "r") as f:
+#   for line in f:
+#      content = json.loads(line)
+#      contents.append(content)
 
 
 def evaluate(contents):
@@ -37,4 +37,19 @@ def evaluate(contents):
 
   return average_runtime, completion_ratio, average_words, average_tokens
 
-evaluate(contents)
+
+
+Q_list = [1,5,7,14,16]
+evaluation_list = {}
+
+for Q in Q_list:
+  responses = f"Simulations/responses/Q{Q}.jsonl"
+  contents = []
+  with open(responses, "r") as f:
+    for line in f:
+      content = json.loads(line)
+      contents.append(content)
+
+  evaluation_list[Q] = evaluate(contents)
+
+print(evaluation_list)
