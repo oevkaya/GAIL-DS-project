@@ -496,90 +496,90 @@ Conduct the hypothesis test and clearly state any conclusions that you make. Is 
 "format": "@duke_forest_size[duke_forest_size] where \"duke_forest_size\" is the created visualization and comment", 
 "file_name": "duke_forest.xlsx", "level": "easy"}
 
-{"id": 59, "question": "Construct a 95% confidence interval for the typical size of a house in Duke Forest. Interpret the interval in context of the data.", 
+{"id": 60, "question": "Construct a 95% confidence interval for the typical size of a house in Duke Forest. Interpret the interval in context of the data.", 
 "concepts": ["Confidence Interval"], 
 "constraints": "Create the requested confidence interval using R functions only", 
 "format": "@duke_forest_CI_95[duke_forest_CI_95] where \"duke_forest_CI_95\" is the calculated confidence interval and interpretation", 
 "file_name": "duke_forest.xlsx", "level": "easy"}
 
-{"id": 60, "question": "Find the relationship between price and size using the regression", 
+{"id": 61, "question": "Find the relationship between price and size using the regression", 
 "concepts": ["Linear Regression"], 
 "constraints": "Create the requested regression model using R functions only", 
 "format": "@duke_forest_price_size_regr[duke_forest_price_size_regr] where \"duke_forest_price_size_regr\" is the created regression model", 
 "file_name": "duke_forest.xlsx", "level": "medium"}
 
-{"id": 60.1, "question": "Evaluate the model performance of the fitted regression using model diagnostic plots", 
+{"id": 61.1, "question": "Evaluate the model performance of the fitted regression using model diagnostic plots", 
 "concepts": ["Regression Model Diagnostics"], 
 "constraints": "Create the requested regression model diagnostics using R functions only", 
 "format": "@duke_forest_regr_model_diag[duke_forest_regr_model_diag] where \"duke_forest_regr_model_diag\" is the created regression model diagnostics and related interpretations", 
 "file_name": "duke_forest.xlsx", "level": "hard"}
 
-{"id": 60.2, "question": "Quantify the uncertainty around the model fit slope using a 95% bootstrap confidence interval and interpret the interval in context of the data.", 
+{"id": 61.2, "question": "Quantify the uncertainty around the model fit slope using a 95% bootstrap confidence interval and interpret the interval in context of the data.", 
 "concepts": ["Bootstrap CI"], 
 "constraints": "Create the requested regression model using R functions only", 
 "format": "@duke_forest_regr_bootstrap[duke_forest_regr_bootstrap] where \"duke_forest_regr_bootstrap\" is the created bootstrap CI for the fitted regression model.", 
 "file_name": "duke_forest.xlsx", "level": "hard"}
 
-{"id": 61, "question": "Fit the regression model for the price using the relevant predictors", 
+{"id": 62, "question": "Fit the regression model for the price using the relevant predictors", 
 "concepts": ["Linear Regression"], 
 "constraints": "Create the requested regression model using R functions only", 
 "format": "@duke_forest_price_size_regr_all[duke_forest_price_size_regr_all] where \"duke_forest_price_size_regr_all\" is the created regression model", 
 "file_name": "duke_forest.xlsx", "level": "medium"}
 
-{"id": 62, "question": "Consider the Lasso and Ridge regression for the price variable. Compare their performances using suitable metrics", 
+{"id": 63, "question": "Consider the Lasso and Ridge regression for the price variable. Compare their performances using suitable metrics", 
 "concepts": ["Ridge-Lasso Regression"], 
 "constraints": "Create the requested regression model using R functions only", 
 "format": "@duke_forest_price_size_ridge_lasso[duke_forest_price_size_ridge_lasso] where \"duke_forest_price_size_ridge_lasso\" is the created regression models and their comparison", 
 "file_name": "duke_forest.xlsx", "level": "hard"}
 
-{"id": 63, "question": "Consider the regression model with the price-correlated variables as predictors. 
+{"id": 64, "question": "Consider the regression model with the price-correlated variables as predictors. 
 Split the data into train and testing, afterwards fit the regression model to test its performance", 
 "concepts": ["Regression Model"], 
 "constraints": "Create the requested regression model using R functions only", 
 "format": "@duke_forest_price_regression[duke_forest_price_regression] where \"duke_forest_price_regression\" is the created regression model and its results", 
 "file_name": "duke_forest.xlsx", "level": "hard"}
 
-{"id": 64, "question": "Run PCA for this data, with all suitable variables. Discuss whether it is appropriate to run scaled or unscaled PCA for this data. ", 
+{"id": 65, "question": "Run PCA for this data, with all suitable variables. Discuss whether it is appropriate to run scaled or unscaled PCA for this data. ", 
 "concepts": ["PCA"], 
 "constraints": "Create the requested PCA modeling results using R functions only", 
 "format": "@duke_forest_PCA[duke_forest_PCA] where \"duke_forest_PCA\" is the fitted PCA and its interpretations", 
 "file_name": "duke_forest.xlsx", "level": "hard"}
 
-{"id": 64, "question": "Run PCA for this data, with all suitable variables. Discuss whether it is appropriate to run scaled or unscaled PCA for this data. ", 
+{"id": 66, "question": "Run PCA for this data, with all suitable variables. Discuss whether it is appropriate to run scaled or unscaled PCA for this data. ", 
 "concepts": ["PCA"], 
 "constraints": "Create the requested PCA modeling results using R functions only", 
 "format": "@duke_forest_PCA[duke_forest_PCA] where \"duke_forest_PCA\" is the fitted PCA and its interpretations", 
 "file_name": "duke_forest.xlsx", "level": "hard"}
 
-{"id": 64.1, "question": "Use the small number of PCs identified to cluster samples using an appropriate distance between the samples. 
+{"id": 66.1, "question": "Use the small number of PCs identified to cluster samples using an appropriate distance between the samples. 
 Identify the most appropriate number of clusters. Compare clustering results based on 2 different clustering methods. ", 
 "concepts": ["Clustering"], 
 "constraints": "Create the requested clustering results using R functions only", 
 "format": "@duke_forest_PCA_clustering[duke_forest_PCA_clustering] where \"duke_forest_PCA_clustering\" is the fitted clustering model results", 
 "file_name": "duke_forest.xlsx", "level": "hard"}
 
-{"id": 64.2, "question": "Using the PC scores identified as variables, derive a Linear Discriminant Analysis results. 
+{"id": 66.2, "question": "Using the PC scores identified as variables, derive a Linear Discriminant Analysis results. 
 Discuss how many unknown parameters need to be estimated to derive this LDA rule, and compare it to the number of samples", 
 "concepts": ["Linear Discriminant Analysis"], 
 "constraints": "Create the requested LDA results using R functions only", 
 "format": "@duke_forest_PCA_LDA[duke_forest_PCA_LDA] where \"duke_forest_PCA_LDA\" is the fitted linear discriminant analysis results", 
 "file_name": "duke_forest.xlsx", "level": "hard"}
 
-{"id": 65, "question": "Briefly describe the data. Present the data and its most important features (e.g. histogram or box plots of log gene expression in a 
+{"id": 67, "question": "Briefly describe the data. Present the data and its most important features (e.g. histogram or box plots of log gene expression in a 
 sample / for a particular gene; illustrate the data using experimental design, e.g. plot time course for a gene in different treatments)", 
 "concepts": ["Data Description"], 
 "constraints": "Create the requested data description and visuals using R functions only", 
 "format": "@gene_data_description[gene_data_description] where \"gene_data_description\" is the data description with visuals and comments", 
 "file_name": "Gene_Data.RData / Gene_Data.xlsx", "level": "medium"}
 
-{"id": 66, "question": "Run PCA for this data, with genes as variables. Select a small number of PCs that describe variability in the data that is relevant 
+{"id": 68, "question": "Run PCA for this data, with genes as variables. Select a small number of PCs that describe variability in the data that is relevant 
 for the considered experimental factors (give your reasoning), state the proportion of the variability of the original data set they describe", 
 "concepts": ["PCA"], 
 "constraints": "Create the requested PCA modeling results using R functions only", 
 "format": "@gene_data_PCA[gene_data_PCA] where \"gene_data_PCA\" is the fitted PCA and interpretations", 
 "file_name": "Gene_Data.RData / Gene_Data.xlsx", "level": "medium"}
 
-{"id": 67, "question": "Use the small number of PCs identified to cluster samples using an appropriate distance between the samples 
+{"id": 69, "question": "Use the small number of PCs identified to cluster samples using an appropriate distance between the samples 
 (without using any information about the given covariates: time, treatment, replicates). Identify the most appropriate number of clusters. 
 Compare clustering results based on 2 different clustering methods. 
 Discuss whether there is a connection between the identified clusters of samples to the groups of samples given by covariates", 
@@ -588,7 +588,7 @@ Discuss whether there is a connection between the identified clusters of samples
 "format": "@gene_data_clustering[gene_data_clustering] where \"gene_data_clustering\" is the fitted clustering models and interpretations", 
 "file_name": "Gene_Data.RData / Gene_Data.xlsx", "level": "hard"}
 
-{"id": 68, "question": "Using the PC scores identified as variables, derive a Linear Discriminant Analysis rule to discriminate between the 7 conditions. 
+{"id": 70, "question": "Using the PC scores identified as variables, derive a Linear Discriminant Analysis rule to discriminate between the 7 conditions. 
 Discuss how many unknown parameters need to be estimated to derive this LDA rule, and compare it to the number of samples. 
 Discuss classification errors of this rule. Discuss how different number of PCs used in LDA affects the classification errors, and other details 
 that affect classification", 
