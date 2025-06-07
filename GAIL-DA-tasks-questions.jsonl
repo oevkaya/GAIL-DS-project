@@ -401,6 +401,12 @@ Apply the joining procedure results in a new data frame with missing value.",
 "format": "@laptop_price_dist_plot[laptop_price_dist_plot] where \"laptop_price_dist_plot\" is the set of suitable data visualization summary for price distribution.", 
 "file_name": "laptop_data_cleaned.csv", "level": "medium"}
 
+{"id": 47.1, "question": "Create the mosaic plot to summarize thecategorical features", 
+"concepts": ["Data Visualization"], 
+"constraints": "Create the mosaic plots for categorical variables using R functions only", 
+"format": "@laptop_price_mosaic_plot[laptop_price_mosaic_plot] where \"laptop_price_mosaic_plot\" is the set of suitable mosaic plot for categorical variables", 
+"file_name": "laptop_data_cleaned.csv", "level": "medium"}
+
 {"id": 48, "question": "Implement the linear regression for the price variable for the given data set", 
 "concepts": ["Regression Modeling"], 
 "constraints": "Apply the regression workflow for price distribution using R functions only", 
