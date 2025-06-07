@@ -1,10 +1,11 @@
 ## From the IDS Lab material questions + possibly HW and Quiz exercises
 
-{"id": 0, "question": "How many tourist attractions are there in the data set?", "concepts": ["Data understanding"], 
-"constraints": "Calculate the specific value using R functions only using R's built-in base module or appropriate package functionalities.", 
+{"id": 0, "question": "How many tourist attractions are there in the data set?", 
+"concepts": ["Data understanding"], "constraints": "Calculate the specific value using R functions only using R's built-in base module or appropriate package functionalities.", 
 "format": "@count_visitor[count_visitor_value] where \"count_visitor_value\" is given in integer format.", "file_name": "UK-visitor-numbers.csv", "level": "easy"}
 
-{"id": 1, "question": "Which attraction had the most number of visitors in 2022?", "concepts": ["Data understanding"], 
+{"id": 1, "question": "Which attraction had the most number of visitors in 2022?", 
+"concepts": ["Data understanding"], 
 "constraints": "Obtain the specific place name using R functions only using R's tidyverse functionalities", 
 "format": "@place_name[place_name] where \"place_name\" is given in string format.", "file_name": "UK-visitor-numbers.csv", "level": "easy"}
 
@@ -256,7 +257,7 @@ What does the frequency table suggest? Is the council targeting all neighborhood
 "format": "@freq_table_neighborhoods[freq_table_neighborhoods] where \"freq_table_neighborhoods\" is the frequency table as a list of numerical values, including interpretations", 
 "file_name": "edibnb.csv, council_assessments.csv", "level": "hard"}
 
-{"id": 34, "question": "Create the histogram for the runners of the "10 Mile" event. Describe the overall shape of the histogram. 
+{"id": 34, "question": "Create the histogram for the runners of the \"10 Mile"\ event. Describe the overall shape of the histogram. 
 What does this suggest about the structure of the age distribution of the runners? 
 Calculate some simple summary statistics to support your comments.", 
 "concepts": ["Data Visualization-Summary"], 
@@ -264,8 +265,8 @@ Calculate some simple summary statistics to support your comments.",
 "format": "@histogram_10mile_summary_stats[histogram_10mile_summary_stats] where \"histogram_10mile_summary_stats\" is the created histogram and additional summary statistics", 
 "file_name": "cherryblossom::run17", "level": "medium"}
 
-{"id": 34.1, "question": "Create a similar data visualisation for the "5K" race event. 
-Describe the shape of this histogram and discuss the similarities/differences of the age distribution between the "5K" and "10 Mile"races.", 
+{"id": 34.1, "question": "Create a similar data visualisation for the \"5K"\ race event. 
+Describe the shape of this histogram and discuss the similarities/differences of the age distribution between the \"5K"\ and \"10 Mile"\ races.", 
 "concepts": ["Data Visualization-Interpretation"], 
 "constraints": "Create the histogram and related comparison using R's tidyverse functionalities", 
 "format": "@histogram_10mile_5mile_comparison[histogram_10mile_5mile_comparison] where \"histogram_10mile_5mile_comparison\" is the created histogram and additional comparison comments", 
@@ -291,8 +292,8 @@ One that you think provides a bad representation of the data. For each case, giv
 
 {"id": 37, "question": "Create a new data frame called gss16_advfront that includes the variables advfront, emailhr (Number of hours spent on email weekly), 
 educ (education level), polviews (political views) and wrkstat (working status). Remove any row that contains any NAs. 
-Relevel the advfront variable based on "Agree" - combining the options "Strongly agree" and "Agree" and "Not agree" - combining the options "Dont know", "Disagree" and "Strongly disagree".
-Besides, relevel the polviews to simplify the range of options to 3 categories - "Conservative" , "Moderate", and "Liberal".
+Relevel the advfront variable based on \"Agree"\ - combining the options \"Strongly agree"\ and \"Agree"\ and \"Not agree"\ - combining the options \"Dont know"\, \"Disagree"\ and \"Strongly disagree"\.
+Besides, relevel the polviews to simplify the range of options to 3 categories - \"Conservative"\, \"Moderate"\, and \"Liberal"\.
 Creating a new fulltime variable that is equal to TRUE if wrkstat is equal to “Working fulltime” and FALSE otherwise.
 Save the name data set as a new data frame called 'gss16_advfront'", 
 "concepts": ["Data Cleaning-Preparation"], 
@@ -341,7 +342,7 @@ What is the correct interpretation of this interval?",
 "format": "@CI95_interpretation[CI95_interpretation] where \"CI95_interpretation\" is the verbal interpretation for the given statement.", 
 "file_name": "", "level": "easy"}
 
-{"id": 41, "question": "In the context of an email spam detection system, describe the terms 'True Positive', 'False Positive', 'True Negative', and 'False Negative'?", 
+{"id": 41, "question": "In the context of an email spam detection system, describe the terms \"True Positive"\, \"False Positive"\, \"True Negative"\, and \"False Negative"\ ", 
 "concepts": ["Specific Descriptions"], 
 "constraints": "Giving the descriptions of the mentioned quantities", 
 "format": "@Confusion_definitions[Confusion_definitions] where \"Confusion_definitions\" is the verbal definitions for the given quantities.", 
@@ -433,7 +434,7 @@ for laptops into different price ranges (e.g., budget, mid-range, premium)",
 "format": "@laptop_price_logistic_regression[laptop_price_logistic_regression] where \"laptop_price_logistic_regression\" is the fitted logistic model on the new response variable", 
 "file_name": "laptop_data_cleaned.csv", "level": "medium"}
 
-{"id": 52, "question": "Suppose that we have independent observations x1, ..., x25 from a N(µ, σ2) distribution where both µ and σ^2 are unknown. 
+{"id": 52, "question": "Suppose that we have independent observations x1, ..., x25 from a N(µ, σ^2) distribution where both µ and σ^2 are unknown. 
 The data values are: 10, 12, 9, 6, 7, 11, 6, 9, 15, 10, 11, 13, 13, 9, 8, 10, 11, 7, 5, 8, 10, 13, 14, 14, 10
 Calculate a 95% confidence interval for the mean µ.", 
 "concepts": ["Confidence Interval"], 
@@ -661,7 +662,7 @@ previously recorded maximum of the annual total rainfall throughout the observat
 "file_name": "Edinburgh_rainfall.csv", "level": "medium"}
 
 ...
-All counted to be 100 ?
+All counted to be 100 ? 97 so 3 missing yet
 ...
 {"id": 100, "question": " ", 
 "concepts": ["..."], "constraints": "...", 
