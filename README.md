@@ -169,9 +169,6 @@ The main metrics for the created responses can be listed under three subsections
 - Code Executability: Whether the generated code is directly executable in a different environment or not, either taking 1 (it is directly executable) or 0 (not executable)
 - Code Reproducibility: Will it work on any similar CSV (i.e. no hard-coded paths or column names mismatches)? Either taking 0 or 1 again
 - Text Similarity: Similarity measures such as Jaccard Index and other can be considered for the text part of the generated response to compare with each other or ground truth explanations for some tasks. Source: https://www.newscatcherapi.com/blog/ultimate-guide-to-text-similarity-with-python
-  
-- Data Preparation Score:
-- Data Viz Completeness: If the requested data visualization is generated or not, it can take 1 (if they exists) or 0 (if not) otherwise  
 - Response Accuracy (RA) or Accuracy of Response (AoR): Whether the reported result is matching with the ground truth or not (can be numeric or string, or vector etc.), it can take either 0 or 1 again.
 - Coherency on the related threads (for questions that are linked such as 16, 16.1 etc.)
 
@@ -182,6 +179,8 @@ For each of the concepts we are considering, varying set of criterions can appea
 - Data Cleaning/Pre-processing
 - Data Summary stats and interpretations
 - Data Visualization and interpretation
+  - Data Viz Completeness: If the requested data visualization is generated or not, it can take 1 (if they exists) or 0 (if not) otherwise  
+
 - Statistical Modeling
 - Hypotesis testing
 
