@@ -102,6 +102,7 @@ Impact of zero shot vs one shot learning can be explored for some tasks only
     - Dimensionality Reductions (PCA)
 
 - Statistical Hypothesis testing related questions
+- Bayesian regression
 
 ### Source of Questions/Prompts
 
@@ -109,6 +110,7 @@ Impact of zero shot vs one shot learning can be explored for some tasks only
 - IDS course weekly lab exercises, Homework assigments varying on different data sets in .csv file format and data sets from the certain R package directly
 - IDS quiz examples including interpretational type of questions without any specific data file (Not in a higher priority)
 - Some Statistical related questions from our Statistics Year 2 from weekly labs / quiz exercises from previous years (subject to ST's confirmation)
+- Some questions from Bayesian Data Analysis and Multivariate Data Analysis courses to cover PCA, Clustering, Bayesian modelling 
 - Other open source data sets used in other papers and also shared via Github already (open to public), adaptations of some of them can be useful for the enrichment of the our data set
 
 ### Possible format of the prompts
@@ -152,16 +154,36 @@ One simple example can be considered in this format;
 
 ### Possible metrics to think about
 
-- Verbosity: General length for the number of tokens or words to count the verbosity of the generated response in general except the coding component. This will focus on only the text related part!
+The main metrics for the created responses can be listed under three subsections mainly 
+
+#### General Properties
+
+- Verbosity: General length for the number of tokens or words to count the verbosity of the generated response in general except the coding component. This will focus on only the text related part! So far we have number of words and tokens
+- Runtime for the response creation
+- Verbosity ratio (input / output) in terms of either words or tokens: Can be considered!
+
+#### Course-Grained Metrics
+
 - Completion Value (CV): This can be three different values in general (i) 0: if the executed thread is failed/not completed, (ii) 1: if the executed thread completed with a reasonable outcome but not matching with the ground truth, 
-(iii) 2: if the executed thread completed succesfully with a correct match with the ground truth. This can be measured for each prompt out of 100 trials based on the stored list of responses
-- Data Preparation Score:
-- Data Viz Completeness: If the requested data visualization is generated or not, it can take 1 (if they exists) or 0 (if not) otherwise  
-- Numerical Accuracy: Whether the reported numerical result is matching with the ground truth or not, it can take either 0 or 1 again. 
+(iii) 2: if the executed thread completed succesfully with a correct match with the ground truth. This can be measured for each prompt out of 100 trials based on the stored list of responses 
 - Code Executability: Whether the generated code is directly executable in a different environment or not, either taking 1 (it is directly executable) or 0 (not executable)
 - Code Reproducibility: Will it work on any similar CSV (i.e. no hard-coded paths or column names mismatches)? Either taking 0 or 1 again
-- Semantic Quality: Does the natural-language summary correctly reflect the numeric value and its interpretation, can be 1 or 0 again.
 - Text Similarity: Similarity measures such as Jaccard Index and other can be considered for the text part of the generated response to compare with each other or ground truth explanations for some tasks. Source: https://www.newscatcherapi.com/blog/ultimate-guide-to-text-similarity-with-python
-- 
+  
+- Data Preparation Score:
+- Data Viz Completeness: If the requested data visualization is generated or not, it can take 1 (if they exists) or 0 (if not) otherwise  
+- Response Accuracy (RA) or Accuracy of Response (AoR): Whether the reported result is matching with the ground truth or not (can be numeric or string, or vector etc.), it can take either 0 or 1 again.
+- Coherency on the related threads (for questions that are linked such as 16, 16.1 etc.)
 
+#### Task-Specific Metrics
+
+For each of the concepts we are considering, varying set of criterions can appear for the output evaluation in general. These task related ones can be listed under;
+
+- Data Cleaning/Pre-processing
+- Data Summary stats and interpretations
+- Data Visualization and interpretation
+- Statistical Modeling
+- Hypotesis testing
+
+For each of above, we can create a list of different evaluation criterions to give a mark out of 5 so that each result may have numerical evaluation number! 
 
