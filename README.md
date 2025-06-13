@@ -178,8 +178,12 @@ For each of the concepts we are considering, varying set of criterions can appea
 
 - Data Cleaning/Pre-processing
 - Data Summary stats and interpretations
-- Data Visualization and interpretation
-  - Data Viz Completeness: If the requested data visualization is generated or not, it can take 1 (if they exists) or 0 (if not) otherwise  
+- Data Visualization and interpretation (each of them is either 0 and 1 so in total out of 5)
+  - **Data Viz Completeness**: If the requested data visualization is generated or not, it can take 1 (if they exists) or 0 (if not) otherwise
+  - **Aesthetic Mapping (Mapping Layer)**: Each data variable is unambiguously mapped to an appropriate aesthetic (e.g., a continuous variable to position, a categorical variable to color), and the mappings are clearly documented in a legend or caption.
+  - **Geometric Object (Geom Layer)**: The chosen geom (e.g., geom_bar() for counts, geom_point() for scatter) matches the data structure and analytical intent given by the question, with no misuse of graphical primitives or not suitable geom selection
+  - **Scales & Coordinate System (Scale/Coord Layers)**: Axes use appropriate, non‑truncated scales with meaningful breaks; any coordinate transform (e.g., log scale, coord_flip()) is applied suitably, whenever it is mentioned.
+  - **Visualization-Interpretation matching**: The correct use of wordings and abbreviations in the created visual and the related interpretations.
 
 - Statistical Modeling
 - Hypotesis testing
