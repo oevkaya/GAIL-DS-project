@@ -111,7 +111,7 @@ Impact of zero shot vs one shot learning can be explored for some tasks only
 - IDS quiz examples including interpretational type of questions without any specific data file (Not in a higher priority)
 - Some Statistical related questions from our Statistics Year 2 from weekly labs / quiz exercises from previous years (subject to ST's confirmation)
 - Some questions from Bayesian Data Analysis and Multivariate Data Analysis courses to cover PCA, Clustering, Bayesian modelling 
-- Other open source data sets used in other papers and also shared via Github already (open to public), adaptations of some of them can be useful for the enrichment of the our data set
+- NOT USED SO FAR: Other open source data sets used in other papers and also shared via Github already (open to public), adaptations of some of them can be useful for the enrichment of the our data set
 
 ### Possible format of the prompts
 
@@ -158,19 +158,19 @@ The main metrics for the created responses can be listed under three subsections
 
 #### General Properties
 
-- Verbosity: General length for the number of tokens or words to count the verbosity of the generated response in general except the coding component. This will focus on only the text related part! So far we have number of words and tokens
-- Runtime for the response creation
-- Verbosity ratio (input / output) in terms of either words or tokens: Can be considered!
+- **Verbosity**: General length for the number of tokens or words to count the verbosity of the generated response in general except the coding component. This will focus on only the text related part! So far we have number of words and tokens
+- **Runtime** for the response creation
+- **Verbosity ratio (input / output)** in terms of either words or tokens: Can be considered! It is the ratio of number of input tokens (words) / number of output tokens (words) 
 
 #### Course-Grained Metrics
 
-- Completion Value (CV): This can be three different values in general (i) 0: if the executed thread is failed/not completed, (ii) 1: if the executed thread completed with a reasonable outcome but not matching with the ground truth, 
-(iii) 2: if the executed thread completed succesfully with a correct match with the ground truth. This can be measured for each prompt out of 100 trials based on the stored list of responses 
-- Code Executability: Whether the generated code is directly executable in a different environment or not, either taking 1 (it is directly executable) or 0 (not executable)
-- Code Reproducibility: Will it work on any similar CSV (i.e. no hard-coded paths or column names mismatches)? Either taking 0 or 1 again
-- Text Similarity: Similarity measures such as Jaccard Index and other can be considered for the text part of the generated response to compare with each other or ground truth explanations for some tasks. Source: https://www.newscatcherapi.com/blog/ultimate-guide-to-text-similarity-with-python
-- Response Accuracy (RA) or Accuracy of Response (AoR): Whether the reported result is matching with the ground truth or not (can be numeric or string, or vector etc.), it can take either 0 or 1 again.
-- Coherency on the related threads (for questions that are linked such as 16, 16.1 etc.)
+- **Completion Ratio (CR)**: This can be three different values in general (i) 0: if the executed thread is failed/not completed, (ii) 1: if the executed thread completed with an acceptable outcome (either matching with ground truth or not). This can be measured for each prompt out of 100 trials based on the stored list of responses as a ratio
+- **Response Accuracy (RA)** or **Accuracy of Response (AoR)**: Whether the reported result is matching with the ground truth or not (can be numeric or string, or vector etc.), it can take either 0 or 1 again. If the output is decimal value, or if the match appears partially it can be controlled during the comparison for numerical values!
+- **Code Executability**: Whether the generated code is directly executable in a different environment or not, either taking 1 (it is directly executable) or 0 (not executable). HOW TO CHECK AS A BUNDLE ? 
+- **Code Reproducibility**: Will it work on any similar CSV (i.e. no hard-coded paths or column names mismatches)? Either taking 0 or 1 again
+- **Text Similarity**: Similarity measures such as Jaccard Index and other can be considered for the text part of the generated response to compare with each other or ground truth explanations for some tasks. Source: https://www.newscatcherapi.com/blog/ultimate-guide-to-text-similarity-with-python. THIS CAN BE ADDED FOR SOME INTERPRETATION BASED QUESTIONS
+
+- Coherency on the related threads (for questions that are linked such as 14, 14.1 etc.) - NOT DECIDED YET
 
 #### Task-Specific Metrics
 
@@ -178,12 +178,13 @@ For each of the concepts we are considering, varying set of criterions can appea
 
 - Data Cleaning/Pre-processing
 - Data Summary stats and interpretations
-- Data Visualization and interpretation (each of them is either 0 and 1 so in total out of 5)
-  - **Data Viz Completeness**: If the requested data visualization is generated or not, it can take 1 (if they exists) or 0 (if not) otherwise
+- **Data Viz Completeness**: If the requested data visualization is generated or not, it can take 1 (if they exists) or 0 (if not) otherwise. If this takes 0, nothing to compute indeed so this item is just the starting point so not included in the overall
+- Data Visualization Quality (each of them, for each run, is either 0 and 1 so in total out of 5)
   - **Aesthetic Mapping (Mapping Layer)**: Each data variable is unambiguously mapped to an appropriate aesthetic (e.g., a continuous variable to position, a categorical variable to color), and the mappings are clearly documented in a legend or caption.
   - **Geometric Object (Geom Layer)**: The chosen geom (e.g., geom_bar() for counts, geom_point() for scatter) matches the data structure and analytical intent given by the question, with no misuse of graphical primitives or not suitable geom selection
   - **Scales & Coordinate System (Scale/Coord Layers)**: Axes use appropriate, non‑truncated scales with meaningful breaks; any coordinate transform (e.g., log scale, coord_flip()) is applied suitably, whenever it is mentioned.
-  - **Visualization-Interpretation matching**: The correct use of wordings and abbreviations in the created visual and the related interpretations.
+  - **Visual Encoding Effectiveness**: The information must be displayed in a manner that the human eye and brain can perceive with minimal effort and appropriate precision. This involves selecting the type of graph that displays the information most effectively and designing it in a way that presents the information as clearly as possible
+  - **Visualization-Interpretation matching**: The correct use of wordings and abbreviations in the created visual and the related interpretations. The visualization considers the use of created output while creating the interpretations (MIGHT NOT BE RELEVANT FOR SOME QUESTIONS)
 
 - Statistical Modeling
 - Hypotesis testing
