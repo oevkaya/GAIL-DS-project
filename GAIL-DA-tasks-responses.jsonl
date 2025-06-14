@@ -1,13 +1,18 @@
 ## From the IDS Lab material questions + possibly HW and Quiz exercises
 
 {"id": 0, "question": "How many tourist attractions are there in the data set?", 
-"concepts": ["Data understanding"], "constraints": "Calculate the specific value using R functions only using R's built-in base module or appropriate package functionalities.", 
-"format": "@count_visitor[count_visitor_value] where \"count_visitor_value\" is given in integer format.", "file_name": "UK-visitor-numbers.csv", "level": "easy"}
+"concepts": ["Data understanding"], 
+"format": "@count_visitor[count_visitor_value] where \"count_visitor_value\" is given in integer format.",
+"file_name": "UK-visitor-numbers.csv", "level": "easy"
+"common_answers": [["count_visitor_value", "348"]]}
 
 {"id": 1, "question": "Which attraction had the most number of visitors in 2022?", 
 "concepts": ["Data understanding"], 
-"constraints": "Obtain the specific place name using R functions only using R's tidyverse functionalities", 
-"format": "@place_name[place_name] where \"place_name\" is given in string format.", "file_name": "UK-visitor-numbers.csv", "level": "easy"}
+"format": "@place_name[place_name] where \"place_name\" is given in string format.", 
+"file_name": "UK-visitor-numbers.csv", "level": "easy",
+"common_answers": [["place_name", "The Crown Estate, Windsor Great Park"]]}
+
+---- THE REST TBA ----
 
 {"id": 2, "question": "What is the admission charge for the National Museum of Scotland?", "concepts": ["Data understanding"], 
 "constraints": "Obtain the specific place name using R functions only using R's tidyverse functionalities such as filter", 
