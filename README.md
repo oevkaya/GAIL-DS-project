@@ -164,7 +164,7 @@ The main metrics for the created responses can be listed under three subsections
 
 #### Course-Grained Metrics
 
-- **Completion Ratio (CR)**: This can be three different values in general (i) 0: if the executed thread is failed/not completed, (ii) 1: if the executed thread completed with an acceptable outcome (either matching with ground truth or not). This can be measured for each prompt out of 100 trials based on the stored list of responses as a ratio
+- **Completion Ratio (CR)**: This can be two different values in general (i) 0: if the executed thread is failed/not completed, (ii) 1: if the executed thread completed with an acceptable outcome (either matching with ground truth or not). This can be measured for each prompt out of 100 trials based on the stored list of responses as a ratio
 - **Response Accuracy (RA)** or **Accuracy of Response (AoR)**: Whether the reported result is matching with the ground truth or not (can be numeric or string, or vector etc.), it can take either 0 or 1 again. If the output is decimal value, or if the match appears partially it can be controlled during the comparison for numerical values!
 - **Code Executability**: Whether the generated code is directly executable in a different environment or not, either taking 1 (it is directly executable) or 0 (not executable). HOW TO CHECK AS A BUNDLE ? 
 - **Code Reproducibility**: Will it work on any similar CSV (i.e. no hard-coded paths or column names mismatches)? Either taking 0 or 1 again
