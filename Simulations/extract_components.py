@@ -17,12 +17,12 @@ or
 """
 
 # Required input
-Q = 1
+Q = 0
 
 code_style = "Python"
 model_choice = "gpt-4o"
 
-text_file = f"Simulations/output/Q{Q}_output_add.txt"
+text_file = f"Simulations/output/UK-visitor-numbers/Q{Q}.txt"
 response = f"Simulations/responses/Q{Q}.jsonl"
 
 # codefile = f"Simulations/Q{Q}/Q{Q}.py"
@@ -35,6 +35,7 @@ response = f"Simulations/responses/Q{Q}.jsonl"
 import re
 import tiktoken
 import json
+import os
 
 def extract_code_blocks(text):
     pattern = r"```(?:python)?\n(.*?)```"
@@ -207,3 +208,64 @@ with open(text_file, "r", encoding="utf-8") as f:
     #    dict_elements[e].append(y)
 
     # dict_elements.append(elements)
+
+
+def extract_response_for_evaluation(Q, section,jsonfile=None,codefile=None):
+    
+    code = extract_code_blocks(section)
+    code_part = code[0] if code else None
+
+    # Split responses by 50-dash separator
+    blocks = [block.strip() for block in section.split("-" * 50) if block.strip()]
+
+    elements = extract_metadata(blocks[0])
+    outcome = extract_outcome(blocks[-1])
+    reasoning = []
+
+    content_token = 0
+    content_word = 0
+
+    for block in blocks[1:]:
+      # Skip user blocks
+      if block.startswith("Role: user"):
+        continue
+
+      if block.startswith("Role: assistant"):
+        #   block_clean = clean_block(block)
+          content_token += count_tokens(block)
+          content_word += len(block.split())
+
+          reasoning.append(extract_reasoning(block))
+    
+    #--------------Save each component--------------
+    if not os.path.exists(jsonfile):
+      with open(jsonfile, "w") as f:
+        pass
+
+    if not os.path.exists(codefile):
+      with open(codefile, "w") as f:
+        pass
+      
+    json_block = {
+       "id":Q, 
+       "round":elements['round'],
+       "thread_id":elements['thread_id'],
+       "status":elements['status'],
+       "runtime":elements['runtime'],
+       "words":content_word,
+       "tokens":content_token,
+       
+       "reasoning": reasoning,
+       "outcome": outcome
+    }   
+    
+    with open(jsonfile, "a", encoding="utf-8") as f:
+      json.dump(json_block, f, ensure_ascii=False)
+      f.write("\n")
+      
+    # Save code block
+    if code_part:
+      with open(codefile, "a", encoding="utf-8") as f:
+        f.write("#"*50)
+        f.write(f"\n#Round {elements['round']} with threat_id: {thread_id}\n")
+        f.write(code_part)
