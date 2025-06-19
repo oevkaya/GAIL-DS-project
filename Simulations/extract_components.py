@@ -188,32 +188,42 @@ def extract_assistant_response(Q, section,version, jsonfile=None,codefile=None,r
 # dict_elements = []
 
 
-with open(text_file, "r", encoding="utf-8") as f:
-  content = f.read()
+# with open(text_file, "r", encoding="utf-8") as f:
+#   content = f.read()
 
-  # Find the section for each thread_id, separated by 100-dash separator
-  sections = [section.strip() for section in content.split("-" * 100) if section.strip()]
+#   # Find the section for each thread_id, separated by 100-dash separator
+#   sections = [section.strip() for section in content.split("-" * 100) if section.strip()]
 
-  for section in sections:
-    id_match = re.search(r"Round (\d+)\s+with thread_id:\s+(\w+)", section)
-    if id_match:
-        round_num = int(id_match.group(1))
-        thread_id = id_match.group(2)
+#   for section in sections:
+#     id_match = re.search(r"Round (\d+)\s+with thread_id:\s+(\w+)", section)
+#     if id_match:
+#         round_num = int(id_match.group(1))
+#         thread_id = id_match.group(2)
 
-    # Choose the version of json/jsonl, or separate code/reasoning/outcomes files. 
-    extract_assistant_response(Q, section,"json", jsonfile=response)
-    # extract_assistant_response(Q, section,"origin", codefile, reasonfile,outcomefile)
+#     # Choose the version of json/jsonl, or separate code/reasoning/outcomes files. 
+#     extract_assistant_response(Q, section,"json", jsonfile=response)
+#     # extract_assistant_response(Q, section,"origin", codefile, reasonfile,outcomefile)
 
-    # for e, y in elements.items():
-    #    dict_elements[e].append(y)
+#     # for e, y in elements.items():
+#     #    dict_elements[e].append(y)
 
-    # dict_elements.append(elements)
+#     # dict_elements.append(elements)
 
+#----------------------------Version 2----------------------------
 
-def extract_response_for_evaluation(Q, section,jsonfile=None,codefile=None):
+def extract_code_for_evaluation(Q,section,round_num,thread_id,codefile=None):
+  code = extract_code_blocks(section)
+  code_part = code[0] if code else None
     
-    code = extract_code_blocks(section)
-    code_part = code[0] if code else None
+  # Save code block
+  if code_part:
+    with open(codefile, "a", encoding="utf-8") as f:
+      f.write("#"*50)
+      f.write(f"\n#Question {Q}, Round {round_num} with threat_id: {thread_id}\n")
+      f.write(code_part)
+
+
+def extract_response_for_evaluation(Q, section,jsonfile=None):
 
     # Split responses by 50-dash separator
     blocks = [block.strip() for block in section.split("-" * 50) if block.strip()]
@@ -254,7 +264,6 @@ def extract_response_for_evaluation(Q, section,jsonfile=None,codefile=None):
        "runtime":elements['runtime'],
        "words":content_word,
        "tokens":content_token,
-       
        "reasoning": reasoning,
        "outcome": outcome
     }   
@@ -263,9 +272,35 @@ def extract_response_for_evaluation(Q, section,jsonfile=None,codefile=None):
       json.dump(json_block, f, ensure_ascii=False)
       f.write("\n")
       
-    # Save code block
-    if code_part:
-      with open(codefile, "a", encoding="utf-8") as f:
-        f.write("#"*50)
-        f.write(f"\n#Round {elements['round']} with threat_id: {thread_id}\n")
-        f.write(code_part)
+def format_number(x):
+    return int(x) if x == int(x) else str(x)
+
+import os
+import glob
+input_folder = "Simulations/output/UK-visitor-numbers"
+input_files = glob.glob(os.path.join(input_folder, '*.txt'))
+
+output_file = "Simulations/metrics/UK-visitor-numbers.jsonl"
+codefile = f"Simulations/metrics/visitor.py"
+
+for text_file in input_files:
+    print(text_file)
+
+    match = re.match(r"Q(\d+(?:\.\d+)?)\.txt", os.path.basename(text_file))
+    Q = format_number(float(match.group(1)))
+    with open(text_file, 'r') as f:
+        content = f.read()
+
+        # Find the section for each thread_id, separated by 100-dash separator
+        sections = [section.strip() for section in content.split("-" * 100) if section.strip()]
+
+        for section in sections:
+          id_match = re.search(r"Round (\d+)\s+with thread_id:\s+(\w+)", section)
+          if id_match:
+              round_num = int(id_match.group(1))
+              thread_id = id_match.group(2)
+
+          # Choose the version of json/jsonl, or separate code/reasoning/outcomes files. 
+          extract_response_for_evaluation(Q, section,jsonfile=output_file)
+
+          extract_code_for_evaluation(Q,section,round_num,thread_id,codefile=codefile)
