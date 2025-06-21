@@ -84,10 +84,9 @@ Impact of zero shot vs one shot learning can be explored for some tasks only
 ## Our Task types and related questions at different levels 
 
 - Data Undertanding and Wrangling
-- Data Cleaning and Pre-processing
+- Data Cleaning, Pre-processing and Transformations
 - Data Summary Statistics and Interpretations
-- Data Transformations
-
+- 
 - Data Visualization - EDA 
 
 - Statistical Models under supervised , unsupervised learning type of models
@@ -117,19 +116,15 @@ Impact of zero shot vs one shot learning can be explored for some tasks only
 
 Question List: GAIL-DA-tasks-questions.jsonl file but will be expanded
 
-**id**: Unique identifier for each question.
-
-**question**: The description of the data analysis question.
-
-**concepts**: The concepts involved in the question.
-
-**format**: The format requirements for the output.
-
-**file_name**: The file name of the corresponding csv file.
-
-**level**: The difficulty level for each question.
+- **id**: Unique identifier for each question.
+- **question**: The description of the data analysis question.
+- **concepts**: The concepts involved in the question.
+- **format**: The format requirements for the output.
+- **file_name**: The file name of the corresponding csv file.
+- **level**: The difficulty level for each question.
 
 Additional details like constraints: The constraints on the type of programming (using R instead of Python) or similar ones can be considered!
+We will gather feedback from the audience for the **concepts** and the **level** information by asking them randomly allocated set of questions.
 
 ## Our metrics to evaluate the specific task outcome 
 
@@ -166,8 +161,10 @@ The main metrics for the created responses can be listed under three subsections
 
 - **Completion Ratio (CR)**: This can be two different values in general (i) 0: if the executed thread is failed/not completed, (ii) 1: if the executed thread completed with an acceptable outcome (either matching with ground truth or not). This can be measured for each prompt out of 100 trials based on the stored list of responses as a ratio
 - **Response Accuracy (RA)** or **Accuracy of Response (AoR)**: Whether the reported result is matching with the ground truth or not (can be numeric or string, or vector etc.), it can take either 0 or 1 again. If the output is decimal value, or if the match appears partially it can be controlled during the comparison for numerical values!
+- 
 - **Code Executability**: Whether the generated code is directly executable in a different environment or not, either taking 1 (it is directly executable) or 0 (not executable). HOW TO CHECK AS A BUNDLE ? 
 - **Code Reproducibility**: Will it work on any similar CSV (i.e. no hard-coded paths or column names mismatches)? Either taking 0 or 1 again
+- 
 - **Text Similarity**: Similarity measures such as Jaccard Index and other can be considered for the text part of the generated response to compare with each other or ground truth explanations for some tasks. Source: https://www.newscatcherapi.com/blog/ultimate-guide-to-text-similarity-with-python. THIS CAN BE ADDED FOR SOME INTERPRETATION BASED QUESTIONS
 
 - Coherency on the related threads (for questions that are linked such as 14, 14.1 etc.) - NOT DECIDED YET
@@ -178,6 +175,10 @@ For each of the concepts we are considering, varying set of criterions can appea
 
 - Data Cleaning/Pre-processing
 - Data Summary stats and interpretations
+  - **Appropriateness of Stats Chosen:** Were the most relevant statistics reported for the data type (e.g., median for skewed data, mode for categorical)? either 0 or 1
+  - **Accuracy of Interpretation:**  Interpretation	Do the interpretations logically follow from the statistics? (e.g., not saying data is "normally distributed" based on wrong evidence) 0 or 1
+  - **Clarity of Interpretation:** Are the interpretations understandable, concise, and jargon-free? Either 0 or 1
+    
 - **Data Viz Completeness**: If the requested data visualization is generated or not, it can take 1 (if they exists) or 0 (if not) otherwise. If this takes 0, nothing to compute indeed so this item is just the starting point so not included in the overall
 - Data Visualization Quality (each of them, for each run, is either 0 and 1 so in total out of 5)
   - **Aesthetic Mapping (Mapping Layer)**: Each data variable is unambiguously mapped to an appropriate aesthetic (e.g., a continuous variable to position, a categorical variable to color), and the mappings are clearly documented in a legend or caption.
@@ -186,8 +187,31 @@ For each of the concepts we are considering, varying set of criterions can appea
   - **Visual Encoding Effectiveness**: The information must be displayed in a manner that the human eye and brain can perceive with minimal effort and appropriate precision. This involves selecting the type of graph that displays the information most effectively and designing it in a way that presents the information as clearly as possible
   - **Visualization-Interpretation matching**: The correct use of wordings and abbreviations in the created visual and the related interpretations. The visualization considers the use of created output while creating the interpretations (MIGHT NOT BE RELEVANT FOR SOME QUESTIONS)
 
-- Statistical Modeling
-- Hypotesis testing
+- Statistical Modeling: It may change slightly in terms of which modeling approach we are applying; regression, classification, PCA or clustering
+
+  For Regression;
+  - **Correct Target Variable and Features:**
+  - **Evaluation Metric Reported and Interpreted:**
+  - **Interpretation of Results:**
+  - 
+  For Classification;
+  - **Use of Appropriate Metric:**
+  - **Confusion Matrix or Error Analysis:**
+
+  For PCA;
+  - **Standardization of Input Data:** Was scaling applied where needed before PCA?
+  - **Correct Variance Explanation:** Are eigenvalues / explained variance ratios reported and understood?
+  - **Proper Component Interpretation:** Are PCs interpreted clearly in terms of original variables?
+  - **Number of Components Justified:** Is the decision on how many PCs to keep justified?
+  - 
+  For Clustering;
+  
+- Hypotesis testing (each of them either marked as 0 or 1, in total 5)
+  - **Correct Test/Test name Chosen:**
+  - **Null and Alternative Hypotheses Clearly Stated:**
+  - **Test Assumptions Checked:**
+  - **Correct Interpretation of p-value and/or Confidence Interval:** 
+  - **Contextual Conclusion:**
 
 For each of above, we can create a list of different evaluation criterions to give a mark out of 5 so that each result may have numerical evaluation number! 
 
