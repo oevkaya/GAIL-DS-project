@@ -179,31 +179,34 @@ For each of the concepts we are considering, varying set of criterions can appea
   - **Accuracy of Interpretation:**  Interpretation	Do the interpretations logically follow from the statistics? (e.g., not saying data is "normally distributed" based on wrong evidence) 0 or 1
   - **Clarity of Interpretation:** Are the interpretations understandable, concise, and jargon-free? Either 0 or 1
     
-- **Data Viz Completeness**: If the requested data visualization is generated or not, it can take 1 (if they exists) or 0 (if not) otherwise. If this takes 0, nothing to compute indeed so this item is just the starting point so not included in the overall
+
 - Data Visualization Quality (each of them, for each run, is either 0 and 1 so in total out of 5)
+  - **Data Viz Completeness**: If the requested data visualization is generated or not, it can take 1 (if they exists) or 0 (if not) otherwise. If this takes 0, nothing to compute indeed so this item is just the starting point so not included in the overall
   - **Aesthetic Mapping (Mapping Layer)**: Each data variable is unambiguously mapped to an appropriate aesthetic (e.g., a continuous variable to position, a categorical variable to color), and the mappings are clearly documented in a legend or caption.
   - **Geometric Object (Geom Layer)**: The chosen geom (e.g., geom_bar() for counts, geom_point() for scatter) matches the data structure and analytical intent given by the question, with no misuse of graphical primitives or not suitable geom selection
   - **Scales & Coordinate System (Scale/Coord Layers)**: Axes use appropriate, non‑truncated scales with meaningful breaks; any coordinate transform (e.g., log scale, coord_flip()) is applied suitably, whenever it is mentioned.
-  - **Visual Encoding Effectiveness**: The information must be displayed in a manner that the human eye and brain can perceive with minimal effort and appropriate precision. This involves selecting the type of graph that displays the information most effectively and designing it in a way that presents the information as clearly as possible
   - **Visualization-Interpretation matching**: The correct use of wordings and abbreviations in the created visual and the related interpretations. The visualization considers the use of created output while creating the interpretations (MIGHT NOT BE RELEVANT FOR SOME QUESTIONS)
 
-- Statistical Modeling: It may change slightly in terms of which modeling approach we are applying; regression, classification, PCA or clustering
+- Statistical Modeling: It may change slightly in terms of which modeling approach we are applying; regression, classification, PCA or clustering. For each of them, we have the **Response Accuracy (RA) or Accuracy of Response (AoR)** as the first item (mentioned above), then the following specific evaluations are applied additionally to get a task specific numerical evaluation 
 
   For Regression;
-  - **Correct Target Variable and Features:**
+  - **Correct Target Variable and Features usage:**
   - **Evaluation Metric Reported and Interpreted:**
   - **Interpretation of Results:**
   - 
+ 
+    
   For Classification;
   - **Use of Appropriate Metric:**
   - **Confusion Matrix or Error Analysis:**
+  - **Action taken for imbalanced case** 
 
   For PCA;
   - **Standardization of Input Data:** Was scaling applied where needed before PCA?
   - **Correct Variance Explanation:** Are eigenvalues / explained variance ratios reported and understood?
   - **Proper Component Interpretation:** Are PCs interpreted clearly in terms of original variables?
   - **Number of Components Justified:** Is the decision on how many PCs to keep justified?
-  - 
+    
   For Clustering;
   
 - Hypotesis testing (each of them either marked as 0 or 1, in total 5)
