@@ -86,7 +86,7 @@ Impact of zero shot vs one shot learning can be explored for some tasks only
 - Data Undertanding and Wrangling
 - Data Cleaning, Pre-processing and Transformations
 - Data Summary Statistics and Interpretations
-- 
+  
 - Data Visualization - EDA 
 
 - Statistical Models under supervised , unsupervised learning type of models
@@ -109,8 +109,8 @@ Impact of zero shot vs one shot learning can be explored for some tasks only
 - IDS course weekly lab exercises, Homework assigments varying on different data sets in .csv file format and data sets from the certain R package directly
 - IDS quiz examples including interpretational type of questions without any specific data file (Not in a higher priority)
 - Some Statistical related questions from our Statistics Year 2 from weekly labs / quiz exercises from previous years (subject to ST's confirmation)
-- Some questions from Bayesian Data Analysis and Multivariate Data Analysis courses to cover PCA, Clustering, Bayesian modelling 
-- NOT USED SO FAR: Other open source data sets used in other papers and also shared via Github already (open to public), adaptations of some of them can be useful for the enrichment of the our data set
+- Some questions from Bayesian Data Analysis and Multivariate Data Analysis courses to cover PCA, Clustering, Bayesian modelling as different style of tasks
+- **NOT USED SO FAR: Other open source data sets used in other papers and also shared via Github already (open to public), adaptations of some of them can be useful for the enrichment of the our data set later**
 
 ### Possible format of the prompts
 
@@ -154,17 +154,17 @@ The main metrics for the created responses can be listed under three subsections
 #### General Properties
 
 - **Verbosity**: General length for the number of tokens or words to count the verbosity of the generated response in general except the coding component. This will focus on only the text related part! So far we have number of words and tokens
-- **Runtime** for the response creation
+- **Runtime** for the response creation for each iteration
 - **Verbosity ratio (input / output)** in terms of either words or tokens: Can be considered! It is the ratio of number of input tokens (words) / number of output tokens (words) 
 
 #### Course-Grained Metrics
 
 - **Completion Ratio (CR)**: This can be two different values in general (i) 0: if the executed thread is failed/not completed, (ii) 1: if the executed thread completed with an acceptable outcome (either matching with ground truth or not). This can be measured for each prompt out of 100 trials based on the stored list of responses as a ratio
 - **Response Accuracy (RA)** or **Accuracy of Response (AoR)**: Whether the reported result is matching with the ground truth or not (can be numeric or string, or vector etc.), it can take either 0 or 1 again. If the output is decimal value, or if the match appears partially it can be controlled during the comparison for numerical values!
-- 
+  
 - **Code Executability**: Whether the generated code is directly executable in a different environment or not, either taking 1 (it is directly executable) or 0 (not executable). HOW TO CHECK AS A BUNDLE ? 
 - **Code Reproducibility**: Will it work on any similar CSV (i.e. no hard-coded paths or column names mismatches)? Either taking 0 or 1 again
-- 
+  
 - **Text Similarity**: Similarity measures such as Jaccard Index and other can be considered for the text part of the generated response to compare with each other or ground truth explanations for some tasks. Source: https://www.newscatcherapi.com/blog/ultimate-guide-to-text-similarity-with-python. THIS CAN BE ADDED FOR SOME INTERPRETATION BASED QUESTIONS
 
 - Coherency on the related threads (for questions that are linked such as 14, 14.1 etc.) - NOT DECIDED YET
