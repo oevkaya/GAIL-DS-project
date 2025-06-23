@@ -667,8 +667,20 @@ previously recorded maximum of the annual total rainfall throughout the observat
 "format": "@edi_rainfall_robust_post_prob[edi_rainfall_robust_post_prob] where \"edi_rainfall_robust_post_prob\" is the robust regression model posterior probability value", 
 "file_name": "Edinburgh_rainfall.csv", "level": "medium"}
 
+{"id": 73, "question": "Find the possible set of outliers over the given data set focusing on the price variable.", 
+"concepts": ["Descriptive Statistics"], 
+"constraints": "Find the related outliers using R functions only", 
+"format": "@laptop_price_outliers[laptop_price_outliers] where \"laptop_price_outliers\" is the detected possible outlier values on the price.", 
+"file_name": "laptop_data_cleaned.csv", "level": "medium"}
+
+{"id": 74, "question": "Create the time series plot for the Rainfall variable", 
+"concepts": ["Data Visualization"], 
+"constraints": "Create the time series plot using R functions only", 
+"format": "@weatherAUS_rainfall[weatherAUS_rainfall] where \"weatherAUS_rainfall\" is the created time series plot for the rainfall variable", 
+"file_name": "weatherAUS.csv", "level": "medium"}
+
 ...
-All counted to be 100 ? 97 so 3 missing yet
+All counted to be 100 in total?
 ...
 {"id": 100, "question": " ", 
 "concepts": ["..."], "constraints": "...", 
