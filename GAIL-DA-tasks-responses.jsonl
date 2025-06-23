@@ -30,17 +30,21 @@
 "file_name": "UK-visitor-numbers.csv", "level": "medium",
 "common_answers": [["count_specific_attraction", "3"]]}
 
----- THE REST TBA ----
-
-
-
-{"id": 4, "question": "How many Outside attractions are there in the Yorkshire and the Humber region that gives Members free admission, which had more than 100,000 visitors in 2022?", 
-"concepts": ["Data understanding"], "constraints": "Obtain the specific place name using R functions only using R's tidyverse functionalities such as filter", 
-"format": "@count_specific_attraction[count_specific_attraction] where \"count_specific_attraction\" is given in integer format.", "file_name": "UK-visitor-numbers.csv", "level": "medium"}
-
 {"id": 5, "question": "What are the mean and median visitor numbers in 2022 across all attractions?", 
-"concepts": ["Data summary"], "constraints": "Obtain the specific place name using R functions such as mean or median", 
-"format": "@visitor_summary[visitor_summary] where \"visitor_summary\" is given as a numeric vector or tibble formated values.", "file_name": "UK-visitor-numbers.csv", "level": "medium"}
+"concepts": ["Data summary"], 
+"format": "@visitor_summary[visitor_summary] where \"visitor_summary\" is given as a numeric vector or tibble formated values.",
+"file_name": "UK-visitor-numbers.csv", "level": "medium",
+ "common_answers": [
+   {
+     "visitor_summary": {
+       "mean": 351942,
+       "median": 184640
+     }
+   }
+ ]
+}
+
+---- THE REST TBA ----
 
 {"id": 6, "question": "What is the interquartile range (the width of the middle 50% of data set between the lower and upper quartiles) the for each of the four nations of the UK?", 
 "concepts": ["Data summary"], "constraints": "Obtain the specific place name using R functions such as IQR", 
