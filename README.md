@@ -189,17 +189,21 @@ For each of the concepts we are considering, varying set of criterions can appea
 
 - Statistical Modeling: It may change slightly in terms of which modeling approach we are applying; regression, classification, PCA or clustering. For each of them, we have the **Response Accuracy (RA) or Accuracy of Response (AoR)** as the first item (mentioned above), then the following specific evaluations are applied additionally to get a task specific numerical evaluation 
 
-  For Regression;
-  - **Correct Target Variable and Features usage:**
-  - **Evaluation Metric Reported and Interpreted:**
-  - **Interpretation of Results:**
+  For Regression (all either 0 or 1);
+  - **Ratio of Accuracy** (will be calculated automatically via comparing GT value)
+  - **Correct model coefficient interpretation:** Understanding the magnitude and direction of the relationship between independent and dependent variables
+  - **p-value recognition** Recognizing statistical significance on the model coefficients
+  - **Evaluation Metric Reported and Interpreted:** Assessing the model's goodness of fit and the proportion of variance explained by the model via R_squared at least 
+  - **Interpretation of Results:** Interpreting the results within the context of the specific research question and domain
   - 
  
     
   For Classification;
-  - **Use of Appropriate Metric:**
-  - **Confusion Matrix or Error Analysis:**
-  - **Action taken for imbalanced case** 
+  - **Ratio of Accuracy** (will be calculated automatically via comparing GT value)
+  - **Correct model coefficient interpretation:**
+  - **Evaluation Metric Reported and Interpreted:**
+  - **Confusion Matrix recognition:**
+  - **Interpretation of Results:** Interpreting the results within the context of the specific research question and domain
 
   For PCA;
   - **Standardization of Input Data:** Was scaling applied where needed before PCA?
