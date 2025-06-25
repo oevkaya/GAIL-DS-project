@@ -217,13 +217,13 @@ What does this suggest about the structure of the age distribution of the runner
 Calculate some simple summary statistics to support your comments.", 
 "concepts": ["Data Visualization-Summary"], 
 "format": "@histogram_10mile_summary_stats[histogram_10mile_summary_stats] where \"histogram_10mile_summary_stats\" is the created histogram and additional summary statistics", 
-"file_name": "cherryblossom::run17", "level": "medium"}
+"file_name": "cherryblossom_run17.xlsx", "level": "medium"}
 
 {"id": 34.1, "question": "Create a similar data visualisation for the \"5K"\ race event. 
 Describe the shape of this histogram and discuss the similarities/differences of the age distribution between the \"5K"\ and \"10 Mile"\ races.", 
 "concepts": ["Data Visualization-Interpretation"], 
 "format": "@histogram_10mile_5mile_comparison[histogram_10mile_5mile_comparison] where \"histogram_10mile_5mile_comparison\" is the created histogram and additional comparison comments", 
-"file_name": "cherryblossom::run17", "level": "hard"}
+"file_name": "cherryblossom_run17.xlsx", "level": "hard"}
 
 {"id": 35, "question": "Create a data visualisation based on the following description.
 Make a sequence of boxplots for the time (in minutes) that it took the runners to complete the Cherryblossom race (after accounting for the staggered start). 
@@ -233,13 +233,13 @@ Finally, add appropriate text to the image in order to assist the reader in unde
 Provide a brief comment about the relationships seen in the data visualisation created by the above description.", 
 "concepts": ["Data Visualization"], 
 "format": "@instructed_data_viz[instructed_data_viz] where \"instructed_data_viz\" is the created data viz based on given instructions", 
-"file_name": "cherryblossom::run17", "level": "hard"}
+"file_name": "cherryblossom_run17.xlsx", "level": "hard"}
 
 {"id": 36, "question": "Using the run17 data set, create two visualisations: One that you think provides a good representation of the data, and
 One that you think provides a bad representation of the data. For each case, give two reasons why you consider the data visualisation you have found are good/bad.", 
 "concepts": ["Data Visualization"], 
 "format": "@run17_data_viz_good_bad[run17_data_viz_good_bad] where \"run17_data_viz_good_bad\" is the created good and bad data viz examples with two main reasons", 
-"file_name": "cherryblossom::run17", "level": "hard"}
+"file_name": "cherryblossom_run17.xlsx", "level": "hard"}
 
 {"id": 37, "question": "Create a new data frame called gss16_advfront that includes the variables advfront, emailhr (Number of hours spent on email weekly), 
 educ (education level), polviews (political views) and wrkstat (working status). Remove any row that contains any NAs. 
