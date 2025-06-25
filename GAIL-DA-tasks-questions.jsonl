@@ -1,211 +1,173 @@
 ## From the IDS Lab material questions + possibly HW and Quiz exercises
 
-{"id": 0, "question": "How many tourist attractions are there in the data set?", 
-"concepts": ["Data understanding"], "constraints": "Calculate the specific value using R functions only using R's built-in base module or appropriate package functionalities.", 
+{"id": 0, "question": "How many tourist attractions are there in the data set?", "concepts": ["Data understanding"], 
 "format": "@count_visitor[count_visitor_value] where \"count_visitor_value\" is given in integer format.", "file_name": "UK-visitor-numbers.csv", "level": "easy"}
 
-{"id": 1, "question": "Which attraction had the most number of visitors in 2022?", 
-"concepts": ["Data understanding"], 
-"constraints": "Obtain the specific place name using R functions only using R's tidyverse functionalities", 
+{"id": 1, "question": "Which attraction had the most number of visitors in 2022?", "concepts": ["Data understanding"], 
 "format": "@place_name[place_name] where \"place_name\" is given in string format.", "file_name": "UK-visitor-numbers.csv", "level": "easy"}
 
 {"id": 2, "question": "What is the admission charge for the National Museum of Scotland?", "concepts": ["Data understanding"], 
-"constraints": "Obtain the specific place name using R functions only using R's tidyverse functionalities such as filter", 
 "format": "@admission_charge[admission_charge_value] where \"admission_charge_value\" is given in string format.", "file_name": "UK-visitor-numbers.csv", "level": "easy"}
 
 {"id": 3, "question": "How many attraction had more than 1 million visitors in 2022?", "concepts": ["Data understanding"], 
-"constraints": "Obtain the specific place name using R functions only using R's tidyverse functionalities such as filter", 
 "format": "@count_attraction_2022[count_attraction_2022] where \"count_attraction_2022\" is given in integer format.", "file_name": "UK-visitor-numbers.csv", "level": "easy"}
 
 {"id": 4, "question": "How many Outside attractions are there in the Yorkshire and the Humber region that gives Members free admission, which had more than 100,000 visitors in 2022?", 
-"concepts": ["Data understanding"], "constraints": "Obtain the specific place name using R functions only using R's tidyverse functionalities such as filter", 
-"format": "@count_specific_attraction[count_specific_attraction] where \"count_specific_attraction\" is given in integer format.", "file_name": "UK-visitor-numbers.csv", "level": "medium"}
+"concepts": ["Data understanding"], "format": "@count_specific_attraction[count_specific_attraction] where \"count_specific_attraction\" is given in integer format.", 
+"file_name": "UK-visitor-numbers.csv", "level": "medium"}
 
-{"id": 5, "question": "What are the mean and median visitor numbers in 2022 across all attractions?", 
-"concepts": ["Data summary"], "constraints": "Obtain the specific place name using R functions such as mean or median", 
+{"id": 5, "question": "What are the mean and median visitor numbers in 2022 across all attractions?", "concepts": ["Data summary"], 
 "format": "@visitor_summary[visitor_summary] where \"visitor_summary\" is given as a numeric vector or tibble formated values.", "file_name": "UK-visitor-numbers.csv", "level": "medium"}
 
 {"id": 6, "question": "What is the interquartile range (the width of the middle 50% of data set between the lower and upper quartiles) the for each of the four nations of the UK?", 
-"concepts": ["Data summary"], "constraints": "Obtain the specific place name using R functions such as IQR", 
-"format": "@IQR_value[IQR_value] where \"IQR_value\" is given as a numeric vector or tibble formated values for each nation.", "file_name": "UK-visitor-numbers.csv", "level": "medium"}
+"concepts": ["Data summary"], "format": "@IQR_value[IQR_value] where \"IQR_value\" is given as a numeric vector or tibble formated values for each nation.", 
+"file_name": "UK-visitor-numbers.csv", "level": "medium"}
 
 {"id": 7, "question": "How many tourist attractions are there in each of the 4 nations? From this, discuss in your group how reliable you think the inter-quartile estimates are.", 
-"concepts": ["Data exploration"], "constraints": "Obtain the specific place name using R functions and interpretations", 
-"format": "@attraction_comment[attraction_comment] where \"attraction_comment\" is given in string format.", "file_name": "UK-visitor-numbers.csv", "level": "medium"}
+"concepts": ["Data Understanding"], "format": "@attraction_comment[attraction_comment] where \"attraction_comment\" is given in string format.", 
+"file_name": "UK-visitor-numbers.csv", "level": "medium"}
 
 {"id": 8, "question": "Within each of the 4 nations, what is the proportion of tourist attractions that have free admission for all visitors?", 
-"concepts": ["Data exploration"], "constraints": "Obtain the specific place name using R functions only using multiple R's tidyverse functionalities", 
-"format": "@proportion_nation_value[proportion_nation_value] where \"proportion_nation_value\" is given in a numeric vector or tibble formated values.", 
+"concepts": ["Data Understanding"], "format": "@proportion_nation_value[proportion_nation_value] where \"proportion_nation_value\" is given in a numeric vector or data frame.", 
 "file_name": "UK-visitor-numbers.csv", "level": "hard"}
 
 {"id": 9, "question": "Calculate the percentage change in visitor admissions from 2021 to 2022. Of the tourist attractions in Scotland, sort into increasing numerical order the types of admission charges based on the mean percentage change in visitor numbers.", 
-"concepts": ["Data exploration"], "constraints": "Obtain the specific place name using R functions only using multiple R's tidyverse functionalities", 
-"format": "@percentage_change_2021_2022[percentage_change_2021_2022] where \"percentage_change_2021_2022\" is given in a numeric vector or tibble formated values.", 
+"concepts": ["Data Understanding"], "format": "@percentage_change_2021_2022[percentage_change_2021_2022] where \"percentage_change_2021_2022\" is given in a numeric vector or tibble formated values.", 
 "file_name": "UK-visitor-numbers.csv", "level": "hard"}
 
 {"id": 10, "question": "Create a frequency table of coastal countries/territories by region.", "concepts": ["Data summary"], 
-"constraints": "Calculate the specific value using R functions only using R's built-in base module or appropriate package functionalities.", 
-"format": "@freq_table[freq_table] where \"freq_table\" is given in a numeric vector or tibble formated values..", "file_name": "joined_plastic_data_all.csv", "level": "easy"}
+"format": "@freq_table[freq_table] where \"freq_table\" is given in a numeric vector or tibble formated values.", "file_name": "joined_plastic_data_all.csv", "level": "easy"}
 
-{"id": 11, "question": "Which region has the most number of coastal countries/territories?", "concepts": ["Data exploration"], 
-"constraints": "Calculate the specific value using R functions only using R's built-in base module or appropriate package functionalities.", 
+{"id": 11, "question": "Which region has the most number of coastal countries/territories?", "concepts": ["Data Understanding"], 
 "format": "@region_name[region_name] where \"region_name\" is given in string format.", "file_name": "joined_plastic_data_all.csv", "level": "easy"}
 
 {"id": 12, "question": "The mismanaged plastic waste is measured in kg per capita. Add a new variable to plastic_data_all called total_mismanage_plastic by multiplying mismanaged_plastic by population. What is the mean total of mismanaged plastic waste per region?", 
 "concepts": ["Data transformation-summary"], 
-"constraints": "Calculate the specific value using R functions only using R's built-in base module or appropriate package functionalities.", 
 "format": "@mean_region_calculated[mean_region_calculated] where \"mean_region_calculated\" is given in a numeric vector or tibble formated values.", 
 "file_name": "joined_plastic_data_all.csv", "level": "medium"}
 
 {"id": 13, "question": "Add a new variable called pct_mismanaged_plastic_ocean to plastic_data_all that represents the amount of ocean emitted mismanaged plastic waste as a percentage of all mismanaged plastic waste. Calculate the median pct_mismanaged_plastic_ocean for each region.", 
 "concepts": ["Data transformation-summary"], 
-"constraints": "Calculate the specific value using R functions only using R's built-in base module or appropriate package functionalities.", 
 "format": "@median_pct_mismanaged_plastic_ocean[median_pct_mismanaged_plastic_ocean] where \"median_pct_mismanaged_plastic_ocean\" is given in a numeric vector or tibble formated values.", 
 "file_name": "joined_plastic_data_all.csv", "level": "medium"}
 
 {"id": 14, "question": "Create a plotting instructional staff employment trends as a dot plot.", 
 "concepts": ["Data visualization"], 
-"constraints": "Create the specific plot using R functions only using R's built-in base module or appropriate package functionalities.", 
 "format": "@instructional_staff_employment_trends_plot[instructional_staff_employment_trends_plot] where \"instructional_staff_employment_trends_plot\" is a dot plot object created by ggplot package or other.", 
 "file_name": "instructional-staff.csv", "level": "easy"}
 
 {"id": 14.1, "question": "Create a plotting instructional staff employment trends in a different style plot", 
 "concepts": ["Data visualization"], 
-"constraints": "Create the specific plot using R functions only using R's built-in base module or appropriate package functionalities.", 
 "format": "@staff_employment_trends_line_plot[staff_employment_trends_line_plot] where \"staff_employment_trends_line_plot\" is a line plot object created by ggplot package or other.", 
 "file_name": "instructional-staff.csv", "level": "medium"}
 
 {"id": 14.2, "question": "Improve the plot from the previous exercise by fixing up its labels (title, axis labels, and legend label) as well as any other components you think could benefit from improvement.", 
 "concepts": ["Data visualization-customization"], 
-"constraints": "Create the specific plot using R functions only using R's built-in base module or appropriate package functionalities.", 
 "format": "@staff_employment_trends_line_plot_custom[staff_employment_trends_line_plot_custom] where \"staff_employment_trends_line_plot_custom\" is a customized line plot object created by ggplot package or other.", 
 "file_name": "instructional-staff.csv", "level": "medium"}
 
 {"id": 15, "question": "Perform a preliminary exploratory data analysis (EDA) of the diamonds data set. Create some frequency tables, summary statistics and/or data visualisations to explore the relationship between the variables.", 
-"concepts": ["General EDA"], 
-"constraints": "Create the specific EDA results using R functions only using R's built-in base module or appropriate package functionalities.", 
-"format": "@eda_diamond[eda_diamond] where \"eda_diamond\" is a summary of various results including numerical and graphical outcomes.", 
+"concepts": ["General EDA"], "format": "@eda_diamond[eda_diamond] where \"eda_diamond\" is a summary of various results including numerical and graphical outcomes.", 
 "file_name": "ggplot::diamonds", "level": "hard"}
 
 {"id": 15.1, "question": "Make appropriate decisions to clean the data by removing rows containing problematic observations", 
 "concepts": ["Data cleaning"], 
-"constraints": "Do specific cleaning steps using R functions only using R's built-in base module or appropriate package functionalities.", 
 "format": "@data_cleaning_diamond[data_cleaning_diamond] where \"data_cleaning_diamond\" is a summary of certain steps on data cleaning.", 
 "file_name": "ggplot::diamonds", "level": "medium"}
 
 {"id": 16, "question": "The table_pct variable is a percentage between the width of the table and the diamond’s overall width. First, calculate the table width in millimetres, as table_mm. Then, calculate the arithmetic mean of the table length variable table_mm across all diamonds in the data set.", 
-"concepts": ["Data transformation-summary"], 
-"constraints": "Create the specific variables using R functions only using R's built-in base module or appropriate package functionalities.", 
+"concepts": ["Data transformation - Data summary"], 
 "format": "@table_mm_diamond_summary[table_mm_diamond_summary] where \"table_mm_diamond_summary\" is a numerical arithmetic mean value in a vector format.", 
 "file_name": "ggplot::diamonds", "level": "medium"}
 
 {"id": 16.1, "question": "Calculate the arithmetic mean across all the numeric variables in the dataset. Specify informative names for each of these summary statistics, for example my adding avg_ in front of each variable name", 
 "concepts": ["Data summary"], 
-"constraints": "Create the specific variables using R functions only using R's built-in base module or appropriate package functionalities.", 
 "format": "@table_mm_diamond_summary[table_mm_diamond_summary] where \"table_mm_diamond_summary\" is a numerical arithmetic mean value in a vector format with certain names.", 
 "file_name": "ggplot::diamonds", "level": "medium"}
 
 {"id": 17, "question": "Create a function called gmean that computes the geometric mean statistic. The function must do the following: (i) Take a single input called x representing the data vector., 
 (ii) Computes the geometric mean using the equivalent formula (based on logarithms) provided above and (iii) Returns a single value representing the geometric mean of the input data.", 
-"concepts": ["Creating a specific function"], 
-"constraints": "Create the specific function using R functions only using R's built-in base module or appropriate package functionalities.", 
+"concepts": ["Function Writing - Data Summary"], 
 "format": "@gmean_function[gmean_function] where \"gmean_function\" is a created function that can be tested for reproducibility.", 
 "file_name": "ggplot::diamonds", "level": "hard"}
 
 {"id": 18, "question": "With the diamonds data set, summarise the table_mm variable by computing the (arithmetic) mean, median and geometric mean for each clarity category. 
 Comment on the relationship between table_mm and clarity using the summarised values.", 
 "concepts": ["Data summary-interpretation"], 
-"constraints": "Create the summary and interpret relationship with R functions only using R's built-in base module or appropriate package functionalities.", 
 "format": "@summarise_table_mm[summarise_table_mm] where \"summarise_table_mm\" is a summary and interpretations.", 
 "file_name": "ggplot::diamonds", "level": "medium"}
 
 {"id": 19, "question": "Use exponent and logarithm rules to prove that the geometric mean is equal to the exponential of the arithmetic mean of the natural logarithm transformed data.", 
-"concepts": ["Summary Stats derivation"], 
-"constraints": "Specific Derivation based illustration for summary statistics", 
+"concepts": ["Data Summary"], 
 "format": "@list_of_steps[list_of_steps] where \"list_of_steps\" is list of steps that creates the derivation.", 
 "file_name": "ggplot::diamonds", "level": "hard"}
 
 {"id": 20, "question": "An alternative measurement of central tendency is the Harmonic Mean, which is calculated by the reciprocal of the arithmetic mean of the reciprocals. 
 Create a new function called hmean() that takes a single numerical vector x as input that computes and returns the harmonic mean statistic.", 
-"concepts": ["Creating a specific function"], 
-"constraints": "Create the specific function using R functions only using R's built-in base module or appropriate package functionalities.", 
+"concepts": ["Function Writing - Data Summary"], 
 "format": "@hmean_function[hmean_function] where \"hmean_function\" is a created function that can be tested for reproducibility.", 
 "file_name": "ggplot::diamonds", "level": "hard"}
 
 {"id": 21, "question": "Visualize the distribution of score in the dataframe evals. Is the distribution skewed? What does that tell you about how students rate courses? 
 Is this what you expected to see? Why, or why not?", 
-"concepts": ["Data Viz and EDA"], 
-"constraints": "Obtain the specific data viz result using R's tidyverse functionalities", 
-"format": "@dist_score_evals_viz[dist_score_evals_viz] where \"dist_score_evals_viz\" is a created data visualization with additional interepretations.", 
+"concepts": ["Data Viz and EDA"], "format": "@dist_score_evals_viz[dist_score_evals_viz] where \"dist_score_evals_viz\" is a created data visualization with additional interepretations.", 
 "file_name": "evals.csv", "level": "medium"}
 
-{"id": 22, "question": "Visualize and describe the relationship between score and bty_avg using geom_point() to represent the data. 
-Then, visualise again using geom_jitter() for the points", 
-"concepts": ["Data Viz and EDA"], 
-"constraints": "Obtain the specific data viz result using R's tidyverse functionalities", 
-"format": "@dist_score_bty_avg_viz[dist_score_bty_avg_viz] where \"dist_score_bty_avg_viz\" is a created multiple data visualization with different geoms.", 
+{"id": 22, "question": "Visualize and describe the relationship between score and bty_avg using geom_point() to represent the data. Then, visualise again using geom_jitter() for the points", 
+"concepts": ["Data Viz and EDA"], "format": "@dist_score_bty_avg_viz[dist_score_bty_avg_viz] where \"dist_score_bty_avg_viz\" is a created multiple data visualization with different geoms.", 
 "file_name": "evals.csv", "level": "medium"}
 
 {"id": 23, "question": "Fit a linear model called score_bty_fit to predict average professor evaluation score from average beauty rating (bty_avg). 
 Print the regression output using tidy(). Based on the regression output, write down the linear model.", 
 "concepts": ["Regression Modeling"], 
-"constraints": "Obtain the specific model fit result using R's tidyverse functionalities", 
 "format": "@linear_model_score_bty_fit[linear_model_score_bty_fit] where \"linear_model_score_bty_fit\" is a fitted linear regression with model equations.", 
 "file_name": "evals.csv", "level": "hard"}
 
 {"id": 23.1, "question": "Interpret the slope and intercept of the linear model in context of the data. 
 Determine the R^2 of the model and interpret it in the context of the data.", 
 "concepts": ["Regression Modeling Interpretation"], 
-"constraints": "Obtain the interpretation of the specific model fit result using R's tidyverse functionalities", 
 "format": "@linear_model_slope_intercept_R2[linear_model_slope_intercept_R2] where \"linear_model_slope_intercept_R2\" is the text includes the model fit interpretations.", 
 "file_name": "evals.csv", "level": "medium"}
 
 {"id": 23.2, "question": "Make a plot of residuals vs. predicted values for the model above. Use geom_jitter() instead of geom_point(), and overlay a dashed horizontal line at y = 0. 
 Then, comment on whether the linear model is appropriate for modeling the relationship between evaluation scores and beauty scores.", 
 "concepts": ["Model Diagnostic Visualization"], 
-"constraints": "Obtain the data viz for the specific model fit result using R's tidyverse functionalities", 
 "format": "@linear_model_res_pred_plot[linear_model_res_pred_plot] where \"linear_model_res_pred_plot\" is the created model diagnostic plot with interpretations.", 
 "file_name": "evals.csv", "level": "medium"}
 
 {"id": 24, "question": "Look at the variable rank, and determine the frequency of each category level.", 
 "concepts": ["Data description"], 
-"constraints": "Obtain the frequency table of the variable using R's tidyverse functionalities", 
 "format": "@freq_var_rank_pred[freq_var_rank_pred] where \"freq_var_rank_pred\" is the created frequency table for the specific variable", 
 "file_name": "evals.csv", "level": "medium"}
 
 {"id": 25, "question": "Fit a new linear model called score_rank_fit to predict average professor evaluation score based on rank of 
 the professor and print out the regression output using tidy(). Based on the regression output, interpret the slope and intercept in context of the data.", 
 "concepts": ["Regression Modeling"], 
-"constraints": "Obtain the specific model fit result using R's tidyverse functionalities", 
 "format": "@linear_model_score_rank_fit[linear_model_score_rank_fit] where \"linear_model_score_rank_fit\" is a fitted linear regression with categorical variable.", 
 "file_name": "evals.csv", "level": "medium"}
 
-{"id": 26, "question": "Fit a multiple linear regression model, predicting average professor evaluation score based on average beauty rating (bty_avg) and gender. 
-Name the model score_bty_gender_fit. Interpret the intercept and the slopes of bty_avg and gender. 
+{"id": 26, "question": "Fit a multiple linear regression model, predicting average professor evaluation score based on average beauty rating and gender. 
+Name the model score_bty_gender_fit. Interpret the intercept and the slopes of beauty rating and gender. 
 Make a scatterplot (using jitter) of score by bty_avg and color the points by gender.", 
 "concepts": ["Regression Modeling"], 
-"constraints": "Obtain the specific model fit result using R's tidyverse functionalities", 
 "format": "@multiple_linear_model[multiple_linear_model] where \"multiple_linear_model\" is a fitted multiple linear regression with specific data visualization", 
 "file_name": "evals.csv", "level": "hard"}
 
 {"id": 26.1, "question": "What percent of the variability in score is explained by the model score_bty_gender_fit. 
 What is the equation of the line corresponding to just male professors? How does the relationship between beauty and evaluation score vary between male and female professors?", 
 "concepts": ["Regression Modeling interpretations"], 
-"constraints": "Obtain the interpretations of the specific model fit result using R's tidyverse functionalities", 
 "format": "@multiple_linear_model_explain[multiple_linear_model_explain] where \"multiple_linear_model_explain\" is a list of explanations based on the fitted multiple linear regression", 
 "file_name": "evals.csv", "level": "hard"}
 
 {"id": 27, "question": "Transform any character variables that need to be transformed into categorical. Are there any missing values in our variable of interest RainTomorrow? 
 If so, we filter them out and save the new dataset as weather_noNA", 
-"concepts": ["Data Transformation and Exploration"], 
-"constraints": "Obtain the described new data set after making changes using R's tidyverse functionalities", 
+"concepts": ["Data Transformation"], 
 "format": "@weather_noNA_new_data[weather_noNA_new_data] where \"weather_noNA_new_data\" is a new data set after applying the requested steps", 
 "file_name": "weatherAUS.csv", "level": "easy"}
 
 {"id": 28, "question": "Try to predict RainTomorrow by fitting a linear regression for Portland city using the variable RainToday and print the output using tidy().
-For each point in our dataset, what are the fitted probabilities that tomorrow it’s going to rain?", 
+For each point in our dataset, what are the fitted probabilities that tomorrow it is going to rain?", 
 "concepts": ["Logistic Regression Model"], 
-"constraints": "Obtain the logistic regression model for a subset of data using R's tidyverse functionalities", 
 "format": "@RainTomorrow_logistic_model[RainTomorrow_logistic_model] where \"RainTomorrow_logistic_model\" is a fitted logistic model and related calculated probabilities", 
 "file_name": "weatherAUS.csv", "level": "medium"}
 
@@ -213,47 +175,40 @@ For each point in our dataset, what are the fitted probabilities that tomorrow i
 Refit the simple logistic regression using RainToday as predictor on this training data, using tidymodels recipes and workflows.
 Start by the recipe. First initialize the recipe, then remove observations with missing values using step_naomit() and finally use step_dummy to convert categorical to dummy variables.", 
 "concepts": ["Logistic Regression Model"], 
-"constraints": "Obtain the logistic regression model after data split using R's tidyverse functionalities", 
 "format": "@RainTomorrow_logistic_model_train_test_split[RainTomorrow_logistic_model_train_test_split] where \"RainTomorrow_logistic_model_train_test_split\" is a fitted logistic model after data split", 
 "file_name": "weatherAUS.csv", "level": "hard"}
 
 {"id": 30, "question": "Fit a multiple logistic regression, i.e. using multiple explanatory variables, to predict RainTomorrow. 
 We will use as predictors the variables MinTemp, MaxTemp, RainToday and Rainfall", 
 "concepts": ["Logistic Regression Model"], 
-"constraints": "Obtain the logistic regression model with multiple predictors using R's tidyverse functionalities", 
 "format": "@RainTomorrow_logistic_model_mult_pred[RainTomorrow_logistic_model_mult_pred] where \"RainTomorrow_logistic_model_mult_pred\" is a fitted logistic model with multiple predictors", 
 "file_name": "weatherAUS.csv", "level": "medium"}
 
 {"id": 30.1, "question": "Create the ROC curve and get the AUC (area under the curve) value for your multiple logistic regression model.
 How is the model performance ", 
 "concepts": ["Logistic Regression Model Performance"], 
-"constraints": "Obtain the logistic regression model performance with multiple predictors using R's tidyverse functionalities", 
 "format": "@RainTomorrow_logistic_mult_performance[RainTomorrow_logistic_mult_performance] where \"RainTomorrow_logistic_mult_performance\" is the data viz for the logistic model performance", 
 "file_name": "weatherAUS.csv", "level": "hard"}
 
 {"id": 30.2, "question": "For your multiple logistic regression model, consider several thresholds for predicting RainTomorrow and look at the number of false positives and false negatives.", 
 "concepts": ["Confusion Matrix details"], 
-"constraints": "Obtain the logistic regression model confison matrix information using R's tidyverse functionalities", 
 "format": "@RainTomorrow_logistic_mult_confusion_matrix[RainTomorrow_logistic_mult_confusion_matrix] where \"RainTomorrow_logistic_mult_confusion_matrix\" is the calculate FP and FN across various thresholds", 
 "file_name": "weatherAUS.csv", "level": "hard"}
 
 {"id": 31, "question": "Find the number of Airbnb properties located in Old Town having the one night stay price larger than 100 GBP", 
 "concepts": ["Data Understanding"], 
-"constraints": "Calculate the numbers using R's tidyverse functionalities", 
 "format": "@Airbnb_properties_Old_Town[Airbnb_properties_Old_Town] where \"Airbnb_properties_Old_Town\" is the numerical response based on data filtering", 
 "file_name": "edibnb.csv", "level": "easy"}
 
 {"id": 32, "question": "Create a frequency table for the number of bathrooms in the data set for the properties located in Newington ", 
-"concepts": ["Data Understanding"], 
-"constraints": "Create the frequency table using R's tidyverse functionalities", 
+"concepts": ["Data Summary"], 
 "format": "@freq_table_bathrooms_Newington[freq_table_bathrooms_Newington] where \"freq_table_bathrooms_Newington\" is the frequency table as a list of numerical values", 
 "file_name": "edibnb.csv", "level": "easy"}
 
 {"id": 33, "question": "Join the edibnb to the council data frames with a suitable function. For the merged new data set, 
 Create the frequency table of the neighbourhood variable for the properties that have been assessed by the council. 
 What does the frequency table suggest? Is the council targeting all neighborhoods within Edinburgh equally?", 
-"concepts": ["Data Interpretation"], 
-"constraints": "Create the frequency table after joining two data sets using R's tidyverse functionalities", 
+"concepts": ["Data Summary"], 
 "format": "@freq_table_neighborhoods[freq_table_neighborhoods] where \"freq_table_neighborhoods\" is the frequency table as a list of numerical values, including interpretations", 
 "file_name": "edibnb.csv, council_assessments.csv", "level": "hard"}
 
@@ -261,32 +216,28 @@ What does the frequency table suggest? Is the council targeting all neighborhood
 What does this suggest about the structure of the age distribution of the runners? 
 Calculate some simple summary statistics to support your comments.", 
 "concepts": ["Data Visualization-Summary"], 
-"constraints": "Calculate the summary statistics and histogram using R's tidyverse functionalities", 
 "format": "@histogram_10mile_summary_stats[histogram_10mile_summary_stats] where \"histogram_10mile_summary_stats\" is the created histogram and additional summary statistics", 
 "file_name": "cherryblossom::run17", "level": "medium"}
 
 {"id": 34.1, "question": "Create a similar data visualisation for the \"5K"\ race event. 
 Describe the shape of this histogram and discuss the similarities/differences of the age distribution between the \"5K"\ and \"10 Mile"\ races.", 
 "concepts": ["Data Visualization-Interpretation"], 
-"constraints": "Create the histogram and related comparison using R's tidyverse functionalities", 
 "format": "@histogram_10mile_5mile_comparison[histogram_10mile_5mile_comparison] where \"histogram_10mile_5mile_comparison\" is the created histogram and additional comparison comments", 
 "file_name": "cherryblossom::run17", "level": "hard"}
 
 {"id": 35, "question": "Create a data visualisation based on the following description.
 Make a sequence of boxplots for the time (in minutes) that it took the runners to complete the Cherryblossom race (after accounting for the staggered start). 
-The boxplots should be orientated vertically (i.e. side-by-side) based on the runner’s identified gender. 
+The boxplots should be orientated vertically (i.e. side-by-side) based on the runners identified gender. 
 Furthermore, the data visualisation should consist of two panels for the two different race distances, with independent axes. 
 Finally, add appropriate text to the image in order to assist the reader in understanding the data visualisation.
 Provide a brief comment about the relationships seen in the data visualisation created by the above description.", 
 "concepts": ["Data Visualization"], 
-"constraints": "Create the data visualization using R's tidyverse functionalities", 
 "format": "@instructed_data_viz[instructed_data_viz] where \"instructed_data_viz\" is the created data viz based on given instructions", 
 "file_name": "cherryblossom::run17", "level": "hard"}
 
 {"id": 36, "question": "Using the run17 data set, create two visualisations: One that you think provides a good representation of the data, and
 One that you think provides a bad representation of the data. For each case, give two reasons why you consider the data visualisation you have found are good/bad.", 
 "concepts": ["Data Visualization"], 
-"constraints": "Create the data visualization using R's tidyverse functionalities", 
 "format": "@run17_data_viz_good_bad[run17_data_viz_good_bad] where \"run17_data_viz_good_bad\" is the created good and bad data viz examples with two main reasons", 
 "file_name": "cherryblossom::run17", "level": "hard"}
 
@@ -294,41 +245,36 @@ One that you think provides a bad representation of the data. For each case, giv
 educ (education level), polviews (political views) and wrkstat (working status). Remove any row that contains any NAs. 
 Relevel the advfront variable based on \"Agree"\ - combining the options \"Strongly agree"\ and \"Agree"\ and \"Not agree"\ - combining the options \"Dont know"\, \"Disagree"\ and \"Strongly disagree"\.
 Besides, relevel the polviews to simplify the range of options to 3 categories - \"Conservative"\, \"Moderate"\, and \"Liberal"\.
-Creating a new fulltime variable that is equal to TRUE if wrkstat is equal to “Working fulltime” and FALSE otherwise.
+Creating a new fulltime variable that is equal to TRUE if wrkstat is equal to \"Working fulltime"\ and FALSE otherwise.
 Save the name data set as a new data frame called 'gss16_advfront'", 
 "concepts": ["Data Cleaning-Preparation"], 
-"constraints": "Cleaning the data set using R's tidyverse functionalities", 
 "format": "@gss16_data_set_cleaning[gss16_data_set_cleaning] where \"gss16_data_set_cleaning\" is the cleaned data set based on given data and instructions", 
 "file_name": "gss16.csv", "level": "hard"}
 
 {"id": 38, "question": "Consider the numerical values educ and emailhr, and the newly created fulltime from your new data set gss16_advfront.
 Fit a linear regression model to predicting emailhr based on educ and fulltime. From your output, state the formula for the line-of-best fit; give an interpretation of the fulltimeTRUE estimate. ", 
 "concepts": ["Regression Modeling"], 
-"constraints": "Fitting the regression model to the data set using R's tidyverse functionalities", 
 "format": "@gss16_advfront_data_regression[gss16_advfront_data_regression] where \"gss16_advfront_data_regression\" is the fitted regression model", 
 "file_name": "gss16_advfront.csv", "level": "medium"}
 
 {"id": 38.1, "question": "Using appropriate model fit statistics, comment on the overall model performance. 
 Create a suitable data visualization to evaluate if the linear model assumptions are satistied, and comment on the suitability of the model.", 
 "concepts": ["Regression Modeling"], 
-"constraints": "Fitting the regression model and related model diagnostics to the data set using R's tidyverse functionalities", 
 "format": "@gss16_advfront_regression_model_performance[gss16_advfront_regression_model_performance] where \"gss16_advfront_regression_model_performance\" is the model fit diagnostics including data viz", 
 "file_name": "gss16_advfront.csv", "level": "hard"}
 
-{"id": 39, "question": "In this part, we’re going to build a model to predict whether someone agrees or doesn’t agree with the following statement:
+{"id": 39, "question": "In this part, we are going to build a model to predict whether someone agrees or doesn’t agree with the following statement:
 'Even if it brings no immediate benefits, scientific research that advances the frontiers of knowledge is necessary and should be supported by the federal government.'
 Split the dataset into a training dataset (gss16_train) and a testing dataset (gss16_test). 
 Build a workflow for the training data that consists of a recipe (gss16_rec_1) and a model (gss16_mod_1). Name this workflow gss16_wflow_1.
 Apply the workflow you defined earlier to the training dataset and named the model as gss16_fit_1. Display the resulting tibble containing the fitted model parameters.", 
 "concepts": ["Logistic Regression Modeling"], 
-"constraints": "Fitting the logistic regression model via the instructed model workflow using R's tidyverse functionalities", 
 "format": "@gss16_advfront_logistic_model[gss16_advfront_logistic_model] where \"gss16_advfront_logistic_model\" is the logistic regression model fit.", 
 "file_name": "gss16_advfront.csv", "level": "hard"}
 
 {"id": 39.1, "question": "Use the fitted models to predict the test data, plot the ROC curve for the predictions. 
 Calculate the specificity and the sensitivity of the model on the test data, when using a cutoff of 0.85 for the predictions.", 
 "concepts": ["Model Performance-Visualization"], 
-"constraints": "Fitting the predictions and related performance metrics using R's tidyverse functionalities", 
 "format": "@gss16_advfront_logistic_model_ROC_performance[gss16_advfront_logistic_model_ROC_performance] where \"gss16_advfront_logistic_model_ROC_performance\" is the 
 logistic regression model fit predictions and related performance metrics", 
 "file_name": "gss16_advfront.csv", "level": "hard"}
@@ -338,13 +284,11 @@ logistic regression model fit predictions and related performance metrics",
 {"id": 40, "question": "The 95% confidence interval for the average monthly cost of a gym membership in a city is calculated to be ($35, $50). 
 What is the correct interpretation of this interval?", 
 "concepts": ["CI Interpretation"], 
-"constraints": "Giving the interpretation of the given CI values", 
 "format": "@CI95_interpretation[CI95_interpretation] where \"CI95_interpretation\" is the verbal interpretation for the given statement.", 
 "file_name": "", "level": "easy"}
 
 {"id": 41, "question": "In the context of an email spam detection system, describe the terms \"True Positive"\, \"False Positive"\, \"True Negative"\, and \"False Negative"\ ", 
 "concepts": ["Specific Descriptions"], 
-"constraints": "Giving the descriptions of the mentioned quantities", 
 "format": "@Confusion_definitions[Confusion_definitions] where \"Confusion_definitions\" is the verbal definitions for the given quantities.", 
 "file_name": "", "level": "easy"}
 
@@ -359,14 +303,12 @@ vectors <- list(
 ```
 Calculate the mean of each vector and store the values in a specific object", 
 "concepts": ["Summary Statistics"], 
-"constraints": "Calculate the mean of given list of data using R functionalities", 
 "format": "@vectors_mean_data[vectors_mean_data] where \"vectors_mean_data\" is the calculated mean vector of the each list of data.", 
 "file_name": "", "level": "easy"}
 
 {"id": 43, "question": "A study discovered a healthcare risk-prediction algorithm demonstrated racial bias because it relied on a faulty metric for determining need. 
 What action can be taken to correct this bias?", 
 "concepts": ["Action Suggestion"], 
-"constraints": "Giving the suggestion for bias correction based on scenario", 
 "format": "@healthcare_risk_prediction_bias[healthcare_risk_prediction_bias] where \"healthcare_risk_prediction_bias\" is the verbal suggestion for bias correction", 
 "file_name": "", "level": "medium"}
 
@@ -374,7 +316,6 @@ What action can be taken to correct this bias?",
 I conduct a survey at a dog park in Edinburgh and ask pet owners how many pets they have at home. Then, I take the average of the responses.
 Why might the method used to estimate the average number of pets in households in Edinburgh be biased?", 
 "concepts": ["Interpretation"], 
-"constraints": "Giving the reasonable interpretation based on the given instructions", 
 "format": "@edinburgh_dog_survey_bias[edinburgh_dog_survey_bias] where \"edinburgh_dog_survey_bias\" is the verbal explanation about why the approach is biased", 
 "file_name": "", "level": "medium"}
 
@@ -385,58 +326,49 @@ df2 <- tibble(x = c(1, 1, 2), y = c("first", "second", "third"))
 ```
 Apply the joining procedure results in a new data frame with missing value.", 
 "concepts": ["Data Preparation"], 
-"constraints": "Merging the given specific dfs using R's tidyverse functionalities", 
 "format": "@df1_df2_merged[df1_df2_merged] where \"df1_df2_merged\" is the merged data frame based on given condition", 
 "file_name": "", "level": "easy"}
 
 {"id": 46, "question": "Give me the statistical summary for the given data set", 
-"concepts": ["Descriptive Statistics"], 
-"constraints": "Create the summary statistics using R functions only", 
+"concepts": ["Data Summary"], 
 "format": "@laptop_summary_stats[laptop_summary_stats] where \"laptop_summary_stats\" is the summary statistics of the given data set.", 
 "file_name": "laptop_data_cleaned.csv", "level": "easy"}
 
 {"id": 47, "question": "Create the suitable data visualization to summarize the price distribution and its relationship with other features ", 
 "concepts": ["Data Visualization"], 
-"constraints": "Create the visuals for price distribution using R functions only", 
 "format": "@laptop_price_dist_plot[laptop_price_dist_plot] where \"laptop_price_dist_plot\" is the set of suitable data visualization summary for price distribution.", 
 "file_name": "laptop_data_cleaned.csv", "level": "medium"}
 
-{"id": 47.1, "question": "Create the mosaic plot to summarize thecategorical features", 
+{"id": 47.1, "question": "Create the mosaic plot to summarize the categorical features", 
 "concepts": ["Data Visualization"], 
-"constraints": "Create the mosaic plots for categorical variables using R functions only", 
 "format": "@laptop_price_mosaic_plot[laptop_price_mosaic_plot] where \"laptop_price_mosaic_plot\" is the set of suitable mosaic plot for categorical variables", 
 "file_name": "laptop_data_cleaned.csv", "level": "medium"}
 
 {"id": 48, "question": "Implement the linear regression for the price variable for the given data set", 
 "concepts": ["Regression Modeling"], 
-"constraints": "Apply the regression workflow for price distribution using R functions only", 
 "format": "@laptop_price_regression[laptop_price_regression] where \"laptop_price_regression\" is the fitted regression model based on a certain modeling workflow", 
 "file_name": "laptop_data_cleaned.csv", "level": "hard"}
 
 {"id": 48.1, "question": "Test and Interpret the performance of the fitted regression model based on the model diagnostic plots", 
 "concepts": ["Regression Modeling Interpretation"], 
-"constraints": "Create the model diagnostic plots for the regression fit of the price distribution using R functions only", 
 "format": "@laptop_price_regression_diagnostics[laptop_price_regression_diagnostics] where \"laptop_price_regression_diagnostics\" is the model diagnostic of fitted model and interpretations", 
 "file_name": "laptop_data_cleaned.csv", "level": "hard"}
 
 {"id": 49, "question": "Implement different regression models as the alternative of fitted linear regression model for the price variable for the given data set. 
 Compare the performance of the fitted models", 
 "concepts": ["Modeling Comparison"], 
-"constraints": "Create the list of different model fits of the price distribution using R functions only", 
 "format": "@laptop_price_regression_comparison[laptop_price_regression_comparison] where \"laptop_price_regression_comparison\" is the list of performance metrics over different fitted regression models", 
 "file_name": "laptop_data_cleaned.csv", "level": "hard"}
 
 {"id": 50, "question": "Fit a regression tree model for the price variable for the given data set and test its performance. 
 Tune the model hyperparameters by using the cross-validation approach", 
 "concepts": ["Model Improvement"], 
-"constraints": "Fit and improve the regression tree model for the price distribution using R functions only", 
 "format": "@laptop_price_tree_regression[laptop_price_tree_regression] where \"laptop_price_tree_regression\" is the tuned regression tree model fit and its performance", 
 "file_name": "laptop_data_cleaned.csv", "level": "hard"}
 
 {"id": 51, "question": "Consider the classification problem and use models like logistic regression, decision trees, or neural networks 
 for laptops into different price ranges (e.g., budget, mid-range, premium)", 
 "concepts": ["Classification Model"], 
-"constraints": "Fit the logistic regression model for the new category based price values using R functions only", 
 "format": "@laptop_price_logistic_regression[laptop_price_logistic_regression] where \"laptop_price_logistic_regression\" is the fitted logistic model on the new response variable", 
 "file_name": "laptop_data_cleaned.csv", "level": "medium"}
 
@@ -444,26 +376,22 @@ for laptops into different price ranges (e.g., budget, mid-range, premium)",
 The data values are: 10, 12, 9, 6, 7, 11, 6, 9, 15, 10, 11, 13, 13, 9, 8, 10, 11, 7, 5, 8, 10, 13, 14, 14, 10
 Calculate a 95% confidence interval for the mean µ.", 
 "concepts": ["Confidence Interval"], 
-"constraints": "Calculate the confidence interval for the given data set using R functions only", 
 "format": "@normal_data_conf_interval[normal_data_conf_interval] where \"normal_data_conf_interval\" is the calculated confidence interval for the given sample data", 
 "file_name": "", "level": "easy"}
 
 {"id": 53, "question": "Plot a histogram of the data in the column headed level. Draw a scatter plot of the data of index against level", 
 "concepts": ["Data Visualization"], 
-"constraints": "Create the multiple plot outputs using R functions only", 
 "format": "@mouse_data_viz[mouse_data_viz] where \"mouse_data_viz\" is the created multiple different data visualizations", 
 "file_name": "mouse.txt", "level": "medium"}
 
 {"id": 54, "question": "Calculate the sample mean and standard deviation of level for the different index values 1 and 2.", 
-"concepts": ["Data Understanding"], 
-"constraints": "Calculate the requested values using R functions only", 
+"concepts": ["Data Summary"], 
 "format": "@mouse_summary_stats[mouse_summary_stats] where \"mouse_summary_stats\" is the list or vector including meand and standard deviation value", 
 "file_name": "mouse.txt", "level": "easy"}
 
 {"id": 55, "question": "Read the following time series data in to a vector: 10, 12, 16, 14, 19, 17, 13, 21, 18, 15, 19, 25, 27, 20, 14, 12, 17
 Plot this data using a line graph, such that the limits of the y-axis are [0, 30]. Give the graph a title. ", 
 "concepts": ["Data Visualization"], 
-"constraints": "Create the data visualization using R functions only", 
 "format": "@data_line_graph[data_line_graph] where \"data_line_graph\" is the created line plot with certain aesthetics", 
 "file_name": "", "level": "easy"}
 
@@ -473,7 +401,6 @@ Define a suitable test statistic and state its distribution, assuming that the n
 Calculate the associated observed test statistic
 Conduct the hypothesis test and clearly state your conclusions.", 
 "concepts": ["Hypothesis Testing"], 
-"constraints": "Apply the testing for the given data using R functions only", 
 "format": "@aeroplane_one_sample_test[aeroplane_one_sample_test] where \"aeroplane_one_sample_test\" is the one sample test implementation", 
 "file_name": "aeroplane.txt", "level": "medium"}
 
@@ -483,7 +410,6 @@ may have a better idea of how to throw the plane following their first throw.
 State the relevant hypothesis test should be conducted - being careful to ensure that any notation used
 is clearly defined. Conduct the hypothesis test and state your conclusions. Repeat your analysis using the function t.test.", 
 "concepts": ["Hypothesis Testing"], 
-"constraints": "Apply two sample testing for the given data using R functions only", 
 "format": "@aeroplane_two_sample_test[aeroplane_two_sample_test] where \"aeroplane_two_sample_test\" is the two sample test implementation", 
 "file_name": "aeroplane.txt", "level": "medium"}
 
@@ -493,191 +419,157 @@ However, as a statistics student you want to assess whether there is any differe
 State the name of the hypothesis test that you wish to conduct and specify the associated hypotheses clearly defining any notation that you use. 
 Conduct the hypothesis test and clearly state any conclusions that you make. Is there any evidence to support the claim of the observer?", 
 "concepts": ["Hypothesis Testing"], 
-"constraints": "Apply testing variability between the groups for the given data using R functions only", 
 "format": "@aeroplane_testing_variability[aeroplane_testing_variability] where \"aeroplane_testing_variability\" is the testing variability between the groups", 
 "file_name": "aeroplane.txt", "level": "hard"}
 
 {"id": 59, "question": "Visualize the distribution of sizes of houses in Duke Forest. What is the size of a typical house?", 
-"concepts": ["Data Visualization"], 
-"constraints": "Create the requested visualization using R functions only", 
-"format": "@duke_forest_size[duke_forest_size] where \"duke_forest_size\" is the created visualization and comment", 
+"concepts": ["Data Visualization"], "format": "@duke_forest_size[duke_forest_size] where \"duke_forest_size\" is the created visualization and comment", 
 "file_name": "duke_forest.xlsx", "level": "easy"}
 
 {"id": 60, "question": "Construct a 95% confidence interval for the typical size of a house in Duke Forest. Interpret the interval in context of the data.", 
 "concepts": ["Confidence Interval"], 
-"constraints": "Create the requested confidence interval using R functions only", 
 "format": "@duke_forest_CI_95[duke_forest_CI_95] where \"duke_forest_CI_95\" is the calculated confidence interval and interpretation", 
 "file_name": "duke_forest.xlsx", "level": "easy"}
 
 {"id": 61, "question": "Find the relationship between price and size using the regression", 
 "concepts": ["Linear Regression"], 
-"constraints": "Create the requested regression model using R functions only", 
 "format": "@duke_forest_price_size_regr[duke_forest_price_size_regr] where \"duke_forest_price_size_regr\" is the created regression model", 
 "file_name": "duke_forest.xlsx", "level": "medium"}
 
 {"id": 61.1, "question": "Evaluate the model performance of the fitted regression using model diagnostic plots", 
 "concepts": ["Regression Model Diagnostics"], 
-"constraints": "Create the requested regression model diagnostics using R functions only", 
 "format": "@duke_forest_regr_model_diag[duke_forest_regr_model_diag] where \"duke_forest_regr_model_diag\" is the created regression model diagnostics and related interpretations", 
 "file_name": "duke_forest.xlsx", "level": "hard"}
 
 {"id": 61.2, "question": "Quantify the uncertainty around the model fit slope using a 95% bootstrap confidence interval and interpret the interval in context of the data.", 
-"concepts": ["Bootstrap CI"], 
-"constraints": "Create the requested regression model using R functions only", 
-"format": "@duke_forest_regr_bootstrap[duke_forest_regr_bootstrap] where \"duke_forest_regr_bootstrap\" is the created bootstrap CI for the fitted regression model.", 
+"concepts": ["Bootstrap CI"], "format": "@duke_forest_regr_bootstrap[duke_forest_regr_bootstrap] where \"duke_forest_regr_bootstrap\" is the created bootstrap CI for the fitted regression model.", 
 "file_name": "duke_forest.xlsx", "level": "hard"}
 
 {"id": 62, "question": "Fit the regression model for the price using the relevant predictors", 
-"concepts": ["Linear Regression"], 
-"constraints": "Create the requested regression model using R functions only", 
-"format": "@duke_forest_price_size_regr_all[duke_forest_price_size_regr_all] where \"duke_forest_price_size_regr_all\" is the created regression model", 
+"concepts": ["Linear Regression"], "format": "@duke_forest_price_size_regr_all[duke_forest_price_size_regr_all] where \"duke_forest_price_size_regr_all\" is the created regression model", 
 "file_name": "duke_forest.xlsx", "level": "medium"}
 
 {"id": 63, "question": "Consider the Lasso and Ridge regression for the price variable. Compare their performances using suitable metrics", 
 "concepts": ["Ridge-Lasso Regression"], 
-"constraints": "Create the requested regression model using R functions only", 
 "format": "@duke_forest_price_size_ridge_lasso[duke_forest_price_size_ridge_lasso] where \"duke_forest_price_size_ridge_lasso\" is the created regression models and their comparison", 
 "file_name": "duke_forest.xlsx", "level": "hard"}
 
 {"id": 64, "question": "Consider the regression model with the price-correlated variables as predictors. 
 Split the data into train and testing, afterwards fit the regression model to test its performance", 
-"concepts": ["Regression Model"], 
-"constraints": "Create the requested regression model using R functions only", 
-"format": "@duke_forest_price_regression[duke_forest_price_regression] where \"duke_forest_price_regression\" is the created regression model and its results", 
+"concepts": ["Regression Model"], "format": "@duke_forest_price_regression[duke_forest_price_regression] where \"duke_forest_price_regression\" is the created regression model and its results", 
 "file_name": "duke_forest.xlsx", "level": "hard"}
 
 {"id": 65, "question": "Run PCA for this data, with all suitable variables. Discuss whether it is appropriate to run scaled or unscaled PCA for this data. ", 
-"concepts": ["PCA"], 
-"constraints": "Create the requested PCA modeling results using R functions only", 
-"format": "@duke_forest_PCA[duke_forest_PCA] where \"duke_forest_PCA\" is the fitted PCA and its interpretations", 
+"concepts": ["PCA"], "format": "@duke_forest_PCA[duke_forest_PCA] where \"duke_forest_PCA\" is the fitted PCA and its interpretations", 
 "file_name": "duke_forest.xlsx", "level": "hard"}
 
-{"id": 66, "question": "Run PCA for this data, with all suitable variables. Discuss whether it is appropriate to run scaled or unscaled PCA for this data. ", 
-"concepts": ["PCA"], 
-"constraints": "Create the requested PCA modeling results using R functions only", 
-"format": "@duke_forest_PCA[duke_forest_PCA] where \"duke_forest_PCA\" is the fitted PCA and its interpretations", 
-"file_name": "duke_forest.xlsx", "level": "hard"}
-
-{"id": 66.1, "question": "Use the small number of PCs identified to cluster samples using an appropriate distance between the samples. 
+{"id": 65.1, "question": "Use the small number of PCs identified to cluster samples using an appropriate distance between the samples. 
 Identify the most appropriate number of clusters. Compare clustering results based on 2 different clustering methods. ", 
 "concepts": ["Clustering"], 
-"constraints": "Create the requested clustering results using R functions only", 
 "format": "@duke_forest_PCA_clustering[duke_forest_PCA_clustering] where \"duke_forest_PCA_clustering\" is the fitted clustering model results", 
 "file_name": "duke_forest.xlsx", "level": "hard"}
 
-{"id": 66.2, "question": "Using the PC scores identified as variables, derive a Linear Discriminant Analysis results. 
+{"id": 65.2, "question": "Using the PC scores identified as variables, derive a Linear Discriminant Analysis results. 
 Discuss how many unknown parameters need to be estimated to derive this LDA rule, and compare it to the number of samples", 
 "concepts": ["Linear Discriminant Analysis"], 
-"constraints": "Create the requested LDA results using R functions only", 
 "format": "@duke_forest_PCA_LDA[duke_forest_PCA_LDA] where \"duke_forest_PCA_LDA\" is the fitted linear discriminant analysis results", 
 "file_name": "duke_forest.xlsx", "level": "hard"}
 
-{"id": 67, "question": "Briefly describe the data. Present the data and its most important features (e.g. histogram or box plots of log gene expression in a 
+{"id": 66, "question": "Briefly describe the data. Present the data and its most important features (e.g. histogram or box plots of log gene expression in a 
 sample / for a particular gene; illustrate the data using experimental design, e.g. plot time course for a gene in different treatments)", 
-"concepts": ["Data Description"], 
-"constraints": "Create the requested data description and visuals using R functions only", 
-"format": "@gene_data_description[gene_data_description] where \"gene_data_description\" is the data description with visuals and comments", 
+"concepts": ["Data Description"], "format": "@gene_data_description[gene_data_description] where \"gene_data_description\" is the data description with visuals and comments", 
 "file_name": "Gene_Data.RData / Gene_Data.xlsx", "level": "medium"}
 
-{"id": 68, "question": "Run PCA for this data, with genes as variables. Select a small number of PCs that describe variability in the data that is relevant 
+{"id": 67, "question": "Run PCA for this data, with genes as variables. Select a small number of PCs that describe variability in the data that is relevant 
 for the considered experimental factors (give your reasoning), state the proportion of the variability of the original data set they describe", 
-"concepts": ["PCA"], 
-"constraints": "Create the requested PCA modeling results using R functions only", 
-"format": "@gene_data_PCA[gene_data_PCA] where \"gene_data_PCA\" is the fitted PCA and interpretations", 
+"concepts": ["PCA"], "format": "@gene_data_PCA[gene_data_PCA] where \"gene_data_PCA\" is the fitted PCA and interpretations", 
 "file_name": "Gene_Data.RData / Gene_Data.xlsx", "level": "medium"}
 
-{"id": 69, "question": "Use the small number of PCs identified to cluster samples using an appropriate distance between the samples 
+{"id": 68, "question": "Use the small number of PCs identified to cluster samples using an appropriate distance between the samples 
 (without using any information about the given covariates: time, treatment, replicates). Identify the most appropriate number of clusters. 
 Compare clustering results based on 2 different clustering methods. 
 Discuss whether there is a connection between the identified clusters of samples to the groups of samples given by covariates", 
-"concepts": ["Clustering"], 
-"constraints": "Create the requested clustering results using R functions only", 
-"format": "@gene_data_clustering[gene_data_clustering] where \"gene_data_clustering\" is the fitted clustering models and interpretations", 
+"concepts": ["Clustering"], "format": "@gene_data_clustering[gene_data_clustering] where \"gene_data_clustering\" is the fitted clustering models and interpretations", 
 "file_name": "Gene_Data.RData / Gene_Data.xlsx", "level": "hard"}
 
-{"id": 70, "question": "Using the PC scores identified as variables, derive a Linear Discriminant Analysis rule to discriminate between the 7 conditions. 
+{"id": 69, "question": "Using the PC scores identified as variables, derive a Linear Discriminant Analysis rule to discriminate between the 7 conditions. 
 Discuss how many unknown parameters need to be estimated to derive this LDA rule, and compare it to the number of samples. 
 Discuss classification errors of this rule. Discuss how different number of PCs used in LDA affects the classification errors, and other details 
 that affect classification", 
-"concepts": ["Linear Discriminant Analysis"], 
-"constraints": "Create the requested LDA results using R functions only", 
-"format": "@gene_data_LDA[gene_data_LDA] where \"gene_data_LDA\" is the fitted LDA results and its interpretations", 
+"concepts": ["Linear Discriminant Analysis"], "format": "@gene_data_LDA[gene_data_LDA] where \"gene_data_LDA\" is the fitted LDA results and its interpretations", 
 "file_name": "Gene_Data.RData / Gene_Data.xlsx", "level": "hard"}
 
-{"id": 71, "question": "Fit a multiple linear regression using the numerical variables: weight, clarity and carat.
+{"id": 70, "question": "Fit a multiple linear regression using the numerical variables: weight, clarity and carat.
 In words, explain how to interpret the coefficient estimate for the weight variable", 
-"concepts": ["Linear Regression"], 
-"constraints": "Create the requested regression model using R functions only", 
-"format": "@diamonds_data_mult_reg[diamonds_data_mult_reg] where \"diamonds_data_mult_reg\" is the fitted multiple regression and its interpretations", 
+"concepts": ["Linear Regression"], "format": "@diamonds_data_mult_reg[diamonds_data_mult_reg] where \"diamonds_data_mult_reg\" is the fitted multiple regression and its interpretations", 
 "file_name": "Stats_diamonds.xlsx", "level": "easy"}
 
-{"id": 71.1, "question": "What is the residual standard error and degree of freedom for the fitted model?", 
+{"id": 70.1, "question": "What is the residual standard error and degree of freedom for the fitted model?", 
 "concepts": ["Regression Model Diagnostics"], 
-"constraints": "Create the requested regression model details using R functions only", 
 "format": "@diamonds_data_reg_error[diamonds_data_reg_error] where \"diamonds_data_reg_error\" is the fitted multiple regression diagnostics", 
 "file_name": "Stats_diamonds.xlsx", "level": "easy"}
 
-{"id": 71.2, "question": "Consider the null hypothesis β3 = 0 against the two-sided alternative. From the summary output,
+{"id": 70.2, "question": "Consider the null hypothesis β3 = 0 against the two-sided alternative. From the summary output,
 make an appropriate concluding statement at the 5% significance level", 
 "concepts": ["Regression Coefficient Testing"], 
-"constraints": "Create the requested regression model testing using R functions only", 
 "format": "@diamonds_data_reg_testing[diamonds_data_reg_testing] where \"diamonds_data_reg_testing\" is the fitted multiple regression model coefficient testing", 
 "file_name": "Stats_diamonds.xlsx", "level": "medium"}
 
-{"id": 71.3, "question": "Create the model diagnostic plots for the fitted regression and evaluate the model performance based on the model assumptions", 
+{"id": 70.3, "question": "Create the model diagnostic plots for the fitted regression and evaluate the model performance based on the model assumptions", 
 "concepts": ["Regression Model diagnostics"], 
-"constraints": "Create the requested regression model diagnostics using R functions only", 
 "format": "@diamonds_data_reg_model_diag[diamonds_data_reg_model_diag] where \"diamonds_data_reg_model_diag\" is the model diagnostics of the regression model and interpretations", 
 "file_name": "Stats_diamonds.xlsx", "level": "hard"}
 
-{"id": 72, "question": "Fit a Bayesian Linear regression model in INLA (with Gaussian likelihood) using rainfall as the response. 
+{"id": 71, "question": "Fit a Bayesian Linear regression model in INLA (with Gaussian likelihood) using rainfall as the response. 
 Use all covariates, including the year, in a linear model. Scale all of the non-categorical covariates that you use in your model.
 For the regression coefficients and intercept, use zero mean Normal priors with standard deviation 100. 
 For the Gaussian variance, use an inverse Gamma prior with parameters 1 and 0.01.
 Print out the model summary and interpret the posterior means of the regression coefficients. Plot the marginal posterior densities for the regression coefficients.", 
 "concepts": ["Bayesian Regression Model"], 
-"constraints": "Create the requested bayesian regression model and related outputs using R functions only", 
 "format": "@edi_rainfall_bayesian_reg[edi_rainfall_bayesian_reg] where \"edi_rainfall_bayesian_reg\" is the bayesian model regression and related results", 
 "file_name": "Edinburgh_rainfall.csv", "level": "hard"}
 
-{"id": 72.1, "question": "Perform the necessary model checks for the linear regression model using the Studentized residuals. Interpret your results", 
+{"id": 71.1, "question": "Perform the necessary model checks for the linear regression model using the Studentized residuals. Interpret your results", 
 "concepts": ["Bayesian Regression Model Checks"], 
-"constraints": "Create the requested bayesian regression model checks using R functions only", 
 "format": "@edi_rainfall_bayesian_model_checks[edi_rainfall_bayesian_model_checks] where \"edi_rainfall_bayesian_model_checks\" is the bayesian model regression model checks", 
 "file_name": "Edinburgh_rainfall.csv", "level": "hard"}
 
-{"id": 72.2, "question": "Using the same linear predictor specification as in Q72, find a robust regression model that
+{"id": 71.2, "question": "Using the same linear predictor specification as in Q72, find a robust regression model that
 provides an improved fit to the data. You should quantify the goodness-of-fits using the WAIC and NSLCPO.", 
 "concepts": ["Bayesian Regression Model"], 
-"constraints": "Create the requested robust regression model using R functions only", 
 "format": "@edi_rainfall_robust_model[edi_rainfall_robust_model] where \"edi_rainfall_robust_model\" is the robust regression model fit", 
 "file_name": "Edinburgh_rainfall.csv", "level": "hard"}
 
-{"id": 72.3, "question": "Using your robust regression model, perform posterior predictive checks. Interpret the output of your checks. 
+{"id": 71.3, "question": "Using your robust regression model, perform posterior predictive checks. Interpret the output of your checks. 
 [Hint: when generating from the posterior predictive distribution, be careful of your choice of family]", 
 "concepts": ["Bayesian Regression Model"], 
-"constraints": "Create the requested robust regression posterior checks using R functions only", 
 "format": "@edi_rainfall_robust_post_checks[edi_rainfall_robust_post_checks] where \"edi_rainfall_robust_post_checks\" is the robust regression model posterior checkings", 
 "file_name": "Edinburgh_rainfall.csv", "level": "hard"}
 
-{"id": 72.3, "question": "Calculate the posterior predictive probability that the total rainfall in 2022 will exceed the
+{"id": 71.4, "question": "Calculate the posterior predictive probability that the total rainfall in 2022 will exceed the
 previously recorded maximum of the annual total rainfall throughout the observation period. Ignore leap years in your calculations", 
 "concepts": ["Bayesian Regression Model"], 
-"constraints": "Create the requested robust regression posterior probability using R functions only", 
 "format": "@edi_rainfall_robust_post_prob[edi_rainfall_robust_post_prob] where \"edi_rainfall_robust_post_prob\" is the robust regression model posterior probability value", 
 "file_name": "Edinburgh_rainfall.csv", "level": "medium"}
 
-{"id": 73, "question": "Find the possible set of outliers over the given data set focusing on the price variable.", 
+{"id": 72, "question": "Find the possible set of outliers over the given data set. ", 
 "concepts": ["Descriptive Statistics"], 
-"constraints": "Find the related outliers using R functions only", 
-"format": "@laptop_price_outliers[laptop_price_outliers] where \"laptop_price_outliers\" is the detected possible outlier values on the price.", 
+"format": "@edi_rainfall_outliers[edi_rainfall_outliers] where \"edi_rainfall_outliers\" is the detected outlier values on the set of variables", 
+"file_name": "Edinburgh_rainfall.csv", "level": "medium"}
+
+{"id": 73, "question": "Find the possible set of outliers over the given data set focusing on the price variable.", 
+"concepts": ["Descriptive Statistics"], "format": "@laptop_price_outliers[laptop_price_outliers] where \"laptop_price_outliers\" is the detected possible outlier values on the price.", 
 "file_name": "laptop_data_cleaned.csv", "level": "medium"}
 
 {"id": 74, "question": "Create the time series plot for the Rainfall variable", 
-"concepts": ["Data Visualization"], 
-"constraints": "Create the time series plot using R functions only", 
-"format": "@weatherAUS_rainfall[weatherAUS_rainfall] where \"weatherAUS_rainfall\" is the created time series plot for the rainfall variable", 
+"concepts": ["Data Visualization"], "format": "@weatherAUS_rainfall[weatherAUS_rainfall] where \"weatherAUS_rainfall\" is the created time series plot for the rainfall variable", 
 "file_name": "weatherAUS.csv", "level": "medium"}
+
+{"id": 75, "question": "Are the variations in daily Evaporation in the location Albury similar to those in Portland?", 
+"concepts": ["Data Interpretation"], 
+"format": "@weatherAUS_evaporation_variation[weatherAUS_evaporation_variation] where \"weatherAUS_evaporation_variation\" is the examined variation over two locations", 
+"file_name": "weatherAUS.csv", "level": "medium"}
+
 
 ...
 All counted to be 100 in total?
