@@ -499,8 +499,8 @@ that affect classification",
 "concepts": ["Linear Discriminant Analysis"], "format": "@gene_data_LDA[gene_data_LDA] where \"gene_data_LDA\" is the fitted LDA results and its interpretations", 
 "file_name": "Gene_Data.RData / Gene_Data.xlsx", "level": "hard"}
 
-{"id": 70, "question": "Fit a multiple linear regression using the numerical variables: weight, clarity and carat.
-In words, explain how to interpret the coefficient estimate for the weight variable", 
+{"id": 70, "question": "Fit a multiple linear regression using the numerical variables: depth, clarity and carat.
+In words, explain how to interpret the coefficient estimate for the clarity variable", 
 "concepts": ["Linear Regression"], "format": "@diamonds_data_mult_reg[diamonds_data_mult_reg] where \"diamonds_data_mult_reg\" is the fitted multiple regression and its interpretations", 
 "file_name": "Stats_diamonds.xlsx", "level": "easy"}
 
