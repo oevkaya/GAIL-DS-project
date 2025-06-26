@@ -174,51 +174,52 @@ The main metrics for the created responses can be listed under three subsections
 For each of the concepts we are considering, varying set of criterions can appear for the output evaluation in general. These task related ones can be listed under;
 
 - Data Cleaning/Pre-processing
-- Data Summary stats and interpretations
-  - **Appropriateness of Stats Chosen:** Were the most relevant statistics reported for the data type (e.g., median for skewed data, mode for categorical)? either 0 or 1
-  - **Accuracy of Interpretation:**  Interpretation	Do the interpretations logically follow from the statistics? (e.g., not saying data is "normally distributed" based on wrong evidence) 0 or 1
-  - **Clarity of Interpretation:** Are the interpretations understandable, concise, and jargon-free? Either 0 or 1
-    
+- Data Summary stats and interpretations (each of them, for each run, is either 0 and 1 so in total out of 5)
+  - **Ratio of Accuracy** (will be calculated automatically via comparing GT value)
+  - **Data Context recognition** Clearly define each variable, its units of measurement, and data source to ground the summary in context
+  - **Appropriateness of Stats Chosen:** Were the most relevant statistics reported for the data type within the context of question (e.g., median for skewed data, mode for categorical)? 
+  - **Accuracy of Interpretation:** Do the interpretations logically follow from the statistics? (e.g., not saying data is "normally distributed" based on wrong evidence) 
+  - **Clarity of Interpretation:** Are the interpretations understandable, concise, and easy to follow or is there any confusing word selection or 
 
 - Data Visualization Quality (each of them, for each run, is either 0 and 1 so in total out of 5)
   - **Data Viz Completeness**: If the requested data visualization is generated or not, it can take 1 (if they exists) or 0 (if not) otherwise. If this takes 0, nothing to compute indeed so this item is just the starting point so not included in the overall
   - **Aesthetic Mapping (Mapping Layer)**: Each data variable is unambiguously mapped to an appropriate aesthetic (e.g., a continuous variable to position, a categorical variable to color), and the mappings are clearly documented in a legend or caption.
   - **Geometric Object (Geom Layer)**: The chosen geom (e.g., geom_bar() for counts, geom_point() for scatter) matches the data structure and analytical intent given by the question, with no misuse of graphical primitives or not suitable geom selection
-  - **Scales & Coordinate System (Scale/Coord Layers)**: Axes use appropriate, non‑truncated scales with meaningful breaks; any coordinate transform (e.g., log scale, coord_flip()) is applied suitably, whenever it is mentioned.
+  - **Scales & Coordinate System (Scale/Coord Layers)**: Axes use appropriate, non‑truncated scales with meaningful breaks; any coordinate transform (e.g., log scale, coord_flip()) is applied suitably, all components are readable fully.
   - **Visualization-Interpretation matching**: The correct use of wordings and abbreviations in the created visual and the related interpretations. The visualization considers the use of created output while creating the interpretations (MIGHT NOT BE RELEVANT FOR SOME QUESTIONS)
 
 - Statistical Modeling: It may change slightly in terms of which modeling approach we are applying; regression, classification, PCA or clustering. For each of them, we have the **Response Accuracy (RA) or Accuracy of Response (AoR)** as the first item (mentioned above), then the following specific evaluations are applied additionally to get a task specific numerical evaluation 
 
-  For Regression (all either 0 or 1);
+  For Linear Regression (all either 0 or 1);
   - **Ratio of Accuracy** (will be calculated automatically via comparing GT value)
   - **Correct model coefficient interpretation:** Understanding the magnitude and direction of the relationship between independent and dependent variables
-  - **p-value recognition** Recognizing statistical significance on the model coefficients
-  - **Evaluation Metric Reported and Interpreted:** Assessing the model's goodness of fit and the proportion of variance explained by the model via R_squared at least 
-  - **Interpretation of Results:** Interpreting the results within the context of the specific research question and domain
-  - 
+  - **p-value recognition** Recognizing statistical significance on the model coefficients by reporting of p-values for each coefficient against a pre-specified α-level (commonly 0.05).
+  - **Evaluation Metric Reported and Interpreted:** Assessing the model's goodness of fit and the proportion of variance explained by the model via R_squared, supplemented by predictive error metrics such as RMSE
+  - **Interpretation of Results:** Interpreting the results within the context of the specific research question and the problem domain
  
-    
-  For Classification;
+  For Logistic Regression;
   - **Ratio of Accuracy** (will be calculated automatically via comparing GT value)
-  - **Correct model coefficient interpretation:**
-  - **Evaluation Metric Reported and Interpreted:**
-  - **Confusion Matrix recognition:**
+  - **Correct model coefficient interpretation:** Understanding the relationship between independent and dependent variables (via transforming log-odds coefficients into odds ratios)
+  - **p-value recognition** Recognizing statistical significance on the model coefficients by reporting of p-values for each coefficient against a pre-specified α-level (commonly 0.05).
+  - **Confusion Matrix recognition:** The confusion matrix details and derive class-specific error rates
   - **Interpretation of Results:** Interpreting the results within the context of the specific research question and domain
 
-  For PCA;
+  For PCA (either 0 or 1 for each based on response);
+  - **Number of Components Justified:** Is the decision on how many PCs to keep justified correctly?
   - **Standardization of Input Data:** Was scaling applied where needed before PCA?
   - **Correct Variance Explanation:** Are eigenvalues / explained variance ratios reported and understood?
-  - **Proper Component Interpretation:** Are PCs interpreted clearly in terms of original variables?
-  - **Number of Components Justified:** Is the decision on how many PCs to keep justified?
+  - **Proper Component Interpretation:** Are PCs interpreted clearly in terms of the concept of original variables?
+  - **Visual evidences** Is the decision on the number of PCs supported by certain visuals like loading, biplot or scree plot
     
   For Clustering;
+  ??
   
 - Hypotesis testing (each of them either marked as 0 or 1, in total 5)
-  - **Correct Test/Test name Chosen:**
-  - **Null and Alternative Hypotheses Clearly Stated:**
-  - **Test Assumptions Checked:**
-  - **Correct Interpretation of p-value and/or Confidence Interval:** 
-  - **Contextual Conclusion:**
+  - **Correct Interpretation of p-value and/or Confidence Interval:** Having the correct final decision based on the testing procedure
+  - **Correct Test/Test name Chosen:** Recognition of the correct statistical testing / test name
+  - **Null and Alternative Hypotheses Clearly Stated:** clearly and correctly stated hypothesis test components with correct notation
+  - **Test Assumptions Recognition:** Correctly recognised the selected test assumptions 
+  - **Contextual Conclusion:** Interpreting the final decision within the context of the specific research question
 
 For each of above, we can create a list of different evaluation criterions to give a mark out of 5 so that each result may have numerical evaluation number! 
 
