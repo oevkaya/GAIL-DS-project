@@ -403,7 +403,10 @@ Calculate a 95% confidence interval for the mean µ.",
 
 {"id": 53, "question": "Plot a histogram of the data in the column headed level. Draw a scatter plot of the data of index against level", 
 "concepts": ["Data Visualization"], "format": "@mouse_data_viz[mouse_data_viz] where \"mouse_data_viz\" is the created multiple different data visualizations", 
-"file_name": "mouse.txt", "level": "medium"}
+"file_name": "mouse.txt", "level": "medium", 
+"common_answers": [["mouse_data_viz", "hist(mouse$level, xlab = "level", main = \"Histogram of level\")
+plot(mouse$index, mouse$level, xlab = "index", ylab = "level",
+main = "Scatter plot of mouse data")"]]}
 
 {"id": 54, "question": "Calculate the sample mean and standard deviation of level for the different index values 1 and 2.", 
 "concepts": ["Data Understanding"], "format": "@mouse_summary_stats[mouse_summary_stats] where \"mouse_summary_stats\" is the list or vector including meand and standard deviation value", 
@@ -417,10 +420,14 @@ Plot this data using a line graph, such that the limits of the y-axis are [0, 30
 {"id": 56, "question": "For now consider only the data stored in the vector first. We assume that the data are independent
 observations from N(µ, σ2) and wish to conduct the following hypothesis test: H0 : µ equals 10 vs H1 : µ not equal 10
 Define a suitable test statistic and state its distribution, assuming that the null hypothesis is true.
-Calculate the associated observed test statistic
-Conduct the hypothesis test and clearly state your conclusions.", 
+Calculate the associated observed test statistic. Conduct the hypothesis test and clearly state your conclusions.", 
 "concepts": ["Hypothesis Testing"], "format": "@aeroplane_one_sample_test[aeroplane_one_sample_test] where \"aeroplane_one_sample_test\" is the one sample test implementation", 
-"file_name": "aeroplane.txt", "level": "medium"}
+"file_name": "aeroplane.txt", "level": "medium", 
+"common_answers": [["aeroplane_one_sample_test", "Consider the test statistic:
+T = (X_bar − 10) / S/√n where X_bar denotes the mean of the first throws; and S the corresponding sample standard deviation.  If H0 is true, then T ∼ t_{n−1}.
+We can use R to calculate the observed sample mean using mean and the observed sample standard deviation
+using sd. Therefore the test statistic is: 5.244969. We calculate the p-value as 4.613442e-05. Thus we would reject the null hypothesis that µ equals 10 in favour of the alternative 
+hypothesis that µ not equal 10 at all reasonable significance levels. Further we would conclude that there is evidence that µ > 10"]]}
 
 {"id": 57, "question": "Now consider jointly the distances of both the throws and wish to assess whether there is a difference in
 the underlying means. For example, we may wish to investigate whether the first landing affected its flying behaviour (e.g. bent nose); or whether individuals 
