@@ -89,12 +89,24 @@
 {"id": 14, "question": "Create a plotting instructional staff employment trends as a dot plot.", 
 "concepts": ["Data visualization"], "format": "@instructional_staff_employment_trends_plot[instructional_staff_employment_trends_plot] where \"instructional_staff_employment_trends_plot\" is a dot plot object created by ggplot package or other.", 
 "file_name": "instructional-staff.csv", "level": "easy",
-"common_answers": [["instructional_staff_employment_trends_plot", "??"]]}
+ "common_answers": [
+   ["instructional_staff_employment_trends_plot",
+     "instructional_staff_employment_trends_plot <- ggplot(data = staff_long, mapping = aes(x = year, y = percent, colour = faculty_type)) + geom_point()"
+   ]
+]
+}
 
 {"id": 14.1, "question": "Create a plotting instructional staff employment trends in a different style plot", 
 "concepts": ["Data visualization"], "format": "@staff_employment_trends_line_plot[staff_employment_trends_line_plot] where \"staff_employment_trends_line_plot\" is a line plot object created by ggplot package or other.", 
 "file_name": "instructional-staff.csv", "level": "medium",
-"common_answers": [["staff_employment_trends_line_plot", "??"]]}
+ "common_answers": [
+   ["staff_long", 
+    "staff_long <- staff_long %>% mutate(year = as.numeric(year))"
+   ],
+   ["staff_employment_trends_line_plot",
+     "staff_employment_trends_line_plot <- ggplot(data = staff_long, mapping = aes(x = year, y = percent, colour = faculty_type)) + geom_line()"
+   ]
+]}
 
 {"id": 14.2, "question": "Improve the plot from the previous exercise by fixing up its labels (title, axis labels, and legend label) as well as any other components you think could benefit from improvement.", 
 "concepts": ["Data visualization-customization"], "format": "@staff_employment_trends_line_plot_custom[staff_employment_trends_line_plot_custom] where \"staff_employment_trends_line_plot_custom\" is a customized line plot object created by ggplot package or other.", 
@@ -147,22 +159,28 @@ Create a new function called hmean() that takes a single numerical vector x as i
 {"id": 21, "question": "Visualize the distribution of score in the dataframe evals. Is the distribution skewed? What does that tell you about how students rate courses? 
 Is this what you expected to see? Why, or why not?", 
 "concepts": ["Data Viz and EDA"], "format": "@dist_score_evals_viz[dist_score_evals_viz] where \"dist_score_evals_viz\" is a created data visualization with additional interepretations.", 
-"file_name": "evals.csv", "level": "medium"}
+"file_name": "evals.csv", "level": "medium", 
+"common_answers": [["dist_score_evals_viz", "??"]]}
 
 {"id": 22, "question": "Visualize and describe the relationship between score and bty_avg using geom_point() to represent the data. 
 Then, visualise again using geom_jitter() for the points", 
 "concepts": ["Data Viz and EDA"], "format": "@dist_score_bty_avg_viz[dist_score_bty_avg_viz] where \"dist_score_bty_avg_viz\" is a created multiple data visualization with different geoms.", 
-"file_name": "evals.csv", "level": "medium"}
+"file_name": "evals.csv", "level": "medium", 
+"common_answers": [["dist_score_bty_avg_viz", "??"]]}
 
 {"id": 23, "question": "Fit a linear model called score_bty_fit to predict average professor evaluation score from average beauty rating (bty_avg). 
 Print the regression output using tidy(). Based on the regression output, write down the linear model.", 
 "concepts": ["Regression Modeling"], "format": "@linear_model_score_bty_fit[linear_model_score_bty_fit] where \"linear_model_score_bty_fit\" is a fitted linear regression with model equations.", 
-"file_name": "evals.csv", "level": "hard"}
+"file_name": "evals.csv", "level": "hard", 
+"common_answers": [["linear_model_score_bty_fit", "score-hat = 3.88 + 0.0666 * bty_avg."]]}
 
 {"id": 23.1, "question": "Interpret the slope and intercept of the linear model in context of the data. 
 Determine the R^2 of the model and interpret it in the context of the data.", 
 "concepts": ["Regression Modeling Interpretation"], "format": "@linear_model_slope_intercept_R2[linear_model_slope_intercept_R2] where \"linear_model_slope_intercept_R2\" is the text includes the model fit interpretations.", 
-"file_name": "evals.csv", "level": "medium"}
+"file_name": "evals.csv", "level": "medium", 
+"common_answers": [["linear_model_slope_intercept_R2", "For each unit increase in the average beauty score, we expect the evaluation scores to be higher, on average, by 0.0666 points. 
+The model has an R-squared value of 0.03502226. This means that average beauty scores explain 3.5% of the variability in evaluation scores."],
+]}
 
 {"id": 23.2, "question": "Make a plot of residuals vs. predicted values for the model above. Use geom_jitter() instead of geom_point(), and overlay a dashed horizontal line at y = 0. 
 Then, comment on whether the linear model is appropriate for modeling the relationship between evaluation scores and beauty scores.", 
@@ -182,12 +200,18 @@ the professor and print out the regression output using tidy(). Based on the reg
 Name the model score_bty_gender_fit. Interpret the intercept and the slopes of bty_avg and gender. 
 Make a scatterplot (using jitter) of score by bty_avg and color the points by gender.", 
 "concepts": ["Regression Modeling"], "format": "@multiple_linear_model[multiple_linear_model] where \"multiple_linear_model\" is a fitted multiple linear regression with specific data visualization", 
-"file_name": "evals.csv", "level": "hard"}
+"file_name": "evals.csv", "level": "hard", 
+"common_answers": [["multiple_linear_model", "The model predicts that female staff with a beauty score of 0 (which is again not something that makes sense in context) would have a professor evaluation score of 3.75.
+The model predicts that, keeping all else constant, for every increase by one in the beauty score, the lecturer’s evaluation score will increase by 0.0742.
+The model predicts that, for lecturers with the same beauty score, male lecturers will have a professor evaluation score that is 0.172 higher than that of female lecturers."]]}
 
 {"id": 26.1, "question": "What percent of the variability in score is explained by the model score_bty_gender_fit. 
 What is the equation of the line corresponding to just male professors? How does the relationship between beauty and evaluation score vary between male and female professors?", 
 "concepts": ["Regression Modeling interpretations"], "format": "@multiple_linear_model_explain[multiple_linear_model_explain] where \"multiple_linear_model_explain\" is a list of explanations based on the fitted multiple linear regression", 
-"file_name": "evals.csv", "level": "hard"}
+"file_name": "evals.csv", "level": "hard", 
+"common_answers": [["multiple_linear_model_explain", "The model has an R-squared value of 5.9%. This means that a model with both average beauty scores and gender can explain 5.9% of the variability in evaluation scores.
+Model equation is obtained as score-hat=3.75+0.172+0.0742×bty_avg=3.92+0.0743×bty_avg.
+In this model, it doesn’t, because we haven’t fitted an interaction effects model—the model gives the same increase in evaluation for each increase in beauty score for both male and female professors."]]}
 
 {"id": 27, "question": "Transform any character variables that need to be transformed into categorical. Are there any missing values in our variable of interest RainTomorrow? 
 If so, we filter them out and save the new dataset as weather_noNA", 
@@ -208,7 +232,8 @@ Start by the recipe. First initialize the recipe, then remove observations with 
 {"id": 30, "question": "Fit a multiple logistic regression, i.e. using multiple explanatory variables, to predict RainTomorrow. 
 We will use as predictors the variables MinTemp, MaxTemp, RainToday and Rainfall", 
 "concepts": ["Logistic Regression Model"], "format": "@RainTomorrow_logistic_model_mult_pred[RainTomorrow_logistic_model_mult_pred] where \"RainTomorrow_logistic_model_mult_pred\" is a fitted logistic model with multiple predictors", 
-"file_name": "weatherAUS.csv", "level": "medium"}
+"file_name": "weatherAUS.csv", "level": "medium", 
+"common_answers": [["RainTomorrow_logistic_model_mult_pred", ""]]}
 
 {"id": 30.1, "question": "Create the ROC curve and get the AUC (area under the curve) value for your multiple logistic regression model.
 How is the model performance ", 
