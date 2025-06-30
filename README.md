@@ -158,7 +158,11 @@ For each of the concepts we are considering, varying set of criterions can appea
   - **Visual evidences** Is the decision on the number of PCs supported by certain visuals like loading, biplot or scree plot
     
   For Clustering;
-  ??
+  - **Number of clusters justified:** Is the number of obtained clusters are justified correctly ?
+  - **The methods consistency:** Is the requested method applied properly with the specification of certain parameters
+  - **Cluster characteristics:** Are the obtained cluster characteristics such as cluster size, cluster profile mentioned or not
+  - **Validation metrics:** Are the certain report metrics like silhouette scores, Davies-Bouldin index, or other relevant statistics are recognised
+  - **Visual evidences:** Is the decision on the number of clusters supported by certain visuals like scatter plots, dendrograms
   
 - Hypotesis testing (each of them either marked as 0 or 1, in total 5)
   - **Correct Interpretation of p-value and/or Confidence Interval:** Having the correct final decision based on the testing procedure
