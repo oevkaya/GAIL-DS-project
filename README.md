@@ -1,70 +1,8 @@
 # GAIL-project-Examples
-Prompt curation from courses and open source examples
 
-## Data science tasks types from different sources
-
-1. [InfiAgent-DABench: Evaluating Agents on Data Analysis Tasks](https://arxiv.org/pdf/2401.05507)
-
-Short notes: In this paper, we introduce InfiAgent-DABench,
-the first benchmark specifically designed to evaluate LLM-based agents on data analysis tasks.
-These tasks require agents to end-to-end solving
-complex tasks by interacting with an execution
-environment. This benchmark contains DAEval,
-a dataset consisting of 257 data analysis questions derived from 52 CSV files, and an agent
-framework which incorporates LLMs to serve as
-data analysis agents for both serving and evaluation. Since data analysis questions are often
-open-ended and hard to evaluate without human
-supervision, we adopt a format-prompting technique to convert each question into a closed-form
-format so that they can be automatically evaluated.
-
-In this paper, we build InfiAgent-DABench for data analysis
-tasks, which includes 257 questions associated with 52 CSV
-files, covering realistic data analysis demands and a wide
-range of domains. We crawl CSV files from GitHub and
-instruct GPT-4 to generate open-ended questions based on
-the file and several key concepts for data analysis obtained
-from expert interviews.
-
-## Tasks types
-
-### Comprehensive Data Preprocessing
-
-| Topic                          | Col 1 | Col 2 | Col 3 | Total |
-| ------------------------------ |-----:|-----:|-----:|-----:|
-| Concepts Summary Statistics    |   41 |   17 |   32 |   90 |
-| Feature Engineering            |    3 |   14 |   33 |   50 |
-| Correlation Analysis           |   10 |   32 |   30 |   72 |
-| Machine Learning               |    0 |    0 |   19 |   19 |
-| Distribution Analysis          |   21 |   23 |   20 |   64 |
-| Outlier Detection              |    5 |   20 |   10 |   35 |
-
+This file summarizes the main aspects of the project. For further details and experimental results, please refer to the ??
 
 ----------------------------------------------------
-
-2.[DA-Code: Agent Data Science Code Generation Benchmark for Large Language Models](https://arxiv.org/pdf/2410.07331)
-
-
-We present an overview of DA-Code’s data statistics, showcasing its structure and variety of tasks. DA-Code contains 500 tasks in total, categorized into Data Wrangling (DW), Machine Learning (ML), and Exploratory Data Analysis (EDA).
-The ML tasks are comprised of sub-tasks such as Classification, Regression, and Clustering. EDA includes Visualization, Statistical Analysis, Data Insights, and Data Manipulation, while DW encompasses tasks such as Data Loading, Cleaning, and Transformation.
-
-To achieve this goal, we introduce DA-Code, a
-benchmark for evaluating LLM data analysis ability, with carefully defined task scenarios. DA-Code
-contains 500 complex task examples, originating
-from real, challenging data analysis tasks, encompassing three main categories: data wrangling
-(DW), machine learning (ML) and exploratory
-data analysis (EDA). It covers the entire data analysis pipeline. Data wrangling includes a variety
-of tasks such as data loading, data cleaning, and
-data merging, specifically targeting raw data in
-files and databases. EDA aims to gain insights and
-analysis using the given information and resources.
-It includes a wide variety of data analysis tasks
-using programming languages such as SQL and
-Python to get insights from data.
-
-**We have more papers on that to write down the Related Research section of our report / paper. Sort of literature review is ready to expand and refine**
-
-----------------------------------------------------
-
 
 ## Our Experimental setting 
 
@@ -102,6 +40,14 @@ Impact of zero shot vs one shot learning can be explored for some tasks only
 
 - Statistical Hypothesis testing related questions
 - Bayesian regression
+
+## Task labeling results (TBA)
+
+| Topic                          | Easy | Medium | Hard | Total |
+| ------------------------------ |-----:|-----:|-----:|-----:|
+| Data Undertanding/Wrangling    |   ?? |   ?? |   ?? |   ?? |
+| Data Summary / Intepretations  |   ?? |   ?? |   ?? |   ?? |
+| Data Visualization             |   ?? |   ?? |   ?? |   ?? |
 
 ### Source of Questions/Prompts
 
