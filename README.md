@@ -108,8 +108,7 @@ The main metrics for the created responses can be listed under three subsections
 - **Completion Ratio (CR)**: This can be two different values in general (i) 0: if the executed thread is failed/not completed, (ii) 1: if the executed thread completed with an acceptable outcome (either matching with ground truth or not). This can be measured for each prompt out of 100 trials based on the stored list of responses as a ratio
 - **Response Accuracy (RA)** or **Accuracy of Response (AoR)**: Whether the reported result is matching with the ground truth or not (can be numeric or string, or vector etc.), it can take either 0 or 1 again. If the output is decimal value, or if the match appears partially it can be controlled during the comparison for numerical values!
   
-- **Code Executability**: Whether the generated code is directly executable in a different environment or not, either taking 1 (it is directly executable) or 0 (not executable). HOW TO CHECK AS A BUNDLE ? 
-- **Code Reproducibility**: Will it work on any similar CSV (i.e. no hard-coded paths or column names mismatches)? Either taking 0 or 1 again
+- **Code Executability**: Whether the generated code is directly executable in a different environment or not, either taking 2 (it is executable and solving the anticipated problem), taking 1 (it is directly executable BUT NOT solving the problem) or 0 (not executable at all). 
   
 - **Text Similarity**: Similarity measures such as Jaccard Index and other can be considered for the text part of the generated response to compare with each other or ground truth explanations for some tasks. Source: https://www.newscatcherapi.com/blog/ultimate-guide-to-text-similarity-with-python. THIS CAN BE ADDED FOR SOME INTERPRETATION BASED QUESTIONS
 
