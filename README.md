@@ -170,3 +170,18 @@ For each of the concepts we are considering, varying set of criterions can appea
 
 For each of above, we can create a list of different evaluation criterions to give a mark out of 5 so that each result may have numerical evaluation number! 
 
+## How to conduct the experiments for new dataset or questions
+
+To run multi-round experiments on a selected set of questions specific to one dataset, we provide a single file 
+(*runner.py*) that can accommodate both independent questions and sequential questions. The adjustable setting is 
+- model choice (default: 'gpt-4o')
+- temperature (1.0)
+- instruction for the AI assistant
+- data-file-related features: dataname, filename, file_id, outfolder
+- question-related features: selected questions (Qs), the number of rounds (Ns), and the number of already-done rounds (ks).
+
+If all the questions are independent, try the function **multi_round_assistant**.
+If the questions are sequentially related, try the alternative **sequential_question_assistant**.
+
+After obtaining the experimental outcomes, we provide a single file (*evaluation.py*) that can help to collect results
+and make evaluation. The adjustable setting is the same as above, except the instruction being no longer used. 
