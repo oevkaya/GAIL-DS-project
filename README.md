@@ -112,8 +112,6 @@ The main metrics for the created responses can be listed under three subsections
   
 - **Text Similarity**: Similarity measures such as Jaccard Index and other can be considered for the text part of the generated response to compare with each other or ground truth explanations for some tasks. Source: https://www.newscatcherapi.com/blog/ultimate-guide-to-text-similarity-with-python. THIS CAN BE ADDED FOR SOME INTERPRETATION BASED QUESTIONS
 
-- Coherency on the related threads (for questions that are linked such as 14, 14.1 etc.) - NOT DECIDED YET
-
 #### Task-Specific Metrics
 
 For each of the concepts we are considering, varying set of criterions can appear for the output evaluation in general. These task related ones can be listed under;
