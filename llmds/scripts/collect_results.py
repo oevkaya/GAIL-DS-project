@@ -18,24 +18,45 @@ def extract_code_blocks(text):
     # pattern = r"```(\w+)?\n(.*?)```"
     return re.findall(pattern, text, re.DOTALL)
 
+# def extract_reasoning(text):
+#   """ 
+#   Old version: Remove Python/R/other language code and the header from text 
+#   """
+#   pattern = r"```(?:python)?\n(.*?)```"
+#   # pattern = r"```(\w+)?\n(.*?)```"
+#   header = "Role: assistant"
+
+#   def clean_block(text):
+#      text = re.sub(pattern, '', text, flags=re.DOTALL)
+#      text = re.sub(header, '', text).strip()
+
+#      return text
+
+#   if isinstance(text, list):
+#     return [clean_block(t) for t in text]
+#   else:
+#     return clean_block(text)
+  
+def clean_block(pattern, text):
+  text = re.sub(pattern, '', text, flags=re.DOTALL)
+
+  return text
+
 def extract_reasoning(text):
   """ 
   Remove Python/R/other language code and the header from text 
   """
   pattern = r"```(?:python)?\n(.*?)```"
-  # pattern = r"```(\w+)?\n(.*?)```"
-  header = "Role: assistant"
 
-  def clean_block(text):
-     text = re.sub(pattern, '', text, flags=re.DOTALL)
-     text = re.sub(header, '', text).strip()
+  # def clean_block(pattern, text):
+  #    text = re.sub(pattern, '', text, flags=re.DOTALL)
 
-     return text
+  #    return text
 
   if isinstance(text, list):
-    return [clean_block(t) for t in text]
+    return [clean_block(pattern,t) for t in text]
   else:
-    return clean_block(text)
+    return clean_block(pattern,text)
   
 def extract_metadata(header_block):
     """Extract round ID, thread ID, runtime, and status from the first block."""
@@ -52,15 +73,46 @@ def extract_metadata(header_block):
     }
 
 
+# def extract_outcome(text):
+#     """
+#     old version: Extracts phrases like 'contains 348', 'are 25', or 'has 109' from assistant responses.
+#     Returns the first match or None.
+#     """
+#     pattern = r"(?:contains|are|has|include|comprise|involve)\s+(about\s+)?(\d+[,\d]*)(\s+\w+)?"
+#     match = re.search(pattern, text, re.IGNORECASE)
+#     return match.group(0).strip() if match else None
+
+
 def extract_outcome(text):
     """
-    Extracts phrases like 'contains 348', 'are 25', or 'has 109' from assistant responses.
+    Ways to capture outcomes:
+    1. Extracts phrases like 'contains 348', 'are 25', or 'has 109' from assistant responses.
     Returns the first match or None.
+    2. Extract the content from the last assistant except the code, find any json format.
     """
+
     pattern = r"(?:contains|are|has|include|comprise|involve)\s+(about\s+)?(\d+[,\d]*)(\s+\w+)?"
     match = re.search(pattern, text, re.IGNORECASE)
-    return match.group(0).strip() if match else None
+    num_part = match.group(0).strip() if match else None
 
+    
+    pattern2 = r"```json\s*(\{.*?\})\s*```"
+    match2 = re.search(pattern2, text, re.IGNORECASE)
+    # json_part = match2.group(0).strip() if match2 else None
+
+    if num_part:
+        return num_part
+    elif match2:
+        json_part = match2.group(1)
+        try:
+            out = json.loads(json_part)
+            return out.get('outcome')
+            # return json_part
+        except json.JSONDecodeError:
+            pass
+    else:
+      pass
+      #return clean_block(r"```(?:python)?\n(.*?)```",text)
 
 def extract_code_for_evaluation(Q,section,round_num,thread_id,codefile=None):
   code = extract_code_blocks(section)
@@ -102,6 +154,7 @@ def extract_response_for_evaluation(Q, section,model,jsonfile=None):
 
           reasoning.append(extract_reasoning(block))
     
+    # outcome = extract_outcome(reasoning[-1])
     #--------------Save each component--------------
     if not os.path.exists(jsonfile):
       with open(jsonfile, "w") as f:
@@ -148,8 +201,8 @@ def main(args):
 
    infiles = glob.glob(os.path.join(args.input_folder, '*.txt'))
    
-   outfile = f"{args.path}/{args.dataname}0.jsonl"
-   codefile = f"{args.path}/{args.dataname}.py"
+   outfile = f"{args.path}/{args.dataname}0_{args.modelname}_{args.temperature}.jsonl"
+   codefile = f"{args.path}/{args.dataname}_{args.modelname}_{args.temperature}.py"
 
    for text_file in infiles:
       print(text_file)
@@ -176,11 +229,19 @@ def main(args):
 
 
 if __name__ == '__main__':
-   parser = argparse.ArgumentParser()
-   parser.add_argument('--input_folder', type=str, default='Simulations/output/weatherAUS')
-   parser.add_argument('--path', type=str, default='Simulations/metrics/weatherAUS')
-   parser.add_argument('--dataname',type=str,default='weatherAUS')
-   parser.add_argument('--model',type=str,default='gpt-4o')
+  parser = argparse.ArgumentParser()
 
-   args = parser.parse_args()
-   main(args)
+  parser.add_argument('--input_folder', type=str, help='Folder path of the collection of outputs for the dataset.')
+  parser.add_argument('--path', type=str, help='Path to store the metrics.',default='Simulations/metrics')
+  parser.add_argument('--dataname',type=str,help='Dataset name')
+  parser.add_argument('--model',type=str,help='Model choice, e.g. gpt-4o')
+  parser.add_argument('--modelname',type=str,help='Model, e.g. gpt_4o')
+  parser.add_argument('--temperature',type=str,help='Temperature, e.g. 1.0')
+
+  #  parser.add_argument('--input_folder', type=str, default='Simulations/output/weatherAUS')
+  #  parser.add_argument('--path', type=str, default='Simulations/metrics/weatherAUS')
+  #  parser.add_argument('--dataname',type=str,default='weatherAUS')
+  #  parser.add_argument('--model',type=str,default='gpt-4o')
+
+  args = parser.parse_args()
+  main(args)

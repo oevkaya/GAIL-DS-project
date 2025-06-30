@@ -61,6 +61,12 @@ def compute_similarity(data,Q,method):
    elif method == 'Cosine':
     pass
 
+def delete_empty_folders(folder_path):
+    for foldername, subfolders, filenames in os.walk(folder_path, topdown=False):
+        if not os.listdir(foldername):  # Folder is empty
+            os.rmdir(foldername)
+            print(f"Deleted empty folder: {foldername}")
+
 def main(args):
     print(f"Evaluation for {args.dataname}")
 
@@ -111,10 +117,10 @@ def main(args):
 if __name__ == '__main__':
    parser = argparse.ArgumentParser()
 
-   parser.add_argument('--input', type=str, default='Simulations/metrics/input.jsonl')
-   parser.add_argument('--infile', type=str, default='Simulations/metrics/weatherAUS0.jsonl')
-   parser.add_argument('--dataname',type=str,default='weatherAUS')
-   parser.add_argument('--outfile', type=str, default='Simulations/metrics/weatherAUS.jsonl')
+   parser.add_argument('--input', type=str, help='File of input metrics')
+   parser.add_argument('--infile', type=str, help='Initial version of metrics data, obtained from component extraction.')
+   parser.add_argument('--dataname',type=str, help='Dataset name')
+   parser.add_argument('--outfile', type=str, help='Final version of metrics')
 
    parser.add_argument('--Q_num', type=int)
    parser.add_argument('--Qs',type=list)

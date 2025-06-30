@@ -1,6 +1,7 @@
-from llmds.params import load_params, dict_datasets, input_dataset
+from llmds.params import load_params, input_dataset, data_name_mapping
 # from llmds.dm import input_dataset
-from llmds.scripts.automation import multi_round_assistant
+from llmds.scripts.evaluation import format_namespace
+from llmds.scripts.automation import multi_round_assistant, sequential_question_assistant
 
 import tiktoken
 import json
@@ -10,12 +11,19 @@ from openai import OpenAI
 
 # Required parameters
 model_choice = "gpt-4o"
-dataname = 'UK-visitor-numbers'
-filename = 'UK-visitor-numbers.csv'
-file_id = 'file-LB38GMvxj7SfRMPrenaBR1'
+tem = 1.0
+instruction = """
+  You are a specialized assistant for iterative data‐science tasks. Every time the user asks a question or provides data.
+  Answer each question.
+  You will return a JSON object with one key: `"outcome"`, which is a string or JSON array describing the results.
+  """
 
+dataname = 'instructional-staff'
+filename = data_name_mapping[dataname]
+file_id = 'file-5riwCDAHXme7U6mfNZwCLe'
 
-data = load_params("GAIL-DA-tasks-questions.jsonl")
+# data = load_params("GAIL-DA-tasks-questions.jsonl")
+data = format_namespace('questions.jsonl')
 
 set_datasets = set([val.file_name for val in data])
 
@@ -35,12 +43,44 @@ client=OpenAI(
 )
 
 dinput = inputs[filename]
-Qs = [1,2,3,4,6,7,8,9]
-Ns = [39,50,50,50,50,64,50,50]
-ks = [100 - n for n in Ns]
-
 outfolder = f'Simulations/output/{dataname}'
 
-assistant_id = multi_round_assistant(client,Qs,dinput,model_choice,file_id,Ns,outfolder,ks)   
+# Setup for multiple questions specific to one dataset
+# Qs = [34]
+# Ns = [91]
+# ks = [100 - n for n in Ns]
+
+# Setup for sequential questions specific to one dataset
+Q_id = 14
+Qs = [14,14.1,14.2]
+N = 30
+ks = 20
+
+
+#---------------create an assistant---------------
+assistant = client.beta.assistants.create (
+  name = "Question and Code Assistant",
+  instructions =instruction,
+  model = model_choice,
+  tools = [{'type': 'code_interpreter'}],
+  temperature=tem,
+  tool_resources={ 
+    'code_interpreter': {
+      'file_ids': [file_id]
+      }
+  })
+
+assistant_id = assistant.id
+
+
+# Run for different temperatures:
+# for tem in [0.5,1,5]:
+#     assistant_id = multi_round_assistant(client,Qs,dinput,model_choice,file_id,Ns,outfolder,ks,tem)   
+
+# assistant_id = multi_round_assistant(client,assistant_id,Qs,dinput,Ns,outfolder,ks) 
+
+# assistant_id = multi_round_assistant(client,Qs,dinput,"gpt-4o-mini",file_id,Ns,f'Simulations/output/{dataname}/others3',ks,1.0) 
+
+assistant_id = sequential_question_assistant(client,assistant_id,Q_id,Qs,dinput,N,outfolder,ks)
 
 client.beta.assistants.delete(assistant_id)

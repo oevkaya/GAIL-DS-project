@@ -33,20 +33,6 @@ def load_params(jsonl_path: str):
     
     return data
 
-dict_datasets = {
-    'UK-visitor-numbers.csv':'UK-visitor-numbers',
-    'aeroplane.txt': 'aeroplane',
-    'evals.csv':'evals',
-    'weatherAUS.csv':'weatherAUS',
-    'instructional-staff.csv':'instructional-staff',
-    'edibnb.csv':'edibnb',
-    'gss16_advfront.csv':'gss16',
-    'laptop_data_cleaned.csv':'laptop_data_cleaned',
-    'duke_forest.xlsx':'duke_forest',
-    'Stats_diamonds.xlsx':'diamonds',
-    'ggplot::diamonds':'diamonds',
-    'council_assessments.csv':'council_assessments'
-}
 
 def input_dataset(data, filename):
     """Filter the input file for specific dataset,
@@ -67,3 +53,18 @@ def input_dataset(data, filename):
         return input
     else:
         raise ValueError("Invalid dataset!")
+    
+data_name_mapping = {
+    'aeroplane':'aeroplane.txt',
+    'UK-visitor-numbers':'UK-visitor-numbers.csv',
+    'evals':'evals.csv',
+    'weatherAUS':'weatherAUS.csv',
+    'instructional-staff':'instructional-staff.csv',
+    'edibnb':'edibnb.csv',
+    'gss16':'gss16_advfront.csv',
+    'laptop_data_cleaned':'laptop_data_cleaned.csv',
+    'duke_forest':'duke_forest.xlsx',
+    'Stats_diamonds':'Stats_diamonds.xlsx',
+    'diamonds':'ggplot::diamonds',
+    'council_assessments':'council_assessments.csv'
+}
