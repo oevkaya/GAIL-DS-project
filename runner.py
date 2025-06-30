@@ -28,7 +28,7 @@ for dataset in set_datasets:
 #compute_input_metrics(data,"Simulations/metrics/input.jsonl",model_choice)
 
 #Run multi-round experiments
-openai_key="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"
+openai_key="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"
 
 client=OpenAI(
     api_key=openai_key
