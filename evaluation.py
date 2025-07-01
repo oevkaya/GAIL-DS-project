@@ -11,7 +11,7 @@ import time
 from types import SimpleNamespace
 
 model_choice = "gpt-4o"
-dataname = 'laptop_data_cleaned'
+dataname = 'evals'
 # filename = 'laptop_data_cleaned.csv'
 filename = data_name_mapping[dataname]
 model_name = 'gpt_4o'
@@ -20,15 +20,15 @@ temperature = '1'
 outfolder = f'Simulations/output/{dataname}'
 outpath = "Simulations/metrics"
 
-data = format_namespace('questions.jsonl')
+data = format_namespace('question.jsonl')
 set_datasets = set([val.file_name for val in data])
 
 inputs = {}
 for dataset in set_datasets:
     inputs[dataset] = input_dataset(data,dataset)
 
-# Qs = inputs[filename]['ids']
-Qs = [49,50]
+# Qs = inputs[filename]['ids'] # only if every question is ready
+Qs = [21,23,26]
 Q_num = len(Qs)
 
 args1 = SimpleNamespace(
@@ -51,4 +51,3 @@ args2 = SimpleNamespace(
 
 extract_main(args1)
 eval_main(args2)
-

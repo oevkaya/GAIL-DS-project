@@ -23,7 +23,7 @@ filename = data_name_mapping[dataname]
 file_id = 'file-5riwCDAHXme7U6mfNZwCLe'
 
 # data = load_params("GAIL-DA-tasks-questions.jsonl")
-data = format_namespace('questions.jsonl')
+data = format_namespace('GAIL-DA-tasks-questions-clean.jsonl')
 
 set_datasets = set([val.file_name for val in data])
 
@@ -46,8 +46,8 @@ dinput = inputs[filename]
 outfolder = f'Simulations/output/{dataname}'
 
 # Setup for multiple questions specific to one dataset
-# Qs = [34]
-# Ns = [91]
+# Qs = [34,35]
+# Ns = [91,80]
 # ks = [100 - n for n in Ns]
 
 # Setup for sequential questions specific to one dataset
