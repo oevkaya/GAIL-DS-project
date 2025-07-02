@@ -19,4 +19,5 @@ implemented by the LLM agents. We provide a brief overview of each of the folder
     (completed or failed), runtime, number of words for text, number of tokens for text, reasoning part, and outcome. 
 
     - 'evaluation': Combines the results from above with the corresponding input metrics (number of words or tokens 
-    for the question input). Computes the metrics of Jaccard similarity and verbosity ratio. 
+    for the question input). Computes the metrics of Jaccard similarity and verbosity ratio. Compute the accuracy of 
+    outcomes compared with GTs. 
