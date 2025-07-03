@@ -44,27 +44,59 @@
  ]
 }
 
----- THE REST TBA ----
-
 {"id": 6, "question": "What is the interquartile range (the width of the middle 50% of data set between the lower and upper quartiles) the for each of the four nations of the UK?", 
 "concepts": ["Data summary"],  "format": "@IQR_value[IQR_value] where \"IQR_value\" is given as a numeric vector or tibble formated values for each nation.", 
 "file_name": "UK-visitor-numbers.csv", "level": "medium",
-"common_answers": [["IQR_value", "??"]]}
+ "common_answers": [
+   {
+     "IQR_value": {
+       "England": 350362,
+       "Northern Ireland": 311046,
+       "Scotland": 127986,
+       "Wales": 103368
+     }
+   }
+ ]
+}
 
-{"id": 7, "question": "How many tourist attractions are there in each of the 4 nations? From this, discuss in your group how reliable you think the inter-quartile estimates are.", 
-"concepts": ["Data exploration"],  "format": "@attraction_comment[attraction_comment] where \"attraction_comment\" is given in string format.", 
-"file_name": "UK-visitor-numbers.csv", "level": "medium", 
-"common_answers": [["attraction_comment", "??"]]}
+{"id":7, "question":"How many tourist attractions are there in each of the 4 nations? From this, discuss in your group how reliable you think the inter-quartile estimates are.",
+ "concepts":["Data exploration"], "format":"@numerical_results[numerical_results]\n@attraction_comment[attraction_comment]",
+ "file_name":"UK-visitor-numbers.csv", "level":"medium",
+ "common_answers":[
+   ["numerical_results", "{\"England\":240,\"Northern Ireland\":9,\"Scotland\":97,\"Wales\":2}"],
+   ["attraction_comment", "There are only 2 attractions in Wales. This is a very low sample size, meaning that the inter‑quartile range is not a very accurate estimate."]
+ ]
+}
+
 
 {"id": 8, "question": "Within each of the 4 nations, what is the proportion of tourist attractions that have free admission for all visitors?", 
 "concepts": ["Data exploration"],  "format": "@proportion_nation_value[proportion_nation_value] where \"proportion_nation_value\" is given in a numeric vector or tibble formated values.", 
 "file_name": "UK-visitor-numbers.csv", "level": "difficult",
-"common_answers": [["proportion_nation_value", "??"]]}
+ "common_answers": [
+   {
+     "proportion_nation_value": {
+       "England": 38.8,
+       "Scotland": 35.1,
+       "Northern Ireland": 11.1
+     }
+   }
+ ]
+}
 
 {"id": 9, "question": "Calculate the percentage change in visitor admissions from 2021 to 2022. Of the tourist attractions in Scotland, sort into increasing numerical order the types of admission charges based on the mean percentage change in visitor numbers.", 
 "concepts": ["Data exploration"], "format": "@percentage_change_2021_2022[percentage_change_2021_2022] where \"percentage_change_2021_2022\" is given in a numeric vector or tibble formated values.", 
 "file_name": "UK-visitor-numbers.csv", "level": "difficult", 
-"common_answers": [["percentage_change_2021_2022", "??"]]}
+ "common_answers": [
+   {
+     "percentage_change_2021_2022": {
+       "Charged": 0.0465,
+       "Members": 1.38,
+       "Free": 3.03
+     }
+   }
+ ]}
+
+---- THE REST TBA MISSING joined_plastic_data_all ----
 
 {"id": 10, "question": "Create a frequency table of coastal countries/territories by region.", "concepts": ["Data summary"], 
 "format": "@freq_table[freq_table] where \"freq_table\" is given in a numeric vector or tibble formated values.", 
@@ -86,10 +118,16 @@
 "file_name": "joined_plastic_data_all.csv", "level": "medium", 
 "common_answers": [["median_pct_mismanaged_plastic_ocean", "??"]]}
 
+---- THE REST TBA MISSING joined_plastic_data_all ----
+
 {"id": 14, "question": "Create a plotting instructional staff employment trends as a dot plot.", 
 "concepts": ["Data visualization"], "format": "@instructional_staff_employment_trends_plot[instructional_staff_employment_trends_plot] where \"instructional_staff_employment_trends_plot\" is a dot plot object created by ggplot package or other.", 
 "file_name": "instructional-staff.csv", "level": "easy",
  "common_answers": [
+   ["staff_long", 
+    "staff_long <- instructional-staff %>% pivot_longer(cols = c("1975", "1989", "1993", "1995", "1999", "2001", "2003", "2005", "2007", "2009" ,"2011"), 
+    names_to = "year", values_to = "percent")"
+   ],
    ["instructional_staff_employment_trends_plot",
      "instructional_staff_employment_trends_plot <- ggplot(data = staff_long, mapping = aes(x = year, y = percent, colour = faculty_type)) + geom_point()"
    ]
@@ -120,53 +158,79 @@
 
 {"id": 15.1, "question": "Make appropriate decisions to clean the data by removing rows containing problematic observations", 
 "concepts": ["Data cleaning"], "format": "@data_cleaning_diamond[data_cleaning_diamond] where \"data_cleaning_diamond\" is a summary of certain steps on data cleaning.", 
-"file_name": "ggplot::diamonds", "level": "medium",
+"file_name": "diamonds.csv", "level": "medium",
 "common_answers": [["data_cleaning_diamond", "??"]]}
 
 {"id": 16, "question": "The table_pct variable is a percentage between the width of the table and the diamond’s overall width. First, calculate the table width in millimetres, as table_mm. Then, calculate the arithmetic mean of the table length variable table_mm across all diamonds in the data set.", 
 "concepts": ["Data transformation-summary"], "format": "@table_mm_diamond_summary[table_mm_diamond_summary] where \"table_mm_diamond_summary\" is a numerical arithmetic mean value in a vector format.", 
-"file_name": "ggplot::diamonds", "level": "medium", 
-"common_answers": [["table_mm_diamond_summary", "??"]]}
+"file_name": "diamonds.csv", "level": "medium", 
+"common_answers": [["table_mm_diamond_summary", "3.30"]]}
 
 {"id": 16.1, "question": "Calculate the arithmetic mean across all the numeric variables in the dataset. Specify informative names for each of these summary statistics, for example my adding avg_ in front of each variable name", 
 "concepts": ["Data summary"], "format": "@table_mm_diamond_summary[table_mm_diamond_summary] where \"table_mm_diamond_summary\" is a numerical arithmetic mean value in a vector format with certain names.", 
-"file_name": "ggplot::diamonds", "level": "medium", 
-"common_answers": [["table_mm_diamond_summary", "??"]]}
+"file_name": "diamonds.csv", "level": "medium", 
+ "common_answers": [
+   {
+     "table_mm_diamond_summary": {
+       "avg_carat": 0.798,
+       "avg_depth_pct": 61.7,
+       "avg_table_pct": 57.5,
+       "avg_price": 3931,
+       "avg_length_mm": 5.73,
+       "avg_width_mm": 5.73, 
+       "avg_depth_mm": 3.54,
+       "avg_table_mm": 3.30
+     }
+   }
+ ]
+}
+
 
 {"id": 17, "question": "Create a function called gmean that computes the geometric mean statistic. The function must do the following: (i) Take a single input called x representing the data vector., 
 (ii) Computes the geometric mean using the equivalent formula (based on logarithms) provided above and (iii) Returns a single value representing the geometric mean of the input data.", 
 "concepts": ["Creating a specific function"], "format": "@gmean_function[gmean_function] where \"gmean_function\" is a created function that can be tested for reproducibility.", 
-"file_name": "ggplot::diamonds", "level": "hard", 
-"common_answers": [["gmean_function", "??"]]}
+"file_name": "diamonds.csv", "level": "hard", 
+"common_answers":
+["gmean_function", 
+    "gmean_function <- function(x){ xbar_g <- exp(mean(log(x)));
+return(xbar_g)"}
+]
+}
 
 {"id": 18, "question": "With the diamonds data set, summarise the table_mm variable by computing the (arithmetic) mean, median and geometric mean for each clarity category. 
 Comment on the relationship between table_mm and clarity using the summarised values.", 
-"concepts": ["Data summary-interpretation"], "format": "@summarise_table_mm[summarise_table_mm] where \"summarise_table_mm\" is a summary and interpretations.", 
-"file_name": "ggplot::diamonds", "level": "medium", 
-"common_answers": [["summarise_table_mm", "??"]]}
+"concepts": ["Data summary-interpretation"], "format": "@summarise_table_mm[summarise_table_mm]", 
+"file_name": "diamonds.csv", "level": "medium", 
+ "common_answers": [
+   ["summarise_table_mm", "{\"I1\":{\"avg_table\":3.91,\"med_table\":3.86,\"geom_table\":3.86},\"SI2\":{\"avg_table\":3.71,\"med_table\":3.72,\"geom_table\":3.65},\"SI1\":{\"avg_table\":3.40,\"med_table\":3.41,\"geom_table\":3.34},\"VS2\":{\"avg_table\":3.25,\"med_table\":3.16,\"geom_table\":3.19},\"VS1\":{\"avg_table\":3.20,\"med_table\":3.08,\"geom_table\":3.14},\"VVS2\":{\"avg_table\":2.98,\"med_table\":2.82,\"geom_table\":2.93},\"VVS1\":{\"avg_table\":2.83,\"med_table\":2.66,\"geom_table\":2.79},\"IF\":{\"avg_table\":2.82,\"med_table\":2.59,\"geom_table\":2.78}} 
+   Diamonds with a better clarity have a smaller geometric mean. Also, the geometric means are typically smaller than the arithmetic mean for this data."]
+ ]
+}
 
 {"id": 19, "question": "Use exponent and logarithm rules to prove that the geometric mean is equal to the exponential of the arithmetic mean of the natural logarithm transformed data.", 
 "concepts": ["Summary Stats derivation"], "format": "@list_of_steps[list_of_steps] where \"list_of_steps\" is list of steps that creates the derivation.", 
-"file_name": "ggplot::diamonds", "level": "hard", 
-"common_answers": [["list_of_steps", "??"]]}
+"file_name": "diamonds.csv", "level": "hard", 
+"common_answers": [["list_of_steps", "Derivation in Exercise 10: https://uoeids.github.io/labs/lab-06-key/lab-06-key.html"]]}
 
 {"id": 20, "question": "An alternative measurement of central tendency is the Harmonic Mean, which is calculated by the reciprocal of the arithmetic mean of the reciprocals. 
 Create a new function called hmean() that takes a single numerical vector x as input that computes and returns the harmonic mean statistic.", 
 "concepts": ["Creating a specific function"], "format": "@hmean_function[hmean_function] where \"hmean_function\" is a created function that can be tested for reproducibility.", 
-"file_name": "ggplot::diamonds", "level": "hard", 
-"common_answers": [["hmean_function", "??"]]}
+"file_name": "diamonds.csv", "level": "hard", 
+"common_answers": [["hmean_function", "Derivation in Exercise 9: https://uoeids.github.io/labs/lab-06-key/lab-06-key.html"]]}
 
 {"id": 21, "question": "Visualize the distribution of score in the dataframe evals. Is the distribution skewed? What does that tell you about how students rate courses? 
 Is this what you expected to see? Why, or why not?", 
 "concepts": ["Data Viz and EDA"], "format": "@dist_score_evals_viz[dist_score_evals_viz] where \"dist_score_evals_viz\" is a created data visualization with additional interepretations.", 
 "file_name": "evals.csv", "level": "medium", 
-"common_answers": [["dist_score_evals_viz", "??"]]}
+"common_answers": [["dist_score_evals_viz", "The distribution is negatively/left-skewed—this happens because most professors are getting scores near the upper end of the scale, 
+but then there is a tail to the left of lower scores. There appears to be a sharp peak around 4.4, but this may be an artefact of the data 
+(evaluation scores, as we shall soon see, appear to be recorded in discrete steps of 0.1)"]]}
 
 {"id": 22, "question": "Visualize and describe the relationship between score and bty_avg using geom_point() to represent the data. 
 Then, visualise again using geom_jitter() for the points", 
 "concepts": ["Data Viz and EDA"], "format": "@dist_score_bty_avg_viz[dist_score_bty_avg_viz] where \"dist_score_bty_avg_viz\" is a created multiple data visualization with different geoms.", 
 "file_name": "evals.csv", "level": "medium", 
-"common_answers": [["dist_score_bty_avg_viz", "??"]]}
+"common_answers": [["dist_score_bty_avg_viz", "Exercise 1.2 in https://uoeids.github.io/labs/lab-07-key/lab-07-key.html"]]}
 
 {"id": 23, "question": "Fit a linear model called score_bty_fit to predict average professor evaluation score from average beauty rating (bty_avg). 
 Print the regression output using tidy(). Based on the regression output, write down the linear model.", 
@@ -185,16 +249,39 @@ The model has an R-squared value of 0.03502226. This means that average beauty s
 {"id": 23.2, "question": "Make a plot of residuals vs. predicted values for the model above. Use geom_jitter() instead of geom_point(), and overlay a dashed horizontal line at y = 0. 
 Then, comment on whether the linear model is appropriate for modeling the relationship between evaluation scores and beauty scores.", 
 "concepts": ["Model Diagnostic Visualization"], "format": "@linear_model_res_pred_plot[linear_model_res_pred_plot] where \"linear_model_res_pred_plot\" is the created model diagnostic plot with interpretations.", 
-"file_name": "evals.csv", "level": "medium"}
+"file_name": "evals.csv", "level": "medium",
+"common_answers": [["linear_model_res_pred_plot", "The model is probably reasonable, but could be better. 
+There’s a slight “fan shape” in the residuals, or “heteroschedasticity” — that is, there are differences in the variation of the residuals for different values of the predicted values, 
+specifically the variation seems to be larger on left. There are also more large negative residuals than large positive ones, 
+which is probably due to the fact that values of the response variable were close to the rigid maximum limit of the scale.."]
+]
+}
 
 {"id": 24, "question": "Look at the variable rank, and determine the frequency of each category level.", 
 "concepts": ["Data description"], "format": "@freq_var_rank_pred[freq_var_rank_pred] where \"freq_var_rank_pred\" is the created frequency table for the specific variable", 
-"file_name": "evals.csv", "level": "medium"}
+"file_name": "evals.csv", "level": "medium", 
+ "common_answers": [
+   {
+     "freq_var_rank_pred": {
+       "teaching": 102,
+       "tenure track": 108,
+       "tenured": 253
+     }
+   }
+ ]}
 
 {"id": 25, "question": "Fit a new linear model called score_rank_fit to predict average professor evaluation score based on rank of 
 the professor and print out the regression output using tidy(). Based on the regression output, interpret the slope and intercept in context of the data.", 
 "concepts": ["Regression Modeling"], "format": "@linear_model_score_rank_fit[linear_model_score_rank_fit] where \"linear_model_score_rank_fit\" is a fitted linear regression with categorical variable.", 
-"file_name": "evals.csv", "level": "medium"}
+"file_name": "evals.csv", "level": "medium", 
+"common_answers": [
+["linear_model_score_rank_fit", "{\"(Intercept)\":{\"estimate\":4.28,\"std.error\":0.0537,\"statistic\":79.9,\"p.value\":1.02e-271},\"ranktenure track\":{\"estimate\":-0.130,\"std.error\":0.0748,\"statistic\":-1.73,\"p.value\":8.37e-2},\"ranktenured\":{\"estimate\":-0.145,\"std.error\":0.0636,\"statistic\":-2.28,\"p.value\":2.28e-2}}"
+A lecturer whose rank is as teaching staff (which, if we look at the data dictionary in the help file, is the level not mentioned in the output, that is the baseline level) 
+can be expected, on average, to have a score of 4.28. A tenure track lecturer is predicted by the model to have a score that is expected to be 0.130 lower, on average, that that of teaching staff.
+A tenured lecturer is predicted by the model to have a score that is expected to be 0.145 lower, on average, than that of teaching staff.]
+]
+}
+
 
 {"id": 26, "question": "Fit a multiple linear regression model, predicting average professor evaluation score based on average beauty rating (bty_avg) and gender. 
 Name the model score_bty_gender_fit. Interpret the intercept and the slopes of bty_avg and gender. 
@@ -216,12 +303,19 @@ In this model, it doesn’t, because we haven’t fitted an interaction effects 
 {"id": 27, "question": "Transform any character variables that need to be transformed into categorical. Are there any missing values in our variable of interest RainTomorrow? 
 If so, we filter them out and save the new dataset as weather_noNA", 
 "concepts": ["Data Transformation and Exploration"], "format": "@weather_noNA_new_data[weather_noNA_new_data] where \"weather_noNA_new_data\" is a new data set after applying the requested steps", 
-"file_name": "weatherAUS.csv", "level": "easy"}
+"file_name": "weatherAUS.csv", "level": "easy", 
+"common_answers": [["weather_noNA_new_data", "Yes, there are 3267 missing cases in weather. The remainig number of observations in weather_noNA are 142193."]
+}
 
 {"id": 28, "question": "Try to predict RainTomorrow by fitting a linear regression for Portland city using the variable RainToday and print the output using tidy().
 For each point in our dataset, what are the fitted probabilities that tomorrow it’s going to rain?", 
 "concepts": ["Logistic Regression Model"], "format": "@RainTomorrow_logistic_model[RainTomorrow_logistic_model] where \"RainTomorrow_logistic_model\" is a fitted logistic model and related calculated probabilities", 
-"file_name": "weatherAUS.csv", "level": "medium"}
+"file_name": "weatherAUS.csv", "level": "medium", 
+"common_answers": [["RainTomorrow_logistic_model", "The predictive probability for each day can only take two values: 0.2542194 or 0.5634191. 
+This is due to the fact that the only explanatory variable RainToday is a categorical variable with two levels, so the two probabilities correspond to whether it was raining on that day or not."]
+}
+
+---- THE REST TBA ---
 
 {"id": 29, "question": "Split the data into a training set (80% of your Portland data) and a testing set. 
 Refit the simple logistic regression using RainToday as predictor on this training data, using tidymodels recipes and workflows.
