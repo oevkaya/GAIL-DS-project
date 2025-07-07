@@ -886,7 +886,7 @@ xbar + qt(c(0.025, 0.975), df = n - 1) * s/sqrt(n)"
   ],
   [
     "normal_data_conf_interval",
-    "The calculated confindence interval is found as (8.919143, 11.160857) \n\ "
+    "The calculated confindence interval is found as (8.919143, 11.160857)"
   ]
 ]
 }
@@ -914,8 +914,7 @@ sd(mouse$level[mouse$index == 2])"
   ],
   [
     "mouse_summary_stats",
-    "The calculated sample mean for the index value for 1 is 181.8333 whereas the sample mean for index value is 2 given as 181.1 \n\ 
-    The calculated sample standard deviation for the index value for 1 is 144.8493 whereas the sample standard deviation for index value is 2 given as 154.9638"
+    "The calculated sample mean for the index value for 1 is 181.8333 whereas the sample mean for index value is 2 given as 181.1. The calculated sample standard deviation for the index value for 1 is 144.8493 whereas the sample standard deviation for index value is 2 given as 154.9638"
   ]
 ]
 }
