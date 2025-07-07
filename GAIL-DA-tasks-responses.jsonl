@@ -923,8 +923,7 @@ sd(mouse$level[mouse$index == 2])"
 {"id": 55, "question": "Read the following time series data in to a vector: 10, 12, 16, 14, 19, 17, 13, 21, 18, 15, 19, 25, 27, 20, 14, 12, 17
 Plot this data using a line graph, such that the limits of the y-axis are [0, 30]. Give the graph a title. ", 
 "concepts": ["Data Visualization"], "format": "@data_line_graph[data_line_graph] where \"data_line_graph\" is the created line plot with certain aesthetics", 
-"file_name": "", "level": "easy"}
-
+"file_name": "", "level": "easy", 
 "common_answers": [
   [
     "solution_code",
@@ -936,6 +935,7 @@ plot(vec, type = "l", ylim = c(0, 30), main = "TITLE")"
     "The obtained image is a line plot with certain ylim and specific title."
   ]
 ]
+}
 
 {"id": 56, "question": "For now consider only the data stored in the vector first. We assume that the data are independent
 observations from N(µ, σ2) and wish to conduct the following hypothesis test: H0 : µ equals 10 vs H1 : µ not equal 10
@@ -955,7 +955,29 @@ may have a better idea of how to throw the plane following their first throw.
 State the relevant hypothesis test should be conducted - being careful to ensure that any notation used
 is clearly defined. Conduct the hypothesis test and state your conclusions. Repeat your analysis using the function t.test.", 
 "concepts": ["Hypothesis Testing"], "format": "@aeroplane_two_sample_test[aeroplane_two_sample_test] where \"aeroplane_two_sample_test\" is the two sample test implementation", 
-"file_name": "aeroplane.txt", "level": "medium"}
+"file_name": "aeroplane.txt", "level": "medium", 
+"common_answers": [
+  [
+    "solution_code",
+"diff <- first - second \n\
+teststat <- mean(diff) / (sd(diff)/sqrt(length(diff))) \n\
+teststat \n\
+2*(1 - pt(teststat, df = length(diff) - 1)) \n\
+qt(c(0.025, 0.975), df = length(diff) - 1) \n\ 
+t.test(diff, mu = 0)"
+  ],
+  [
+    "aeroplane_two_sample_test",
+    "Let µX denote the underlying mean of the first throws; and µY for the second throws. We wish to test H0 : µX equals µY versus H1 : µX not equals µY. \n\ 
+    Let X_bar denote the random variable corresponding to the mean of the first throws; and µY the random variable corresponding to the mean of the second throws. \n\  
+The data are paired - the same aeroplane is used for both the first and second throws of each student - and so they are not independent across the two throws \n\  
+(we do however assume that each students is independent of each other). Thus we consider the differences of the means D_bar = X_bar − Y_bar (or D_bar = Y_bar − X_bar) \n\ 
+The obtained p-value is 0.002765844, it is smaller than the predefined 0.05 significance level so we would reject the null hypothesis that the mean distances between \n\
+the throws are equal in favour of the alternative hypothesis that the mean differences are different. \n\
+In particular we would include that the mean of the first throws are larger than the mean of the second throws. The same result is obtained via t.test function (p-value = 0.002766)"
+  ]
+]
+}
 
 {"id": 58, "question": "The statement is made by an observer (who does not actually see the tabulated data - but simply watched the
 experiment) that the distances appear to be less variable for the second throws of the aeroplanes compared to the first throws. 
@@ -963,19 +985,85 @@ However, as a statistics student you want to assess whether there is any differe
 State the name of the hypothesis test that you wish to conduct and specify the associated hypotheses clearly defining any notation that you use. 
 Conduct the hypothesis test and clearly state any conclusions that you make. Is there any evidence to support the claim of the observer?", 
 "concepts": ["Hypothesis Testing"], "format": "@aeroplane_testing_variability[aeroplane_testing_variability] where \"aeroplane_testing_variability\" is the testing variability between the groups", 
-"file_name": "aeroplane.txt", "level": "hard"}
+"file_name": "aeroplane.txt", "level": "hard",
+"common_answers": [
+  [
+    "solution_code",
+"Fstat <- var(first)/var(second) \n\
+Fstat \n\
+pval <- 2*pf(Fstat, df1 = length(first)-1, df2 = length(second)-1) \n\
+pval \n\
+crit_region <- qf(c(0.025,0.975), df1 = length(first)-1, df2 = length(second)-1) \n\
+crit_region"
+  ],
+  [
+    "aeroplane_testing_variability",
+    "We wish to conduct an F-test to test for equality of variance \n\ 
+    Let sigma_X^2 denote the variance of the random variable corresponding to the first throws and sigma_Y^2 denote the variance of the random variable corresponding to the second throws \n\  
+We wish to test H0 : sigma_X^2 equals sigma_Y^2 vs H1 : sigma_X^2 not equals sigma_Y^2 \n\  
+Consider the test statistics: F = (S_X^2)/(S_Y^2) \n\ 
+we have an associated p-value of 0.5013 - so that there is no evidence against the null hypothesis that the variances are the same. \n\
+Similarly we observe the critical region C = {f : f ≤ 0.396 or f ≥ 0.396 } and the observed f-statistic does not fall within the critical region, and so we again do not reject the null hypothesis."
+  ]
+]
+}
 
 {"id": 59, "question": "Visualize the distribution of sizes of houses in Duke Forest. What is the size of a typical house?", 
 "concepts": ["Data Visualization"], "format": "@duke_forest_size[duke_forest_size] where \"duke_forest_size\" is the created visualization and comment", 
-"file_name": "duke_forest.xlsx", "level": "easy"}
+"file_name": "duke_forest.xlsx", "level": "easy",
+"common_answers": [
+  [
+    "solution_code",
+"duke_forest %>% ggplot(aes(x=area)) + geom_histogram() \n\
+duke_forest$area %>% mean()"
+  ],
+  [
+    "duke_forest_size",
+    "In average the size of an house is obtained around 2779.265 in terms of the given distribution of the area variable of the data"
+  ]
+]
+}
 
 {"id": 60, "question": "Construct a 95% confidence interval for the typical size of a house in Duke Forest. Interpret the interval in context of the data.", 
 "concepts": ["Confidence Interval"], "format": "@duke_forest_CI_95[duke_forest_CI_95] where \"duke_forest_CI_95\" is the calculated confidence interval and interpretation", 
-"file_name": "duke_forest.xlsx", "level": "easy"}
+"file_name": "duke_forest.xlsx", "level": "easy",
+"common_answers": [
+  [
+    "solution_code",
+"sample_mean <- mean(duke_forest$area) \n\
+se <- sd(duke_forest$area)/sqrt(length(duke_forest$area)) \n\
+lower <- sample_mean - 1.96 * se \n\
+upper <- sample_mean + 1.96 * se \n\
+c(lower, upper)"
+  ],
+  [
+    "duke_forest_CI_95",
+    "We can calculate a 95% confidence interval for a sample mean by adding and subtracting 1.96 standard errors to the point estimate \n\
+The obtained interval for the size of an house via area variable is (2592.52 2966.01). Even though we don’t know what the full population looks like, \n\
+we’re 95% confident that the true average size of homes in Duke lies between"
+  ]
+]
+}
 
 {"id": 61, "question": "Find the relationship between price and size using the regression", 
 "concepts": ["Linear Regression"], "format": "@duke_forest_price_size_regr[duke_forest_price_size_regr] where \"duke_forest_price_size_regr\" is the created regression model", 
-"file_name": "duke_forest.xlsx", "level": "medium"}
+"file_name": "duke_forest.xlsx", "level": "medium", 
+"common_answers": [
+  [
+    "solution_code",
+"df_price_area_fit <- linear_reg() %>% \n\
+  fit(price ~ area, data = duke_forest) \n\
+tidy(df_price_area_fit)"
+  ],
+  [
+    "duke_forest_price_size_regr",
+    "The fitted regression model for the price using the area is obtained as Price = 116652 + 159 x area \n\
+For each additional square feet, the model predicts that prices of houses in Duke Forest are higher by $159, on average."
+  ]
+]
+}
+
+---- OPEN ENDED on DUKE FOREST DATA SET (TBA) ---
 
 {"id": 61.1, "question": "Evaluate the model performance of the fitted regression using model diagnostic plots", 
 "concepts": ["Regression Model Diagnostics"], "format": "@duke_forest_regr_model_diag[duke_forest_regr_model_diag] where \"duke_forest_regr_model_diag\" is the created regression model diagnostics and related interpretations", 
@@ -1015,6 +1103,8 @@ Identify the most appropriate number of clusters. Compare clustering results bas
 Discuss how many unknown parameters need to be estimated to derive this LDA rule, and compare it to the number of samples", 
 "concepts": ["Linear Discriminant Analysis"], "format": "@duke_forest_PCA_LDA[duke_forest_PCA_LDA] where \"duke_forest_PCA_LDA\" is the fitted linear discriminant analysis results", 
 "file_name": "duke_forest.xlsx", "level": "hard"}
+
+---- OPEN ENDED on DUKE FOREST DATA SET (TBA) ---
 
 {"id": 67, "question": "Briefly describe the data. Present the data and its most important features (e.g. histogram or box plots of log gene expression in a 
 sample / for a particular gene; illustrate the data using experimental design, e.g. plot time course for a gene in different treatments)", 
