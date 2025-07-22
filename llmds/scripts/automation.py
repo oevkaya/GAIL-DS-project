@@ -2,13 +2,15 @@ import os
 import json
 import time
 from openai import OpenAI
+import numpy as np
 
-def multi_round_assistant(client,assistant_id,Qs,dinput,Ns,path,ks):
+def multi_round_assistant(client,assistant_id,Qs,content_set,path,ks,file_id=False):
   """Run multi-round experiments on each question of the dataset
   """
 #   Qs = dinput['ids']; 
   Q_num = len(Qs)
-  content_set = dinput['questions']
+  Ns = [100 - n for n in ks]
+  # content_set = dinput['questions']
 
   #---------------create an assistant---------------
   # assistant = client.beta.assistants.create (
@@ -55,6 +57,7 @@ def multi_round_assistant(client,assistant_id,Qs,dinput,Ns,path,ks):
         role = 'user',
         content=content_set[Q] + ".Provide a complete Python snippet ready to run."
         )
+
       thread_id = thread.id
 
       run = client.beta.threads.runs.create(
@@ -110,10 +113,12 @@ def multi_round_assistant(client,assistant_id,Qs,dinput,Ns,path,ks):
   
   return assistant_id
 
-def sequential_question_assistant(client,assistant_id,Q_id,Qs,dinput,N,path,ks):
+def sequential_question_assistant(client,assistant_id,Qs,content_set,path,ks):
   
   Q_num = len(Qs)
-  content_set = dinput['questions']
+  Q_id = Qs[0]
+  # content_set = dinput['questions']
+  N = 100 - ks
 
   # create an empty text file
   text_file = f"{path}/Q{Q_id}_multi.txt"
@@ -131,17 +136,22 @@ def sequential_question_assistant(client,assistant_id,Q_id,Qs,dinput,N,path,ks):
     if k % 10 == 0:
       print(f"Round: {k}")
 
-    start_time = time.time()
-    #------------------Create a thread for each question------------------
-    thread = client.beta.threads.create()
-    thread_id = thread.id
+    runtimes = np.zeros(Q_num)
 
-
+    # start_time = time.time()
+    # #------------------Create a thread for each question------------------
+    # thread = client.beta.threads.create()
+    # thread_id = thread.id
     for Q in range(Q_num):  
+      start_time = time.time()
+      #------------------Create a thread for each question------------------
+      thread = client.beta.threads.create()
+      thread_id = thread.id
+
       message = client.beta.threads.messages.create(
           thread_id = thread_id,
           role = 'user',
-          content=content_set[Q] + ".Please answer each question in order. Provide a complete Python snippet ready to run."
+          content=content_set[Q] + ". Provide a complete Python snippet ready to run."
           )
       run = client.beta.threads.runs.create(
         thread_id = thread_id, assistant_id = assistant_id,
@@ -159,7 +169,7 @@ def sequential_question_assistant(client,assistant_id,Q_id,Qs,dinput,N,path,ks):
         time.sleep(10)
     
       #------------------Result------------------
-      runtime = time.time() - start_time
+      runtimes[Q] = time.time() - start_time
       status = run.status
       messages = client.beta.threads.messages.list(
         thread_id = thread_id,
@@ -183,7 +193,7 @@ def sequential_question_assistant(client,assistant_id,Q_id,Qs,dinput,N,path,ks):
       f.write("-"*100)
       f.write(f"\nRound {k+ks} with thread_id: {thread.id}\n")
       f.write(f"\nimage_id: {Q}_{image_id}\n")
-      f.write(f"\nStatus: {status}, Runtime: {runtime}\n")
+      f.write(f"\nStatus: {status}, Runtime: {runtimes}\n")
 
       for message in reversed(list(messages)):
         for content in message.content:

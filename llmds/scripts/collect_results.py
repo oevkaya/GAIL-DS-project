@@ -371,7 +371,7 @@ def main(args):
   # image_folders = glob.glob(os.path.join(args.input_folder, '*_image'))
   
   # Load the input of question file
-  question_input = format_namespace('GAIL-DA-tasks-questions-clean.jsonl')
+  # question_input = format_namespace('GAIL-DA-tasks-questions-clean.jsonl')
   questions = find_question_basics(args.input_folder)
 
   for text_file in infiles:
@@ -380,7 +380,7 @@ def main(args):
     q_type = list(filter(lambda item: item.filename == os.path.basename(text_file), questions))[0]
     Q, sequential, image_exist = q_type.id, q_type.is_multi, q_type.image_exist
 
-    q_input = list(filter(lambda item: int(item.id) == Q, question_input))
+    q_input = list(filter(lambda item: int(item.id) == Q, args.question_input))
     q_ids = [item.id for item in q_input]
 
     if sequential: 
@@ -399,6 +399,7 @@ def main(args):
         # Extract the basic information from the header block
         elements = extract_metadata(blocks[0], image_exist)
         
+        lines = []
         if sequential:# add the summary header
           header = SimpleNamespace(
             id = f"{int(q_ids[0])}_multi",
@@ -410,9 +411,10 @@ def main(args):
             tokens=0,
             reasoning=None
           )
-    
-          with open(outfile, "a", encoding="utf-8") as f:
-            f.write(json.dumps(header.__dict__)+"\n")
+
+          lines.append(header)
+          # with open(outfile, "a", encoding="utf-8") as f:
+          #   f.write(json.dumps(header.__dict__)+"\n")
   
 
         # Separate by question 
@@ -428,10 +430,28 @@ def main(args):
 
           for key, val in basic_to_add.items():
             setattr(txt_block, key, val)
-    
-          with open(outfile, "a", encoding="utf-8") as f:
-            f.write(json.dumps(txt_block.__dict__)+"\n")
-    
+          
+          lines.append(txt_block)
+
+        if sequential:
+          # One further step is to assign the runtime to each question based on the ratio of words
+
+          header_record = next(r for r in lines if str(r.id).endswith("_multi"))
+          sub_records = [r for r in lines if not str(r.id).endswith("_multi")]
+
+          total_words = sum(r.words for r in sub_records)
+          
+          for r in sub_records:
+            proportion = r.words / total_words if total_words else 0
+            r.runtime = round(header_record.runtime * proportion, 3)
+
+          lines = sub_records
+
+        # Write to a jsonl file
+        with open(outfile, "a", encoding="utf-8") as f:
+          for line in lines:
+            f.write(json.dumps(line.__dict__)+"\n")
+
 
 if __name__ == '__main__':
   parser = argparse.ArgumentParser()
@@ -443,7 +463,8 @@ if __name__ == '__main__':
   parser.add_argument('--modelname',type=str,help='Model, e.g. gpt_4o')
   parser.add_argument('--temperature',type=str,help='Temperature, e.g. 1.0')
 
-  # parser.add_argument('--sequential', type=str,  help='True if sequential questions otherwise False')
+  parser.add_argument('--question_input', type=str,  help='Input the questions each with the format of SimpleNamespace')
+
   # parser.add_argument('--codefile', type=str, default='Ouput file in the metrics folder')
   # parser.add_argument('--outfile',type=str,default='Output file in the metrics folder, version 0')
   #  parser.add_argument('--model',type=str,default='gpt-4o')

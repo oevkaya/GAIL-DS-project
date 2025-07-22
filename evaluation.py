@@ -1,7 +1,7 @@
 from llmds.params import load_params, input_dataset, data_name_mapping
-from llmds.scripts.evaluation import format_namespace
+from llmds.scripts.evaluate import format_namespace
 from llmds.scripts.collect_results import main as extract_main
-from llmds.scripts.evaluation import main as eval_main
+from llmds.scripts.evaluate import main as eval_main
 
 
 import tiktoken
@@ -10,44 +10,51 @@ import os
 import time
 from types import SimpleNamespace
 
-model_choice = "gpt-4o"
-dataname = 'evals'
-# filename = 'laptop_data_cleaned.csv'
-filename = data_name_mapping[dataname]
-model_name = 'gpt_4o'
 temperature = '1'
-
-outfolder = f'Simulations/output/{dataname}'
+model = "gpt-4o"
+model_name = model.replace("-","_")
 outpath = "Simulations/metrics"
 
-data = format_namespace('question.jsonl')
-set_datasets = set([val.file_name for val in data])
+datanames = data_name_mapping.keys()
+filenames = data_name_mapping.values()
+input_metrics='Simulations/metrics/input_metrics.jsonl'
 
-inputs = {}
-for dataset in set_datasets:
-    inputs[dataset] = input_dataset(data,dataset)
+# Load the input of question file
+question_input = format_namespace('GAIL-DA-tasks-questions-clean.jsonl')
+
+Qs = [27,28,29,30,72]
+# data = format_namespace('question.jsonl')
+# set_datasets = set([val.file_name for val in data])
+
+# inputs = {}
+# for dataset in set_datasets:
+#     inputs[dataset] = input_dataset(data,dataset)
 
 # Qs = inputs[filename]['ids'] # only if every question is ready
-Qs = [21,23,26]
-Q_num = len(Qs)
 
-args1 = SimpleNamespace(
-    input_folder=outfolder,
-    path='Simulations/metrics',
-    dataname=dataname,
-    model=model_choice,
-    modelname=model_name,
-    temperature=temperature
-)
+for dataname in ['weatherAUS']:
 
-args2 = SimpleNamespace(
-    input='Simulations/metrics/input.jsonl',
-    infile=f'Simulations/metrics/{dataname}0_{model_name}_{temperature}.jsonl',
-    dataname=dataname,
-    outfile=f'Simulations/metrics/{dataname}_{model_name}_{temperature}.jsonl',
-    Q_num=Q_num,
-    Qs=Qs
-)
+    args1 = SimpleNamespace(
+        dataname = dataname,
+        model=model,
+        modelname=model_name,
+        temperature=temperature,
+        input_folder = f'Simulations/output/{dataname}',
+        path='Simulations/metrics',
+        input=input,
+        question_input=question_input
+    )
 
-extract_main(args1)
-eval_main(args2)
+    extract_main(args1)
+
+    args2 = SimpleNamespace(
+        input=input_metrics,
+        model=model,
+        infile=f'Simulations/metrics/{dataname}0_{model_name}_{temperature}.jsonl',
+        dataname=dataname,
+        outfile=f'Simulations/metrics/{dataname}_{model_name}_{temperature}.jsonl',
+        Qs=Qs,
+        Q_num=len(Qs)
+    )
+
+    eval_main(args2)

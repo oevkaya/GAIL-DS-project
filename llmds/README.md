@@ -17,6 +17,9 @@ implemented by the LLM agents. We provide a brief overview of each of the folder
     - 'collect_results': Extracts text and Python code parts from the experiment outcomes, and separatedly store.
     Combines the following details into one jsonl file for a dataset: each question id, round, thread id, status 
     (completed or failed), runtime, number of words for text, number of tokens for text, reasoning part, and outcome. 
+    For sequential questions, one additional step is to separate the outcomes per question. The features include
+
+    {'id', 'round', 'thread_id','words','tokens','status','runtime','reasoning'}
 
     - 'evaluation': Combines the results from above with the corresponding input metrics (number of words or tokens 
     for the question input). Computes the metrics of Jaccard similarity and verbosity ratio. Compute the accuracy of 

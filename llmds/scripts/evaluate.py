@@ -4,13 +4,27 @@ import numpy as np
 import argparse
 import os
 from types import SimpleNamespace
+from llmds.params import format_namespace
 # from collections import defaultdict
 
 def count_tokens(text, model):
-    encoding = tiktoken.encoding_for_model(model)
+    try:
+        encoding = tiktoken.encoding_for_model(model)
+    except KeyError:
+        encoding = tiktoken.get_encoding("cl100k_base")
+
     return len(encoding.encode(text))
 
-def compute_input_metrics(data,infile,model):
+# def count_tokens(text, model):
+    #   """Try this if the above one doesn't work """
+#     if model in ["gpt-4.1-mini","gpt-4.1-nano"]:
+#         encoding = tiktoken.get_encoding("cl100k_base")
+#     else:
+#         encoding = tiktoken.encoding_for_model(model)
+
+#     return len(encoding.encode(text))
+
+def compute_input_metrics(data,infile,models):
 
     with open(infile, 'w') as f:
         for item in data:
@@ -18,9 +32,12 @@ def compute_input_metrics(data,infile,model):
 
             input_metric = {
                 'id': item.id,
-                'input_words':len(q),
-                'input_tokens': count_tokens(q,model)
+                'input_words': len(q)
             }
+
+            for model in models:
+                label = f"input_tokens_{model.replace('-', '_')}"
+                input_metric[label] = count_tokens(q,model)
 
             f.write(json.dumps(input_metric) + "\n")
 
@@ -29,9 +46,9 @@ def read_jsonl(path):
     with open(path, 'r') as f:
         return [json.loads(line) for line in f]
     
-def format_namespace(path):
-   with open(path, 'r') as f:
-      return [SimpleNamespace(**json.loads(line)) for line in f]
+# def format_namespace(path):
+#    with open(path, 'r') as f:
+#       return [SimpleNamespace(**json.loads(line)) for line in f]
 
 def combine_into_one_string(text):
     return " ".join(text)
@@ -61,6 +78,48 @@ def compute_similarity(data,Q,method):
    elif method == 'Cosine':
     pass
 
+def find_lines_with_keyword(text, keyword):
+    return [line for line in text.splitlines() if keyword.lower() in line.lower()]
+
+def line_contains_feature(line, feature):
+    # If feature is string or number, do simple substring match
+    if isinstance(feature, (str, int, float)):
+        return str(feature).lower() in line.lower()
+
+    # If feature is a dict, attempt to parse line as JSON and compare structure
+    elif isinstance(feature, dict):
+        try:
+            obj = json.loads(line)
+            return dict_contains(obj, feature)
+        except Exception:
+            return False
+    return False
+
+def dict_contains(container, sub):
+    """
+    Recursively check if 'sub' dict structure and values are in 'container'.
+    """
+    if not isinstance(container, dict) or not isinstance(sub, dict):
+        return False
+    for key, val in sub.items():
+        if key not in container:
+            return False
+        if isinstance(val, dict):
+            if not dict_contains(container[key], val):
+                return False
+        else:
+            if container[key] != val:
+                return False
+    return True
+
+def find_lines_with_features(text, features):
+    matches = []
+    for line in text.splitlines():
+        if any(line_contains_feature(line, f) for f in features):
+            matches.append(line)
+    return matches
+
+
 def delete_empty_folders(folder_path):
     for foldername, subfolders, filenames in os.walk(folder_path, topdown=False):
         if not os.listdir(foldername):  # Folder is empty
@@ -89,9 +148,11 @@ def main(args):
 
     for item in outmetrics:
         item.verbosity_ratio_words = item.input_words / item.words if item.words !=0 else None 
-        item.verbosity_ratio_tokens = item.input_tokens / item.tokens if item.tokens != 0 else None 
+        item.verbosity_ratio_tokens = getattr(item, f"input_tokens_{args.model.replace('-', '_')}") / item.tokens if item.tokens != 0 else None 
 
-        item.CR = status_mapping[item.status] if item.status in status_mapping else None 
+        item.complete_ratio = status_mapping[item.status] if item.status in status_mapping else None 
+        
+        # item.accuracy = 1 if find_lines_with_features(item.reasoning[-1],item.GT) else 0
 
     #-----add text similarity
     id_jaccard_values = {}
