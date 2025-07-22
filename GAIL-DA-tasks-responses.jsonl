@@ -125,8 +125,7 @@
 "file_name": "instructional-staff.csv", "level": "easy",
  "common_answers": [
    ["staff_long", 
-    "staff_long <- instructional-staff %>% pivot_longer(cols = c("1975", "1989", "1993", "1995", "1999", "2001", "2003", "2005", "2007", "2009" ,"2011"), 
-    names_to = "year", values_to = "percent")"
+    "staff_long <- instructional-staff %>% pivot_longer(cols = c(\"1975\", \"1989\", \"1993\", \"1995\", \"1999\", \"2001\", \"2003\", \"2005\", \"2007\", \"2009\", \"2011\"), names_to = \"year\", values_to = \"percent\")"
    ],
    ["instructional_staff_employment_trends_plot",
      "instructional_staff_employment_trends_plot <- ggplot(data = staff_long, mapping = aes(x = year, y = percent, colour = faculty_type)) + geom_point()"
