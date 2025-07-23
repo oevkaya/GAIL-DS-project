@@ -61,6 +61,37 @@ def format_namespace(path):
    with open(path, 'r') as f:
       return [SimpleNamespace(**json.loads(line)) for line in f]
 
+
+def smart_title(s):
+
+    exceptions = {"EDA", "CI", "PCA", "Lasso"}
+
+    semantic_normalization = {
+        "Logistic Regression Modeling": "Logistic Regression Model",
+        "Regression Modeling Interpretations": "Regression Modeling Interpretation",
+    }
+
+    s = s.strip()
+    # Split by spaces
+    words = s.split()
+    result = []
+
+    for word in words:
+        parts = word.split('-')  # Handle hyphenated words
+        titled_parts = []
+        for part in parts:
+            upper_part = part.upper()
+            if upper_part in exceptions:
+                titled_parts.append(upper_part)
+            else:
+                titled_parts.append(part.capitalize())
+        result.append('-'.join(titled_parts))
+
+    titled = ' '.join(result)
+
+    # Apply semantic normalization
+    return semantic_normalization.get(titled, titled)
+
 data_name_mapping = {
     'aeroplane':'aeroplane.txt',
     'UK-visitor-numbers':'UK-visitor-numbers.csv',
