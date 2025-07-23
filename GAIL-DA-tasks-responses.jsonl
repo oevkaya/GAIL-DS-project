@@ -3,7 +3,7 @@
 {"id": 0, "question": "How many tourist attractions are there in the data set?", 
 "concepts": ["Data understanding"], 
 "format": "@count_visitor[count_visitor_value] where \"count_visitor_value\" is given in integer format.",
-"file_name": "UK-visitor-numbers.csv", "level": "easy"
+"file_name": "UK-visitor-numbers.csv", "level": "easy",
 "common_answers": [["count_visitor_value", "348"]]}
 
 {"id": 1, "question": "Which attraction had the most number of visitors in 2022?", 
@@ -125,7 +125,12 @@
 "file_name": "instructional-staff.csv", "level": "easy",
  "common_answers": [
    ["staff_long", 
+<<<<<<< Updated upstream
     "staff_long <- instructional-staff %>% pivot_longer(cols = c(\"1975\", \"1989\", \"1993\", \"1995\", \"1999\", \"2001\", \"2003\", \"2005\", \"2007\", \"2009\", \"2011\"), names_to = \"year\", values_to = \"percent\")"
+=======
+    "staff_long <- instructional-staff %>% pivot_longer(cols = c(\"1975\", \"1989\", \"1993\", \"1995\",\"1999\", \"2001\", \"2003\", \"2005\", \"2007\", \"2009\" ,\"2011\")), 
+    names_to = 'year', values_to = 'percent')"
+>>>>>>> Stashed changes
    ],
    ["instructional_staff_employment_trends_plot",
      "instructional_staff_employment_trends_plot <- ggplot(data = staff_long, mapping = aes(x = year, y = percent, colour = faculty_type)) + geom_point()"
@@ -192,7 +197,7 @@
 "common_answers":
 ["gmean_function", 
     "gmean_function <- function(x){ xbar_g <- exp(mean(log(x)));
-return(xbar_g)"}
+return(xbar_g)"
 ]
 }
 
@@ -303,14 +308,14 @@ In this model, it doesn’t, because we haven’t fitted an interaction effects 
 If so, we filter them out and save the new dataset as weather_noNA", 
 "concepts": ["Data Transformation and Exploration"], "format": "@weather_noNA_new_data[weather_noNA_new_data] where \"weather_noNA_new_data\" is a new data set after applying the requested steps", 
 "file_name": "weatherAUS.csv", "level": "easy", 
-"common_answers": [["weather_noNA_new_data", "Yes, there are 3267 missing cases in weather. The remainig number of observations in weather_noNA are 142193."]
+"common_answers": ["weather_noNA_new_data", "Yes, there are 3267 missing cases in weather. The remainig number of observations in weather_noNA are 142193."]
 }
 
 {"id": 28, "question": "Try to predict RainTomorrow by fitting a linear regression for Portland city using the variable RainToday and print the output using tidy().
 For each point in our dataset, what are the fitted probabilities that tomorrow it’s going to rain?", 
 "concepts": ["Logistic Regression Model"], "format": "@RainTomorrow_logistic_model[RainTomorrow_logistic_model] where \"RainTomorrow_logistic_model\" is a fitted logistic model and related calculated probabilities", 
 "file_name": "weatherAUS.csv", "level": "medium", 
-"common_answers": [["RainTomorrow_logistic_model", "The predictive probability for each day can only take two values: 0.2542194 or 0.5634191. 
+"common_answers": ["RainTomorrow_logistic_model", "The predictive probability for each day can only take two values: 0.2542194 or 0.5634191. 
 This is due to the fact that the only explanatory variable RainToday is a categorical variable with two levels, so the two probabilities correspond to whether it was raining on that day or not."]
 }
 
@@ -497,7 +502,7 @@ What does the frequency table suggest? Is the council targeting all neighborhood
 ]
 }
 
-{"id": 34, "question": "Create the histogram for the runners of the \"10 Mile"\ event. Describe the overall shape of the histogram. 
+{"id": 34, "question": "Create the histogram for the runners of the \"10 Mile\" event. Describe the overall shape of the histogram. 
 What does this suggest about the structure of the age distribution of the runners? 
 Calculate some simple summary statistics to support your comments.", 
 "concepts": ["Data Visualization-Summary"], "format": "@histogram_10mile_summary_stats[histogram_10mile_summary_stats] where \"histogram_10mile_summary_stats\" is the created histogram and additional summary statistics", 
