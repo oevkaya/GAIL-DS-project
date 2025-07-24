@@ -160,23 +160,23 @@ def main(args):
 
         # item.code_execute 
     #-----add text similarity
-    id_jaccard_values = {}
+    # id_jaccard_values = {}
 
-    for Q in range(args.Q_num):
-        id_jaccard_values[args.Qs[Q]] = compute_similarity(outmetrics, args.Qs[Q], 'Jaccard')
+    # for Q in range(args.Q_num):
+    #     id_jaccard_values[args.Qs[Q]] = compute_similarity(outmetrics, args.Qs[Q], 'Jaccard')
 
 
-    for item in outmetrics:
-       id_, round_ = item.id, item.round 
+    # for item in outmetrics:
+    #    id_, round_ = item.id, item.round 
 
-       if id_ in id_jaccard_values: #and round_ in id_jaccard_values[id_]:
-          item.Similarity_Jaccard = id_jaccard_values[id_][round_]
-       else:
-          item.Similarity_Jaccard = None 
+    #    if id_ in id_jaccard_values: #and round_ in id_jaccard_values[id_]:
+    #       item.Similarity_Jaccard = id_jaccard_values[id_][round_]
+    #    else:
+    #       item.Similarity_Jaccard = None 
 
-    with open(args.outfile, "w", encoding="utf-8") as f:
-        for item in outmetrics:
-           f.write(json.dumps(vars(item), ensure_ascii=False)+"\n")
+    # with open(args.outfile, "w", encoding="utf-8") as f:
+    #     for item in outmetrics:
+    #        f.write(json.dumps(vars(item), ensure_ascii=False)+"\n")
 
     os.remove(args.infile)
 

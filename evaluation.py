@@ -22,7 +22,7 @@ input_metrics='Simulations/metrics/input_metrics.jsonl'
 # Load the input of question file
 question_input = format_namespace('GAIL-DA-tasks-questions-clean.jsonl')
 
-Qs = [27,28,29,30,30.0,30.1,30.2,72]
+Qs = [27,28,29,72]
 # data = format_namespace('question.jsonl')
 # set_datasets = set([val.file_name for val in data])
 
