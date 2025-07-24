@@ -1,36 +1,44 @@
-from llmds.params import load_params, input_dataset, data_name_mapping
+from llmds.params import format_namespace, data_name_mapping, call_question_by_ids, fileid_name_mapping
+from llmds.params import csv_to_text
 # from llmds.dm import input_dataset
-from llmds.scripts.evaluation import format_namespace
+# from llmds.scripts.evaluate import format_namespace
 from llmds.scripts.automation import multi_round_assistant, sequential_question_assistant
 
-import tiktoken
 import json
 import os
 import time
 from openai import OpenAI
+import argparse
+from types import SimpleNamespace
 
 # Required parameters
-model_choice = "gpt-4o"
-tem = 1.0
+# model = "gpt-4o"
+# temperature = 1.0
 instruction = """
   You are a specialized assistant for iterative data‐science tasks. Every time the user asks a question or provides data.
   Answer each question.
   You will return a JSON object with one key: `"outcome"`, which is a string or JSON array describing the results.
   """
 
-dataname = 'instructional-staff'
-filename = data_name_mapping[dataname]
-file_id = 'file-5riwCDAHXme7U6mfNZwCLe'
+# dataname = 'ggplot::diamonds'
+# filename = data_name_mapping[dataname]
+# file_id = 'file-Tqk79Wvgu7KSkC1WKtpGAb'
 
-# data = load_params("GAIL-DA-tasks-questions.jsonl")
-data = format_namespace('GAIL-DA-tasks-questions-clean.jsonl')
+# dataname = 'laptop_data_cleaned'
+# filename = data_name_mapping[dataname]
+# file_id = 'file-NoWy6mgGZpqszQtXdyd2Ys'
 
-set_datasets = set([val.file_name for val in data])
+# # data = load_params("GAIL-DA-tasks-questions.jsonl")
+# data = format_namespace('GAIL-DA-tasks-questions-clean.jsonl')
 
-inputs = {}
-for dataset in set_datasets:
+# set_datasets = set([val.file_name for val in data])
 
-    inputs[dataset] = input_dataset(data,dataset)
+# inputs = {}
+# for dataset in set_datasets:
+
+#     inputs[dataset] = input_dataset(data,dataset)
+
+# dinput = inputs[filename]
 
 # Generate the metrics from the input set of DS questions. 
 #compute_input_metrics(data,"Simulations/metrics/input.jsonl",model_choice)
@@ -42,45 +50,126 @@ client=OpenAI(
     api_key=openai_key
 )
 
-dinput = inputs[filename]
-outfolder = f'Simulations/output/{dataname}'
+
+
+# outfolder = f'Simulations/output/{dataname}'
 
 # Setup for multiple questions specific to one dataset
-# Qs = [34,35]
-# Ns = [91,80]
-# ks = [100 - n for n in Ns]
+# Qs = [73,74]
+# ks = [36,0]
+# Ns = [100 - n for n in ks]
+
+# content_set = call_question_by_ids(data,Qs)
+
+# content_set = [
+#   "Create a plotting instructional staff employment trends as a dot plot"
+# ]
 
 # Setup for sequential questions specific to one dataset
-Q_id = 14
-Qs = [14,14.1,14.2]
-N = 30
-ks = 20
+# Q_id = 48
+# Qs = [0,1]
+# ks = 65
+# N = 100-ks
+
 
 
 #---------------create an assistant---------------
-assistant = client.beta.assistants.create (
-  name = "Question and Code Assistant",
-  instructions =instruction,
-  model = model_choice,
-  tools = [{'type': 'code_interpreter'}],
-  temperature=tem,
-  tool_resources={ 
-    'code_interpreter': {
-      'file_ids': [file_id]
-      }
-  })
+# assistant = client.beta.assistants.create (
+#   name = "Question and Code Assistant",
+#   instructions =instruction,
+#   model = model,
+#   tools = [{'type': 'code_interpreter'}],
+#   temperature=temperature,
+#   tool_resources={ 
+#     'code_interpreter': {
+#       'file_ids': [file_id]
+#       }
+#   })
 
-assistant_id = assistant.id
+# assistant_id = assistant.id
 
 
 # Run for different temperatures:
 # for tem in [0.5,1,5]:
 #     assistant_id = multi_round_assistant(client,Qs,dinput,model_choice,file_id,Ns,outfolder,ks,tem)   
 
-# assistant_id = multi_round_assistant(client,assistant_id,Qs,dinput,Ns,outfolder,ks) 
+# assistant_id = multi_round_assistant(client,assistant_id,Qs,content_set,Ns,outfolder,ks) 
 
 # assistant_id = multi_round_assistant(client,Qs,dinput,"gpt-4o-mini",file_id,Ns,f'Simulations/output/{dataname}/others3',ks,1.0) 
 
-assistant_id = sequential_question_assistant(client,assistant_id,Q_id,Qs,dinput,N,outfolder,ks)
+# assistant_id = sequential_question_assistant(client,assistant_id,Q_id,Qs,content_set,N,outfolder,ks)
 
-client.beta.assistants.delete(assistant_id)
+# client.beta.assistants.delete(assistant_id)
+
+
+# def get_commands(problem, args):
+#   """ Gets list of commands to reproduce experiements. """
+#   cmds = []
+  
+
+# def main(args):
+#   """ Get commands and execute them sequentially """
+
+def main(args):
+  for dataname in args.datanames:
+    for model in args.models:
+      for temperature in args.temperatures:
+
+        filename = data_name_mapping[dataname]
+        file_id = fileid_name_mapping[dataname]
+        outfolder = f'Simulations/output/{dataname}/Q{args.Qs[0]}_{model.replace("-","_")}_{temperature}'
+        if not os.path.exists(outfolder):
+          os.makedirs(outfolder, exist_ok=True)
+
+        content_set = call_question_by_ids(args.data,args.Qs)
+        if args.with_code_interpreter: 
+          #-----------create an assistant with code interpreter---------------
+          assistant = client.beta.assistants.create (
+            name = "Question and Code Assistant",
+            instructions =instruction,
+            model = model,
+            tools = [{'type': 'code_interpreter'}],
+            temperature=temperature,
+            tool_resources={ 
+              'code_interpreter': {
+              'file_ids': [file_id]
+              }
+          })
+        else:
+          #-----------create an assistant without code interpreter---------------
+          assistant = client.beta.assistants.create (
+            name = "Question and Code Assistant",
+            instructions =instruction,
+            model = model,
+            tools = [{'type': 'file_search'}],
+            temperature=temperature,
+            tool_resources={
+            'file_search': {"vector_store_ids": [args.vector_store_id]}}
+          )
+
+        assistant_id = assistant.id
+        if not args.sequential:# If questions are independent:
+          assistant_id = multi_round_assistant(client,assistant_id,args.Qs,content_set,outfolder,args.ks,args.K) 
+        else: # If questions are sequential:
+          assistant_id = sequential_question_assistant(client,assistant_id,args.Qs,content_set,outfolder,args.ks,args.K)
+
+        client.beta.assistants.delete(assistant_id)
+
+
+if __name__ == "__main__":
+  parser = argparse.ArgumentParser(description="Run experiment groups with assistants.")
+  
+  args = SimpleNamespace(
+    data=format_namespace('GAIL-DA-tasks-questions-clean.jsonl'),
+    datanames=['evals'],
+    models=["gpt-4.1-mini"],
+    temperatures=[1.0],
+    Qs=[26,26.1],
+    sequential=True,
+    with_code_interpreter=False,
+    vector_store_id='vs_6881c6c49494819185527bbb078f62b3',
+    ks=0,
+    K=100
+  )
+
+  main(args)

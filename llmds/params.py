@@ -1,4 +1,5 @@
 import json
+import csv
 from types import SimpleNamespace
 
 def load_params(jsonl_path: str):
@@ -63,7 +64,7 @@ def format_namespace(path):
 
 
 def smart_title(s):
-
+    """Format the concepts, capitalizing the initials """
     exceptions = {"EDA", "CI", "PCA", "Lasso"}
 
     semantic_normalization = {
@@ -91,6 +92,23 @@ def smart_title(s):
 
     # Apply semantic normalization
     return semantic_normalization.get(titled, titled)
+
+def csv_to_text(csv_path, txt_path):
+    """(Used for file search) As csv files are not supported by vector store,
+    we need to convert to txt for data loading. """
+    with open(csv_path, newline='', encoding='utf-8') as csvfile:
+        reader = csv.reader(csvfile)
+        rows = list(reader)
+
+    # Format rows into readable text
+    lines = []
+    header = rows[0]
+    for row in rows[1:]:
+        line = ", ".join(f"{h.strip()}: {v.strip()}" for h, v in zip(header, row))
+        lines.append(line)
+
+    with open(txt_path, "w", encoding="utf-8") as txtfile:
+        txtfile.write("\n".join(lines))
 
 data_name_mapping = {
     'aeroplane':'aeroplane.txt',

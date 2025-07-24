@@ -112,9 +112,12 @@ def dict_contains(container, sub):
                 return False
     return True
 
-def find_lines_with_features(text, features):
+def find_lines_with_features(text, features, tail_lines=3):
+    lines = [line.strip() for line in text.strip().splitlines() if line.strip()]
+    tail = lines[-tail_lines:] 
+
     matches = []
-    for line in text.splitlines():
+    for line in tail:
         if any(line_contains_feature(line, f) for f in features):
             matches.append(line)
     return matches
@@ -152,8 +155,10 @@ def main(args):
 
         item.complete_ratio = status_mapping[item.status] if item.status in status_mapping else None 
         
-        # item.accuracy = 1 if find_lines_with_features(item.reasoning[-1],item.GT) else 0
+        if hasattr(item, 'common_answers'): 
+           item.accuracy = 1 if find_lines_with_features(item.reasoning,item.common_answers) else 0
 
+        # item.code_execute 
     #-----add text similarity
     id_jaccard_values = {}
 

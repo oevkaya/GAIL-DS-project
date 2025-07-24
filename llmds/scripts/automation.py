@@ -4,12 +4,12 @@ import time
 from openai import OpenAI
 import numpy as np
 
-def multi_round_assistant(client,assistant_id,Qs,content_set,path,ks,file_id=False):
+def multi_round_assistant(client,assistant_id,Qs,content_set,path,ks,K,file_id=False):
   """Run multi-round experiments on each question of the dataset
   """
 #   Qs = dinput['ids']; 
   Q_num = len(Qs)
-  Ns = [100 - n for n in ks]
+  Ns = [K - n for n in ks]
   # content_set = dinput['questions']
 
   #---------------create an assistant---------------
@@ -113,12 +113,12 @@ def multi_round_assistant(client,assistant_id,Qs,content_set,path,ks,file_id=Fal
   
   return assistant_id
 
-def sequential_question_assistant(client,assistant_id,Qs,content_set,path,ks):
+def sequential_question_assistant(client,assistant_id,Qs,content_set,path,ks,K):
   
   Q_num = len(Qs)
   Q_id = Qs[0]
   # content_set = dinput['questions']
-  N = 100 - ks
+  N = K - ks
 
   # create an empty text file
   text_file = f"{path}/Q{Q_id}_multi.txt"
@@ -136,12 +136,8 @@ def sequential_question_assistant(client,assistant_id,Qs,content_set,path,ks):
     if k % 10 == 0:
       print(f"Round: {k}")
 
-    runtimes = np.zeros(Q_num)
+    # runtimes = np.zeros(Q_num)
 
-    # start_time = time.time()
-    # #------------------Create a thread for each question------------------
-    # thread = client.beta.threads.create()
-    # thread_id = thread.id
     for Q in range(Q_num):  
       start_time = time.time()
       #------------------Create a thread for each question------------------
@@ -169,35 +165,35 @@ def sequential_question_assistant(client,assistant_id,Qs,content_set,path,ks):
         time.sleep(10)
     
       #------------------Result------------------
-      runtimes[Q] = time.time() - start_time
+      runtime = time.time() - start_time
       status = run.status
       messages = client.beta.threads.messages.list(
         thread_id = thread_id,
       )
 
 
-    #------------------Result Extraction------------------
-    image_id = None
-    for message in reversed(list(messages)):
-      for content in message.content:
-        if content.type == 'image_file':
-          image_id = content.image_file.file_id
-          image_data = client.files.content(image_id)
-          image_data_bytes = image_data.read()
-            
-          with open(f"{image_folder}/{Q}_{k+ks}.png", "wb") as file:
-            file.write(image_data_bytes)
-
-          
-    with open(text_file, "a", encoding="utf-8") as f:
-      f.write("-"*100)
-      f.write(f"\nRound {k+ks} with thread_id: {thread.id}\n")
-      f.write(f"\nimage_id: {Q}_{image_id}\n")
-      f.write(f"\nStatus: {status}, Runtime: {runtimes}\n")
-
+      #------------------Result Extraction------------------
+      image_id = None
       for message in reversed(list(messages)):
         for content in message.content:
-           if content.type == 'text':             
+          if content.type == 'image_file':
+            image_id = content.image_file.file_id
+            image_data = client.files.content(image_id)
+            image_data_bytes = image_data.read()
+            
+            with open(f"{image_folder}/{Q}_{k+ks}.png", "wb") as file:
+              file.write(image_data_bytes)
+
+          
+      with open(text_file, "a", encoding="utf-8") as f:
+        f.write("-"*100)
+        f.write(f"\nRound {k+ks} with thread_id: {thread.id}\n")
+        f.write(f"\nimage_id: {Q}_{image_id}\n")
+        f.write(f"\nStatus: {status}, Runtime: {runtime}\n")
+
+        for message in reversed(list(messages)):
+          for content in message.content:
+            if content.type == 'text':             
              f.write("-"*50)
              f.write(f"\nRole: {message.role}\n")
              f.write(f"\n{content.text.value}\n\n")

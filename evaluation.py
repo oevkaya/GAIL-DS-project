@@ -13,7 +13,7 @@ from types import SimpleNamespace
 temperature = '1'
 model = "gpt-4o"
 model_name = model.replace("-","_")
-outpath = "Simulations/metrics"
+outpath = f"Simulations/metrics_weatherAUS"
 
 datanames = data_name_mapping.keys()
 filenames = data_name_mapping.values()
@@ -22,7 +22,7 @@ input_metrics='Simulations/metrics/input_metrics.jsonl'
 # Load the input of question file
 question_input = format_namespace('GAIL-DA-tasks-questions-clean.jsonl')
 
-Qs = [27,28,29,30,72]
+Qs = [27,28,29,30,30.0,30.1,30.2,72]
 # data = format_namespace('question.jsonl')
 # set_datasets = set([val.file_name for val in data])
 
@@ -40,8 +40,8 @@ for dataname in ['weatherAUS']:
         modelname=model_name,
         temperature=temperature,
         input_folder = f'Simulations/output/{dataname}',
-        path='Simulations/metrics',
-        input=input,
+        path=outpath,
+        # input=input_metrics,
         question_input=question_input
     )
 
@@ -50,9 +50,9 @@ for dataname in ['weatherAUS']:
     args2 = SimpleNamespace(
         input=input_metrics,
         model=model,
-        infile=f'Simulations/metrics/{dataname}0_{model_name}_{temperature}.jsonl',
+        infile=f'{outpath}/{dataname}0_{model_name}_{temperature}.jsonl',
         dataname=dataname,
-        outfile=f'Simulations/metrics/{dataname}_{model_name}_{temperature}.jsonl',
+        outfile=f'{outpath}/{dataname}_{model_name}_{temperature}.jsonl',
         Qs=Qs,
         Q_num=len(Qs)
     )
