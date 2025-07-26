@@ -29,6 +29,140 @@ results = {
 }
 
 print(results)
+
+
+import pandas as pd
+from scipy import stats
+
+# Load the data
+file_path = '/mnt/data/file-FHyy5e9YWtULzwBXJ5gC8Y'
+data = pd.read_csv(file_path, sep="\t")
+
+# Rename columns for readability
+data.columns = ['Throw1', 'Throw2']
+
+# Convert the columns to numeric values
+data['Throw1'] = pd.to_numeric(data['Throw1'])
+data['Throw2'] = pd.to_numeric(data['Throw2'])
+
+# Perform a paired t-test
+t_stat, p_value = stats.ttest_rel(data['Throw1'], data['Throw2'])
+
+# Determine the conclusion
+alpha = 0.05
+if p_value < alpha:
+    conclusion = "Reject the null hypothesis: There is a significant difference in the means of first and second throw distances."
+else:
+    conclusion = "Fail to reject the null hypothesis: There is no significant difference in the means of first and second throw distances."
+
+results = {
+    "t_statistic": t_stat,
+    "p_value": p_value,
+    "conclusion": conclusion
+}
+
+results
+
+
+import pandas as pd
+from scipy import stats
+
+# Load the data
+file_path = '/mnt/data/file-FHyy5e9YWtULzwBXJ5gC8Y'
+
+# Manually split the data into two columns
+data = pd.read_csv(file_path, header=None, skiprows=1, names=['Throw1', 'Throw2'])
+data[['Throw1', 'Throw2']] = data[0].str.split('\t', expand=True)
+
+# Convert columns to numeric values
+data['Throw1'] = pd.to_numeric(data['Throw1'])
+data['Throw2'] = pd.to_numeric(data['Throw2'])
+
+# Perform a paired t-test
+t_stat, p_value = stats.ttest_rel(data['Throw1'], data['Throw2'])
+
+# Determine the conclusion
+alpha = 0.05
+if p_value < alpha:
+    conclusion = "Reject the null hypothesis: There is a significant difference in the means of first and second throw distances."
+else:
+    conclusion = "Fail to reject the null hypothesis: There is no significant difference in the means of first and second throw distances."
+
+results = {
+    "t_statistic": t_stat,
+    "p_value": p_value,
+    "conclusion": conclusion
+}
+
+results
+
+
+import pandas as pd
+from scipy import stats
+
+# Load the data
+file_path = '/mnt/data/file-FHyy5e9YWtULzwBXJ5gC8Y'
+
+# Read the file and clean up the data by splitting on the tab character
+data = pd.read_csv(file_path, sep='\n', header=None)
+
+# Manually separate columns using the tab character
+data[['Throw1', 'Throw2']] = data[0].str.split('\t', expand=True)
+
+# Convert columns to numeric values
+data['Throw1'] = pd.to_numeric(data['Throw1'])
+data['Throw2'] = pd.to_numeric(data['Throw2'])
+
+# Perform a paired t-test
+t_stat, p_value = stats.ttest_rel(data['Throw1'], data['Throw2'])
+
+# Determine the conclusion
+alpha = 0.05
+if p_value < alpha:
+    conclusion = "Reject the null hypothesis: There is a significant difference in the means of first and second throw distances."
+else:
+    conclusion = "Fail to reject the null hypothesis: There is no significant difference in the means of first and second throw distances."
+
+results = {
+    "t_statistic": t_stat,
+    "p_value": p_value,
+    "conclusion": conclusion
+}
+
+results
+
+
+import pandas as pd
+from scipy import stats
+
+# Load data as a plain text and then process
+file_path = '/mnt/data/file-FHyy5e9YWtULzwBXJ5gC8Y'
+
+# Read newline-separated data and then split with '\t'
+data = pd.read_csv(file_path, delimiter='\t', header=None)
+data.columns = ['Throw1', 'Throw2']
+
+# Convert the data columns to numeric values
+data['Throw1'] = pd.to_numeric(data['Throw1'])
+data['Throw2'] = pd.to_numeric(data['Throw2'])
+
+# Perform a paired t-test
+t_stat, p_value = stats.ttest_rel(data['Throw1'], data['Throw2'])
+
+# Determine the conclusion
+alpha = 0.05
+if p_value < alpha:
+    conclusion = "Reject the null hypothesis: There is a significant difference in the means of first and second throw distances."
+else:
+    conclusion = "Fail to reject the null hypothesis: There is no significant difference in the means of first and second throw distances."
+
+results = {
+    "t_statistic": t_stat,
+    "p_value": p_value,
+    "conclusion": conclusion
+}
+
+results
 ##################################################
 #Question 57, Round 1 with threat_id: thread_MqsDJ6fMaPefRcOKeaZ4NyYn
 # Load our data
@@ -39,6 +173,113 @@ df = pd.read_excel('/mnt/data/file-FHyy5e9YWtULzwBXJ5gC8Y')
 
 # Check the first few rows of the dataframe to understand its structure
 df.head()
+
+
+# Attempt to read the data as a CSV
+df = pd.read_csv('/mnt/data/file-FHyy5e9YWtULzwBXJ5gC8Y')
+
+# Again, check the first few rows of the dataframe to understand its structure
+df.head()
+
+
+# Re-attempt to read the data as a tab-separated file
+df = pd.read_csv('/mnt/data/file-FHyy5e9YWtULzwBXJ5gC8Y', sep='\t')
+
+# Check the corrected structure of the dataframe
+df.head()
+
+
+from scipy import stats
+
+# Extract the two columns for the paired t-test
+throw1 = df['first']
+throw2 = df['second']
+
+# Perform paired t-test
+t_stat, p_value = stats.ttest_rel(throw1, throw2)
+
+outcome = {
+    "Paired T-Test": {
+        "t_statistic": t_stat,
+        "p_value": p_value,
+        "Conclusion": "Reject null hypothesis" if p_value < 0.05 else "Fail to reject null hypothesis"
+    }
+}
+
+outcome
+
+
+# Re-attempt to read the data with the first row as the header
+df = pd.read_csv('/mnt/data/file-FHyy5e9YWtULzwBXJ5gC8Y', sep='\t', header=None)
+
+# Assign column names
+df.columns = ['first', 'second']
+
+# Extract the two columns for the paired t-test
+throw1 = df['first']
+throw2 = df['second']
+
+# Perform paired t-test
+t_stat, p_value = stats.ttest_rel(throw1, throw2)
+
+outcome = {
+    "Paired T-Test": {
+        "t_statistic": t_stat,
+        "p_value": p_value,
+        "Conclusion": "Reject null hypothesis" if p_value < 0.05 else "Fail to reject null hypothesis"
+    }
+}
+
+outcome
+
+
+# Re-attempt with whitespace delimiter
+df = pd.read_csv('/mnt/data/file-FHyy5e9YWtULzwBXJ5gC8Y', delim_whitespace=True, header=None)
+
+# Assign column names
+df.columns = ['first', 'second']
+
+# Perform paired t-test
+throw1 = df['first']
+throw2 = df['second']
+
+# Perform paired t-test
+t_stat, p_value = stats.ttest_rel(throw1, throw2)
+
+outcome = {
+    "Paired T-Test": {
+        "t_statistic": t_stat,
+        "p_value": p_value,
+        "Conclusion": "Reject null hypothesis" if p_value < 0.05 else "Fail to reject null hypothesis"
+    }
+}
+
+outcome
+
+
+# Clean up the data and ensure it's numeric
+df['first'] = pd.to_numeric(df['first'], errors='coerce')
+df['second'] = pd.to_numeric(df['second'], errors='coerce')
+
+# Drop any rows with NaN values that resulted from coercion
+df.dropna(inplace=True)
+
+# Perform paired t-test
+throw1 = df['first']
+throw2 = df['second']
+
+# Perform paired t-test
+t_stat, p_value = stats.ttest_rel(throw1, throw2)
+
+outcome = {
+    "Paired T-Test": {
+        "t_statistic": t_stat,
+        "p_value": p_value,
+        "Conclusion": "Reject null hypothesis" if p_value < 0.05 else "Fail to reject null hypothesis"
+    }
+}
+
+outcome
 ##################################################
 #Question 57, Round 2 with threat_id: thread_UFp5vHEGjGYahtzIqrQrVF8U
 import pandas as pd
@@ -201,6 +442,30 @@ else:
     outcome = "Fail to reject the null hypothesis: There is no significant difference between the means of the first and second throws."
 
 outcome
+
+
+import pandas as pd
+from scipy.stats import ttest_rel
+
+# Load and fix the data
+file_path = '/mnt/data/file-FHyy5e9YWtULzwBXJ5gC8Y'
+data = pd.read_csv(file_path, sep="\t")
+
+# Extract the two series for analysis
+first_throw = data['first']
+second_throw = data['second']
+
+# Perform a paired sample t-test
+t_statistic, p_value = ttest_rel(first_throw.astype(float), second_throw.astype(float))
+
+# Interpretation
+outcome = []
+if p_value < 0.05:
+    outcome = "Reject the null hypothesis: There is a significant difference between the means of the first and second throws."
+else:
+    outcome = "Fail to reject the null hypothesis: There is no significant difference between the means of the first and second throws."
+
+outcome
 ##################################################
 #Question 57, Round 20 with threat_id: thread_l9uQXbQNilgIoxD7mWzeW96Z
 import pandas as pd
@@ -250,6 +515,83 @@ throw2 = data['Throw2']
 t_stat, p_value = stats.ttest_rel(throw1, throw2)
 
 # Display the results
+{
+    "t_statistic": t_stat,
+    "p_value": p_value
+}
+
+
+# Load the data with the correct delimiter
+data = pd.read_csv(file_path, sep='\t')
+
+# Display the first few rows of the dataset
+print(data.head())
+
+# Assuming the dataset contains columns 'first' and 'second'
+# which represent the distances of the first and second throws.
+throw1 = data['first']
+throw2 = data['second']
+
+# Conduct a paired t-test
+t_stat, p_value = stats.ttest_rel(throw1, throw2)
+
+# Display the results
+{
+    "t_statistic": t_stat,
+    "p_value": p_value
+}
+
+
+import numpy as np
+
+# Convert the columns to numeric, handle errors by coercing to NaN
+data['first'] = pd.to_numeric(data['first'], errors='coerce')
+data['second'] = pd.to_numeric(data['second'], errors='coerce')
+
+# Get the series for first and second throws
+throw1 = data['first']
+throw2 = data['second']
+
+# Remove any pairs where either throw value is NaN
+mask = ~np.isnan(throw1) & ~np.isnan(throw2)
+clean_throw1 = throw1[mask]
+clean_throw2 = throw2[mask]
+
+# Perform the paired t-test
+t_stat, p_value = stats.ttest_rel(clean_throw1, clean_throw2)
+
+# Output the t-statistic and p-value
+{
+    "t_statistic": t_stat,
+    "p_value": p_value
+}
+
+
+# Assuming there isn't a header, let's manually create a DataFrame
+# Read in the data again, treating everything as text
+data_raw = pd.read_csv(file_path, sep='\t', header=None, dtype=str)
+
+# Manually split the columns and convert to numeric
+data_split = data_raw[0].str.extract(r'([\d\.]+)\s+([\d\.]+)')
+data_split.columns = ['first', 'second']
+
+# Convert the columns to numeric
+data_split['first'] = pd.to_numeric(data_split['first'], errors='coerce')
+data_split['second'] = pd.to_numeric(data_split['second'], errors='coerce')
+
+# Conduct a paired t-test
+throw1 = data_split['first']
+throw2 = data_split['second']
+
+# Exclude NaN entries for the test
+mask = ~np.isnan(throw1) & ~np.isnan(throw2)
+clean_throw1 = throw1[mask]
+clean_throw2 = throw2[mask]
+
+# Perform the paired t-test
+t_stat, p_value = stats.ttest_rel(clean_throw1, clean_throw2)
+
+# Provide the output
 {
     "t_statistic": t_stat,
     "p_value": p_value
@@ -321,6 +663,34 @@ else:
     conclusion = "Fail to reject the null hypothesis. There is no significant difference between the two throws."
 
 {"t-statistic": t_stat, "p-value": p_value, "conclusion": conclusion}
+
+
+import pandas as pd
+from scipy.stats import ttest_rel
+
+# Load the dataset with the correct delimiter
+file_path = '/mnt/data/file-FHyy5e9YWtULzwBXJ5gC8Y'
+data = pd.read_csv(file_path, sep='\t')
+
+# Display the first few rows to confirm the correct structure
+print(data.head())
+
+# Assuming the column names are 'first' and 'second'
+# Extract the columns corresponding to the first and second throws
+first_throw = data['first']
+second_throw = data['second']
+
+# Conduct a paired t-test
+t_stat, p_value = ttest_rel(first_throw, second_throw)
+
+# Interpret the results
+alpha = 0.05
+if p_value < alpha:
+    conclusion = "Reject the null hypothesis. There is a significant difference between the two throws."
+else:
+    conclusion = "Fail to reject the null hypothesis. There is no significant difference between the two throws."
+
+{"t-statistic": t_stat, "p-value": p_value, "conclusion": conclusion}
 ##################################################
 #Question 57, Round 31 with threat_id: thread_dwZIe6qTcEqNslqeKRSYkvWm
 import pandas as pd
@@ -376,6 +746,69 @@ print(data.head())
 # Assuming the columns are named 'Throw1' and 'Throw2'
 # Perform the paired t-test
 t_statistic, p_value = ttest_rel(data['Throw1'], data['Throw2'])
+
+{
+    "outcome": {
+        "t_statistic": t_statistic,
+        "p_value": p_value
+    }
+}
+
+
+# Load the data with tab separator
+data = pd.read_csv(file_path, sep='\t')
+
+# Display the first few rows to confirm it's loaded correctly
+print(data.head())
+
+# Perform the paired t-test now that we have the correct data
+from scipy.stats import ttest_rel
+
+# Assuming the columns are named 'first' and 'second'
+t_statistic, p_value = ttest_rel(data['first'], data['second'])
+
+{
+    "outcome": {
+        "t_statistic": t_statistic,
+        "p_value": p_value
+    }
+}
+
+
+# Reload the data with tab separator and ensuring column names are clean
+data = pd.read_csv(file_path, sep='\t')
+data.columns = data.columns.str.strip()  # Strip any whitespace from the column names
+
+# Display the initial few rows to verify
+print(data.head())
+print("Column Names:", data.columns)
+
+# Perform the paired t-test
+from scipy.stats import ttest_rel
+
+# Conduct the paired t-test using the data
+t_statistic, p_value = ttest_rel(data[data.columns[0]], data[data.columns[1]])
+
+{
+    "outcome": {
+        "t_statistic": t_statistic,
+        "p_value": p_value
+    }
+}
+
+
+# Reload the data with spaces or tabs as potential separators
+data = pd.read_csv(file_path, delim_whitespace=True)
+
+# Display the initial few rows to verify proper loading
+print(data.head())
+print("Column Names:", data.columns)
+
+# Perform the paired t-test
+from scipy.stats import ttest_rel
+
+# Conduct the paired t-test using the correct columns
+t_statistic, p_value = ttest_rel(data['first'], data['second'])
 
 {
     "outcome": {
@@ -910,6 +1343,56 @@ result = {
 }
 
 result
+
+
+import numpy as np
+import scipy.stats as stats
+
+# Load data from the file
+file_path = '/mnt/data/file-DhRy3Jz6Uf14jhYaoTwEiJ'
+data = []
+
+with open(file_path, 'r') as file:
+    next(file)  # Skip the header row
+    for line in file:
+        values = line.strip().split('\t')
+        data.append(float(values[0]))  # Add the first column values
+
+data = np.array(data)
+
+# Assumed population mean under the null hypothesis
+mu_0 = 10
+
+# Calculate the sample mean, standard deviation, and size
+sample_mean = np.mean(data)
+sample_std = np.std(data, ddof=1)
+n = len(data)
+
+# Calculate the test statistic
+t_statistic = (sample_mean - mu_0) / (sample_std / np.sqrt(n))
+
+# Calculate the p-value for the two-tailed test
+p_value = 2 * (1 - stats.t.cdf(np.abs(t_statistic), df=n-1))
+
+# Define significance level
+alpha = 0.05
+
+# Conclusion
+if p_value < alpha:
+    conclusion = "Reject the null hypothesis. There is significant evidence that the mean is not 10."
+else:
+    conclusion = "Fail to reject the null hypothesis. There is not enough evidence to say the mean is not 10."
+
+result = {
+    "Sample Mean": sample_mean,
+    "Sample Std Dev": sample_std,
+    "Sample Size": n,
+    "T-statistic": t_statistic,
+    "P-value": p_value,
+    "Conclusion": conclusion
+}
+
+result
 ##################################################
 #Question 57, Round 75 with threat_id: thread_7ZcOiblQVQ5O4FEwhUO7DaP3
 import numpy as np
@@ -1289,6 +1772,44 @@ else:
     outcome = f"Fail to reject the null hypothesis. p-value: {p_value:.4f}, t-statistic: {t_statistic:.4f}"
 
 print(outcome)
+
+
+import numpy as np
+import pandas as pd
+from scipy import stats
+
+# Load and clean the data
+file_path = '/mnt/data/file-DhRy3Jz6Uf14jhYaoTwEiJ'
+data = pd.read_csv(file_path, sep='\t', names=['first', 'second'], skiprows=1)
+
+# Convert the 'first' column to numeric values
+data['first'] = pd.to_numeric(data['first'], errors='coerce')
+
+# Define null hypothesis mean
+mu_0 = 10
+
+# Calculate sample statistics
+n = len(data['first'])
+sample_mean = np.mean(data['first'])
+sample_std = np.std(data['first'], ddof=1)  # Use ddof=1 for sample std deviation
+
+# Calculate the test statistic
+t_statistic = (sample_mean - mu_0) / (sample_std / np.sqrt(n))
+
+# Degrees of freedom
+df = n - 1
+
+# Two-tailed test: calculate p-value
+p_value = 2 * stats.t.sf(np.abs(t_statistic), df)
+
+# Determine the conclusion at a significance level of 0.05
+alpha = 0.05
+if p_value < alpha:
+    outcome = f"Reject the null hypothesis. p-value: {p_value:.4f}, t-statistic: {t_statistic:.4f}"
+else:
+    outcome = f"Fail to reject the null hypothesis. p-value: {p_value:.4f}, t-statistic: {t_statistic:.4f}"
+
+print(outcome)
 ##################################################
 #Question 57, Round 89 with threat_id: thread_wjH0DVBGszwENQRGatFaoYqN
 import numpy as np
@@ -1644,6 +2165,113 @@ conclusion = "reject H0" if p_value < alpha else "fail to reject H0"
     "p_value": p_value,
     "conclusion": conclusion
 }
+
+
+import pandas as pd
+from scipy.stats import ttest_1samp
+
+# Load the data from the uploaded file without a header
+data_corrected = pd.read_csv(file_path, delimiter='\t', header=None)
+
+# Assuming the vector is in the first column
+# Changing 'first' to 0 since there's no header
+vector_data = data_corrected.iloc[:, 0]
+
+# Define the hypothesized population mean
+mu_0 = 10
+
+# Perform a one-sample t-test
+t_statistic, p_value = ttest_1samp(vector_data, mu_0)
+
+# Determine the conclusion
+alpha = 0.05
+conclusion = "reject H0" if p_value < alpha else "fail to reject H0"
+
+{
+    "t_statistic": t_statistic,
+    "p_value": p_value,
+    "conclusion": conclusion
+}
+
+
+import pandas as pd
+from scipy.stats import ttest_1samp
+
+# Load the data using the correct delimiter
+data_corrected = pd.read_csv(file_path, delimiter='\t', header=None)
+
+# Extract the first column data, assuming the correct use
+vector_data = pd.to_numeric(data_corrected[0], errors='coerce').dropna()
+
+# Define the hypothesized population mean
+mu_0 = 10
+
+# Perform a one-sample t-test
+t_statistic, p_value = ttest_1samp(vector_data, mu_0)
+
+# Determine the conclusion
+alpha = 0.05
+conclusion = "reject H0" if p_value < alpha else "fail to reject H0"
+
+{
+    "t_statistic": t_statistic,
+    "p_value": p_value,
+    "conclusion": conclusion
+}
+
+
+import numpy as np
+from scipy.stats import ttest_1samp
+
+# Process the raw data lines to extract the first column
+first_column_data = [line.split('\t')[0].strip() for line in raw_lines[1:]]
+
+# Convert the extracted data to a numeric format, ignoring invalid entries
+vector_data = np.array(first_column_data, dtype=np.float64)
+
+# Define the hypothesized population mean
+mu_0 = 10
+
+# Perform a one-sample t-test
+t_statistic, p_value = ttest_1samp(vector_data, mu_0)
+
+# Determine the conclusion
+alpha = 0.05
+conclusion = "reject H0" if p_value < alpha else "fail to reject H0"
+
+{
+    "t_statistic": t_statistic,
+    "p_value": p_value,
+    "conclusion": conclusion
+}
+
+
+import numpy as np
+from scipy.stats import ttest_1samp
+
+# Process the raw data lines to extract the first column, skipping the header
+first_column_data = [line.split('\t')[0].strip() for line in raw_lines[1:]]
+
+# Convert the extracted data to a numeric format, ignoring invalid entries
+vector_data = np.array(first_column_data, dtype=np.float64)
+
+# Define the hypothesized population mean
+mu_0 = 10
+
+# Perform a one-sample t-test
+t_statistic, p_value = ttest_1samp(vector_data, mu_0)
+
+# Set the significance level
+alpha = 0.05
+
+# Determine the conclusion
+conclusion = "reject H0" if p_value < alpha else "fail to reject H0"
+
+{
+    "t_statistic": t_statistic,
+    "p_value": p_value,
+    "conclusion": conclusion
+}
 ##################################################
 #Question 56, Round 6 with threat_id: thread_vXtWGIuWkNKRX1Bj2XXiCAzS
 import numpy as np
@@ -1738,6 +2366,51 @@ data = pd.read_csv(file_path, header=None)
 
 # Extract the first column for analysis
 vector = data[0]
+
+# Hypothesis test parameters
+mu_0 = 10
+
+# Sample statistics
+n = len(vector)
+sample_mean = np.mean(vector)
+sample_std = np.std(vector, ddof=1)
+
+# Calculate the test statistic
+t_statistic = (sample_mean - mu_0) / (sample_std / np.sqrt(n))
+
+# Degrees of freedom
+df = n - 1
+
+# Calculate the p-value
+p_value = 2 * stats.t.sf(np.abs(t_statistic), df)
+
+result = {
+    "Sample Mean": sample_mean,
+    "Sample Standard Deviation": sample_std,
+    "Test Statistic": t_statistic,
+    "Degrees of Freedom": df,
+    "P-Value": p_value
+}
+
+# Conduct the hypothesis test at alpha = 0.05 significance level
+alpha = 0.05
+if p_value < alpha:
+    result["Conclusion"] = "Reject the null hypothesis: µ is significantly different from 10."
+else:
+    result["Conclusion"] = "Fail to reject the null hypothesis: µ is not significantly different from 10."
+
+result
+
+
+import numpy as np
+import pandas as pd
+from scipy import stats
+
+# Load the data from the uploaded file with tab-separated values
+data = pd.read_csv(file_path, delimiter='\t')
+
+# Extract the first column for analysis
+vector = data['first']
 
 # Hypothesis test parameters
 mu_0 = 10
@@ -1928,6 +2601,43 @@ outcome = {
 }
 
 outcome
+
+
+# Load the data with the correct separator
+data = pd.read_csv(file_path, sep="\t")
+
+# Extract the first vector
+first_vector = data['first']
+
+# Parameters for hypothesis test
+mu_0 = 10  # Hypothesized mean
+
+# Compute the sample statistics
+n = len(first_vector)
+sample_mean = np.mean(first_vector)
+sample_std = np.std(first_vector, ddof=1)  # Sample standard deviation
+
+# Calculate the t-statistic
+t_statistic = (sample_mean - mu_0) / (sample_std / np.sqrt(n))
+
+# Calculate the p-value for a two-tailed test
+p_value = 2 * (1 - stats.t.cdf(np.abs(t_statistic), df=n-1))
+
+# Conduct the hypothesis test
+alpha = 0.05  # Significance level
+reject_null = p_value < alpha
+
+outcome = {
+    "n": n,
+    "sample_mean": sample_mean,
+    "sample_std": sample_std,
+    "t_statistic": t_statistic,
+    "p_value": p_value,
+    "alpha": alpha,
+    "reject_null": reject_null
+}
+
+outcome
 ##################################################
 #Question 56, Round 19 with threat_id: thread_VMLRN0JmT26Pl7zSswCfMdno
 import pandas as pd
@@ -1969,6 +2679,134 @@ outcome = {
 }
 
 outcome
+
+
+# We will read the data again, this time handling the tab-separated values
+data = pd.read_csv(file_path, delimiter="\t", header=None, names=["first", "second"])
+
+# Consider only the 'first' column for the test
+vector = data['first'].dropna()
+
+# Define the null hypothesis mean
+mu_0 = 10
+
+# Calculate the necessary statistics
+n = len(vector)
+sample_mean = np.mean(vector)
+sample_std = np.std(vector, ddof=1)  # ddof=1 for sample standard deviation
+
+# Calculate the t statistic
+t_statistic = (sample_mean - mu_0) / (sample_std / np.sqrt(n))
+
+# Calculate the p-value for a two-tailed test
+p_value = 2 * (1 - stats.t.cdf(np.abs(t_statistic), df=n-1))
+
+# Conduct the hypothesis test
+alpha = 0.05
+reject_null = p_value < alpha
+
+# Prepare the outcome
+outcome = {
+    "t_statistic": t_statistic,
+    "degrees_of_freedom": n - 1,
+    "p_value": p_value,
+    "reject_null": reject_null,
+    "conclusion": "Reject the null hypothesis" if reject_null else "Fail to reject the null hypothesis"
+}
+
+outcome
+
+
+# Re-read the data, and then extract and convert the columns correctly
+raw_data = pd.read_csv(file_path, header=None)
+
+# Check the first few characters of the data to try and identify the issue
+raw_data.head()
+
+# Split the data into two columns by assuming a fixed-width column format or find the delimiter
+raw_data = raw_data[0].str.extract(r'(?P<first>[0-9.]+)\s*(?P<second>[0-9.]+)')
+
+# Convert string data to numeric
+raw_data = raw_data.apply(pd.to_numeric, errors='coerce')
+
+# Consider only the 'first' column for the test
+vector = raw_data['first'].dropna()
+
+# Define the null hypothesis mean
+mu_0 = 10
+
+# Calculate the necessary statistics
+n = len(vector)
+sample_mean = np.mean(vector)
+sample_std = np.std(vector, ddof=1)  # ddof=1 for sample standard deviation
+
+# Calculate the t statistic
+t_statistic = (sample_mean - mu_0) / (sample_std / np.sqrt(n))
+
+# Calculate the p-value for a two-tailed test
+p_value = 2 * (1 - stats.t.cdf(np.abs(t_statistic), df=n-1))
+
+# Conduct the hypothesis test
+alpha = 0.05
+reject_null = p_value < alpha
+
+# Prepare the outcome
+outcome = {
+    "t_statistic": t_statistic,
+    "degrees_of_freedom": n - 1,
+    "p_value": p_value,
+    "reject_null": reject_null,
+    "conclusion": "Reject the null hypothesis" if reject_null else "Fail to reject the null hypothesis"
+}
+
+outcome
+
+
+import pandas as pd
+import numpy as np
+from scipy import stats
+
+# Re-read the data from the file with additional handling for column separation
+file_path = '/mnt/data/file-FHyy5e9YWtULzwBXJ5gC8Y'
+raw_data = pd.read_csv(file_path, header=None)
+
+# Regex extraction to get numerical data and handle formatting issues
+raw_data = raw_data[0].str.extract(r'(?P<first>[0-9.]+)\s*(?P<second>[0-9.]+)')
+
+# Convert to numeric, handling non-numeric as NaN
+raw_data = raw_data.apply(pd.to_numeric, errors='coerce')
+
+# Consider only the 'first' column for the test
+vector = raw_data['first'].dropna()
+
+# Define the null hypothesis mean
+mu_0 = 10
+
+# Calculate the necessary statistics
+n = len(vector)
+sample_mean = np.mean(vector)
+sample_std = np.std(vector, ddof=1)  # ddof=1 for sample standard deviation
+
+# Calculate the t statistic
+t_statistic = (sample_mean - mu_0) / (sample_std / np.sqrt(n))
+
+# Calculate the p-value for a two-tailed test
+p_value = 2 * (1 - stats.t.cdf(np.abs(t_statistic), df=n-1))
+
+# Conduct the hypothesis test
+alpha = 0.05
+reject_null = p_value < alpha
+
+# Prepare the outcome
+outcome = {
+    "t_statistic": t_statistic,
+    "degrees_of_freedom": n - 1,
+    "p_value": p_value,
+    "reject_null": reject_null,
+    "conclusion": "Reject the null hypothesis" if reject_null else "Fail to reject the null hypothesis"
+}
+
+print(outcome)
 ##################################################
 #Question 56, Round 20 with threat_id: thread_OKeDtjrjMcKxzW9cAQTAWZsb
 import pandas as pd
@@ -2026,6 +2864,41 @@ data = pd.read_csv(file_path)
 
 # Inspect the data to find the vector
 print(data.head())
+
+
+import numpy as np
+from scipy import stats
+
+# Extract the 'first' vector
+first_vector = data['first']
+
+# Define the null hypothesis mean
+mu_0 = 10
+
+# Calculate the sample mean, sample standard deviation, and sample size
+sample_mean = np.mean(first_vector)
+sample_std = np.std(first_vector, ddof=1)  # Using ddof=1 for sample standard deviation
+n = len(first_vector)
+
+# Calculate the t-statistic
+t_statistic = (sample_mean - mu_0) / (sample_std / np.sqrt(n))
+
+# Determine the critical t-value at a significance level (e.g., alpha = 0.05 for two-tailed)
+alpha = 0.05
+t_critical = stats.t.ppf(1 - alpha/2, df=n-1)
+
+# Print the results
+print("Sample Mean:", sample_mean)
+print("Sample Standard Deviation:", sample_std)
+print("Sample Size:", n)
+print("T-Statistic:", t_statistic)
+print("Critical T-Value:", t_critical)
+
+# Conclusion
+if abs(t_statistic) > t_critical:
+    print("Reject the null hypothesis: The sample provides sufficient evidence that the mean is not equal to 10.")
+else:
+    print("Fail to reject the null hypothesis: The sample does not provide sufficient evidence that the mean is different from 10.")
 ##################################################
 #Question 56, Round 33 with threat_id: thread_mJJQAIokJUtq8TcNkhp0byrH
 import numpy as np
@@ -2105,6 +2978,46 @@ import scipy.stats as stats
 
 # Load the data from the uploaded file and select the first vector
 data = np.loadtxt('/mnt/data/file-FHyy5e9YWtULzwBXJ5gC8Y')
+
+# Calculate sample mean and standard deviation
+sample_mean = np.mean(data)
+sample_std = np.std(data, ddof=1)  # ddof=1 for sample standard deviation
+n = len(data)
+
+# Null hypothesis mean
+mu_0 = 10
+
+# Calculate the test statistic
+T = (sample_mean - mu_0) / (sample_std / np.sqrt(n))
+
+# Calculate the p-value for two-tailed test
+p_value = 2 * (1 - stats.t.cdf(abs(T), df=n-1))
+
+# Significance level
+alpha = 0.05
+
+# Conclusion
+if p_value < alpha:
+    conclusion = "Reject the null hypothesis."
+else:
+    conclusion = "Fail to reject the null hypothesis."
+
+{
+    "outcome": {
+        "sample_mean": sample_mean,
+        "sample_std": sample_std,
+        "test_statistic": T,
+        "p_value": p_value,
+        "conclusion": conclusion
+    }
+}
+
+
+import numpy as np
+import scipy.stats as stats
+
+# Load the data from the first column, skipping the header
+data = np.loadtxt('/mnt/data/file-FHyy5e9YWtULzwBXJ5gC8Y', delimiter='\t', skiprows=1, usecols=0)
 
 # Calculate sample mean and standard deviation
 sample_mean = np.mean(data)
@@ -2242,6 +3155,41 @@ from scipy import stats
 
 # Load the data from the vector named 'first' in the file
 data = np.loadtxt('/mnt/data/file-FHyy5e9YWtULzwBXJ5gC8Y')
+
+# Parameters
+mu_0 = 10  # Hypothesized mean
+
+# Sample statistics
+n = len(data)
+mean_sample = np.mean(data)
+std_sample = np.std(data, ddof=1)  # Using sample standard deviation
+
+# Test statistic
+t_statistic = (mean_sample - mu_0) / (std_sample / np.sqrt(n))
+
+# p-value calculation (two-tailed test)
+p_value = 2 * (1 - stats.t.cdf(np.abs(t_statistic), df=n-1))
+
+# Hypothesis test
+alpha = 0.05  # Significance level
+
+# Print results
+print(f"Sample Mean: {mean_sample}")
+print(f"Sample Standard Deviation: {std_sample}")
+print(f"Test Statistic: {t_statistic}")
+print(f"P-value: {p_value}")
+
+if p_value < alpha:
+    print("Reject the null hypothesis.")
+else:
+    print("Fail to reject the null hypothesis.")
+
+
+import numpy as np
+from scipy import stats
+
+# Load the data from the file, focusing on the "first" column
+data = np.loadtxt('/mnt/data/file-FHyy5e9YWtULzwBXJ5gC8Y', delimiter='\t', skiprows=1, usecols=0)
 
 # Parameters
 mu_0 = 10  # Hypothesized mean
@@ -2595,6 +3543,82 @@ import scipy.stats as stats
 
 # Load the dataset from the file
 data = np.loadtxt('/mnt/data/file-DhRy3Jz6Uf14jhYaoTwEiJ')
+
+# Null hypothesis mean value
+mu_0 = 10
+
+# Sample statistics
+n = len(data)
+sample_mean = np.mean(data)
+sample_std = np.std(data, ddof=1)  # using ddof=1 for sample standard deviation
+
+# Test statistic calculation
+t_statistic = (sample_mean - mu_0) / (sample_std / np.sqrt(n))
+
+# Degrees of freedom
+df = n - 1
+
+# Two-tailed test
+alpha = 0.05  # significance level
+critical_value = stats.t.ppf(1 - alpha/2, df)
+
+# p-value calculation
+p_value = 2 * (1 - stats.t.cdf(abs(t_statistic), df))
+
+# Hypothesis test results
+result = {
+    "t_statistic": t_statistic,
+    "critical_value": critical_value,
+    "p_value": p_value,
+    "reject_null": abs(t_statistic) > critical_value
+}
+
+print("Hypothesis Test Result:", result)
+
+
+import numpy as np
+import scipy.stats as stats
+
+# Load only the "first" column from the dataset
+data = np.loadtxt('/mnt/data/file-DhRy3Jz6Uf14jhYaoTwEiJ', usecols=0)
+
+# Null hypothesis mean value
+mu_0 = 10
+
+# Sample statistics
+n = len(data)
+sample_mean = np.mean(data)
+sample_std = np.std(data, ddof=1)  # using ddof=1 for sample standard deviation
+
+# Test statistic calculation
+t_statistic = (sample_mean - mu_0) / (sample_std / np.sqrt(n))
+
+# Degrees of freedom
+df = n - 1
+
+# Two-tailed test
+alpha = 0.05  # significance level
+critical_value = stats.t.ppf(1 - alpha/2, df)
+
+# p-value calculation
+p_value = 2 * (1 - stats.t.cdf(abs(t_statistic), df))
+
+# Hypothesis test results
+result = {
+    "t_statistic": t_statistic,
+    "critical_value": critical_value,
+    "p_value": p_value,
+    "reject_null": abs(t_statistic) > critical_value
+}
+
+print("Hypothesis Test Result:", result)
+
+
+import numpy as np
+import scipy.stats as stats
+
+# Load only the "first" column from the dataset, skipping the header
+data = np.loadtxt('/mnt/data/file-DhRy3Jz6Uf14jhYaoTwEiJ', usecols=0, skiprows=1)
 
 # Null hypothesis mean value
 mu_0 = 10
@@ -3066,6 +4090,15 @@ results = {
 }
 
 print(results)
+
+
+first   second
+14.76   14.89
+8.98    8.51
+9.41    9.88
+13.48   13.20
+11.36   9.22
+...
 ##################################################
 #Question 56, Round 87 with threat_id: thread_G4Mhslvhse0a470OGCwHAvoK
 import numpy as np
@@ -3501,6 +4534,124 @@ data = pd.read_csv(file_path)
 
 # Display the first few rows of the data to understand its structure
 data.head()
+
+
+# Correctly load the data by specifying the tab delimiter
+data = pd.read_csv(file_path, delimiter='\t')
+
+# Display the structure of the data after correcting the delimiter
+data.head()
+
+
+from scipy.stats import f_oneway
+
+# Extract the distances for the first and second throws
+first_throws = data['first']
+second_throws = data['second']
+
+# Perform the F-test for equality of variances
+f_statistic, p_value = f_oneway(first_throws, second_throws)
+
+# Output the results
+f_statistic, p_value
+
+
+# Print the first few rows including the header to understand how the data is structured
+data = pd.read_csv(file_path, delimiter='\t', header=None)
+data.head()
+
+
+# Let's attempt to read the file character by character to identify the delimiter
+with open(file_path, "r") as file:
+    lines = file.readlines()
+
+# Display the first few lines to understand the structure
+lines[:5]
+
+
+# Read the data again using tab as the delimiter
+data = pd.read_csv(file_path, delimiter='\t', header=0)
+
+# Display the first few rows to confirm the structure
+data.head()
+
+
+from scipy.stats import f_oneway
+
+# Extract the distances for the first and second throws
+first_throws = data['first']
+second_throws = data['second']
+
+# Calculate the variances
+var_first = first_throws.var()
+var_second = second_throws.var()
+
+# Perform the F-test
+f_statistic = var_first / var_second
+n_first = len(first_throws)
+n_second = len(second_throws)
+
+# Calculate the p-value
+# The p-value is obtained from the F-distribution with (n1-1, n2-1) degrees of freedom
+p_value = 1 - f_oneway(first_throws, second_throws).pvalue
+
+# Output the results
+f_statistic, p_value
+
+
+# Load the data with proper headers
+data = pd.read_csv(file_path, delimiter='\t', names=['first', 'second'])
+
+# Ensure columns 'first' and 'second' are parsed as floats
+data['first'] = data['first'].astype(float)
+data['second'] = data['second'].astype(float)
+
+# Display the first few rows to confirm the structure
+data.head()
+
+
+from scipy.stats import f
+
+# Extract the distances for the first and second throws
+first_throws = data['first']
+second_throws = data['second']
+
+# Calculate the variances
+var_first = first_throws.var(ddof=1)
+var_second = second_throws.var(ddof=1)
+
+# Perform the F-test
+f_statistic = var_first / var_second
+n_first = len(first_throws)
+n_second = len(second_throws)
+
+# Calculate the p-value
+p_value = 1 - f.cdf(f_statistic, n_first - 1, n_second - 1)
+
+# Output the results
+f_statistic, p_value
+
+
+from scipy.stats import f
+
+# Re-extract the distances for the first and second throws
+first_throws = data['first']
+second_throws = data['second']
+
+# Calculate the variances with sample variance
+var_first = first_throws.var(ddof=1)
+var_second = second_throws.var(ddof=1)
+
+# Perform the F-test
+f_statistic = var_first / var_second
+n_first = len(first_throws)
+n_second = len(second_throws)
+
+# Calculate the p-value from the F-distribution
+p_value = 1 - f.cdf(f_statistic, n_first - 1, n_second - 1)
+
+# Output the results
+f_statistic, p_value
 ##################################################
 #Question 58, Round 17 with threat_id: thread_rIeHaD6veWIKGR5PsMP07TJT
 import pandas as pd
@@ -3648,6 +4799,32 @@ outcome = {
 }
 
 outcome
+
+
+# Fix the data to split 'first' and 'second' throws into separate columns
+data[['First Throw', 'Second Throw']] = data['first   second'].str.split('\t', expand=True).astype(float)
+
+# Extract distances for the first and second throws
+first_throw_distances = data['First Throw']
+second_throw_distances = data['Second Throw']
+
+# Perform F-test for equality of variances
+f_statistic, p_value = f_oneway(first_throw_distances, second_throw_distances)
+
+# Determine and report the results
+alpha = 0.05
+outcome = {
+    "f_statistic": f_statistic,
+    "p_value": p_value,
+    "alpha": alpha,
+    "conclusion": (
+        "Reject the null hypothesis. There is a significant difference in variances."
+        if p_value < alpha else
+        "Fail to reject the null hypothesis. No significant difference in variances."
+    )
+}
+
+outcome
 ##################################################
 #Question 58, Round 29 with threat_id: thread_ZI9kPMoBcldnLoLGepc3msfc
 import pandas as pd
@@ -3745,6 +4922,70 @@ data = pd.read_csv(data_path)
 
 # Display the first few rows of the dataset to understand its structure
 data.head()
+
+
+import pandas as pd
+from scipy.stats import f_oneway
+
+# Load dataset with correct delimiter
+data = pd.read_csv(data_path, sep='\t')
+
+# Extract the first and second throws
+first_throws = data['first']
+second_throws = data['second']
+
+# Perform the F-test for equality of variances
+f_stat, p_value = f_oneway(first_throws, second_throws)
+
+# Output results
+f_stat, p_value
+
+
+# Re-read the file to inspect column headers
+data = pd.read_csv(data_path, sep='\t')
+
+# Display the actual column headers
+data.columns
+
+
+# Re-read the file and apply the fix to split columns correctly
+data = pd.read_csv(data_path, sep=r'\s+', engine='python', header=None, names=['first', 'second'])
+
+# Convert columns to numeric types
+first_throws = pd.to_numeric(data['first'], errors='coerce')
+second_throws = pd.to_numeric(data['second'], errors='coerce')
+
+# Drop any NaN values that may have arisen from conversion errors
+first_throws.dropna(inplace=True)
+second_throws.dropna(inplace=True)
+
+# Perform the F-test for equality of variances
+from scipy.stats import f_oneway
+f_stat, p_value = f_oneway(first_throws, second_throws)
+
+# Output results
+f_stat, p_value
+
+
+import pandas as pd
+from scipy.stats import f_oneway
+
+# Re-read the file and apply the fix to split columns correctly
+data = pd.read_csv(data_path, sep=r'\s+', engine='python', header=None, names=['first', 'second'])
+
+# Convert columns to numeric types
+first_throws = pd.to_numeric(data['first'], errors='coerce')
+second_throws = pd.to_numeric(data['second'], errors='coerce')
+
+# Drop any NaN values that may have arisen from conversion errors
+first_throws.dropna(inplace=True)
+second_throws.dropna(inplace=True)
+
+# Perform the F-test for equality of variances
+f_stat, p_value = f_oneway(first_throws, second_throws)
+
+# Output results
+(f_stat, p_value)
 ##################################################
 #Question 58, Round 39 with threat_id: thread_YDZHivlAFbJpeg51ZgtAjIwY
 import pandas as pd
@@ -3798,6 +5039,44 @@ else:
     conclusion = "Fail to reject the null hypothesis: No significant difference in variability."
 
 # Output
+{
+    "f_statistic": f_statistic,
+    "p_value": p_value,
+    "conclusion": conclusion
+}
+
+
+import pandas as pd
+from scipy.stats import f_oneway
+
+# Load the data
+file_path = '/mnt/data/file-FHyy5e9YWtULzwBXJ5gC8Y'
+data = pd.read_csv(file_path)
+
+# Split the 'first' and 'second' columns on the tab separator
+data[['first_throw', 'second_throw']] = data['first   second'].str.split('\t', expand=True)
+
+# Convert the columns to numeric values
+data['first_throw'] = pd.to_numeric(data['first_throw'], errors='coerce')
+data['second_throw'] = pd.to_numeric(data['second_throw'], errors='coerce')
+
+# Extract the columns
+first_throw = data['first_throw']
+second_throw = data['second_throw']
+
+# Conduct F-test
+f_statistic, p_value = f_oneway(first_throw, second_throw)
+
+# Set a significance level
+alpha = 0.05
+
+# Interpret the result
+if p_value < alpha:
+    conclusion = "Reject the null hypothesis: There is a significant difference in variability."
+else:
+    conclusion = "Fail to reject the null hypothesis: No significant difference in variability."
+
+# Output the results
 {
     "f_statistic": f_statistic,
     "p_value": p_value,
@@ -3995,6 +5274,26 @@ df = pd.read_csv(file_path)
 
 # Inspect the dataframe
 df.head()
+
+
+import pandas as pd
+from scipy import stats
+
+# Load and clean the data
+file_path = '/mnt/data/file-DhRy3Jz6Uf14jhYaoTwEiJ'
+df = pd.read_csv(file_path, sep="\t", header=None)
+df.columns = ["first", "second"]
+
+# Perform a paired t-test
+t_statistic, p_value = stats.ttest_rel(df["first"], df["second"])
+
+# Print the results
+outcome = {
+    "t_statistic": t_statistic,
+    "p_value": p_value,
+    "conclusion": "reject null hypothesis" if p_value < 0.05 else "fail to reject null hypothesis"
+}
+print(outcome)
 ##################################################
 #Question 58, Round 60 with threat_id: thread_Bk0oL0HWi14x4jZ54FlHnBgi
 import pandas as pd
