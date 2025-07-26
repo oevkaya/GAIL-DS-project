@@ -12,25 +12,6 @@ def multi_round_assistant(client,assistant_id,Qs,content_set,path,ks,K,file_id=F
   Ns = [K - n for n in ks]
   # content_set = dinput['questions']
 
-  #---------------create an assistant---------------
-  # assistant = client.beta.assistants.create (
-  #   name = "Question and Code Assistant",
-  #   instructions ="""
-  #   You are a specialized assistant for iterative data‐science tasks. Every time the user asks a question or provides data.
-  #   Answer each question.
-  #   You will return a JSON object with one key: `"outcome"`, which is a string or JSON array describing the results.
-  #   """,
-  #   model = model,
-  #   tools = [{'type': 'code_interpreter'}],
-  #   temperature=tem,
-  #   tool_resources={ 
-  #     'code_interpreter': {
-  #       'file_ids': [file_id]
-  #       }
-  #   })
-
-  # assistant_id = assistant.id
-
   #---------------run multi-round simulations---------------
   for Q in range(Q_num):
     # create an empty text file

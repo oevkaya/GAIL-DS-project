@@ -303,7 +303,7 @@ def find_question_basics(folder_path):
 
     return questions
 
-def separate_text_and_code(Q,section,round_num,thread_id,model,codefile=None):
+def separate_text_and_code(Q,section,round_num,thread_id,image_id,model,codefile=None):
     # Extract code and keep text while cleaning the headers, i.e. Role: assistant
     reasoning_part, code_part = [], []
 
@@ -328,6 +328,7 @@ def separate_text_and_code(Q,section,round_num,thread_id,model,codefile=None):
        id=Q,
        round=round_num,
        thread_id=thread_id,
+       image_id=image_id,
        words=content_word,
        tokens=content_token,
        reasoning=' '.join(reasoning_part),
@@ -407,6 +408,7 @@ def main(args):
             thread_id=elements['thread_id'],
             status=elements['status'],
             runtime=elements['runtime'],
+            image_id=elements['image_id'],
             words=0,
             tokens=0,
             reasoning=None
@@ -423,7 +425,7 @@ def main(args):
         basic_to_add = {'status':elements['status'],'runtime':0}
 
         for i, subblock in enumerate(subblocks):
-          txt_block = separate_text_and_code(q_ids[i],subblock,elements['round'],elements['thread_id'],args.model,codefile)
+          txt_block = separate_text_and_code(q_ids[i],subblock,elements['round'],elements['thread_id'],elements['image_id'],args.model,codefile)
 
           if not sequential:
             basic_to_add = {'status':elements['status'],'runtime':elements['runtime']}
@@ -435,16 +437,29 @@ def main(args):
 
         if sequential:
           # One further step is to assign the runtime to each question based on the ratio of words
-
+          # and specify the image id-question
           header_record = next(r for r in lines if str(r.id).endswith("_multi"))
-          sub_records = [r for r in lines if not str(r.id).endswith("_multi")]
+          sub_records = [r for r in lines if not str(r.id).endswith("_multi")]    
+          qs = len(sub_records)
 
           total_words = sum(r.words for r in sub_records)
-          
-          for r in sub_records:
-            proportion = r.words / total_words if total_words else 0
-            r.runtime = round(header_record.runtime * proportion, 3)
+          image_qid, file_id = None, None
+          if elements['image_id']:
+            image_qid_match = re.match(r'^(\d+)_+(.*)', elements['image_id'])
+            if image_qid_match:
+              image_qid = image_qid_match.group(1)
+              file_id = image_qid_match.group(2)
 
+          for q, r in enumerate(sub_records):
+            proportion = r.words / total_words if total_words else 0
+            r.runtime = round(header_record.runtime * proportion, qs)
+
+            if image_qid is not None:# Only do the steps when there exist images
+              if q == int(image_qid):
+                r.image_id = file_id
+              else:
+                r.image_id = None
+               
           lines = sub_records
 
         # Write to a jsonl file

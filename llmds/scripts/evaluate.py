@@ -1,8 +1,10 @@
 import tiktoken
 import json
 import numpy as np
+import sympy as sp
 import argparse
 import os
+import re
 from types import SimpleNamespace
 from llmds.params import format_namespace
 # from collections import defaultdict
@@ -129,17 +131,76 @@ def delete_empty_folders(folder_path):
             os.rmdir(foldername)
             print(f"Deleted empty folder: {foldername}")
 
+def extract_formula_from_text(text):
+    # Clean LaTeX-style symbols
+    text = text.replace(r'\[', '').replace(r'\]', '')
+    text = text.replace(r'\text{', '').replace('}', '')
+    text = text.replace(r'\times', '*')
+    
+    # Remove extra spaces
+    text = re.sub(r'\s+', ' ', text)
+
+    # Look for equation pattern like: score = 3.88 + 0.0666 * bty_avg
+    match = re.search(r'([a-zA-Z_][a-zA-Z0-9_]*)\s*=\s*([0-9.+\-*/ ()a-zA-Z_]+)', text)
+    if not match:
+        return None
+
+    lhs = match.group(1).strip()
+    rhs = match.group(2).strip()
+
+    try:
+        lhs_sym = sp.Symbol(lhs)
+        rhs_expr = sp.sympify(rhs)
+        return sp.Eq(lhs_sym, rhs_expr)
+    except Exception as e:
+        print("Parsing error:", e)
+        return None
+
+def evaluate_answer(student_text, standard_formula_str, tolerance=0.01):
+    # Extract standard formula
+    std_lhs, std_rhs = standard_formula_str.split('=')
+    std_eq = sp.Eq(sp.sympify(std_lhs.strip()), sp.sympify(std_rhs.strip()))
+    
+    # Extract student formula
+    student_eq = extract_formula_from_text(student_text)
+    if student_eq is None:
+        return False, "No valid equation found"
+
+    # Compare RHS expressions with tolerance
+    std_diff = sp.simplify(std_eq.rhs - student_eq.rhs)
+
+    if std_diff.is_Number:
+        # Allow small numeric tolerance
+        return abs(float(std_diff)) <= tolerance, f"Numeric diff: {std_diff}"
+    else:
+        # Exact symbolic match
+        return std_diff == 0, "Symbolic diff: not zero"
+
+
 def main(args):
     print(f"Evaluation for {args.dataname}")
 
     inmetrics = format_namespace(args.input)
     outmetrics = format_namespace(args.infile)
 
-    #-----add completion ratio (CR) and verbosity ratios   
+    #-----add metrics: completion ratio (CR) and verbosity ratios   
     status_mapping = {
         'completed':1,
         'failed':0
         }
+    
+    # Check with numerical results and key terms - whether appear in the final reasoning part
+    concepts_with_direct_answers = ['Data Understanding','Data Summary','Data Transformation-Summary',
+                               'Regression Modeling','Data Transformation','Logistic Regression Model',
+                               'Confusion Matrix Details','Data Cleaning-Preparation','Data Preparation',
+                               'Confidence Interval','Hypothesis Testing']
+    # Check equations
+    concepts_with_equations = ['Regression Modeling']
+
+    # Check whether image exists
+    concepts = set(concept for item in inmetrics for concept in item.concepts if concept is not None)
+    keywords_with_image = {'visualization', 'performance', 'analysis'}
+    concepts_with_images = {s for s in concepts if any(word in s.lower() for word in keywords_with_image)} 
     
     id_map = {item.id: item for item in inmetrics}
 
@@ -155,28 +216,41 @@ def main(args):
 
         item.complete_ratio = status_mapping[item.status] if item.status in status_mapping else None 
         
-        if hasattr(item, 'common_answers'): 
-           item.accuracy = 1 if find_lines_with_features(item.reasoning,item.common_answers) else 0
+        if hasattr(item, 'common_answers'):
+            if all(item in concepts_with_direct_answers for item in item.concepts):
+                item.accuracy = 1 if find_lines_with_features(item.reasoning,item.common_answers) else 0
+            elif all(item in concepts_with_equations for item in item.concepts):
+                result, message = evaluate_answer(item.reasoning, item.common_answers)
+                item.accuracy = 1 if result else 0
+            else:
+                item.accuracy = None
 
+        item.auto_image = 1 if item.image_id is not None else 0
+        item.require_image = 1 if item.auto_image==1 or all(item in concepts_with_images for item in item.concepts) else 0
         # item.code_execute 
+
+        if item.require_image == 1:
+            pass
+        else:
+            pass
     #-----add text similarity
-    # id_jaccard_values = {}
+    id_jaccard_values = {}
 
-    # for Q in range(args.Q_num):
-    #     id_jaccard_values[args.Qs[Q]] = compute_similarity(outmetrics, args.Qs[Q], 'Jaccard')
+    for Q in range(args.Q_num):
+        id_jaccard_values[str(args.Qs[Q])] = compute_similarity(outmetrics, args.Qs[Q], 'Jaccard')
 
 
-    # for item in outmetrics:
-    #    id_, round_ = item.id, item.round 
+    for item in outmetrics:
+       id_, round_ = item.id, item.round 
 
-    #    if id_ in id_jaccard_values: #and round_ in id_jaccard_values[id_]:
-    #       item.Similarity_Jaccard = id_jaccard_values[id_][round_]
-    #    else:
-    #       item.Similarity_Jaccard = None 
+       if str(id_) in id_jaccard_values: #and round_ in id_jaccard_values[id_]:
+          item.Similarity_Jaccard = float(id_jaccard_values[str(id_)][round_])
+       else:
+          item.Similarity_Jaccard = None 
 
-    # with open(args.outfile, "w", encoding="utf-8") as f:
-    #     for item in outmetrics:
-    #        f.write(json.dumps(vars(item), ensure_ascii=False)+"\n")
+    with open(args.outfile, "w", encoding="utf-8") as f:
+        for item in outmetrics:
+           f.write(json.dumps(vars(item), ensure_ascii=False)+"\n")
 
     os.remove(args.infile)
 

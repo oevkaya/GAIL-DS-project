@@ -11,27 +11,6 @@ from openai import OpenAI
 import argparse
 from types import SimpleNamespace
 
-# Required parameters
-# model = "gpt-4o"
-# temperature = 1.0
-instruction = """
-  You are a specialized assistant for iterative data‐science tasks. Every time the user asks a question or provides data.
-  Answer each question.
-  You will return a JSON object with one key: `"outcome"`, which is a string or JSON array describing the results.
-  """
-
-# dataname = 'ggplot::diamonds'
-# filename = data_name_mapping[dataname]
-# file_id = 'file-Tqk79Wvgu7KSkC1WKtpGAb'
-
-# dataname = 'laptop_data_cleaned'
-# filename = data_name_mapping[dataname]
-# file_id = 'file-NoWy6mgGZpqszQtXdyd2Ys'
-
-# # data = load_params("GAIL-DA-tasks-questions.jsonl")
-# data = format_namespace('GAIL-DA-tasks-questions-clean.jsonl')
-
-# set_datasets = set([val.file_name for val in data])
 
 # inputs = {}
 # for dataset in set_datasets:
@@ -43,72 +22,11 @@ instruction = """
 # Generate the metrics from the input set of DS questions. 
 #compute_input_metrics(data,"Simulations/metrics/input.jsonl",model_choice)
 
-#Run multi-round experiments
 openai_key="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"
 
 client=OpenAI(
     api_key=openai_key
 )
-
-
-
-# outfolder = f'Simulations/output/{dataname}'
-
-# Setup for multiple questions specific to one dataset
-# Qs = [73,74]
-# ks = [36,0]
-# Ns = [100 - n for n in ks]
-
-# content_set = call_question_by_ids(data,Qs)
-
-# content_set = [
-#   "Create a plotting instructional staff employment trends as a dot plot"
-# ]
-
-# Setup for sequential questions specific to one dataset
-# Q_id = 48
-# Qs = [0,1]
-# ks = 65
-# N = 100-ks
-
-
-
-#---------------create an assistant---------------
-# assistant = client.beta.assistants.create (
-#   name = "Question and Code Assistant",
-#   instructions =instruction,
-#   model = model,
-#   tools = [{'type': 'code_interpreter'}],
-#   temperature=temperature,
-#   tool_resources={ 
-#     'code_interpreter': {
-#       'file_ids': [file_id]
-#       }
-#   })
-
-# assistant_id = assistant.id
-
-
-# Run for different temperatures:
-# for tem in [0.5,1,5]:
-#     assistant_id = multi_round_assistant(client,Qs,dinput,model_choice,file_id,Ns,outfolder,ks,tem)   
-
-# assistant_id = multi_round_assistant(client,assistant_id,Qs,content_set,Ns,outfolder,ks) 
-
-# assistant_id = multi_round_assistant(client,Qs,dinput,"gpt-4o-mini",file_id,Ns,f'Simulations/output/{dataname}/others3',ks,1.0) 
-
-# assistant_id = sequential_question_assistant(client,assistant_id,Q_id,Qs,content_set,N,outfolder,ks)
-
-# client.beta.assistants.delete(assistant_id)
-
-
-# def get_commands(problem, args):
-#   """ Gets list of commands to reproduce experiements. """
-#   cmds = []
-  
-
-# def main(args):
-#   """ Get commands and execute them sequentially """
 
 def main(args):
   for dataname in args.datanames:
@@ -126,7 +44,7 @@ def main(args):
           #-----------create an assistant with code interpreter---------------
           assistant = client.beta.assistants.create (
             name = "Question and Code Assistant",
-            instructions =instruction,
+            instructions =args.instruction,
             model = model,
             tools = [{'type': 'code_interpreter'}],
             temperature=temperature,
@@ -139,7 +57,7 @@ def main(args):
           #-----------create an assistant without code interpreter---------------
           assistant = client.beta.assistants.create (
             name = "Question and Code Assistant",
-            instructions =instruction,
+            instructions =args.instruction,
             model = model,
             tools = [{'type': 'file_search'}],
             temperature=temperature,
@@ -161,14 +79,18 @@ if __name__ == "__main__":
   
   args = SimpleNamespace(
     data=format_namespace('GAIL-DA-tasks-questions-clean.jsonl'),
-    datanames=['evals'],
-    models=["gpt-4.1-mini"],
+    instruction="""You are a specialized assistant for iterative data‐science tasks. Every time the user asks a question or provides data.
+  Answer each question. You will return a JSON object with one key: `"outcome"`, which is a string or JSON array describing the results.
+  """,
+    datanames=['cherryblossom'],
+    models=["gpt-4.1-nano"],
     temperatures=[1.0],
-    Qs=[26,26.1],
-    sequential=True,
-    with_code_interpreter=False,
+    Qs=[34],
+    sequential=False,
+    with_code_interpreter=True,
     vector_store_id='vs_6881c6c49494819185527bbb078f62b3',
-    ks=0,
+    ks=[0], # if non-sequential
+    # ks=0 # if sequential
     K=100
   )
 

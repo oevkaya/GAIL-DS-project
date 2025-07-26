@@ -13,7 +13,7 @@ from types import SimpleNamespace
 temperature = '1'
 model = "gpt-4o"
 model_name = model.replace("-","_")
-outpath = f"Simulations/metrics_weatherAUS"
+outpath = f"Simulations/metrics"
 
 datanames = data_name_mapping.keys()
 filenames = data_name_mapping.values()
@@ -22,7 +22,15 @@ input_metrics='Simulations/metrics/input_metrics.jsonl'
 # Load the input of question file
 question_input = format_namespace('GAIL-DA-tasks-questions-clean.jsonl')
 
-Qs = [27,28,29,72]
+Qs_dict = {
+    'aeroplane': [56,57,58],
+    'evals':[21,23,26,23.0,23.1,23.2],
+    'weatherAUS':[27,28,29,30,71,30.0,30.1,30.2],
+    'UK-visitor-numbers':[i for i in range(10)],
+    'instructional-staff': [14,14.0,14.1,14.2],
+    'duke-forest':[65.0,65.1,65.2]
+}
+
 # data = format_namespace('question.jsonl')
 # set_datasets = set([val.file_name for val in data])
 
@@ -32,7 +40,9 @@ Qs = [27,28,29,72]
 
 # Qs = inputs[filename]['ids'] # only if every question is ready
 
-for dataname in ['weatherAUS']:
+# ['aeroplane','evals','weatherAUS','UK-visitor-numbers','duke-forest']
+for dataname in ['aeroplane','evals','weatherAUS','UK-visitor-numbers']:
+    Qs = Qs_dict[dataname]
 
     args1 = SimpleNamespace(
         dataname = dataname,
@@ -49,9 +59,11 @@ for dataname in ['weatherAUS']:
 
     args2 = SimpleNamespace(
         input=input_metrics,
-        model=model,
-        infile=f'{outpath}/{dataname}0_{model_name}_{temperature}.jsonl',
         dataname=dataname,
+        model=model,
+        temperature=temperature,
+        infile=f'{outpath}/{dataname}0_{model_name}_{temperature}.jsonl',
+        path=outpath,
         outfile=f'{outpath}/{dataname}_{model_name}_{temperature}.jsonl',
         Qs=Qs,
         Q_num=len(Qs)

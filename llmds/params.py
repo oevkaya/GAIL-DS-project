@@ -1,5 +1,6 @@
 import json
 import csv
+import re
 from types import SimpleNamespace
 
 def load_params(jsonl_path: str):
@@ -62,6 +63,11 @@ def format_namespace(path):
    with open(path, 'r') as f:
       return [SimpleNamespace(**json.loads(line)) for line in f]
 
+def remove_space(text):
+    txt_clean = []
+    for txt in text:
+        txt_clean.append(re.sub(r'\s*-\s*', '-', txt))
+    return txt_clean
 
 def smart_title(s):
     """Format the concepts, capitalizing the initials """
