@@ -59,7 +59,8 @@ def jaccard_similarity(x,y):
   """ returns the jaccard similarity between two lists """
   intersection_cardinality = len(set.intersection(*[set(x), set(y)]))
   union_cardinality = len(set.union(*[set(x), set(y)]))
-  return intersection_cardinality/float(union_cardinality)
+
+  return intersection_cardinality/float(union_cardinality) if float(union_cardinality) != 0 else 0
 
 def compute_similarity(data,Q,method):
    id_to_reasoning = [item.reasoning for item in data if item.id == Q]
@@ -229,10 +230,10 @@ def main(args):
         item.require_image = 1 if item.auto_image==1 or all(item in concepts_with_images for item in item.concepts) else 0
         # item.code_execute 
 
-        if item.require_image == 1:
-            pass
-        else:
-            pass
+        # if item.require_image == 1:
+        #     pass
+        # else:
+        #     pass
     #-----add text similarity
     id_jaccard_values = {}
 

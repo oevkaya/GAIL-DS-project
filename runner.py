@@ -35,7 +35,7 @@ def main(args):
 
         filename = data_name_mapping[dataname]
         file_id = fileid_name_mapping[dataname]
-        outfolder = f'Simulations/output/{dataname}/Q{args.Qs[0]}_{model.replace("-","_")}_{temperature}'
+        outfolder = f'Simulations/output/{dataname}/Q{args.Qs[0]}_{model.replace("-","_")}_{temperature}_code_interpreter_{args.with_code_interpreter}'
         if not os.path.exists(outfolder):
           os.makedirs(outfolder, exist_ok=True)
 
@@ -82,15 +82,15 @@ if __name__ == "__main__":
     instruction="""You are a specialized assistant for iterative data‐science tasks. Every time the user asks a question or provides data.
   Answer each question. You will return a JSON object with one key: `"outcome"`, which is a string or JSON array describing the results.
   """,
-    datanames=['cherryblossom'],
-    models=["gpt-4.1-nano"],
+    datanames=['aeroplane'],
+    models=["gpt-4o-mini"],
     temperatures=[1.0],
-    Qs=[34],
+    Qs=[56],
     sequential=False,
-    with_code_interpreter=True,
+    with_code_interpreter=False,
     vector_store_id='vs_6881c6c49494819185527bbb078f62b3',
     ks=[0], # if non-sequential
-    # ks=0 # if sequential
+    # ks=0, # if sequential
     K=100
   )
 

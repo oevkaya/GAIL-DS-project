@@ -357,16 +357,48 @@ def find_number(text_file):
     x = float(match.group(1))
     return int(x) if x == int(x) else str(x)
 
+def update_sequential_qid(full_code,q_num,qids):
+    """Update the question ids for sequential questions. """
+    delimiter = '#' * 50
+    # code_blocks = re.split(r'#{50,}', full_code)
+    code_blocks = full_code.split(delimiter)
+    if code_blocks[0] == '':
+        code_blocks = code_blocks[1:]
+
+    updated_blocks = []
+    for i, block in enumerate(code_blocks):
+        qid_to_update = qids[i % q_num]
+
+        updated_block = re.sub(
+            r"(#Question\s+)(\d+\.\d)(, Round\s+\d+ with threat_id:)",
+            lambda m: f"{m.group(1)}{qid_to_update}{m.group(3)}",
+            block
+        )
+        
+        updated_blocks.append(updated_block)
+
+    # Reconstruct the file
+    return delimiter + delimiter.join(updated_blocks)
+
 def main(args):
   print(f"Extract components for {args.dataname}")
   
   # Find all the files and identify sequential questions stored in Q.._multi.txt
   infiles = glob.glob(os.path.join(args.input_folder, '*.txt'))
+     
   # sequential_infiles = [f for f in infiles if '_multi' in os.path.basename(f)]
   # sole_infiles = [f for f in infiles if '_multi' not in os.path.basename(f)]
+  outfile = (
+    f"{args.path}/{args.dataname}0_{args.modelname}_{args.temperature}"
+    + ("_no_CodeInterp" if args.other_setting else "")
+    + ".jsonl"
+  )
 
-  outfile = f"{args.path}/{args.dataname}0_{args.modelname}_{args.temperature}.jsonl"
-  codefile = f"{args.path}/{args.dataname}_{args.modelname}_{args.temperature}.py"
+  codefile = (
+    f"{args.path_code}/{args.dataname}_{args.modelname}_{args.temperature}"
+    + ("_no_CodeInterp" if args.other_setting else "")
+    + ".py"
+  )
 
   # check whether questions require image outputs
   # image_folders = glob.glob(os.path.join(args.input_folder, '*_image'))
@@ -460,12 +492,28 @@ def main(args):
               else:
                 r.image_id = None
                
-          lines = sub_records
+          lines = sub_records          
 
         # Write to a jsonl file
         with open(outfile, "a", encoding="utf-8") as f:
           for line in lines:
             f.write(json.dumps(line.__dict__)+"\n")
+
+  if args.other_sequential:
+    outfile2 = format_namespace(outfile)     
+    for i, obj in enumerate(outfile2):  
+      obj.id = args.Qs[i % args.Q_num]
+
+    with open(outfile, "w", encoding="utf-8") as f:
+      for line in outfile2:
+        f.write(json.dumps(line.__dict__)+"\n")
+
+    with open(codefile, "r") as f:
+      code = f.read()
+    
+    update_code=update_sequential_qid(code,args.Q_num,args.Qs)
+    with open(codefile, "w") as f:
+      f.write(update_code)
 
 
 if __name__ == '__main__':

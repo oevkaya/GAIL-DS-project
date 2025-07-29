@@ -125,7 +125,7 @@ data_name_mapping = {
     'edibnb':'edibnb.csv',
     'gss16':'gss16_advfront.csv',
     'laptop_data_cleaned':'laptop_data_cleaned.csv',
-    'duke_forest':'duke_forest.xlsx',
+    'duke-forest':'duke_forest.csv',
     'Stats_diamonds':'Stats_diamonds.xlsx',
     'ggplot::diamonds':'diamonds.csv',
     'council_assessments':'council_assessments.csv',
