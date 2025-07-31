@@ -1,0 +1,1158 @@
+## From the IDS Lab material questions + possibly HW and Quiz exercises
+
+{"id": 0, "question": "How many tourist attractions are there in the data set?", 
+"concepts": ["Data understanding"], 
+"format": "@count_visitor[count_visitor_value] where \"count_visitor_value\" is given in integer format.",
+"file_name": "UK-visitor-numbers.csv", "level": "easy",
+"common_answers": [["count_visitor_value", "348"]]}
+
+{"id": 1, "question": "Which attraction had the most number of visitors in 2022?", 
+"concepts": ["Data understanding"], 
+"format": "@place_name[place_name] where \"place_name\" is given in string format.", 
+"file_name": "UK-visitor-numbers.csv", "level": "easy",
+"common_answers": [["place_name", "The Crown Estate, Windsor Great Park"]]}
+
+{"id": 2, "question": "What is the admission charge for the National Museum of Scotland?", 
+"concepts": ["Data understanding"], 
+"format": "@admission_charge[admission_charge_value] where \"admission_charge_value\" is given in string format.", 
+"file_name": "UK-visitor-numbers.csv", "level": "easy",
+"common_answers": [["admission_charge_value", "Free"]]}
+
+{"id": 3, "question": "How many attraction had more than 1 million visitors in 2022?", 
+"concepts": ["Data understanding"], 
+"format": "@count_attraction_2022[count_attraction_2022] where \"count_attraction_2022\" is given in integer format.",
+"file_name": "UK-visitor-numbers.csv", "level": "easy",
+"common_answers": [["count_attraction_2022", "22"]]}
+
+{"id": 4, "question": "How many Outside attractions are there in the Yorkshire and the Humber region that gives Members free admission, which had more than 100,000 visitors in 2022?", 
+"concepts": ["Data understanding"], 
+"format": "@count_specific_attraction[count_specific_attraction] where \"count_specific_attraction\" is given in integer format.",
+"file_name": "UK-visitor-numbers.csv", "level": "medium",
+"common_answers": [["count_specific_attraction", "3"]]}
+
+{"id": 5, "question": "What are the mean and median visitor numbers in 2022 across all attractions?", 
+"concepts": ["Data summary"], 
+"format": "@visitor_summary[visitor_summary] where \"visitor_summary\" is given as a numeric vector or tibble formated values.",
+"file_name": "UK-visitor-numbers.csv", "level": "medium",
+ "common_answers": [
+   {
+     "visitor_summary": {
+       "mean": 351942,
+       "median": 184640
+     }
+   }
+ ]
+}
+
+{"id": 6, "question": "What is the interquartile range (the width of the middle 50% of data set between the lower and upper quartiles) the for each of the four nations of the UK?", 
+"concepts": ["Data summary"],  "format": "@IQR_value[IQR_value] where \"IQR_value\" is given as a numeric vector or tibble formated values for each nation.", 
+"file_name": "UK-visitor-numbers.csv", "level": "medium",
+ "common_answers": [
+   {
+     "IQR_value": {
+       "England": 350362,
+       "Northern Ireland": 311046,
+       "Scotland": 127986,
+       "Wales": 103368
+     }
+   }
+ ]
+}
+
+{"id":7, "question":"How many tourist attractions are there in each of the 4 nations? From this, discuss in your group how reliable you think the inter-quartile estimates are.",
+ "concepts":["Data exploration"], "format":"@numerical_results[numerical_results]\n@attraction_comment[attraction_comment]",
+ "file_name":"UK-visitor-numbers.csv", "level":"medium",
+ "common_answers":[
+   ["numerical_results", "{\"England\":240,\"Northern Ireland\":9,\"Scotland\":97,\"Wales\":2}"],
+   ["attraction_comment", "There are only 2 attractions in Wales. This is a very low sample size, meaning that the inter‑quartile range is not a very accurate estimate."]
+ ]
+}
+
+
+{"id": 8, "question": "Within each of the 4 nations, what is the proportion of tourist attractions that have free admission for all visitors?", 
+"concepts": ["Data exploration"],  "format": "@proportion_nation_value[proportion_nation_value] where \"proportion_nation_value\" is given in a numeric vector or tibble formated values.", 
+"file_name": "UK-visitor-numbers.csv", "level": "difficult",
+ "common_answers": [
+   {
+     "proportion_nation_value": {
+       "England": 38.8,
+       "Scotland": 35.1,
+       "Northern Ireland": 11.1
+     }
+   }
+ ]
+}
+
+{"id": 9, "question": "Calculate the percentage change in visitor admissions from 2021 to 2022. Of the tourist attractions in Scotland, sort into increasing numerical order the types of admission charges based on the mean percentage change in visitor numbers.", 
+"concepts": ["Data exploration"], "format": "@percentage_change_2021_2022[percentage_change_2021_2022] where \"percentage_change_2021_2022\" is given in a numeric vector or tibble formated values.", 
+"file_name": "UK-visitor-numbers.csv", "level": "difficult", 
+ "common_answers": [
+   {
+     "percentage_change_2021_2022": {
+       "Charged": 0.0465,
+       "Members": 1.38,
+       "Free": 3.03
+     }
+   }
+ ]}
+
+---- THE REST TBA MISSING joined_plastic_data_all ----
+
+{"id": 10, "question": "Create a frequency table of coastal countries/territories by region.", "concepts": ["Data summary"], 
+"format": "@freq_table[freq_table] where \"freq_table\" is given in a numeric vector or tibble formated values.", 
+"file_name": "joined_plastic_data_all.csv", "level": "easy", 
+"common_answers": [["freq_table", "??"]]}
+
+{"id": 11, "question": "Which region has the most number of coastal countries/territories?", "concepts": ["Data exploration"], 
+"format": "@region_name[region_name] where \"region_name\" is given in string format.", 
+"file_name": "joined_plastic_data_all.csv", "level": "easy", 
+"common_answers": [["region_name", "??"]]}
+
+{"id": 12, "question": "The mismanaged plastic waste is measured in kg per capita. Add a new variable to plastic_data_all called total_mismanage_plastic by multiplying mismanaged_plastic by population. What is the mean total of mismanaged plastic waste per region?", 
+"concepts": ["Data transformation-summary"], "format": "@mean_region_calculated[mean_region_calculated] where \"mean_region_calculated\" is given in a numeric vector or tibble formated values.", 
+"file_name": "joined_plastic_data_all.csv", "level": "medium",
+"common_answers": [["mean_region_calculated", "??"]]}
+
+{"id": 13, "question": "Add a new variable called pct_mismanaged_plastic_ocean to plastic_data_all that represents the amount of ocean emitted mismanaged plastic waste as a percentage of all mismanaged plastic waste. Calculate the median pct_mismanaged_plastic_ocean for each region.", 
+"concepts": ["Data transformation-summary"], "format": "@median_pct_mismanaged_plastic_ocean[median_pct_mismanaged_plastic_ocean] where \"median_pct_mismanaged_plastic_ocean\" is given in a numeric vector or tibble formated values.", 
+"file_name": "joined_plastic_data_all.csv", "level": "medium", 
+"common_answers": [["median_pct_mismanaged_plastic_ocean", "??"]]}
+
+---- THE REST TBA MISSING joined_plastic_data_all ----
+
+{"id": 14, "question": "Create a plotting instructional staff employment trends as a dot plot.", 
+"concepts": ["Data visualization"], "format": "@instructional_staff_employment_trends_plot[instructional_staff_employment_trends_plot] where \"instructional_staff_employment_trends_plot\" is a dot plot object created by ggplot package or other.", 
+"file_name": "instructional-staff.csv", "level": "easy",
+ "common_answers": [
+   ["staff_long", 
+    "staff_long <- instructional-staff %>% pivot_longer(cols = c(\"1975\", \"1989\", \"1993\", \"1995\", \"1999\", \"2001\", \"2003\", \"2005\", \"2007\", \"2009\", \"2011\"), names_to = \"year\", values_to = \"percent\")"
+   ],
+   ["instructional_staff_employment_trends_plot",
+     "instructional_staff_employment_trends_plot <- ggplot(data = staff_long, mapping = aes(x = year, y = percent, colour = faculty_type)) + geom_point()"
+   ]
+]
+}
+
+{"id": 14.1, "question": "Create a plotting instructional staff employment trends in a different style plot", 
+"concepts": ["Data visualization"], "format": "@staff_employment_trends_line_plot[staff_employment_trends_line_plot] where \"staff_employment_trends_line_plot\" is a line plot object created by ggplot package or other.", 
+"file_name": "instructional-staff.csv", "level": "medium",
+ "common_answers": [
+   ["staff_long", 
+    "staff_long <- staff_long %>% mutate(year = as.numeric(year))"
+   ],
+   ["staff_employment_trends_line_plot",
+     "staff_employment_trends_line_plot <- ggplot(data = staff_long, mapping = aes(x = year, y = percent, colour = faculty_type)) + geom_line()"
+   ]
+]}
+
+{"id": 14.2, "question": "Improve the plot from the previous exercise by fixing up its labels (title, axis labels, and legend label) as well as any other components you think could benefit from improvement.", 
+"concepts": ["Data visualization-customization"], "format": "@staff_employment_trends_line_plot_custom[staff_employment_trends_line_plot_custom] where \"staff_employment_trends_line_plot_custom\" is a customized line plot object created by ggplot package or other.", 
+"file_name": "instructional-staff.csv", "level": "medium-hard",
+"common_answers": [["staff_employment_trends_line_plot_custom", "??"]]}
+
+{"id": 15, "question": "Perform a preliminary exploratory data analysis (EDA) of the diamonds data set. Create some frequency tables, summary statistics and/or data visualisations to explore the relationship between the variables.", 
+"concepts": ["General EDA"], "format": "@eda_diamond[eda_diamond] where \"eda_diamond\" is a summary of various results including numerical and graphical outcomes.", 
+"file_name": "diamonds.csv", "level": "hard",
+"common_answers": [["eda_diamond", "??"]]}
+
+{"id": 15.1, "question": "Make appropriate decisions to clean the data by removing rows containing problematic observations", 
+"concepts": ["Data cleaning"], "format": "@data_cleaning_diamond[data_cleaning_diamond] where \"data_cleaning_diamond\" is a summary of certain steps on data cleaning.", 
+"file_name": "diamonds.csv", "level": "medium",
+"common_answers": [["data_cleaning_diamond", "??"]]}
+
+{"id": 16, "question": "The table_pct variable is a percentage between the width of the table and the diamond’s overall width. First, calculate the table width in millimetres, as table_mm. Then, calculate the arithmetic mean of the table length variable table_mm across all diamonds in the data set.", 
+"concepts": ["Data transformation-summary"], "format": "@table_mm_diamond_summary[table_mm_diamond_summary] where \"table_mm_diamond_summary\" is a numerical arithmetic mean value in a vector format.", 
+"file_name": "diamonds.csv", "level": "medium", 
+"common_answers": [["table_mm_diamond_summary", "3.30"]]}
+
+{"id": 16.1, "question": "Calculate the arithmetic mean across all the numeric variables in the dataset. Specify informative names for each of these summary statistics, for example my adding avg_ in front of each variable name", 
+"concepts": ["Data summary"], "format": "@table_mm_diamond_summary[table_mm_diamond_summary] where \"table_mm_diamond_summary\" is a numerical arithmetic mean value in a vector format with certain names.", 
+"file_name": "diamonds.csv", "level": "medium", 
+ "common_answers": [
+   {
+     "table_mm_diamond_summary": {
+       "avg_carat": 0.798,
+       "avg_depth_pct": 61.7,
+       "avg_table_pct": 57.5,
+       "avg_price": 3931,
+       "avg_length_mm": 5.73,
+       "avg_width_mm": 5.73, 
+       "avg_depth_mm": 3.54,
+       "avg_table_mm": 3.30
+     }
+   }
+ ]
+}
+
+
+{"id": 17, "question": "Create a function called gmean that computes the geometric mean statistic. The function must do the following: (i) Take a single input called x representing the data vector., 
+(ii) Computes the geometric mean using the equivalent formula (based on logarithms) provided above and (iii) Returns a single value representing the geometric mean of the input data.", 
+"concepts": ["Creating a specific function"], "format": "@gmean_function[gmean_function] where \"gmean_function\" is a created function that can be tested for reproducibility.", 
+"file_name": "diamonds.csv", "level": "hard", 
+"common_answers":
+["gmean_function", 
+    "gmean_function <- function(x){ xbar_g <- exp(mean(log(x)));
+return(xbar_g)"
+]
+}
+
+{"id": 18, "question": "With the diamonds data set, summarise the table_mm variable by computing the (arithmetic) mean, median and geometric mean for each clarity category. 
+Comment on the relationship between table_mm and clarity using the summarised values.", 
+"concepts": ["Data summary-interpretation"], "format": "@summarise_table_mm[summarise_table_mm]", 
+"file_name": "diamonds.csv", "level": "medium", 
+ "common_answers": [
+   ["summarise_table_mm", "{\"I1\":{\"avg_table\":3.91,\"med_table\":3.86,\"geom_table\":3.86},\"SI2\":{\"avg_table\":3.71,\"med_table\":3.72,\"geom_table\":3.65},\"SI1\":{\"avg_table\":3.40,\"med_table\":3.41,\"geom_table\":3.34},\"VS2\":{\"avg_table\":3.25,\"med_table\":3.16,\"geom_table\":3.19},\"VS1\":{\"avg_table\":3.20,\"med_table\":3.08,\"geom_table\":3.14},\"VVS2\":{\"avg_table\":2.98,\"med_table\":2.82,\"geom_table\":2.93},\"VVS1\":{\"avg_table\":2.83,\"med_table\":2.66,\"geom_table\":2.79},\"IF\":{\"avg_table\":2.82,\"med_table\":2.59,\"geom_table\":2.78}} 
+   Diamonds with a better clarity have a smaller geometric mean. Also, the geometric means are typically smaller than the arithmetic mean for this data."]
+ ]
+}
+
+{"id": 19, "question": "Use exponent and logarithm rules to prove that the geometric mean is equal to the exponential of the arithmetic mean of the natural logarithm transformed data.", 
+"concepts": ["Summary Stats derivation"], "format": "@list_of_steps[list_of_steps] where \"list_of_steps\" is list of steps that creates the derivation.", 
+"file_name": "diamonds.csv", "level": "hard", 
+"common_answers": [["list_of_steps", "Derivation in Exercise 10: https://uoeids.github.io/labs/lab-06-key/lab-06-key.html"]]}
+
+{"id": 20, "question": "An alternative measurement of central tendency is the Harmonic Mean, which is calculated by the reciprocal of the arithmetic mean of the reciprocals. 
+Create a new function called hmean() that takes a single numerical vector x as input that computes and returns the harmonic mean statistic.", 
+"concepts": ["Creating a specific function"], "format": "@hmean_function[hmean_function] where \"hmean_function\" is a created function that can be tested for reproducibility.", 
+"file_name": "diamonds.csv", "level": "hard", 
+"common_answers": [["hmean_function", "Derivation in Exercise 9: https://uoeids.github.io/labs/lab-06-key/lab-06-key.html"]]}
+
+{"id": 21, "question": "Visualize the distribution of score in the dataframe evals. Is the distribution skewed? What does that tell you about how students rate courses? 
+Is this what you expected to see? Why, or why not?", 
+"concepts": ["Data Viz and EDA"], "format": "@dist_score_evals_viz[dist_score_evals_viz] where \"dist_score_evals_viz\" is a created data visualization with additional interepretations.", 
+"file_name": "evals.csv", "level": "medium", 
+"common_answers": [["dist_score_evals_viz", "The distribution is negatively/left-skewed—this happens because most professors are getting scores near the upper end of the scale, 
+but then there is a tail to the left of lower scores. There appears to be a sharp peak around 4.4, but this may be an artefact of the data 
+(evaluation scores, as we shall soon see, appear to be recorded in discrete steps of 0.1)"]]}
+
+{"id": 22, "question": "Visualize and describe the relationship between score and bty_avg using geom_point() to represent the data. 
+Then, visualise again using geom_jitter() for the points", 
+"concepts": ["Data Viz and EDA"], "format": "@dist_score_bty_avg_viz[dist_score_bty_avg_viz] where \"dist_score_bty_avg_viz\" is a created multiple data visualization with different geoms.", 
+"file_name": "evals.csv", "level": "medium", 
+"common_answers": [["dist_score_bty_avg_viz", "Exercise 1.2 in https://uoeids.github.io/labs/lab-07-key/lab-07-key.html"]]}
+
+{"id": 23, "question": "Fit a linear model called score_bty_fit to predict average professor evaluation score from average beauty rating (bty_avg). 
+Print the regression output using tidy(). Based on the regression output, write down the linear model.", 
+"concepts": ["Regression Modeling"], "format": "@linear_model_score_bty_fit[linear_model_score_bty_fit] where \"linear_model_score_bty_fit\" is a fitted linear regression with model equations.", 
+"file_name": "evals.csv", "level": "hard", 
+"common_answers": [["linear_model_score_bty_fit", "score-hat = 3.88 + 0.0666 * bty_avg."]]}
+
+{"id": 23.1, "question": "Interpret the slope and intercept of the linear model in context of the data. 
+Determine the R^2 of the model and interpret it in the context of the data.", 
+"concepts": ["Regression Modeling Interpretation"], "format": "@linear_model_slope_intercept_R2[linear_model_slope_intercept_R2] where \"linear_model_slope_intercept_R2\" is the text includes the model fit interpretations.", 
+"file_name": "evals.csv", "level": "medium", 
+"common_answers": [["linear_model_slope_intercept_R2", "For each unit increase in the average beauty score, we expect the evaluation scores to be higher, on average, by 0.0666 points. 
+The model has an R-squared value of 0.03502226. This means that average beauty scores explain 3.5% of the variability in evaluation scores."]
+]}
+
+{"id": 23.2, "question": "Make a plot of residuals vs. predicted values for the model above. Use geom_jitter() instead of geom_point(), and overlay a dashed horizontal line at y = 0. 
+Then, comment on whether the linear model is appropriate for modeling the relationship between evaluation scores and beauty scores.", 
+"concepts": ["Model Diagnostic Visualization"], "format": "@linear_model_res_pred_plot[linear_model_res_pred_plot] where \"linear_model_res_pred_plot\" is the created model diagnostic plot with interpretations.", 
+"file_name": "evals.csv", "level": "medium",
+"common_answers": [["linear_model_res_pred_plot", "The model is probably reasonable, but could be better. 
+There’s a slight “fan shape” in the residuals, or “heteroschedasticity” — that is, there are differences in the variation of the residuals for different values of the predicted values, 
+specifically the variation seems to be larger on left. There are also more large negative residuals than large positive ones, 
+which is probably due to the fact that values of the response variable were close to the rigid maximum limit of the scale.."]
+]
+}
+
+{"id": 24, "question": "Look at the variable rank, and determine the frequency of each category level.", 
+"concepts": ["Data description"], "format": "@freq_var_rank_pred[freq_var_rank_pred] where \"freq_var_rank_pred\" is the created frequency table for the specific variable", 
+"file_name": "evals.csv", "level": "medium", 
+ "common_answers": [
+   {
+     "freq_var_rank_pred": {
+       "teaching": 102,
+       "tenure track": 108,
+       "tenured": 253
+     }
+   }
+ ]}
+
+{"id": 25, "question": "Fit a new linear model called score_rank_fit to predict average professor evaluation score based on rank of the professor and print out the regression output using tidy(). Based on the regression output, interpret the slope and intercept in context of the data.", 
+"concepts": ["Regression Modeling"], "format": "@linear_model_score_rank_fit[linear_model_score_rank_fit] where \"linear_model_score_rank_fit\" is a fitted linear regression with categorical variable.", 
+"file_name": "evals.csv", "level": "medium", 
+"common_answers": [["linear_model_score_rank_fit",
+  "{\"(Intercept)\":{\"estimate\":4.28,\"std.error\":0.0537,\"statistic\":79.9,\"p.value\":1.02e-271},\"ranktenure track\":{\"estimate\":-0.130,\"std.error\":0.0748,\"statistic\":-1.73,\"p.value\":8.37e-2},\"ranktenured\":{\"estimate\":-0.145,\"std.error\":0.0636,\"statistic\":-2.28,\"p.value\":2.28e-2}}",
+  "A lecturer whose rank is as teaching staff (which, if we look at the data dictionary in the help file, is the level not mentioned in the output, that is the baseline level) can be expected, on average, to have a score of 4.28. A tenure track lecturer is predicted by the model to have a score that is expected to be 0.130 lower, on average, than that of teaching staff. A tenured lecturer is predicted by the model to have a score that is expected to be 0.145 lower, on average, than that of teaching staff."]
+]
+}
+
+
+{"id": 26, "question": "Fit a multiple linear regression model, predicting average professor evaluation score based on average beauty rating (bty_avg) and gender. 
+Name the model score_bty_gender_fit. Interpret the intercept and the slopes of bty_avg and gender. 
+Make a scatterplot (using jitter) of score by bty_avg and color the points by gender.", 
+"concepts": ["Regression Modeling"], "format": "@multiple_linear_model[multiple_linear_model] where \"multiple_linear_model\" is a fitted multiple linear regression with specific data visualization", 
+"file_name": "evals.csv", "level": "hard", 
+"common_answers": [["multiple_linear_model", "The model predicts that female staff with a beauty score of 0 (which is again not something that makes sense in context) would have a professor evaluation score of 3.75.
+The model predicts that, keeping all else constant, for every increase by one in the beauty score, the lecturer’s evaluation score will increase by 0.0742.
+The model predicts that, for lecturers with the same beauty score, male lecturers will have a professor evaluation score that is 0.172 higher than that of female lecturers."]]}
+
+{"id": 26.1, "question": "What percent of the variability in score is explained by the model score_bty_gender_fit. 
+What is the equation of the line corresponding to just male professors? How does the relationship between beauty and evaluation score vary between male and female professors?", 
+"concepts": ["Regression Modeling interpretations"], "format": "@multiple_linear_model_explain[multiple_linear_model_explain] where \"multiple_linear_model_explain\" is a list of explanations based on the fitted multiple linear regression", 
+"file_name": "evals.csv", "level": "hard", 
+"common_answers": [["multiple_linear_model_explain", "The model has an R-squared value of 5.9%. This means that a model with both average beauty scores and gender can explain 5.9% of the variability in evaluation scores.
+Model equation is obtained as score-hat=3.75+0.172+0.0742×bty_avg=3.92+0.0743×bty_avg.
+In this model, it doesn’t, because we haven’t fitted an interaction effects model—the model gives the same increase in evaluation for each increase in beauty score for both male and female professors."]]}
+
+{"id": 27, "question": "Transform any character variables that need to be transformed into categorical. Are there any missing values in our variable of interest RainTomorrow? 
+If so, we filter them out and save the new dataset as weather_noNA", 
+"concepts": ["Data Transformation and Exploration"], "format": "@weather_noNA_new_data[weather_noNA_new_data] where \"weather_noNA_new_data\" is a new data set after applying the requested steps", 
+"file_name": "weatherAUS.csv", "level": "easy", 
+"common_answers": ["weather_noNA_new_data", "Yes, there are 3267 missing cases in weather. The remainig number of observations in weather_noNA are 142193."]
+}
+
+{"id": 28, "question": "Try to predict RainTomorrow by fitting a linear regression for Portland city using the variable RainToday and print the output using tidy().
+For each point in our dataset, what are the fitted probabilities that tomorrow it’s going to rain?", 
+"concepts": ["Logistic Regression Model"], "format": "@RainTomorrow_logistic_model[RainTomorrow_logistic_model] where \"RainTomorrow_logistic_model\" is a fitted logistic model and related calculated probabilities", 
+"file_name": "weatherAUS.csv", "level": "medium", 
+"common_answers": ["RainTomorrow_logistic_model", "The predictive probability for each day can only take two values: 0.2542194 or 0.5634191. 
+This is due to the fact that the only explanatory variable RainToday is a categorical variable with two levels, so the two probabilities correspond to whether it was raining on that day or not."]
+}
+
+---- THE REST TBA ---
+
+{"id": 29, "question": "Split the data into a training set (80% of your Portland data) and a testing set. Refit the simple logistic regression using RainToday as predictor on this training data, using tidymodels recipes and workflows.Start by the recipe. First initialize the recipe, then remove observations with missing values using step_naomit() and finally use step_dummy to convert categorical to dummy variables.", 
+"concepts": ["Logistic Regression Model"], "format": "@RainTomorrow_logistic_model_train_test_split[RainTomorrow_logistic_model_train_test_split] where \"RainTomorrow_logistic_model_train_test_split\" is a fitted logistic model after data split", 
+"file_name": "weatherAUS.csv", "level": "hard", 
+"common_answers": [
+  [
+    "solution_code",
+    "# Put 80% of the data into the training set\\n
+weather_split <- initial_split(weather_Portland, prop = 0.80)\\n
+# Create data frames for the two sets:\\n
+train_data <- training(weather_split)\\n
+test_data  <- testing(weather_split)\\n
+\\n
+weather_rec1 <- recipe(\\n
+  RainTomorrow ~ RainToday,\\n
+  data = weather_Portland\\n
+) %>%\\n
+  step_naomit(all_predictors()) %>%\\n
+  step_dummy(all_nominal_predictors())\\n
+\\n
+weather_mod1 <- logistic_reg() %>%\\n
+  set_engine(\"glm\")\\n
+weather_wflow1 <- workflow() %>%\\n
+  add_model(weather_mod1) %>%\\n
+  add_recipe(weather_rec1)\\n
+\\n
+weather_fit1 <- weather_wflow1 %>%\\n
+  fit(data = train_data)\\n
+tidy(weather_fit1)"
+  ],
+  [
+    "RainTomorrow_logistic_model_train_test_split",
+    "##   term          estimate std.error statistic  p.value\\n
+## 1 (Intercept)      -1.07    0.0589     -18.1 2.76e-73\\n
+## 2 RainToday_Yes     1.33    0.0902      14.7 3.27e-49"
+  ]
+]
+}
+
+
+{"id": 30, "question": "Fit a multiple logistic regression, i.e. using multiple explanatory variables, to predict RainTomorrow. 
+We will use as predictors the variables MinTemp, MaxTemp, RainToday and Rainfall", 
+"concepts": ["Logistic Regression Model"], "format": "@RainTomorrow_logistic_model_mult_pred[RainTomorrow_logistic_model_mult_pred] where \"RainTomorrow_logistic_model_mult_pred\" is a fitted logistic model with multiple predictors", 
+"file_name": "weatherAUS.csv", "level": "medium",
+"common_answers": [
+  [
+    "solution_code",
+    "weather_rec2 <- recipe(\\n
+  RainTomorrow ~ MinTemp+MaxTemp+RainToday+Rainfall, # formula\\n
+  data = weather_Portland\\n
+) %>%\\n
+  step_naomit(all_predictors()) %>%\\n
+  step_dummy(all_nominal(), -all_outcomes())\\n
+# Save the model, workflow and fit to the training data:\\n
+weather_mod2 <- logistic_reg() %>% set_engine(\"glm\")\\n
+weather_wflow2 <- workflow() %>% add_model(weather_mod2) %>% add_recipe(weather_rec2)\\n
+weather_fit2 <- weather_wflow2 %>% fit(data = train_data)\\n
+tidy(weather_fit2)"
+  ],
+  [
+    "RainTomorrow_logistic_model_mult_pred",
+    "##   term          estimate std.error statistic       p.value\\n
+## 1 (Intercept)    0.422      0.217      1.94  0.0519\\n
+## 2 MinTemp        0.00872    0.0159     0.550 0.582\\n
+## 3 MaxTemp       -0.0827     0.0137    -6.06  0.00000000139\\n
+## 4 Rainfall       0.0490     0.0124     3.95  0.0000791\\n
+## 5 RainToday_Yes  0.715      0.122      5.87  0.00000000436"
+  ]
+]
+}
+
+{"id": 30.1, "question": "Create the ROC curve and get the AUC (area under the curve) value for your multiple logistic regression model.
+How is the model performance ", 
+"concepts": ["Logistic Regression Model Performance"], "format": "@RainTomorrow_logistic_mult_performance[RainTomorrow_logistic_mult_performance] where \"RainTomorrow_logistic_mult_performance\" is the data viz for the logistic model performance", 
+"file_name": "weatherAUS.csv", "level": "hard",
+"common_answers": [
+  [
+    "solution_code",
+    "weather_pred2 <- predict(weather_fit2, test_data, type = \\\"prob\\\") %>%\n\
+  bind_cols(test_data)\n\
+## Warning: ! There are new levels in a factor: `NA`.\n\
+weather_pred2 %>%\n\
+  roc_curve(\n\
+    truth = RainTomorrow,\n\
+    .pred_Yes,\n\
+    event_level = \\\"second\\\"\n\
+  ) %>%\n\
+  autoplot()\n\
+\n\
+weather_pred2 %>%\n\
+  roc_auc(\n\
+    truth = RainTomorrow,\n\
+    .pred_Yes,\n\
+    event_level = \\\"second\\\"\n\
+  )"
+  ],
+  [
+    "RainTomorrow_logistic_mult_performance",
+"##   .metric .estimator .estimate\n\
+## 1 roc_auc binary         0.714"
+  ]
+]
+}
+
+{"id": 30.2, "question": "For your multiple logistic regression model, consider several thresholds for predicting RainTomorrow and look at the number of false positives and false negatives.", 
+"concepts": ["Confusion Matrix details"], "format": "@RainTomorrow_logistic_mult_confusion_matrix[RainTomorrow_logistic_mult_confusion_matrix] where \"RainTomorrow_logistic_mult_confusion_matrix\" is the calculate FP and FN across various thresholds", 
+"file_name": "weatherAUS.csv", "level": "hard",
+"common_answers": [
+  [
+    "solution_code",
+    "cutoff_prob <- 0.5\n\
+weather_pred2 %>%\n\
+  mutate(\n\
+    RainTomorrow      = if_else(RainTomorrow == \"Yes\", \"It rains\", \"It does not rain\"),\n\
+    RainTomorrow_pred = if_else(.pred_Yes > cutoff_prob, \"Predicted rain\", \"Predicted no rain\")\n\
+  ) %>%\n\
+  na.omit() %>%\n\
+  count(RainTomorrow_pred, RainTomorrow)"
+  ],
+  [
+    "RainTomorrow_logistic_mult_confusion_matrix",
+    "##   RainTomorrow_pred RainTomorrow         n\n\
+## 1 Predicted no rain It does not rain   177\n\
+## 2 Predicted no rain It rains            62\n\
+## 3 Predicted rain    It does not rain    51\n\
+## 4 Predicted rain    It rains            76"
+  ]
+]
+}
+
+{"id": 31, "question": "Find the number of Airbnb properties located in Old Town having the one night stay price larger than 100 GBP", 
+"concepts": ["Data Understanding"], "format": "@Airbnb_properties_Old_Town[Airbnb_properties_Old_Town] where \"Airbnb_properties_Old_Town\" is the numerical response based on data filtering", 
+"file_name": "edibnb.csv", "level": "easy",
+"common_answers": [["Airbnb_properties_Old_Town", "494"]]}
+
+{"id": 32, "question": "Create a frequency table for the number of bathrooms in the data set for the properties located in Newington ", 
+"concepts": ["Data Understanding"], "format": "@freq_table_bathrooms_Newington[freq_table_bathrooms_Newington] where \"freq_table_bathrooms_Newington\" is the frequency table as a list of numerical values", 
+"file_name": "edibnb.csv", "level": "easy",
+"common_answers": [
+  [
+    "solution_code",
+    "edibnb %>%\\n
+  filter(neighbourhood == 'Newington') %>%\\n
+  count(bathrooms)"
+  ],
+  [
+    "freq_table_bathrooms_Newington",
+    "##   bathrooms     \\n
+## 1       0       1\\n
+## 2       0.5     3\\n
+## 3       1     348\\n
+## 4       1.5    48\\n
+## 5       2      34\\n
+## 6       3       3\\n
+## 7       3.5     1\\n
+## 8      NA       1"
+  ]
+]
+}
+
+
+{"id": 33, "question": "Join the edibnb to the council data frames with a suitable function. For the merged new data set, 
+Create the frequency table of the neighbourhood variable for the properties that have been assessed by the council. 
+What does the frequency table suggest? Is the council targeting all neighborhoods within Edinburgh equally?", 
+"concepts": ["Data Interpretation"], "format": "@freq_table_neighborhoods[freq_table_neighborhoods] where \"freq_table_neighborhoods\" is the frequency table as a list of numerical values, including interpretations", 
+"file_name": "edibnb.csv, council_assessments.csv", "level": "hard", 
+"common_answers": [
+  [
+    "solution_code",
+    "council %>%\\n
+  left_join(edibnb, by="id") %>%\\n
+  count(neighbourhood)"
+  ],
+  [
+    "freq_table_neighborhoods",
+    "It is clear to see that the council has perform many more assessments (1543 times) in Leith compared to the other neighbourhoods in Edinburgh. Not targeting all neighbourhoods equally."
+  ]
+]
+}
+
+{"id": 34, "question": "Create the histogram for the runners of the \"10 Mile\" event. Describe the overall shape of the histogram. 
+What does this suggest about the structure of the age distribution of the runners? 
+Calculate some simple summary statistics to support your comments.", 
+"concepts": ["Data Visualization-Summary"], "format": "@histogram_10mile_summary_stats[histogram_10mile_summary_stats] where \"histogram_10mile_summary_stats\" is the created histogram and additional summary statistics", 
+"file_name": "cherryblossom::run17", "level": "medium",
+"common_answers": [
+  [
+    "solution_code",
+    "run17 %>%\\n
+  filter(event == \"10 Mile\") %>%\\n
+  ggplot(mapping = aes(x = age)) +
+    geom_histogram(binwidth = 2)\\n
+run17 %>%\\n
+  group_by(event) %>%\\n
+  summarise(avg = mean(age, na.rm = TRUE),
+            med = median(age, na.rm = TRUE),
+            min = min(age, na.rm = TRUE), 
+            max = max(age, na.rm = TRUE))"
+  ],
+  [
+    "histogram_10mile_summary_stats",
+    "The shape of the age histogram increases sharply around the age of 25, peaks at about 30 years old and then steadily decreases towards the oldest runner of 10 Mile.\\n
+This shape illustrates that the age distribution is right skewed, specifically the longer tail from the peak in the histogram is that \\n
+which extends out towards the right in the positive direction. The mean age is 37 years, the median age is 35 years and the mode age (from the histogram) \\n
+is about 29 years. Since the data is right skewed, then we see that the mode is the smallest value, followed by the median and the mean value is the largest."
+  ]
+]
+}
+
+{"id": 34.1, "question": "Create a similar data visualisation for the \"5K\" race event. Describe the shape of this histogram and discuss the similarities/differences of the age distribution between the \"5K\" and \"10 Mile\" races.", 
+"concepts": ["Data Visualization-Interpretation"], "format": "@histogram_10mile_5mile_comparison[histogram_10mile_5mile_comparison] where \"histogram_10mile_5mile_comparison\" is the created histogram and additional comparison comments", 
+"file_name": "cherryblossom::run17", "level": "hard", 
+"common_answers": [
+  [
+    "solution_code",
+    "run17 %>%\\n
+  filter(event == \"5K\") %>%\\n
+  drop_na() %>%\\n
+  ggplot(mapping = aes(x = age)) +\\n
+    geom_histogram(binwidth = 2)"
+  ],
+  [
+    "histogram_10mile_5mile_comparison",
+    "The mean age of the runners of the 5K race is 38 years old, with median 36 years and mode (from the histogram) is about 32 years.\\n
+Again we notice the relationship mode < median < mean, which is indicative of a right/positively skewed distribution.\\n
+However, range in these values (5K: 38-32=6, 10 Mile: 37-29=8) suggest that the age distribution for the 10 Mile race is more skewed than that for the 5K race.\\n
+Furthermore, the histogram for the 5K race demonstrates a number of other features, such as a larger number of runners of a lower age with a minor peak around 12 years old.\\n"
+  ]]
+}
+
+{"id": 35, "question": "Create a data visualisation based on the following description.\n
+Make a sequence of boxplots for the time (in minutes) that it took the runners to complete the Cherryblossom race (after accounting for the staggered start).\n
+The boxplots should be orientated vertically (i.e. side-by-side) based on the runner’s identified gender. \n
+Furthermore, the data visualisation should consist of two panels for the two different race distances, with independent axes.\n
+Finally, add appropriate text to the image in order to assist the reader in understanding the data visualisation.\n
+Provide a brief comment about the relationships seen in the data visualisation created by the above description.", 
+"concepts": ["Data Visualization"], "format": "@instructed_data_viz[instructed_data_viz] where \"instructed_data_viz\" is the created data viz based on given instructions", 
+"file_name": "cherryblossom::run17", "level": "hard",
+"common_answers": [
+  [
+    "solution_code",
+    " run17 %>% \\n
+mutate(\\n
+   net_min = net_sec/60,\\n
+   sex = case_when(\\n
+     sex == \"M\" ~ \"Men's Race\",\\n
+     sex == \"F\" ~ \"Women's Race\"\\n
+   )) %>%\\n
+   drop_na() %>%\\n
+   ggplot(mapping = aes(y = net_min, x = sex)) +\\n
+   geom_boxplot() + \\n
+   facet_wrap(~event, scales = \"free\") +\\n
+   labs(\\n
+     x = \"\",\\n
+     y = \"Race time, in minutes\",\\n
+     title = \"Boxplot of the Cherryblossom Run, 2017\"\\n
+   )"
+  ],
+  [
+    "instructed_data_viz",
+    "The times for the 5K event are noticably quicker thant the times for the 10 Mile event.\\n
+Within each event, the range in times for participants in the Men’s race and the Women’s race are fairly similar,\\n
+but the median estimates (the bar through the box) are different,\\n
+with the median time of the Men’s race being faster than that from the Women’s race."
+  ]
+]
+}
+
+{"id": 36, "question": "Using the run17 data set, create two visualisations: One that you think provides a good representation of the data, and
+One that you think provides a bad representation of the data. For each case, give two reasons why you consider the data visualisation you have found are good/bad.", 
+"concepts": ["Data Visualization"], "format": "@run17_data_viz_good_bad[run17_data_viz_good_bad] where \"run17_data_viz_good_bad\" is the created good and bad data viz examples with two main reasons", 
+"file_name": "cherryblossom::run17", "level": "hard", 
+"common_answers": [["run17_data_viz_good_bad", 
+"Reasons why a data visualisation may be considered as being good include:\nThe use of an appropriate visualisation style (box-plot, histogram, scatter plot, etc.) for the variable types.\nInformative use of axis labels and title\nGood use of additional visualisation techniques (colour, point shape, faceting) to add extra variables that does not overload the image.\nThe data visualisation is clean and the intended reader can immediately understand the structure of the data.\nReasons why a data visualisation may be considered as being bad include:\nThere is a geometric flaw in the presentation of the data (e.g., bar heights not consistent with the data)\nOverloading the visualisation to incorporate too many variables\nPoor demonstration of basic mathematics (e.g. percentages not adding to 100%)\nNo title or axis label, or axis labels that are incomprehensible\n"]]
+}
+
+{"id": 37, "question": "Create a new data frame called gss16_advfront that includes the variables advfront, emailhr (Number of hours spent on email weekly), 
+educ (education level), polviews (political views) and wrkstat (working status). Remove any row that contains any NAs. 
+Relevel the advfront variable based on \"Agree"\ - combining the options \"Strongly agree"\ and \"Agree"\ and \"Not agree"\ - combining the options \"Dont know"\, \"Disagree"\ and \"Strongly disagree"\.
+Besides, relevel the polviews to simplify the range of options to 3 categories - \"Conservative"\, \"Moderate"\, and \"Liberal"\.
+Creating a new fulltime variable that is equal to TRUE if wrkstat is equal to “Working fulltime” and FALSE otherwise.
+Save the name data set as a new data frame called 'gss16_advfront'", 
+"concepts": ["Data Cleaning-Preparation"], "format": "@gss16_data_set_cleaning[gss16_data_set_cleaning] where \"gss16_data_set_cleaning\" is the cleaned data set based on given data and instructions", 
+"file_name": "gss16.csv", "level": "hard", 
+"common_answers": [
+  [
+    "solution_code",
+    " gss16_advfront <- gss16 %>% \n
+  select(advfront, emailhr, educ, polviews, wrkstat) %>% \n
+  drop_na() \n
+gss16_advfront <- gss16_advfront %>% \n
+  mutate(
+    advfront = case_when(
+      advfront == "Strongly agree" ~ "Agree",
+      advfront == "Agree" ~ "Agree",
+      TRUE ~ "Not agree"
+    ),
+    advfront = fct_relevel(advfront, "Not agree", "Agree")
+  ) \n\
+gss16_advfront <- gss16_advfront %>%\n
+  mutate(
+    polviews = case_when(
+      str_detect(polviews, "[Cc]onservative") ~ "Conservative",
+      str_detect(polviews, "[Ll]iberal") ~ "Liberal",
+      TRUE ~ polviews
+    ),
+    polviews = fct_relevel(polviews, "Conservative", "Moderate", "Liberal")
+  ) \n
+gss16_advfront <- gss16_advfront %>% \n
+  mutate(fulltime = ifelse(wrkstat == "Working fulltime",TRUE,FALSE))
+"
+  ],
+  [
+    "gss16_data_set_cleaning",
+    "The cleaned data set follows the above steps and saved as gss16_advfront"
+  ]
+]
+}
+
+
+{"id": 38, "question": "Consider the numerical values educ and emailhr, and the newly created fulltime from your new data set gss16_advfront.
+Fit a linear regression model to predicting emailhr based on educ and fulltime. From your output, state the formula for the line-of-best fit; give an interpretation of the fulltimeTRUE estimate. ", 
+"concepts": ["Regression Modeling"], "format": "@gss16_advfront_data_regression[gss16_advfront_data_regression] where \"gss16_advfront_data_regression\" is the fitted regression model", 
+"file_name": "gss16_advfront.csv", "level": "medium",
+"common_answers": [
+  [
+    "solution_code",
+    "linear_fit <- linear_reg() %>% \\n
+  set_engine(\"lm\") %>% \\n
+  fit(emailhr ~ educ+fulltime, data = gss16_advfront) \\n
+linear_fit %>% tidy()"
+  ],
+  [
+    "gss16_advfront_data_regression",
+    "The formula for the best fit is −3.35 + 0.538 × educ + 5.28 × fulltimeTRUE where fulltimeTRUE is a dummy variable equal to 1 if fulltime is equal to TRUE and 0 otherwise. \\n
+The coefficient for fulltimeTRUE explains that, holding everything else constant, people working fulltime are expected to spend on average 5.28 hours more \\n
+on email per week then people not working fulltime."
+  ]
+]
+}
+
+{"id": 38.1, "question": "Using appropriate model fit statistics, comment on the overall model performance. 
+Create a suitable data visualization to evaluate if the linear model assumptions are satistied, and comment on the suitability of the model.", 
+"concepts": ["Regression Modeling"], "format": "@gss16_advfront_regression_model_performance[gss16_advfront_regression_model_performance] where \"gss16_advfront_regression_model_performance\" is the model fit diagnostics including data viz", 
+"file_name": "gss16_advfront.csv", "level": "hard", 
+"common_answers": [
+  [
+    "solution_code",
+    "glance(linear_fit) \\n
+  em_ed_ft_fit_aug <- augment(linear_fit$fit)\\n
+ggplot(em_ed_ft_fit_aug, mapping = aes(x = .fitted, y = .resid)) +\\n
+  geom_point(alpha = 0.5) +\\n
+  geom_hline(yintercept = 0, color = \"gray\", lty = \"dashed\") +\\n
+  labs(x = \"Predicted values\", y = \"Residuals\")"
+  ],
+  [
+    "gss16_advfront_regression_model_performance",
+    "When the simple linear regression is considered for the emailhr and fulltime variable, the model results in poor/moderate performance.\\n 
+In fact, the model R-squared value is very close to the zero (0.0836), and this shows that these variables are not able to explain a large variation in the response variable\\n
+– only 8.3% of the variation in emailhr is explained by the model.\\n
+By examining the residual by fitted plot, we see that the residuals do not satisty the assumption of the linear model, as they display a “fan shape”, \\n
+i.e. the variance of the residuals appears to be larger for larger predicted values."
+  ]
+]
+}
+
+{"id": 39, "question": "In this part, we’re going to build a model to predict whether someone agrees or doesn’t agree with the following statement:
+'Even if it brings no immediate benefits, scientific research that advances the frontiers of knowledge is necessary and should be supported by the federal government.'
+Split the dataset into a training dataset (gss16_train) and a testing dataset (gss16_test). 
+Build a workflow for the training data that consists of a recipe (gss16_rec_1) and a model (gss16_mod_1). Name this workflow gss16_wflow_1.
+Apply the workflow you defined earlier to the training dataset and named the model as gss16_fit_1. Display the resulting tibble containing the fitted model parameters.", 
+"concepts": ["Logistic Regression Modeling"], "format": "@gss16_advfront_logistic_model[gss16_advfront_logistic_model] where \"gss16_advfront_logistic_model\" is the logistic regression model fit.", 
+"file_name": "gss16_advfront.csv", "level": "hard",
+"common_answers": [
+  [
+    "solution_code",
+    "gss16_split <- initial_split(gss16_advfront) \\n
+gss16_train <- training(gss16_split) \\n
+gss16_test  <- testing(gss16_split) \\n
+gss16_rec_1 <- recipe(advfront ~ educ, data = gss16_train) \\n
+gss16_mod_1 <- logistic_reg() %>% \\n
+  set_engine(\"glm\") \\n
+gss16_wflow_1 <- workflow() %>% \\n
+  add_model(gss16_mod_1) %>% \\n
+  add_recipe(gss16_rec_1) \\n
+gss16_fit_1 <- gss16_wflow_1 %>% \\n
+  fit(gss16_train) \\n
+tidy(gss16_fit_1)"
+  ],
+  [
+    "gss16_advfront_logistic_model",
+    "##   term        estimate std.error statistic   p.value \\n
+## 1 (Intercept)   -0.375    0.485     -0.773 0.439    \\n
+## 2 educ           0.150    0.0356     4.21  0.0000252 \\n
+A logistic regression is the appropriate model to use here because the response variable is binary (agree vs not agree). \\n
+The fitted model results in a coefficient of 0.15 for education, suggesting that the probability for agreeing with the statement increases on average  \\n
+for a participant with a larger number of years in education."
+  ]
+]
+}
+
+{"id": 39.1, "question": "Use the fitted models to predict the test data, plot the ROC curve for the predictions. 
+Calculate the specificity and the sensitivity of the model on the test data, when using a cutoff of 0.85 for the predictions.", 
+"concepts": ["Model Performance-Visualization"], "format": "@gss16_advfront_logistic_model_ROC_performance[gss16_advfront_logistic_model_ROC_performance] where \"gss16_advfront_logistic_model_ROC_performance\" is the 
+logistic regression model fit predictions and related performance metrics", 
+"file_name": "gss16_advfront.csv", "level": "hard", 
+"common_answers": [
+  [
+    "solution_code",
+    "gss16_test_pred_1 <- predict(gss16_fit_1, new_data = gss16_test, type = \"prob\") %>% \\n
+  bind_cols(gss16_test %>% select(advfront)) \n\
+gss16_test_pred_1 %>% \\n
+  roc_curve(truth = advfront, .pred_Agree, event_level = \"second\") %>% \\n
+  autoplot() \\n
+gss16_train <- training(gss16_split) \\n
+gss16_test_pred_1 %>% \\n
+  roc_auc(truth = advfront, .pred_Agree, event_level = \"second\") \\n
+
+threshold <- 0.85 \\n
+table_pred <- gss16_test_pred_1 %>% \\n
+  mutate(\\n
+    advfront_pred = if_else(.pred_Agree >= threshold, \"Predicted to agree\", \"Predicted to disagree\"),\\n
+    advfront = if_else(advfront == \"Agree\", \"Agree\", \"Disagree\") \\n
+  ) %>% \\n
+  count(advfront_pred, advfront) %>% \\n
+  pivot_wider(names_from = advfront, values_from = n) \\n
+table_pred"
+  ],
+  [
+    "gss16_advfront_logistic_model_ROC_performance",
+    "##   advfront_pred         Agree Disagree\\n
+## 1 Predicted to agree      112        9\\n
+## 2 Predicted to disagree   153       19 \\n
+This means that; TP = 112; FP = 9, FN = 153, TN = 19 \\n
+Sensitivity is the probability of “predicting to agree” for a participant who agrees, and it’s computed as TP / (TP + FN), so 0.42. \\n
+Specificity is the probability of “predicting to disagree” for a participant who disagree, and it’s computed as TN / (FP + TN), so 0.68."
+  ]
+]
+}
+
+---- IDS old quiz problems (TBA) ---
+
+{"id": 40, "question": "The 95% confidence interval for the average monthly cost of a gym membership in a city is calculated to be ($35, $50). 
+What is the correct interpretation of this interval?", 
+"concepts": ["CI Interpretation"], "format": "@CI95_interpretation[CI95_interpretation] where \"CI95_interpretation\" is the verbal interpretation for the given statement.", 
+"file_name": "", "level": "easy"}
+
+{"id": 41, "question": "In the context of an email spam detection system, describe the terms \"True Positive\", \"False Positive\", \"True Negative\", and \"False Negative\" ", 
+"concepts": ["Specific Descriptions"], "format": "@Confusion_definitions[Confusion_definitions] where \"Confusion_definitions\" is the verbal definitions for the given quantities.", 
+"file_name": "", "level": "easy"}
+
+{"id": 42, "question": "For the given set of numerical vectors below, 
+```
+vectors <- list(
+    item1 <- 1:10,
+    item2 <- seq_len(7),
+    item3 <- c(4, 8, 12, 16, 20),
+    item4 <- runif(15)
+  )
+```
+Calculate the mean of each vector and store the values in a specific object", 
+"concepts": ["Summary Statistics"], "format": "@vectors_mean_data[vectors_mean_data] where \"vectors_mean_data\" is the calculated mean vector of the each list of data.", 
+"file_name": "", "level": "easy"}
+
+{"id": 43, "question": "A study discovered a healthcare risk-prediction algorithm demonstrated racial bias because it relied on a faulty metric for determining need. 
+What action can be taken to correct this bias?", 
+"concepts": ["Action Suggestion"], "format": "@healthcare_risk_prediction_bias[healthcare_risk_prediction_bias] where \"healthcare_risk_prediction_bias\" is the verbal suggestion for bias correction", 
+"file_name": "", "level": "medium"}
+
+{"id": 44, "question": "Suppose I want to estimate the average number of pets in households in Edinburgh. 
+I conduct a survey at a dog park in Edinburgh and ask pet owners how many pets they have at home. Then, I take the average of the responses.
+Why might the method used to estimate the average number of pets in households in Edinburgh be biased?", 
+"concepts": ["Interpretation"], "format": "@edinburgh_dog_survey_bias[edinburgh_dog_survey_bias] where \"edinburgh_dog_survey_bias\" is the verbal explanation about why the approach is biased", 
+"file_name": "", "level": "medium"}
+
+{"id": 45, "question": "For the given data frames in tibble format, 
+```
+df1 <- tibble(x = 1:3)
+df2 <- tibble(x = c(1, 1, 2), y = c(\"first\", \"second\", \"third\"))
+```
+Apply the joining procedure results in a new data frame with missing value.", 
+"concepts": ["Data Preparation"], "format": "@df1_df2_merged[df1_df2_merged] where \"df1_df2_merged\" is the merged data frame based on given condition", 
+"file_name": "", "level": "easy"}
+
+---- IDS old quiz problems (TBA) ---
+
+{"id": 46, "question": "Give me the statistical summary for the given data set", 
+"concepts": ["Descriptive Statistics"], "format": "@laptop_summary_stats[laptop_summary_stats] where \"laptop_summary_stats\" is the summary statistics of the given data set.", 
+"file_name": "laptop_data_cleaned.csv", "level": "easy", 
+"common_answers": [
+  [
+    "solution_code",
+    "laptop_data_cleaned <- read_csv(\"laptop_data_cleaned.csv\") \\n
+summary(laptop_data_cleaned)"
+  ],
+  [
+    "laptop_summary_stats",
+    "There are 1273 observations for the data set including both numerical and categorical type of variables\\n
+Specifically for the price variable, we have min value as 9.135, max value as 12.691, whereas mean: 10.828 and median 10.872 \\n
+The variance of the price is calculated as 0.3838608\\n"
+  ]
+]
+}
+
+---- OPEN ENDED on LAPTOP DATA SET (TBA) ---
+
+{"id": 47, "question": "Create the suitable data visualization to summarize the price distribution and its relationship with other features", 
+"concepts": ["Data Visualization"], "format": "@laptop_price_dist_plot[laptop_price_dist_plot] where \"laptop_price_dist_plot\" is the set of suitable data visualization summary for price distribution.", 
+"file_name": "laptop_data_cleaned.csv", "level": "medium"}
+
+{"id": 47.1, "question": "Create the mosaic plot to summarize the categorical features", 
+"concepts": ["Data Visualization"], "format": "@laptop_price_mosaic_plot[laptop_price_mosaic_plot] where \"laptop_price_mosaic_plot\" is the set of suitable mosaic plot for categorical variables", 
+"file_name": "laptop_data_cleaned.csv", "level": "medium"}
+
+{"id": 48, "question": "Implement the linear regression for the price variable for the given data set", 
+"concepts": ["Regression Modeling"], "format": "@laptop_price_regression[laptop_price_regression] where \"laptop_price_regression\" is the fitted regression model based on a certain modeling workflow", 
+"file_name": "laptop_data_cleaned.csv", "level": "hard"}
+
+{"id": 48.1, "question": "Test and Interpret the performance of the fitted regression model based on the model diagnostic plots", 
+"concepts": ["Regression Modeling Interpretation"], "format": "@laptop_price_regression_diagnostics[laptop_price_regression_diagnostics] where \"laptop_price_regression_diagnostics\" is the model diagnostic of fitted model and interpretations", 
+"file_name": "laptop_data_cleaned.csv", "level": "hard"}
+
+{"id": 49, "question": "Implement different regression models as the alternative of fitted linear regression model for the price variable for the given data set. 
+Compare the performance of the fitted models", 
+"concepts": ["Modeling Comparison"], "format": "@laptop_price_regression_comparison[laptop_price_regression_comparison] where \"laptop_price_regression_comparison\" is the list of performance metrics over different fitted regression models", 
+"file_name": "laptop_data_cleaned.csv", "level": "hard"}
+
+{"id": 50, "question": "Fit a regression tree model for the price variable for the given data set and test its performance. 
+Tune the model hyperparameters by using the cross-validation approach", 
+"concepts": ["Model Improvement"], "format": "@laptop_price_tree_regression[laptop_price_tree_regression] where \"laptop_price_tree_regression\" is the tuned regression tree model fit and its performance", 
+"file_name": "laptop_data_cleaned.csv", "level": "hard"}
+
+{"id": 51, "question": "Consider the classification problem and use models like logistic regression, decision trees, or neural networks 
+for laptops into different price ranges (e.g., budget, mid-range, premium)", 
+"concepts": ["Classification Model"], "format": "@laptop_price_logistic_regression[laptop_price_logistic_regression] where \"laptop_price_logistic_regression\" is the fitted logistic model on the new response variable", 
+"file_name": "laptop_data_cleaned.csv", "level": "medium"}
+
+---- OPEN ENDED on LAPTOP DATA SET (TBA) ---
+
+{"id": 52, "question": "Suppose that we have independent observations x1, ..., x25 from a N(µ, σ^2) distribution where both µ and σ^2 are unknown. 
+The data values are: 10, 12, 9, 6, 7, 11, 6, 9, 15, 10, 11, 13, 13, 9, 8, 10, 11, 7, 5, 8, 10, 13, 14, 14, 10
+Calculate a 95% confidence interval for the mean µ.", 
+"concepts": ["Confidence Interval"], "format": "@normal_data_conf_interval[normal_data_conf_interval] where \"normal_data_conf_interval\" is the calculated confidence interval for the given sample data", 
+"file_name": "", "level": "easy", 
+"common_answers": [
+  [
+    "solution_code",
+"x <- c(10, 12, 9, 6, 7, 11, 6, 9, 15, 10, 11, 13, 13, 9, 8, 10, 11, 7, 5, 8, 10, 13, 14, 14, 10) \\n
+xbar <- mean(x) \\n
+s <- sd(x) \\n
+n <- length(x) \\n
+xbar + qt(c(0.025, 0.975), df = n - 1) * s/sqrt(n)"
+  ],
+  [
+    "normal_data_conf_interval",
+    "The calculated confindence interval is found as (8.919143, 11.160857)"
+  ]
+]
+}
+
+{"id": 53, "question": "Plot a histogram of the data in the column headed level. Draw a scatter plot of the data of index against level", 
+"concepts": ["Data Visualization"], "format": "@mouse_data_viz[mouse_data_viz] where \"mouse_data_viz\" is the created multiple different data visualizations", 
+"file_name": "mouse.txt", "level": "medium", 
+"common_answers": [["mouse_data_viz", 
+"hist(mouse$level, xlab = \"level\", main = \"Histogram of level\") \\n
+plot(mouse$index, mouse$level, xlab = \"index\", ylab = \"level\",
+main = \"Scatter plot of mouse data\")"
+]]
+}
+
+{"id": 54, "question": "Calculate the sample mean and standard deviation of level for the different index values 1 and 2.", 
+"concepts": ["Data Understanding"], "format": "@mouse_summary_stats[mouse_summary_stats] where \"mouse_summary_stats\" is the list or vector including meand and standard deviation value", 
+"file_name": "mouse.txt", "level": "easy", 
+"common_answers": [
+  [
+    "solution_code",
+"mean(mouse$level[mouse$index == 1]) \\n
+mean(mouse$level[mouse$index == 2]) \\n
+sd(mouse$level[mouse$index == 1]) \\n
+sd(mouse$level[mouse$index == 2])"
+  ],
+  [
+    "mouse_summary_stats",
+    "The calculated sample mean for the index value for 1 is 181.8333 whereas the sample mean for index value is 2 given as 181.1. The calculated sample standard deviation for the index value for 1 is 144.8493 whereas the sample standard deviation for index value is 2 given as 154.9638"
+  ]
+]
+}
+
+{"id": 55, "question": "Read the following time series data in to a vector: 10, 12, 16, 14, 19, 17, 13, 21, 18, 15, 19, 25, 27, 20, 14, 12, 17.Plot this data using a line graph, such that the limits of the y-axis are [0, 30]. Give the graph a title. ", 
+"concepts": ["Data Visualization"], "format": "@data_line_graph[data_line_graph] where \"data_line_graph\" is the created line plot with certain aesthetics", 
+"file_name": "", "level": "easy", 
+"common_answers": [
+  [
+    "solution_code",
+"vec <- c(10, 12, 16, 14, 19, 17, 13, 21, 18, 15, 19, 25, 27, 20, 14, 12, 17) \\n
+plot(vec, type = "l", ylim = c(0, 30), main = \"TITLE\")"
+  ],
+  [
+    "data_line_graph",
+    "The obtained image is a line plot with certain ylim and specific title."
+  ]
+]
+}
+
+{"id": 56, "question": "For now consider only the data stored in the vector first. We assume that the data are independent
+observations from N(µ, σ2) and wish to conduct the following hypothesis test: H0 : µ equals 10 vs H1 : µ not equal 10
+Define a suitable test statistic and state its distribution, assuming that the null hypothesis is true.
+Calculate the associated observed test statistic. Conduct the hypothesis test and clearly state your conclusions.", 
+"concepts": ["Hypothesis Testing"], "format": "@aeroplane_one_sample_test[aeroplane_one_sample_test] where \"aeroplane_one_sample_test\" is the one sample test implementation", 
+"file_name": "aeroplane.txt", "level": "medium", 
+"common_answers": [["aeroplane_one_sample_test", "Consider the test statistic:
+T = (X_bar − 10) / S/√n where X_bar denotes the mean of the first throws; and S the corresponding sample standard deviation.  If H0 is true, then T ∼ t_{n−1}.
+We can use R to calculate the observed sample mean using mean and the observed sample standard deviation
+using sd. Therefore the test statistic is: 5.244969. We calculate the p-value as 4.613442e-05. Thus we would reject the null hypothesis that µ equals 10 in favour of the alternative 
+hypothesis that µ not equal 10 at all reasonable significance levels. Further we would conclude that there is evidence that µ > 10"]]}
+
+{"id": 57, "question": "Now consider jointly the distances of both the throws and wish to assess whether there is a difference in
+the underlying means. For example, we may wish to investigate whether the first landing affected its flying behaviour (e.g. bent nose); or whether individuals 
+may have a better idea of how to throw the plane following their first throw.
+State the relevant hypothesis test should be conducted - being careful to ensure that any notation used
+is clearly defined. Conduct the hypothesis test and state your conclusions. Repeat your analysis using the function t.test.", 
+"concepts": ["Hypothesis Testing"], "format": "@aeroplane_two_sample_test[aeroplane_two_sample_test] where \"aeroplane_two_sample_test\" is the two sample test implementation", 
+"file_name": "aeroplane.txt", "level": "medium", 
+"common_answers": [
+  [
+    "solution_code",
+"diff <- first - second \\n
+teststat <- mean(diff) / (sd(diff)/sqrt(length(diff))) \\n
+teststat \\n
+2*(1 - pt(teststat, df = length(diff) - 1)) \\n
+qt(c(0.025, 0.975), df = length(diff) - 1) \\n 
+t.test(diff, mu = 0)"
+  ],
+  [
+    "aeroplane_two_sample_test",
+    "Let µX denote the underlying mean of the first throws; and µY for the second throws. We wish to test H0 : µX equals µY versus H1 : µX not equals µY. \\n
+    Let X_bar denote the random variable corresponding to the mean of the first throws; and µY the random variable corresponding to the mean of the second throws. \\n
+The data are paired - the same aeroplane is used for both the first and second throws of each student - and so they are not independent across the two throws \\n
+(we do however assume that each students is independent of each other). Thus we consider the differences of the means D_bar = X_bar − Y_bar (or D_bar = Y_bar − X_bar) \\n 
+The obtained p-value is 0.002765844, it is smaller than the predefined 0.05 significance level so we would reject the null hypothesis that the mean distances between \\n
+the throws are equal in favour of the alternative hypothesis that the mean differences are different. \\n
+In particular we would include that the mean of the first throws are larger than the mean of the second throws. The same result is obtained via t.test function (p-value = 0.002766)"
+  ]
+]
+}
+
+{"id": 58, "question": "The statement is made by an observer (who does not actually see the tabulated data - but simply watched the
+experiment) that the distances appear to be less variable for the second throws of the aeroplanes compared to the first throws. 
+However, as a statistics student you want to assess whether there is any difference in the variability of the distances of the first throws compared to the second throws.
+State the name of the hypothesis test that you wish to conduct and specify the associated hypotheses clearly defining any notation that you use. 
+Conduct the hypothesis test and clearly state any conclusions that you make. Is there any evidence to support the claim of the observer?", 
+"concepts": ["Hypothesis Testing"], "format": "@aeroplane_testing_variability[aeroplane_testing_variability] where \"aeroplane_testing_variability\" is the testing variability between the groups", 
+"file_name": "aeroplane.txt", "level": "hard",
+"common_answers": [
+  [
+    "solution_code",
+"Fstat <- var(first)/var(second) \\n
+Fstat \\n
+pval <- 2*pf(Fstat, df1 = length(first)-1, df2 = length(second)-1) \\n
+pval \\n
+crit_region <- qf(c(0.025,0.975), df1 = length(first)-1, df2 = length(second)-1) \\n
+crit_region"
+  ],
+  [
+    "aeroplane_testing_variability",
+    "We wish to conduct an F-test to test for equality of variance \\n
+    Let sigma_X^2 denote the variance of the random variable corresponding to the first throws and sigma_Y^2 denote the variance of the random variable corresponding to the second throws \\n
+We wish to test H0 : sigma_X^2 equals sigma_Y^2 vs H1 : sigma_X^2 not equals sigma_Y^2 \\n
+Consider the test statistics: F = (S_X^2)/(S_Y^2) \\n
+we have an associated p-value of 0.5013 - so that there is no evidence against the null hypothesis that the variances are the same. \\n
+Similarly we observe the critical region C = {f : f ≤ 0.396 or f ≥ 0.396 } and the observed f-statistic does not fall within the critical region, and so we again do not reject the null hypothesis."
+  ]
+]
+}
+
+{"id": 59, "question": "Visualize the distribution of sizes of houses in Duke Forest. What is the size of a typical house?", 
+"concepts": ["Data Visualization"], "format": "@duke_forest_size[duke_forest_size] where \"duke_forest_size\" is the created visualization and comment", 
+"file_name": "duke_forest.xlsx", "level": "easy",
+"common_answers": [
+  [
+    "solution_code",
+"duke_forest %>% ggplot(aes(x=area)) + geom_histogram() \\n
+duke_forest$area %>% mean()"
+  ],
+  [
+    "duke_forest_size",
+    "In average the size of an house is obtained around 2779.265 in terms of the given distribution of the area variable of the data"
+  ]
+]
+}
+
+{"id": 60, "question": "Construct a 95% confidence interval for the typical size of a house in Duke Forest. Interpret the interval in context of the data.", 
+"concepts": ["Confidence Interval"], "format": "@duke_forest_CI_95[duke_forest_CI_95] where \"duke_forest_CI_95\" is the calculated confidence interval and interpretation", 
+"file_name": "duke_forest.xlsx", "level": "easy",
+"common_answers": [
+  [
+    "solution_code",
+"sample_mean <- mean(duke_forest$area) \\n
+se <- sd(duke_forest$area)/sqrt(length(duke_forest$area)) \\n
+lower <- sample_mean - 1.96 * se \\n
+upper <- sample_mean + 1.96 * se \\n
+c(lower, upper)"
+  ],
+  [
+    "duke_forest_CI_95",
+    "We can calculate a 95% confidence interval for a sample mean by adding and subtracting 1.96 standard errors to the point estimate \\n
+The obtained interval for the size of an house via area variable is (2592.52 2966.01). Even though we don’t know what the full population looks like, \\n
+we’re 95% confident that the true average size of homes in Duke lies between"
+  ]
+]
+}
+
+{"id": 61, "question": "Find the relationship between price and size using the regression", 
+"concepts": ["Linear Regression"], "format": "@duke_forest_price_size_regr[duke_forest_price_size_regr] where \"duke_forest_price_size_regr\" is the created regression model", 
+"file_name": "duke_forest.xlsx", "level": "medium", 
+"common_answers": [
+  [
+    "solution_code",
+"df_price_area_fit <- linear_reg() %>% \\n
+  fit(price ~ area, data = duke_forest) \\n
+tidy(df_price_area_fit)"
+  ],
+  [
+    "duke_forest_price_size_regr",
+    "The fitted regression model for the price using the area is obtained as Price = 116652 + 159 x area \\n
+For each additional square feet, the model predicts that prices of houses in Duke Forest are higher by $159, on average."
+  ]
+]
+}
+
+---- OPEN ENDED on DUKE FOREST DATA SET (TBA) ---
+
+{"id": 61.1, "question": "Evaluate the model performance of the fitted regression using model diagnostic plots", 
+"concepts": ["Regression Model Diagnostics"], "format": "@duke_forest_regr_model_diag[duke_forest_regr_model_diag] where \"duke_forest_regr_model_diag\" is the created regression model diagnostics and related interpretations", 
+"file_name": "duke_forest.xlsx", "level": "hard"}
+
+{"id": 61.2, "question": "Quantify the uncertainty around the model fit slope using a 95% bootstrap confidence interval and interpret the interval in context of the data.", 
+"concepts": ["Bootstrap CI"], "format": "@duke_forest_regr_bootstrap[duke_forest_regr_bootstrap] where \"duke_forest_regr_bootstrap\" is the created bootstrap CI for the fitted regression model.", 
+"file_name": "duke_forest.xlsx", "level": "hard"}
+
+{"id": 62, "question": "Fit the regression model for the price using the relevant predictors", 
+"concepts": ["Linear Regression"], "format": "@duke_forest_price_size_regr_all[duke_forest_price_size_regr_all] where \"duke_forest_price_size_regr_all\" is the created regression model", 
+"file_name": "duke_forest.xlsx", "level": "medium"}
+
+{"id": 63, "question": "Consider the Lasso and Ridge regression for the price variable. Compare their performances using suitable metrics", 
+"concepts": ["Ridge-Lasso Regression"], "format": "@duke_forest_price_size_ridge_lasso[duke_forest_price_size_ridge_lasso] where \"duke_forest_price_size_ridge_lasso\" is the created regression models and their comparison", 
+"file_name": "duke_forest.xlsx", "level": "hard"}
+
+{"id": 64, "question": "Consider the regression model with the price-correlated variables as predictors. 
+Split the data into train and testing, afterwards fit the regression model to test its performance", 
+"concepts": ["Regression Model"], "format": "@duke_forest_price_regression[duke_forest_price_regression] where \"duke_forest_price_regression\" is the created regression model and its results", 
+"file_name": "duke_forest.xlsx", "level": "hard"}
+
+{"id": 65, "question": "Run PCA for this data, with all suitable variables. Discuss whether it is appropriate to run scaled or unscaled PCA for this data. ", 
+"concepts": ["PCA"], "format": "@duke_forest_PCA[duke_forest_PCA] where \"duke_forest_PCA\" is the fitted PCA and its interpretations", 
+"file_name": "duke_forest.xlsx", "level": "hard"}
+
+{"id": 66, "question": "Run PCA for this data, with all suitable variables. Discuss whether it is appropriate to run scaled or unscaled PCA for this data. ", 
+"concepts": ["PCA"], "format": "@duke_forest_PCA[duke_forest_PCA] where \"duke_forest_PCA\" is the fitted PCA and its interpretations", 
+"file_name": "duke_forest.xlsx", "level": "hard"}
+
+{"id": 66.1, "question": "Use the small number of PCs identified to cluster samples using an appropriate distance between the samples. 
+Identify the most appropriate number of clusters. Compare clustering results based on 2 different clustering methods. ", 
+"concepts": ["Clustering"], "format": "@duke_forest_PCA_clustering[duke_forest_PCA_clustering] where \"duke_forest_PCA_clustering\" is the fitted clustering model results", 
+"file_name": "duke_forest.xlsx", "level": "hard"}
+
+{"id": 66.2, "question": "Using the PC scores identified as variables, derive a Linear Discriminant Analysis results. 
+Discuss how many unknown parameters need to be estimated to derive this LDA rule, and compare it to the number of samples", 
+"concepts": ["Linear Discriminant Analysis"], "format": "@duke_forest_PCA_LDA[duke_forest_PCA_LDA] where \"duke_forest_PCA_LDA\" is the fitted linear discriminant analysis results", 
+"file_name": "duke_forest.xlsx", "level": "hard"}
+
+---- OPEN ENDED on DUKE FOREST DATA SET (TBA) ---
+
+{"id": 67, "question": "Briefly describe the data. Present the data and its most important features (e.g. histogram or box plots of log gene expression in a 
+sample / for a particular gene; illustrate the data using experimental design, e.g. plot time course for a gene in different treatments)", 
+"concepts": ["Data Description"], "format": "@gene_data_description[gene_data_description] where \"gene_data_description\" is the data description with visuals and comments", 
+"file_name": "Gene_Data.RData / Gene_Data.xlsx", "level": "medium"}
+
+{"id": 68, "question": "Run PCA for this data, with genes as variables. Select a small number of PCs that describe variability in the data that is relevant 
+for the considered experimental factors (give your reasoning), state the proportion of the variability of the original data set they describe", 
+"concepts": ["PCA"], "format": "@gene_data_PCA[gene_data_PCA] where \"gene_data_PCA\" is the fitted PCA and interpretations", 
+"file_name": "Gene_Data.RData / Gene_Data.xlsx", "level": "medium"}
+
+{"id": 69, "question": "Use the small number of PCs identified to cluster samples using an appropriate distance between the samples 
+(without using any information about the given covariates: time, treatment, replicates). Identify the most appropriate number of clusters. 
+Compare clustering results based on 2 different clustering methods. 
+Discuss whether there is a connection between the identified clusters of samples to the groups of samples given by covariates", 
+"concepts": ["Clustering"], "format": "@gene_data_clustering[gene_data_clustering] where \"gene_data_clustering\" is the fitted clustering models and interpretations", 
+"file_name": "Gene_Data.RData / Gene_Data.xlsx", "level": "hard"}
+
+{"id": 70, "question": "Using the PC scores identified as variables, derive a Linear Discriminant Analysis rule to discriminate between the 7 conditions. 
+Discuss how many unknown parameters need to be estimated to derive this LDA rule, and compare it to the number of samples. 
+Discuss classification errors of this rule. Discuss how different number of PCs used in LDA affects the classification errors, and other details 
+that affect classification", 
+"concepts": ["Linear Discriminant Analysis"], "format": "@gene_data_LDA[gene_data_LDA] where \"gene_data_LDA\" is the fitted LDA results and its interpretations", 
+"file_name": "Gene_Data.RData / Gene_Data.xlsx", "level": "hard"}
+
+{"id": 71, "question": "Fit a multiple linear regression using the numerical variables: weight, clarity and carat.
+In words, explain how to interpret the coefficient estimate for the weight variable", 
+"concepts": ["Linear Regression"], "format": "@diamonds_data_mult_reg[diamonds_data_mult_reg] where \"diamonds_data_mult_reg\" is the fitted multiple regression and its interpretations", 
+"file_name": "Stats_diamonds.xlsx", "level": "easy"}
+
+{"id": 71.1, "question": "What is the residual standard error and degree of freedom for the fitted model?", 
+"concepts": ["Regression Model Diagnostics"], "format": "@diamonds_data_reg_error[diamonds_data_reg_error] where \"diamonds_data_reg_error\" is the fitted multiple regression diagnostics", 
+"file_name": "Stats_diamonds.xlsx", "level": "easy"}
+
+{"id": 71.2, "question": "Consider the null hypothesis β3 = 0 against the two-sided alternative. From the summary output,
+make an appropriate concluding statement at the 5% significance level", 
+"concepts": ["Regression Coefficient Testing"], "format": "@diamonds_data_reg_testing[diamonds_data_reg_testing] where \"diamonds_data_reg_testing\" is the fitted multiple regression model coefficient testing", 
+"file_name": "Stats_diamonds.xlsx", "level": "medium"}
+
+{"id": 71.3, "question": "Create the model diagnostic plots for the fitted regression and evaluate the model performance based on the model assumptions", 
+"concepts": ["Regression Model diagnostics"], "format": "@diamonds_data_reg_model_diag[diamonds_data_reg_model_diag] where \"diamonds_data_reg_model_diag\" is the model diagnostics of the regression model and interpretations", 
+"file_name": "Stats_diamonds.xlsx", "level": "hard"}
+
+{"id": 72, "question": "Fit a Bayesian Linear regression model in INLA (with Gaussian likelihood) using rainfall as the response. 
+Use all covariates, including the year, in a linear model. Scale all of the non-categorical covariates that you use in your model.
+For the regression coefficients and intercept, use zero mean Normal priors with standard deviation 100. 
+For the Gaussian variance, use an inverse Gamma prior with parameters 1 and 0.01.
+Print out the model summary and interpret the posterior means of the regression coefficients. Plot the marginal posterior densities for the regression coefficients.", 
+"concepts": ["Bayesian Regression Model"], "format": "@edi_rainfall_bayesian_reg[edi_rainfall_bayesian_reg] where \"edi_rainfall_bayesian_reg\" is the bayesian model regression and related results", 
+"file_name": "Edinburgh_rainfall.csv", "level": "hard"}
+
+{"id": 72.1, "question": "Perform the necessary model checks for the linear regression model using the Studentized residuals. Interpret your results", 
+"concepts": ["Bayesian Regression Model Checks"], "format": "@edi_rainfall_bayesian_model_checks[edi_rainfall_bayesian_model_checks] where \"edi_rainfall_bayesian_model_checks\" is the bayesian model regression model checks", 
+"file_name": "Edinburgh_rainfall.csv", "level": "hard"}
+
+{"id": 72.2, "question": "Using the same linear predictor specification as in Q72, find a robust regression model that
+provides an improved fit to the data. You should quantify the goodness-of-fits using the WAIC and NSLCPO.", 
+"concepts": ["Bayesian Regression Model"], "format": "@edi_rainfall_robust_model[edi_rainfall_robust_model] where \"edi_rainfall_robust_model\" is the robust regression model fit", 
+"file_name": "Edinburgh_rainfall.csv", "level": "hard"}
+
+{"id": 72.3, "question": "Using your robust regression model, perform posterior predictive checks. Interpret the output of your checks. 
+[Hint: when generating from the posterior predictive distribution, be careful of your choice of family]", 
+"concepts": ["Bayesian Regression Model"], "format": "@edi_rainfall_robust_post_checks[edi_rainfall_robust_post_checks] where \"edi_rainfall_robust_post_checks\" is the robust regression model posterior checkings", 
+"file_name": "Edinburgh_rainfall.csv", "level": "hard"}
+
+{"id": 72.3, "question": "Calculate the posterior predictive probability that the total rainfall in 2022 will exceed the
+previously recorded maximum of the annual total rainfall throughout the observation period. Ignore leap years in your calculations", 
+"concepts": ["Bayesian Regression Model"], "format": "@edi_rainfall_robust_post_prob[edi_rainfall_robust_post_prob] where \"edi_rainfall_robust_post_prob\" is the robust regression model posterior probability value", 
+"file_name": "Edinburgh_rainfall.csv", "level": "medium"}
+
+...
+NOT FULLY UP TO DATE!!
