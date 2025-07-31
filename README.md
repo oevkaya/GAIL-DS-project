@@ -41,14 +41,6 @@ Impact of zero shot vs one shot learning can be explored for some tasks only
 - Statistical Hypothesis testing related questions
 - Bayesian regression
 
-## Task labeling results (TBA)
-
-| Topic                          | Easy | Medium | Hard | Total |
-| ------------------------------ |-----:|-----:|-----:|-----:|
-| Data Undertanding/Wrangling    |   ?? |   ?? |   ?? |   ?? |
-| Data Summary / Intepretations  |   ?? |   ?? |   ?? |   ?? |
-| Data Visualization             |   ?? |   ?? |   ?? |   ?? |
-
 ### Source of Questions/Prompts
 
 - HDSR paper related implementations; laptop and house price data sets and model related questions that we tried already + certain data viz exercises based on the reviewer's suggestions
