@@ -1,6 +1,6 @@
 # GAIL-project-Examples 
 
-This file summarizes the main aspects of the project. For further details and recent experimental results with up-to-date information, please refer to the given pdf file entitled "Supplementary.pdf"
+This file summarizes the main aspects of the project. For further details and recent experimental results with up-to-date information, please refer to the given pdf file entitled "[Supplementary.pdf](https://github.com/oevkaya/GAIL-DS-project/blob/main/Supplementary.pdf)"
 
 ----------------------------------------------------
 
