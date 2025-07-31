@@ -1,6 +1,6 @@
-# GAIL-project-Examples
+# GAIL-project-Examples 
 
-This file summarizes the main aspects of the project. For further details and experimental results, please refer to the ??
+This file summarizes the main aspects of the project. For further details and recent experimental results with up-to-date information, please refer to the given pdf file entitled "Supplementary.pdf"
 
 ----------------------------------------------------
 
