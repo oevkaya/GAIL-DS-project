@@ -125,7 +125,12 @@
 "file_name": "instructional-staff.csv", "level": "easy",
  "common_answers": [
    ["staff_long", 
+<<<<<<< Updated upstream
     "staff_long <- instructional-staff %>% pivot_longer(cols = c(\"1975\", \"1989\", \"1993\", \"1995\", \"1999\", \"2001\", \"2003\", \"2005\", \"2007\", \"2009\", \"2011\"), names_to = \"year\", values_to = \"percent\")"
+=======
+    "staff_long <- instructional-staff %>% pivot_longer(cols = c(\"1975\", \"1989\", \"1993\", \"1995\",\"1999\", \"2001\", \"2003\", \"2005\", \"2007\", \"2009\" ,\"2011\")), 
+    names_to = 'year', values_to = 'percent')"
+>>>>>>> Stashed changes
    ],
    ["instructional_staff_employment_trends_plot",
      "instructional_staff_employment_trends_plot <- ggplot(data = staff_long, mapping = aes(x = year, y = percent, colour = faculty_type)) + geom_point()"
@@ -242,7 +247,7 @@ Determine the R^2 of the model and interpret it in the context of the data.",
 "concepts": ["Regression Modeling Interpretation"], "format": "@linear_model_slope_intercept_R2[linear_model_slope_intercept_R2] where \"linear_model_slope_intercept_R2\" is the text includes the model fit interpretations.", 
 "file_name": "evals.csv", "level": "medium", 
 "common_answers": [["linear_model_slope_intercept_R2", "For each unit increase in the average beauty score, we expect the evaluation scores to be higher, on average, by 0.0666 points. 
-The model has an R-squared value of 0.03502226. This means that average beauty scores explain 3.5% of the variability in evaluation scores."]
+The model has an R-squared value of 0.03502226. This means that average beauty scores explain 3.5% of the variability in evaluation scores."],
 ]}
 
 {"id": 23.2, "question": "Make a plot of residuals vs. predicted values for the model above. Use geom_jitter() instead of geom_point(), and overlay a dashed horizontal line at y = 0. 
@@ -269,12 +274,15 @@ which is probably due to the fact that values of the response variable were clos
    }
  ]}
 
-{"id": 25, "question": "Fit a new linear model called score_rank_fit to predict average professor evaluation score based on rank of the professor and print out the regression output using tidy(). Based on the regression output, interpret the slope and intercept in context of the data.", 
+{"id": 25, "question": "Fit a new linear model called score_rank_fit to predict average professor evaluation score based on rank of 
+the professor and print out the regression output using tidy(). Based on the regression output, interpret the slope and intercept in context of the data.", 
 "concepts": ["Regression Modeling"], "format": "@linear_model_score_rank_fit[linear_model_score_rank_fit] where \"linear_model_score_rank_fit\" is a fitted linear regression with categorical variable.", 
 "file_name": "evals.csv", "level": "medium", 
-"common_answers": [["linear_model_score_rank_fit",
-  "{\"(Intercept)\":{\"estimate\":4.28,\"std.error\":0.0537,\"statistic\":79.9,\"p.value\":1.02e-271},\"ranktenure track\":{\"estimate\":-0.130,\"std.error\":0.0748,\"statistic\":-1.73,\"p.value\":8.37e-2},\"ranktenured\":{\"estimate\":-0.145,\"std.error\":0.0636,\"statistic\":-2.28,\"p.value\":2.28e-2}}",
-  "A lecturer whose rank is as teaching staff (which, if we look at the data dictionary in the help file, is the level not mentioned in the output, that is the baseline level) can be expected, on average, to have a score of 4.28. A tenure track lecturer is predicted by the model to have a score that is expected to be 0.130 lower, on average, than that of teaching staff. A tenured lecturer is predicted by the model to have a score that is expected to be 0.145 lower, on average, than that of teaching staff."]
+"common_answers": [
+["linear_model_score_rank_fit", "{\"(Intercept)\":{\"estimate\":4.28,\"std.error\":0.0537,\"statistic\":79.9,\"p.value\":1.02e-271},\"ranktenure track\":{\"estimate\":-0.130,\"std.error\":0.0748,\"statistic\":-1.73,\"p.value\":8.37e-2},\"ranktenured\":{\"estimate\":-0.145,\"std.error\":0.0636,\"statistic\":-2.28,\"p.value\":2.28e-2}}"
+A lecturer whose rank is as teaching staff (which, if we look at the data dictionary in the help file, is the level not mentioned in the output, that is the baseline level) 
+can be expected, on average, to have a score of 4.28. A tenure track lecturer is predicted by the model to have a score that is expected to be 0.130 lower, on average, that that of teaching staff.
+A tenured lecturer is predicted by the model to have a score that is expected to be 0.145 lower, on average, than that of teaching staff.]
 ]
 }
 
@@ -313,39 +321,41 @@ This is due to the fact that the only explanatory variable RainToday is a catego
 
 ---- THE REST TBA ---
 
-{"id": 29, "question": "Split the data into a training set (80% of your Portland data) and a testing set. Refit the simple logistic regression using RainToday as predictor on this training data, using tidymodels recipes and workflows.Start by the recipe. First initialize the recipe, then remove observations with missing values using step_naomit() and finally use step_dummy to convert categorical to dummy variables.", 
+{"id": 29, "question": "Split the data into a training set (80% of your Portland data) and a testing set. 
+Refit the simple logistic regression using RainToday as predictor on this training data, using tidymodels recipes and workflows.
+Start by the recipe. First initialize the recipe, then remove observations with missing values using step_naomit() and finally use step_dummy to convert categorical to dummy variables.", 
 "concepts": ["Logistic Regression Model"], "format": "@RainTomorrow_logistic_model_train_test_split[RainTomorrow_logistic_model_train_test_split] where \"RainTomorrow_logistic_model_train_test_split\" is a fitted logistic model after data split", 
 "file_name": "weatherAUS.csv", "level": "hard", 
 "common_answers": [
   [
     "solution_code",
-    "# Put 80% of the data into the training set\\n
-weather_split <- initial_split(weather_Portland, prop = 0.80)\\n
-# Create data frames for the two sets:\\n
-train_data <- training(weather_split)\\n
-test_data  <- testing(weather_split)\\n
-\\n
-weather_rec1 <- recipe(\\n
-  RainTomorrow ~ RainToday,\\n
-  data = weather_Portland\\n
-) %>%\\n
-  step_naomit(all_predictors()) %>%\\n
-  step_dummy(all_nominal_predictors())\\n
-\\n
-weather_mod1 <- logistic_reg() %>%\\n
-  set_engine(\"glm\")\\n
-weather_wflow1 <- workflow() %>%\\n
-  add_model(weather_mod1) %>%\\n
-  add_recipe(weather_rec1)\\n
-\\n
-weather_fit1 <- weather_wflow1 %>%\\n
-  fit(data = train_data)\\n
+    "# Put 80% of the data into the training set\n\
+weather_split <- initial_split(weather_Portland, prop = 0.80)\n\
+# Create data frames for the two sets:\n\
+train_data <- training(weather_split)\n\
+test_data  <- testing(weather_split)\n\
+\n\
+weather_rec1 <- recipe(\n\
+  RainTomorrow ~ RainToday,\n\
+  data = weather_Portland\n\
+) %>%\n\
+  step_naomit(all_predictors()) %>%\n\
+  step_dummy(all_nominal_predictors())\n\
+\n\
+weather_mod1 <- logistic_reg() %>%\n\
+  set_engine(\"glm\")\n\
+weather_wflow1 <- workflow() %>%\n\
+  add_model(weather_mod1) %>%\n\
+  add_recipe(weather_rec1)\n\
+\n\
+weather_fit1 <- weather_wflow1 %>%\n\
+  fit(data = train_data)\n\
 tidy(weather_fit1)"
   ],
   [
     "RainTomorrow_logistic_model_train_test_split",
-    "##   term          estimate std.error statistic  p.value\\n
-## 1 (Intercept)      -1.07    0.0589     -18.1 2.76e-73\\n
+    "##   term          estimate std.error statistic  p.value\n\
+## 1 (Intercept)      -1.07    0.0589     -18.1 2.76e-73\n\
 ## 2 RainToday_Yes     1.33    0.0902      14.7 3.27e-49"
   ]
 ]
@@ -359,25 +369,25 @@ We will use as predictors the variables MinTemp, MaxTemp, RainToday and Rainfall
 "common_answers": [
   [
     "solution_code",
-    "weather_rec2 <- recipe(\\n
-  RainTomorrow ~ MinTemp+MaxTemp+RainToday+Rainfall, # formula\\n
-  data = weather_Portland\\n
-) %>%\\n
-  step_naomit(all_predictors()) %>%\\n
-  step_dummy(all_nominal(), -all_outcomes())\\n
-# Save the model, workflow and fit to the training data:\\n
-weather_mod2 <- logistic_reg() %>% set_engine(\"glm\")\\n
-weather_wflow2 <- workflow() %>% add_model(weather_mod2) %>% add_recipe(weather_rec2)\\n
-weather_fit2 <- weather_wflow2 %>% fit(data = train_data)\\n
+    "weather_rec2 <- recipe(\n\
+  RainTomorrow ~ MinTemp+MaxTemp+RainToday+Rainfall, # formula\n\
+  data = weather_Portland\n\
+) %>%\n\
+  step_naomit(all_predictors()) %>%\n\
+  step_dummy(all_nominal(), -all_outcomes())\n\
+# Save the model, workflow and fit to the training data:\n\
+weather_mod2 <- logistic_reg() %>% set_engine(\"glm\")\n\
+weather_wflow2 <- workflow() %>% add_model(weather_mod2) %>% add_recipe(weather_rec2)\n\
+weather_fit2 <- weather_wflow2 %>% fit(data = train_data)\n\
 tidy(weather_fit2)"
   ],
   [
     "RainTomorrow_logistic_model_mult_pred",
-    "##   term          estimate std.error statistic       p.value\\n
-## 1 (Intercept)    0.422      0.217      1.94  0.0519\\n
-## 2 MinTemp        0.00872    0.0159     0.550 0.582\\n
-## 3 MaxTemp       -0.0827     0.0137    -6.06  0.00000000139\\n
-## 4 Rainfall       0.0490     0.0124     3.95  0.0000791\\n
+    "##   term          estimate std.error statistic       p.value\n\
+## 1 (Intercept)    0.422      0.217      1.94  0.0519\n\
+## 2 MinTemp        0.00872    0.0159     0.550 0.582\n\
+## 3 MaxTemp       -0.0827     0.0137    -6.06  0.00000000139\n\
+## 4 Rainfall       0.0490     0.0124     3.95  0.0000791\n\
 ## 5 RainToday_Yes  0.715      0.122      5.87  0.00000000436"
   ]
 ]
@@ -453,20 +463,20 @@ weather_pred2 %>%\n\
 "common_answers": [
   [
     "solution_code",
-    "edibnb %>%\\n
-  filter(neighbourhood == 'Newington') %>%\\n
+    "edibnb %>%\n\
+  filter(neighbourhood == 'Newington') %>%\n\
   count(bathrooms)"
   ],
   [
     "freq_table_bathrooms_Newington",
-    "##   bathrooms     \\n
-## 1       0       1\\n
-## 2       0.5     3\\n
-## 3       1     348\\n
-## 4       1.5    48\\n
-## 5       2      34\\n
-## 6       3       3\\n
-## 7       3.5     1\\n
+    "##   bathrooms     n\n\
+## 1       0       1\n\
+## 2       0.5     3\n\
+## 3       1     348\n\
+## 4       1.5    48\n\
+## 5       2      34\n\
+## 6       3       3\n\
+## 7       3.5     1\n\
 ## 8      NA       1"
   ]
 ]
@@ -481,8 +491,8 @@ What does the frequency table suggest? Is the council targeting all neighborhood
 "common_answers": [
   [
     "solution_code",
-    "council %>%\\n
-  left_join(edibnb, by="id") %>%\\n
+    "council %>%\n\ 
+  left_join(edibnb, by="id") %>%\n\
   count(neighbourhood)"
   ],
   [
@@ -500,12 +510,12 @@ Calculate some simple summary statistics to support your comments.",
 "common_answers": [
   [
     "solution_code",
-    "run17 %>%\\n
-  filter(event == \"10 Mile\") %>%\\n
+    "run17 %>%\n\
+  filter(event == "10 Mile") %>%\n\
   ggplot(mapping = aes(x = age)) +
-    geom_histogram(binwidth = 2)\\n
-run17 %>%\\n
-  group_by(event) %>%\\n
+    geom_histogram(binwidth = 2)\n\ 
+run17 %>%\n\
+  group_by(event) %>%\n\
   summarise(avg = mean(age, na.rm = TRUE),
             med = median(age, na.rm = TRUE),
             min = min(age, na.rm = TRUE), 
@@ -513,68 +523,70 @@ run17 %>%\\n
   ],
   [
     "histogram_10mile_summary_stats",
-    "The shape of the age histogram increases sharply around the age of 25, peaks at about 30 years old and then steadily decreases towards the oldest runner of 10 Mile.\\n
-This shape illustrates that the age distribution is right skewed, specifically the longer tail from the peak in the histogram is that \\n
-which extends out towards the right in the positive direction. The mean age is 37 years, the median age is 35 years and the mode age (from the histogram) \\n
+    "The shape of the age histogram increases sharply around the age of 25, peaks at about 30 years old and then steadily decreases towards the oldest runner of 10 Mile.\n\ 
+This shape illustrates that the age distribution is right skewed, specifically the longer tail from the peak in the histogram is that \n\ 
+which extends out towards the right in the positive direction. The mean age is 37 years, the median age is 35 years and the mode age (from the histogram) \n\
 is about 29 years. Since the data is right skewed, then we see that the mode is the smallest value, followed by the median and the mean value is the largest."
   ]
 ]
 }
 
-{"id": 34.1, "question": "Create a similar data visualisation for the \"5K\" race event. Describe the shape of this histogram and discuss the similarities/differences of the age distribution between the \"5K\" and \"10 Mile\" races.", 
+{"id": 34.1, "question": "Create a similar data visualisation for the \"5K"\ race event. 
+Describe the shape of this histogram and discuss the similarities/differences of the age distribution between the \"5K"\ and \"10 Mile"\ races.", 
 "concepts": ["Data Visualization-Interpretation"], "format": "@histogram_10mile_5mile_comparison[histogram_10mile_5mile_comparison] where \"histogram_10mile_5mile_comparison\" is the created histogram and additional comparison comments", 
 "file_name": "cherryblossom::run17", "level": "hard", 
 "common_answers": [
   [
     "solution_code",
-    "run17 %>%\\n
-  filter(event == \"5K\") %>%\\n
-  drop_na() %>%\\n
-  ggplot(mapping = aes(x = age)) +\\n
+    "run17 %>%\n\
+  filter(event == "5K") %>%\n\
+  drop_na() %>%\n\
+  ggplot(mapping = aes(x = age)) +
     geom_histogram(binwidth = 2)"
   ],
   [
     "histogram_10mile_5mile_comparison",
-    "The mean age of the runners of the 5K race is 38 years old, with median 36 years and mode (from the histogram) is about 32 years.\\n
-Again we notice the relationship mode < median < mean, which is indicative of a right/positively skewed distribution.\\n
-However, range in these values (5K: 38-32=6, 10 Mile: 37-29=8) suggest that the age distribution for the 10 Mile race is more skewed than that for the 5K race.\\n
-Furthermore, the histogram for the 5K race demonstrates a number of other features, such as a larger number of runners of a lower age with a minor peak around 12 years old.\\n"
-  ]]
+    "The mean age of the runners of the 5K race is 38 years old, with median 36 years and mode (from the histogram) is about 32 years.\n\ 
+Again we notice the relationship mode < median < mean, which is indicative of a right/positively skewed distribution.\n\
+However, range in these values (5K: 38-32=6, 10 Mile: 37-29=8) suggest that the age distribution for the 10 Mile race is more skewed than that for the 5K race.\n\ 
+Furthermore, the histogram for the 5K race demonstrates a number of other features, such as a larger number of runners of a lower age with a minor peak around 12 years old.\n\"
+  ]
+]
 }
 
-{"id": 35, "question": "Create a data visualisation based on the following description.\n
-Make a sequence of boxplots for the time (in minutes) that it took the runners to complete the Cherryblossom race (after accounting for the staggered start).\n
-The boxplots should be orientated vertically (i.e. side-by-side) based on the runner’s identified gender. \n
-Furthermore, the data visualisation should consist of two panels for the two different race distances, with independent axes.\n
-Finally, add appropriate text to the image in order to assist the reader in understanding the data visualisation.\n
+{"id": 35, "question": "Create a data visualisation based on the following description.
+Make a sequence of boxplots for the time (in minutes) that it took the runners to complete the Cherryblossom race (after accounting for the staggered start). 
+The boxplots should be orientated vertically (i.e. side-by-side) based on the runner’s identified gender. 
+Furthermore, the data visualisation should consist of two panels for the two different race distances, with independent axes. 
+Finally, add appropriate text to the image in order to assist the reader in understanding the data visualisation.
 Provide a brief comment about the relationships seen in the data visualisation created by the above description.", 
 "concepts": ["Data Visualization"], "format": "@instructed_data_viz[instructed_data_viz] where \"instructed_data_viz\" is the created data viz based on given instructions", 
 "file_name": "cherryblossom::run17", "level": "hard",
 "common_answers": [
   [
     "solution_code",
-    " run17 %>% \\n
-mutate(\\n
-   net_min = net_sec/60,\\n
-   sex = case_when(\\n
-     sex == \"M\" ~ \"Men's Race\",\\n
-     sex == \"F\" ~ \"Women's Race\"\\n
-   )) %>%\\n
-   drop_na() %>%\\n
-   ggplot(mapping = aes(y = net_min, x = sex)) +\\n
-   geom_boxplot() + \\n
-   facet_wrap(~event, scales = \"free\") +\\n
-   labs(\\n
-     x = \"\",\\n
-     y = \"Race time, in minutes\",\\n
-     title = \"Boxplot of the Cherryblossom Run, 2017\"\\n
+    " run17 %>% \n\ 
+mutate(
+   net_min = net_sec/60,
+   sex = case_when(
+     sex == "M" ~ "Men's Race",
+     sex == "F" ~ "Women's Race"
+   )) %>%\n\ 
+   drop_na() %>%\n\
+   ggplot(mapping = aes(y = net_min, x = sex)) +
+   geom_boxplot() + 
+   facet_wrap(~event, scales = "free") +
+   labs(
+     x = "",
+     y = "Race time, in minutes",
+     title = "Boxplot of the Cherryblossom Run, 2017"
    )"
   ],
   [
     "instructed_data_viz",
-    "The times for the 5K event are noticably quicker thant the times for the 10 Mile event.\\n
-Within each event, the range in times for participants in the Men’s race and the Women’s race are fairly similar,\\n
-but the median estimates (the bar through the box) are different,\\n
+    "The times for the 5K event are noticably quicker thant the times for the 10 Mile event.\n\ 
+Within each event, the range in times for participants in the Men’s race and the Women’s race are fairly similar,\n\ 
+but the median estimates (the bar through the box) are different,\n\
 with the median time of the Men’s race being faster than that from the Women’s race."
   ]
 ]
@@ -584,8 +596,19 @@ with the median time of the Men’s race being faster than that from the Women�
 One that you think provides a bad representation of the data. For each case, give two reasons why you consider the data visualisation you have found are good/bad.", 
 "concepts": ["Data Visualization"], "format": "@run17_data_viz_good_bad[run17_data_viz_good_bad] where \"run17_data_viz_good_bad\" is the created good and bad data viz examples with two main reasons", 
 "file_name": "cherryblossom::run17", "level": "hard", 
-"common_answers": [["run17_data_viz_good_bad", 
-"Reasons why a data visualisation may be considered as being good include:\nThe use of an appropriate visualisation style (box-plot, histogram, scatter plot, etc.) for the variable types.\nInformative use of axis labels and title\nGood use of additional visualisation techniques (colour, point shape, faceting) to add extra variables that does not overload the image.\nThe data visualisation is clean and the intended reader can immediately understand the structure of the data.\nReasons why a data visualisation may be considered as being bad include:\nThere is a geometric flaw in the presentation of the data (e.g., bar heights not consistent with the data)\nOverloading the visualisation to incorporate too many variables\nPoor demonstration of basic mathematics (e.g. percentages not adding to 100%)\nNo title or axis label, or axis labels that are incomprehensible\n"]]
+"common_answers": [[
+    "run17_data_viz_good_bad",
+    "Reasons why a data visualisation may be considered as being good include:\n\ 
+The use of an appropriate visualisation style (box-plot, histogram, scatter plot, etc.) for the variable types.\n\ 
+Informative use of axis labels and title\n\
+Good use of additional visualisation techniques (colour, point shape, faceting) to add extra variables that does not overload the image.\n\
+The data visualisation is clean and the intended reader can immediately understand the structure of the data.\n\
+Reasons why a data visualisation may be considered as being bad include:\n\
+There is a geometric flaw in the presentation of the data (e.g., bar heights not consistent with the data)\n\
+Overloading the visualisation to incorporate too many variables\n\
+Poor demonstration of basic mathematics (e.g. percentages not adding to 100%)\n\
+No title or axis label, or axis labels that are incomprehensible\n\"
+]]
 }
 
 {"id": 37, "question": "Create a new data frame called gss16_advfront that includes the variables advfront, emailhr (Number of hours spent on email weekly), 
@@ -599,10 +622,10 @@ Save the name data set as a new data frame called 'gss16_advfront'",
 "common_answers": [
   [
     "solution_code",
-    " gss16_advfront <- gss16 %>% \n
-  select(advfront, emailhr, educ, polviews, wrkstat) %>% \n
-  drop_na() \n
-gss16_advfront <- gss16_advfront %>% \n
+    " gss16_advfront <- gss16 %>% \n\
+  select(advfront, emailhr, educ, polviews, wrkstat) %>% \n\
+  drop_na() \n\ 
+gss16_advfront <- gss16_advfront %>% \n\
   mutate(
     advfront = case_when(
       advfront == "Strongly agree" ~ "Agree",
@@ -611,7 +634,7 @@ gss16_advfront <- gss16_advfront %>% \n
     ),
     advfront = fct_relevel(advfront, "Not agree", "Agree")
   ) \n\
-gss16_advfront <- gss16_advfront %>%\n
+gss16_advfront <- gss16_advfront %>%\n\
   mutate(
     polviews = case_when(
       str_detect(polviews, "[Cc]onservative") ~ "Conservative",
@@ -619,8 +642,8 @@ gss16_advfront <- gss16_advfront %>%\n
       TRUE ~ polviews
     ),
     polviews = fct_relevel(polviews, "Conservative", "Moderate", "Liberal")
-  ) \n
-gss16_advfront <- gss16_advfront %>% \n
+  ) \n\
+gss16_advfront <- gss16_advfront %>% \n\
   mutate(fulltime = ifelse(wrkstat == "Working fulltime",TRUE,FALSE))
 "
   ],
@@ -639,15 +662,15 @@ Fit a linear regression model to predicting emailhr based on educ and fulltime. 
 "common_answers": [
   [
     "solution_code",
-    "linear_fit <- linear_reg() %>% \\n
-  set_engine(\"lm\") %>% \\n
-  fit(emailhr ~ educ+fulltime, data = gss16_advfront) \\n
+    "linear_fit <- linear_reg() %>% \n\
+  set_engine("lm") %>% \n\
+  fit(emailhr ~ educ+fulltime, data = gss16_advfront) \n\ 
 linear_fit %>% tidy()"
   ],
   [
     "gss16_advfront_data_regression",
-    "The formula for the best fit is −3.35 + 0.538 × educ + 5.28 × fulltimeTRUE where fulltimeTRUE is a dummy variable equal to 1 if fulltime is equal to TRUE and 0 otherwise. \\n
-The coefficient for fulltimeTRUE explains that, holding everything else constant, people working fulltime are expected to spend on average 5.28 hours more \\n
+    "The formula for the best fit is −3.35 + 0.538 × educ + 5.28 × fulltimeTRUE where fulltimeTRUE is a dummy variable equal to 1 if fulltime is equal to TRUE and 0 otherwise. \n\
+The coefficient for fulltimeTRUE explains that, holding everything else constant, people working fulltime are expected to spend on average 5.28 hours more \n\ 
 on email per week then people not working fulltime."
   ]
 ]
@@ -660,19 +683,19 @@ Create a suitable data visualization to evaluate if the linear model assumptions
 "common_answers": [
   [
     "solution_code",
-    "glance(linear_fit) \\n
-  em_ed_ft_fit_aug <- augment(linear_fit$fit)\\n
-ggplot(em_ed_ft_fit_aug, mapping = aes(x = .fitted, y = .resid)) +\\n
-  geom_point(alpha = 0.5) +\\n
-  geom_hline(yintercept = 0, color = \"gray\", lty = \"dashed\") +\\n
-  labs(x = \"Predicted values\", y = \"Residuals\")"
+    "glance(linear_fit) \n\
+  em_ed_ft_fit_aug <- augment(linear_fit$fit)\n\
+ggplot(em_ed_ft_fit_aug, mapping = aes(x = .fitted, y = .resid)) +
+  geom_point(alpha = 0.5) +
+  geom_hline(yintercept = 0, color = "gray", lty = "dashed") +
+  labs(x = "Predicted values", y = "Residuals")"
   ],
   [
     "gss16_advfront_regression_model_performance",
-    "When the simple linear regression is considered for the emailhr and fulltime variable, the model results in poor/moderate performance.\\n 
-In fact, the model R-squared value is very close to the zero (0.0836), and this shows that these variables are not able to explain a large variation in the response variable\\n
-– only 8.3% of the variation in emailhr is explained by the model.\\n
-By examining the residual by fitted plot, we see that the residuals do not satisty the assumption of the linear model, as they display a “fan shape”, \\n
+    "When the simple linear regression is considered for the emailhr and fulltime variable, the model results in poor/moderate performance.\n\ 
+In fact, the model R-squared value is very close to the zero (0.0836), and this shows that these variables are not able to explain a large variation in the response variable\n\
+– only 8.3% of the variation in emailhr is explained by the model.\n\
+By examining the residual by fitted plot, we see that the residuals do not satisty the assumption of the linear model, as they display a “fan shape”, \n\ 
 i.e. the variance of the residuals appears to be larger for larger predicted values."
   ]
 ]
@@ -684,30 +707,30 @@ Split the dataset into a training dataset (gss16_train) and a testing dataset (g
 Build a workflow for the training data that consists of a recipe (gss16_rec_1) and a model (gss16_mod_1). Name this workflow gss16_wflow_1.
 Apply the workflow you defined earlier to the training dataset and named the model as gss16_fit_1. Display the resulting tibble containing the fitted model parameters.", 
 "concepts": ["Logistic Regression Modeling"], "format": "@gss16_advfront_logistic_model[gss16_advfront_logistic_model] where \"gss16_advfront_logistic_model\" is the logistic regression model fit.", 
-"file_name": "gss16_advfront.csv", "level": "hard",
+"file_name": "gss16_advfront.csv", "level": "hard", 
 "common_answers": [
   [
     "solution_code",
-    "gss16_split <- initial_split(gss16_advfront) \\n
-gss16_train <- training(gss16_split) \\n
-gss16_test  <- testing(gss16_split) \\n
-gss16_rec_1 <- recipe(advfront ~ educ, data = gss16_train) \\n
-gss16_mod_1 <- logistic_reg() %>% \\n
-  set_engine(\"glm\") \\n
-gss16_wflow_1 <- workflow() %>% \\n
-  add_model(gss16_mod_1) %>% \\n
-  add_recipe(gss16_rec_1) \\n
-gss16_fit_1 <- gss16_wflow_1 %>% \\n
-  fit(gss16_train) \\n
+    "gss16_split <- initial_split(gss16_advfront) \n\
+gss16_train <- training(gss16_split) \n\
+gss16_test  <- testing(gss16_split) \n\
+gss16_rec_1 <- recipe(advfront ~ educ, data = gss16_train) \n\
+gss16_mod_1 <- logistic_reg() %>% \n\
+  set_engine("glm") \n\
+gss16_wflow_1 <- workflow() %>% \n\
+  add_model(gss16_mod_1) %>% \n\
+  add_recipe(gss16_rec_1) \n\
+gss16_fit_1 <- gss16_wflow_1 %>% \n\
+  fit(gss16_train) \n\
 tidy(gss16_fit_1)"
   ],
   [
     "gss16_advfront_logistic_model",
-    "##   term        estimate std.error statistic   p.value \\n
-## 1 (Intercept)   -0.375    0.485     -0.773 0.439    \\n
-## 2 educ           0.150    0.0356     4.21  0.0000252 \\n
-A logistic regression is the appropriate model to use here because the response variable is binary (agree vs not agree). \\n
-The fitted model results in a coefficient of 0.15 for education, suggesting that the probability for agreeing with the statement increases on average  \\n
+    "##   term        estimate std.error statistic   p.value
+## 1 (Intercept)   -0.375    0.485     -0.773 0.439    
+## 2 educ           0.150    0.0356     4.21  0.0000252 \n\
+A logistic regression is the appropriate model to use here because the response variable is binary (agree vs not agree). \n\
+The fitted model results in a coefficient of 0.15 for education, suggesting that the probability for agreeing with the statement increases on average  \n\
 for a participant with a larger number of years in education."
   ]
 ]
@@ -721,32 +744,32 @@ logistic regression model fit predictions and related performance metrics",
 "common_answers": [
   [
     "solution_code",
-    "gss16_test_pred_1 <- predict(gss16_fit_1, new_data = gss16_test, type = \"prob\") %>% \\n
+    "gss16_test_pred_1 <- predict(gss16_fit_1, new_data = gss16_test, type = "prob") %>% \n\
   bind_cols(gss16_test %>% select(advfront)) \n\
-gss16_test_pred_1 %>% \\n
-  roc_curve(truth = advfront, .pred_Agree, event_level = \"second\") %>% \\n
-  autoplot() \\n
-gss16_train <- training(gss16_split) \\n
-gss16_test_pred_1 %>% \\n
-  roc_auc(truth = advfront, .pred_Agree, event_level = \"second\") \\n
+gss16_test_pred_1 %>% \n\
+  roc_curve(truth = advfront, .pred_Agree, event_level = "second") %>% \n\
+  autoplot() \n\
+gss16_train <- training(gss16_split) \n\
+gss16_test_pred_1 %>% \n\
+  roc_auc(truth = advfront, .pred_Agree, event_level = "second") \n\
 
-threshold <- 0.85 \\n
-table_pred <- gss16_test_pred_1 %>% \\n
-  mutate(\\n
-    advfront_pred = if_else(.pred_Agree >= threshold, \"Predicted to agree\", \"Predicted to disagree\"),\\n
-    advfront = if_else(advfront == \"Agree\", \"Agree\", \"Disagree\") \\n
-  ) %>% \\n
-  count(advfront_pred, advfront) %>% \\n
-  pivot_wider(names_from = advfront, values_from = n) \\n
+threshold <- 0.85 \n\
+table_pred <- gss16_test_pred_1 %>% \n\
+  mutate(
+    advfront_pred = if_else(.pred_Agree >= threshold, "Predicted to agree", "Predicted to disagree"),
+    advfront = if_else(advfront == "Agree", "Agree", "Disagree")
+  ) %>% \n\
+  count(advfront_pred, advfront) %>% \n\
+  pivot_wider(names_from = advfront, values_from = n) \n\
 table_pred"
   ],
   [
     "gss16_advfront_logistic_model_ROC_performance",
-    "##   advfront_pred         Agree Disagree\\n
-## 1 Predicted to agree      112        9\\n
-## 2 Predicted to disagree   153       19 \\n
-This means that; TP = 112; FP = 9, FN = 153, TN = 19 \\n
-Sensitivity is the probability of “predicting to agree” for a participant who agrees, and it’s computed as TP / (TP + FN), so 0.42. \\n
+    "##   advfront_pred         Agree Disagree
+## 1 Predicted to agree      112        9
+## 2 Predicted to disagree   153       19 \n\
+This means that; TP = 112; FP = 9, FN = 153, TN = 19 \n\
+Sensitivity is the probability of “predicting to agree” for a participant who agrees, and it’s computed as TP / (TP + FN), so 0.42. \n\
 Specificity is the probability of “predicting to disagree” for a participant who disagree, and it’s computed as TN / (FP + TN), so 0.68."
   ]
 ]
@@ -759,7 +782,7 @@ What is the correct interpretation of this interval?",
 "concepts": ["CI Interpretation"], "format": "@CI95_interpretation[CI95_interpretation] where \"CI95_interpretation\" is the verbal interpretation for the given statement.", 
 "file_name": "", "level": "easy"}
 
-{"id": 41, "question": "In the context of an email spam detection system, describe the terms \"True Positive\", \"False Positive\", \"True Negative\", and \"False Negative\" ", 
+{"id": 41, "question": "In the context of an email spam detection system, describe the terms \"True Positive"\, \"False Positive"\, \"True Negative"\, and \"False Negative"\ ", 
 "concepts": ["Specific Descriptions"], "format": "@Confusion_definitions[Confusion_definitions] where \"Confusion_definitions\" is the verbal definitions for the given quantities.", 
 "file_name": "", "level": "easy"}
 
@@ -790,7 +813,7 @@ Why might the method used to estimate the average number of pets in households i
 {"id": 45, "question": "For the given data frames in tibble format, 
 ```
 df1 <- tibble(x = 1:3)
-df2 <- tibble(x = c(1, 1, 2), y = c(\"first\", \"second\", \"third\"))
+df2 <- tibble(x = c(1, 1, 2), y = c("first", "second", "third"))
 ```
 Apply the joining procedure results in a new data frame with missing value.", 
 "concepts": ["Data Preparation"], "format": "@df1_df2_merged[df1_df2_merged] where \"df1_df2_merged\" is the merged data frame based on given condition", 
@@ -804,14 +827,14 @@ Apply the joining procedure results in a new data frame with missing value.",
 "common_answers": [
   [
     "solution_code",
-    "laptop_data_cleaned <- read_csv(\"laptop_data_cleaned.csv\") \\n
+    "laptop_data_cleaned <- read_csv("laptop_data_cleaned.csv") \n\
 summary(laptop_data_cleaned)"
   ],
   [
     "laptop_summary_stats",
-    "There are 1273 observations for the data set including both numerical and categorical type of variables\\n
-Specifically for the price variable, we have min value as 9.135, max value as 12.691, whereas mean: 10.828 and median 10.872 \\n
-The variance of the price is calculated as 0.3838608\\n"
+    "There are 1273 observations for the data set including both numerical and categorical type of variables\n\ 
+Specifically for the price variable, we have min value as 9.135, max value as 12.691, whereas mean: 10.828 and median 10.872 \n\
+The variance of the price is calculated as 0.3838608\n\"
   ]
 ]
 }
@@ -859,10 +882,10 @@ Calculate a 95% confidence interval for the mean µ.",
 "common_answers": [
   [
     "solution_code",
-"x <- c(10, 12, 9, 6, 7, 11, 6, 9, 15, 10, 11, 13, 13, 9, 8, 10, 11, 7, 5, 8, 10, 13, 14, 14, 10) \\n
-xbar <- mean(x) \\n
-s <- sd(x) \\n
-n <- length(x) \\n
+"x <- c(10, 12, 9, 6, 7, 11, 6, 9, 15, 10, 11, 13, 13, 9, 8, 10, 11, 7, 5, 8, 10, 13, 14, 14, 10) \n\
+xbar <- mean(x) \n\
+s <- sd(x) \n\
+n <- length(x) \n\
 xbar + qt(c(0.025, 0.975), df = n - 1) * s/sqrt(n)"
   ],
   [
@@ -876,9 +899,9 @@ xbar + qt(c(0.025, 0.975), df = n - 1) * s/sqrt(n)"
 "concepts": ["Data Visualization"], "format": "@mouse_data_viz[mouse_data_viz] where \"mouse_data_viz\" is the created multiple different data visualizations", 
 "file_name": "mouse.txt", "level": "medium", 
 "common_answers": [["mouse_data_viz", 
-"hist(mouse$level, xlab = \"level\", main = \"Histogram of level\") \\n
-plot(mouse$index, mouse$level, xlab = \"index\", ylab = \"level\",
-main = \"Scatter plot of mouse data\")"
+"hist(mouse$level, xlab = "level", main = \"Histogram of level\") \n\
+plot(mouse$index, mouse$level, xlab = "index", ylab = "level",
+main = "Scatter plot of mouse data")"
 ]]
 }
 
@@ -888,9 +911,9 @@ main = \"Scatter plot of mouse data\")"
 "common_answers": [
   [
     "solution_code",
-"mean(mouse$level[mouse$index == 1]) \\n
-mean(mouse$level[mouse$index == 2]) \\n
-sd(mouse$level[mouse$index == 1]) \\n
+"mean(mouse$level[mouse$index == 1]) \n\
+mean(mouse$level[mouse$index == 2]) \n\
+sd(mouse$level[mouse$index == 1]) \n\
 sd(mouse$level[mouse$index == 2])"
   ],
   [
@@ -900,14 +923,15 @@ sd(mouse$level[mouse$index == 2])"
 ]
 }
 
-{"id": 55, "question": "Read the following time series data in to a vector: 10, 12, 16, 14, 19, 17, 13, 21, 18, 15, 19, 25, 27, 20, 14, 12, 17.Plot this data using a line graph, such that the limits of the y-axis are [0, 30]. Give the graph a title. ", 
+{"id": 55, "question": "Read the following time series data in to a vector: 10, 12, 16, 14, 19, 17, 13, 21, 18, 15, 19, 25, 27, 20, 14, 12, 17
+Plot this data using a line graph, such that the limits of the y-axis are [0, 30]. Give the graph a title. ", 
 "concepts": ["Data Visualization"], "format": "@data_line_graph[data_line_graph] where \"data_line_graph\" is the created line plot with certain aesthetics", 
 "file_name": "", "level": "easy", 
 "common_answers": [
   [
     "solution_code",
-"vec <- c(10, 12, 16, 14, 19, 17, 13, 21, 18, 15, 19, 25, 27, 20, 14, 12, 17) \\n
-plot(vec, type = "l", ylim = c(0, 30), main = \"TITLE\")"
+"vec <- c(10, 12, 16, 14, 19, 17, 13, 21, 18, 15, 19, 25, 27, 20, 14, 12, 17) \n\
+plot(vec, type = "l", ylim = c(0, 30), main = "TITLE")"
   ],
   [
     "data_line_graph",
@@ -938,21 +962,21 @@ is clearly defined. Conduct the hypothesis test and state your conclusions. Repe
 "common_answers": [
   [
     "solution_code",
-"diff <- first - second \\n
-teststat <- mean(diff) / (sd(diff)/sqrt(length(diff))) \\n
-teststat \\n
-2*(1 - pt(teststat, df = length(diff) - 1)) \\n
-qt(c(0.025, 0.975), df = length(diff) - 1) \\n 
+"diff <- first - second \n\
+teststat <- mean(diff) / (sd(diff)/sqrt(length(diff))) \n\
+teststat \n\
+2*(1 - pt(teststat, df = length(diff) - 1)) \n\
+qt(c(0.025, 0.975), df = length(diff) - 1) \n\ 
 t.test(diff, mu = 0)"
   ],
   [
     "aeroplane_two_sample_test",
-    "Let µX denote the underlying mean of the first throws; and µY for the second throws. We wish to test H0 : µX equals µY versus H1 : µX not equals µY. \\n
-    Let X_bar denote the random variable corresponding to the mean of the first throws; and µY the random variable corresponding to the mean of the second throws. \\n
-The data are paired - the same aeroplane is used for both the first and second throws of each student - and so they are not independent across the two throws \\n
-(we do however assume that each students is independent of each other). Thus we consider the differences of the means D_bar = X_bar − Y_bar (or D_bar = Y_bar − X_bar) \\n 
-The obtained p-value is 0.002765844, it is smaller than the predefined 0.05 significance level so we would reject the null hypothesis that the mean distances between \\n
-the throws are equal in favour of the alternative hypothesis that the mean differences are different. \\n
+    "Let µX denote the underlying mean of the first throws; and µY for the second throws. We wish to test H0 : µX equals µY versus H1 : µX not equals µY. \n\ 
+    Let X_bar denote the random variable corresponding to the mean of the first throws; and µY the random variable corresponding to the mean of the second throws. \n\  
+The data are paired - the same aeroplane is used for both the first and second throws of each student - and so they are not independent across the two throws \n\  
+(we do however assume that each students is independent of each other). Thus we consider the differences of the means D_bar = X_bar − Y_bar (or D_bar = Y_bar − X_bar) \n\ 
+The obtained p-value is 0.002765844, it is smaller than the predefined 0.05 significance level so we would reject the null hypothesis that the mean distances between \n\
+the throws are equal in favour of the alternative hypothesis that the mean differences are different. \n\
 In particular we would include that the mean of the first throws are larger than the mean of the second throws. The same result is obtained via t.test function (p-value = 0.002766)"
   ]
 ]
@@ -968,20 +992,20 @@ Conduct the hypothesis test and clearly state any conclusions that you make. Is 
 "common_answers": [
   [
     "solution_code",
-"Fstat <- var(first)/var(second) \\n
-Fstat \\n
-pval <- 2*pf(Fstat, df1 = length(first)-1, df2 = length(second)-1) \\n
-pval \\n
-crit_region <- qf(c(0.025,0.975), df1 = length(first)-1, df2 = length(second)-1) \\n
+"Fstat <- var(first)/var(second) \n\
+Fstat \n\
+pval <- 2*pf(Fstat, df1 = length(first)-1, df2 = length(second)-1) \n\
+pval \n\
+crit_region <- qf(c(0.025,0.975), df1 = length(first)-1, df2 = length(second)-1) \n\
 crit_region"
   ],
   [
     "aeroplane_testing_variability",
-    "We wish to conduct an F-test to test for equality of variance \\n
-    Let sigma_X^2 denote the variance of the random variable corresponding to the first throws and sigma_Y^2 denote the variance of the random variable corresponding to the second throws \\n
-We wish to test H0 : sigma_X^2 equals sigma_Y^2 vs H1 : sigma_X^2 not equals sigma_Y^2 \\n
-Consider the test statistics: F = (S_X^2)/(S_Y^2) \\n
-we have an associated p-value of 0.5013 - so that there is no evidence against the null hypothesis that the variances are the same. \\n
+    "We wish to conduct an F-test to test for equality of variance \n\ 
+    Let sigma_X^2 denote the variance of the random variable corresponding to the first throws and sigma_Y^2 denote the variance of the random variable corresponding to the second throws \n\  
+We wish to test H0 : sigma_X^2 equals sigma_Y^2 vs H1 : sigma_X^2 not equals sigma_Y^2 \n\  
+Consider the test statistics: F = (S_X^2)/(S_Y^2) \n\ 
+we have an associated p-value of 0.5013 - so that there is no evidence against the null hypothesis that the variances are the same. \n\
 Similarly we observe the critical region C = {f : f ≤ 0.396 or f ≥ 0.396 } and the observed f-statistic does not fall within the critical region, and so we again do not reject the null hypothesis."
   ]
 ]
@@ -993,7 +1017,7 @@ Similarly we observe the critical region C = {f : f ≤ 0.396 or f ≥ 0.396 } a
 "common_answers": [
   [
     "solution_code",
-"duke_forest %>% ggplot(aes(x=area)) + geom_histogram() \\n
+"duke_forest %>% ggplot(aes(x=area)) + geom_histogram() \n\
 duke_forest$area %>% mean()"
   ],
   [
@@ -1009,16 +1033,16 @@ duke_forest$area %>% mean()"
 "common_answers": [
   [
     "solution_code",
-"sample_mean <- mean(duke_forest$area) \\n
-se <- sd(duke_forest$area)/sqrt(length(duke_forest$area)) \\n
-lower <- sample_mean - 1.96 * se \\n
-upper <- sample_mean + 1.96 * se \\n
+"sample_mean <- mean(duke_forest$area) \n\
+se <- sd(duke_forest$area)/sqrt(length(duke_forest$area)) \n\
+lower <- sample_mean - 1.96 * se \n\
+upper <- sample_mean + 1.96 * se \n\
 c(lower, upper)"
   ],
   [
     "duke_forest_CI_95",
-    "We can calculate a 95% confidence interval for a sample mean by adding and subtracting 1.96 standard errors to the point estimate \\n
-The obtained interval for the size of an house via area variable is (2592.52 2966.01). Even though we don’t know what the full population looks like, \\n
+    "We can calculate a 95% confidence interval for a sample mean by adding and subtracting 1.96 standard errors to the point estimate \n\
+The obtained interval for the size of an house via area variable is (2592.52 2966.01). Even though we don’t know what the full population looks like, \n\
 we’re 95% confident that the true average size of homes in Duke lies between"
   ]
 ]
@@ -1030,13 +1054,13 @@ we’re 95% confident that the true average size of homes in Duke lies between"
 "common_answers": [
   [
     "solution_code",
-"df_price_area_fit <- linear_reg() %>% \\n
-  fit(price ~ area, data = duke_forest) \\n
+"df_price_area_fit <- linear_reg() %>% \n\
+  fit(price ~ area, data = duke_forest) \n\
 tidy(df_price_area_fit)"
   ],
   [
     "duke_forest_price_size_regr",
-    "The fitted regression model for the price using the area is obtained as Price = 116652 + 159 x area \\n
+    "The fitted regression model for the price using the area is obtained as Price = 116652 + 159 x area \n\
 For each additional square feet, the model predicts that prices of houses in Duke Forest are higher by $159, on average."
   ]
 ]
@@ -1073,12 +1097,12 @@ Split the data into train and testing, afterwards fit the regression model to te
 "concepts": ["PCA"], "format": "@duke_forest_PCA[duke_forest_PCA] where \"duke_forest_PCA\" is the fitted PCA and its interpretations", 
 "file_name": "duke_forest.xlsx", "level": "hard"}
 
-{"id": 66.1, "question": "Use the small number of PCs identified to cluster samples using an appropriate distance between the samples. 
+{"id": 65.1, "question": "Use the small number of PCs identified to cluster samples using an appropriate distance between the samples. 
 Identify the most appropriate number of clusters. Compare clustering results based on 2 different clustering methods. ", 
 "concepts": ["Clustering"], "format": "@duke_forest_PCA_clustering[duke_forest_PCA_clustering] where \"duke_forest_PCA_clustering\" is the fitted clustering model results", 
 "file_name": "duke_forest.xlsx", "level": "hard"}
 
-{"id": 66.2, "question": "Using the PC scores identified as variables, derive a Linear Discriminant Analysis results. 
+{"id": 65.2, "question": "Using the PC scores identified as variables, derive a Linear Discriminant Analysis results. 
 Discuss how many unknown parameters need to be estimated to derive this LDA rule, and compare it to the number of samples", 
 "concepts": ["Linear Discriminant Analysis"], "format": "@duke_forest_PCA_LDA[duke_forest_PCA_LDA] where \"duke_forest_PCA_LDA\" is the fitted linear discriminant analysis results", 
 "file_name": "duke_forest.xlsx", "level": "hard"}
